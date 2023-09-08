@@ -1,27 +1,23 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageQueue.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace System.Messaging
 {
-    using System.Text;
-    using System.Threading;
-    using System.Runtime.InteropServices;
-    using System.Runtime.Serialization;
-    using System.ComponentModel;
-    using System.Diagnostics;
     using System;
-    using System.Configuration.Install;
-    using System.Messaging.Interop;
-    using Microsoft.Win32;
-    using System.ComponentModel.Design;
     using System.Collections;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.Design;
+    using System.Diagnostics;
     using System.Globalization;
+    using System.Messaging.Interop;
+    using System.Runtime.InteropServices;
     using System.Security.Permissions;
-    using System.DirectoryServices;
+    using System.Text;
+    using System.Threading;
 
     /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue"]/*' />
     /// <devdoc>
@@ -30,11 +26,6 @@ namespace System.Messaging
     ///       access to a Message Queuing backend queue resource.
     ///    </para>
     /// </devdoc>
-    [DefaultEvent("ReceiveCompleted"),
-    TypeConverterAttribute(typeof(System.Messaging.Design.MessageQueueConverter)),
-    Editor("System.Messaging.Design.QueuePathEditor", "System.Drawing.Design.UITypeEditor, " + AssemblyRef.SystemDrawing),
-    InstallerTypeAttribute(typeof(MessageQueueInstaller)),
-    MessagingDescription(Res.MessageQueueDesc)]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
     public class MessageQueue : Component, IEnumerable
@@ -94,7 +85,7 @@ namespace System.Messaging
         private MQCacheableInfo mqInfo;
 
         // Double-checked locking pattern requires volatile for read/write synchronization
-        //Async IO support        
+        //Async IO support
         private volatile bool attached;
         private bool useThreadPool;
         private AsyncCallback onRequestCompleted;
@@ -130,7 +121,7 @@ namespace System.Messaging
         // Double-checked locking pattern requires volatile for read/write synchronization
         private volatile QueueInfoKeyHolder queueInfoKey = null;
 
-        //Code Acess Security support            
+        //Code Acess Security support
         private bool administerGranted;
         private bool browseGranted;
         private bool sendGranted;
@@ -139,7 +130,7 @@ namespace System.Messaging
 
         private object syncRoot = new object();
         private static object staticSyncRoot = new object();
-        
+
         static MessageQueue()
         {
             try
@@ -174,7 +165,7 @@ namespace System.Messaging
         ///    <para>
         ///       Initializes a new instance of the <see cref='System.Messaging.MessageQueue'/>
         ///       class that references the Message Queuing application resource specified by the
-        ///    <paramref name="path"/> 
+        ///    <paramref name="path"/>
         ///    parameter.
         /// </para>
         /// </devdoc>
@@ -256,7 +247,7 @@ namespace System.Messaging
 
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue3"]/*' />
-        /// <internalonly/>                             
+        /// <internalonly/>
         internal MessageQueue(string path, Guid id)
         {
             PropertyFilter.Id = true;
@@ -622,7 +613,7 @@ namespace System.Messaging
 
                     string pathUpper = this.path.ToUpper(CultureInfo.InvariantCulture);
 
-                    // see if we already have this cached 
+                    // see if we already have this cached
                     if (enableCache)
                         this.formatName = MessageQueue.formatNameCache.Get(pathUpper);
 
@@ -633,7 +624,7 @@ namespace System.Messaging
                         {
                             //Improves performance when enumerating queues.
                             //This codepath will only be executed when accessing
-                            //a queue returned by MessageQueueEnumerator.                        
+                            //a queue returned by MessageQueueEnumerator.
                             int result;
                             int status = 0;
                             StringBuilder newFormatName = new StringBuilder(NativeMethods.MAX_LABEL_LEN);
@@ -647,7 +638,7 @@ namespace System.Messaging
                         }
 
                         if (pathUpper.StartsWith(PREFIX_FORMAT_NAME))
-                        {                            
+                        {
                             this.formatName = this.path.Substring(PREFIX_FORMAT_NAME.Length);
                         }
                         else if (pathUpper.StartsWith(PREFIX_LABEL))
@@ -679,10 +670,6 @@ namespace System.Messaging
         ///       the message body.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(null),
-        TypeConverterAttribute(typeof(System.Messaging.Design.MessageFormatterConverter)),
-        Browsable(false),
-        MessagingDescription(Res.MQ_Formatter)]
         public IMessageFormatter Formatter
         {
             get
@@ -705,7 +692,6 @@ namespace System.Messaging
         ///       Gets the Message Queuing unique identifier for the queue.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_GuidId)]
         public Guid Id
         {
             get
@@ -891,9 +877,6 @@ namespace System.Messaging
         ///       Gets or sets the maximum size of the queue.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-        MessagingDescription(Res.MQ_MaximumQueueSize),
-        TypeConverterAttribute(typeof(System.Messaging.Design.SizeConverter))]
         public long MaximumQueueSize
         {
             get
@@ -930,7 +913,6 @@ namespace System.Messaging
         ///       receiving messages.
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Content), MessagingDescription(Res.MQ_MessageReadPropertyFilter)]
         public MessagePropertyFilter MessageReadPropertyFilter
         {
             get
@@ -971,7 +953,7 @@ namespace System.Messaging
                     }
                     else
                     {
-                        // use the cache                        
+                        // use the cache
                         if (cachedInfo != null)
                         {
                             cachedInfo.AddRef();
@@ -995,9 +977,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>Gets or sets the IP multicast address associated with the queue.</para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-         DefaultValue(""),
-         MessagingDescription(Res.MQ_MulticastAddress)]
         public string MulticastAddress
         {
             get
@@ -1058,14 +1037,7 @@ namespace System.Messaging
         ///       Gets or sets the queue's path. When setting the <see cref='System.Messaging.MessageQueue.Path'/>, this points the <see cref='System.Messaging.MessageQueue'/>
         ///       to a new queue.
         ///    </para>
-        /// </devdoc>         
-        [Editor("System.Messaging.Design.QueuePathEditor", "System.Drawing.Design.UITypeEditor, " + AssemblyRef.SystemDrawing),
-         SettingsBindable(true),
-         RefreshProperties(RefreshProperties.All),
-         Browsable(false),
-         DefaultValue(""),
-         TypeConverter("System.Diagnostics.Design.StringValueConverter, " + AssemblyRef.SystemDesign),
-         MessagingDescription(Res.MQ_Path)]
+        /// </devdoc>
         public string Path
         {
             get
@@ -1121,7 +1093,6 @@ namespace System.Messaging
         ///       name that identifies the queue.
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_QueueName)]
         public string QueueName
         {
             get
@@ -1205,7 +1176,6 @@ namespace System.Messaging
         ///       The native handle used to receive messages from the message queue
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_ReadHandle)]
         public IntPtr ReadHandle
         {
             get
@@ -1227,12 +1197,11 @@ namespace System.Messaging
         /// <devdoc>
         ///   Represents the object used to marshal the event handler
         ///   calls issued as a result of a BeginReceive or BeginPeek
-        ///  request into a specific thread. Normally this property will 
+        ///  request into a specific thread. Normally this property will
         ///  be set when the component is placed inside a control or
         ///  a from, since those components are bound to a specific
         ///  thread.
         /// </devdoc>
-        [Browsable(false), DefaultValue(null), MessagingDescription(Res.MQ_SynchronizingObject)]
         public ISynchronizeInvoke SynchronizingObject
         {
             get
@@ -1264,7 +1233,6 @@ namespace System.Messaging
         ///       a value indicating whether the queue supports transactions.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_Transactional)]
         public bool Transactional
         {
             get
@@ -1288,7 +1256,6 @@ namespace System.Messaging
         ///       journal queue.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_UseJournalQueue)]
         public bool UseJournalQueue
         {
             get
@@ -1325,7 +1292,6 @@ namespace System.Messaging
         ///       The native handle used to send messages to the message queue
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_WriteHandle)]
         public IntPtr WriteHandle
         {
             get
@@ -1348,7 +1314,6 @@ namespace System.Messaging
         ///       from the queue. This is a result of the asynchronous operation, <see cref='System.Messaging.MessageQueue.BeginPeek'/>
         ///       .</para>
         /// </devdoc>
-        [MessagingDescription(Res.MQ_PeekCompleted)]
         public event PeekCompletedEventHandler PeekCompleted
         {
             add
@@ -1377,7 +1342,6 @@ namespace System.Messaging
         ///       .
         ///    </para>
         /// </devdoc>
-        [MessagingDescription(Res.MQ_ReceiveCompleted)]
         public event ReceiveCompletedEventHandler ReceiveCompleted
         {
             add
@@ -1446,7 +1410,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginPeek"]/*' />
         /// <devdoc>
-        ///    <para>Initiates an asynchronous peek operation with no timeout. The method 
+        ///    <para>Initiates an asynchronous peek operation with no timeout. The method
         ///       returns immediately, but the asynchronous operation is not completed until
         ///       the event handler is called. This occurs when a message is
         ///       available in the
@@ -1459,7 +1423,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginPeek1"]/*' />
         /// <devdoc>
-        ///    <para> Initiates an asynchronous peek operation with the timeout specified. 
+        ///    <para> Initiates an asynchronous peek operation with the timeout specified.
         ///       The method returns immediately, but the asynchronous operation is not completed until
         ///       the event handler is called. This occurs when either a message is available in
         ///       the queue or the timeout
@@ -1472,7 +1436,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginPeek2"]/*' />
         /// <devdoc>
-        ///    <para> Initiates an asynchronous peek operation with a state object that associates 
+        ///    <para> Initiates an asynchronous peek operation with a state object that associates
         ///       information with the operation throughout the operation's
         ///       lifetime. The method returns immediately, but the asynchronous operation is not completed
         ///       until the event handler
@@ -1487,7 +1451,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginPeek3"]/*' />
         /// <devdoc>
-        ///    <para> Initiates an asynchronous peek operation that receives 
+        ///    <para> Initiates an asynchronous peek operation that receives
         ///       notification through a callback which identifies the event handling method for the
         ///       operation. The method returns immediately, but the asynchronous operation is not completed
         ///       until the event handler is called. This occurs when either a message is available
@@ -1601,7 +1565,7 @@ namespace System.Messaging
         {
 
             //This is generated from the path.
-            //It needs to be cleared.            
+            //It needs to be cleared.
             this.formatName = null;
             this.queuePath = null;
             this.attached = false;
@@ -1752,7 +1716,6 @@ namespace System.Messaging
         ///    <para>
         ///    </para>
         /// </devdoc>
-        [HostProtection(SharedState = true)] // Overriden member of Component. We should not change Component's behavior in the derived class.
         protected override void Dispose(bool disposing)
         {
             Cleanup(disposing);
@@ -1763,7 +1726,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.EndPeek"]/*' />
         /// <devdoc>
-        ///    <para>Completes an asynchronous peek operation associated with 
+        ///    <para>Completes an asynchronous peek operation associated with
         ///       the <paramref name="asyncResult"/>
         ///       parameter.</para>
         /// </devdoc>
@@ -1935,7 +1898,7 @@ namespace System.Messaging
         public static SecurityContext GetSecurityContext()
         {
             SecurityContextHandle handle;
-            // SECURITY: Note that this call is not marked with SUCS attribute (i.e., requires FullTrust)   
+            // SECURITY: Note that this call is not marked with SUCS attribute (i.e., requires FullTrust)
             int status = NativeMethods.MQGetSecurityContextEx(out handle);
             if (MessageQueue.IsFatalError(status))
                 throw new MessageQueueException(status);
@@ -2047,7 +2010,7 @@ namespace System.Messaging
                 //Using Unicode API even on Win9x
                 string path = Marshal.PtrToStringUni(stringPointer);
                 queues[index] = new MessageQueue("FormatName:DIRECT=OS:" + path);
-                queues[index].queuePath = path;                
+                queues[index].queuePath = path;
                 SafeNativeMethods.MQFreeMemory(stringPointer);
             }
 
@@ -2095,7 +2058,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPublicQueuesByLabel"]/*' />
         /// <devdoc>
-        ///    <para>                                                                                                                   
+        ///    <para>
         ///       Retrieves a
         ///       set of public queues filtered by the specified label.
         ///    </para>
@@ -2207,7 +2170,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.IsFatalError"]/*' />
-        /// <internalonly/>                           
+        /// <internalonly/>
         internal static bool IsFatalError(int value)
         {
             bool isSuccessful = (value == 0x00000000);
@@ -2216,7 +2179,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.IsMemoryError"]/*' />
-        /// <internalonly/>                           
+        /// <internalonly/>
         internal static bool IsMemoryError(int value)
         {
             if (value == (int)MessageQueueErrorCode.BufferOverflow ||
@@ -2236,8 +2199,8 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.OnRequestCompleted"]/*' />
         /// <devdoc>
-        ///    Used for component model event support. 
-        /// </devdoc>        
+        ///    Used for component model event support.
+        /// </devdoc>
         /// <internalonly/>
         private void OnRequestCompleted(IAsyncResult asyncResult)
         {
@@ -2541,7 +2504,7 @@ namespace System.Messaging
                     {
                         MessageQueueHandle handle = MQInfo.ReadHandle;
                         int handleInformation;
-                        // If GetHandleInformation returns false, it means that the 
+                        // If GetHandleInformation returns false, it means that the
                         // handle created for reading is not a File handle.
                         if (!SafeNativeMethods.GetHandleInformation(handle, out handleInformation))
                             // If not a File handle, need to use MSMQ
@@ -2576,7 +2539,7 @@ namespace System.Messaging
             //  It should only happen on dependent client, but we here we cover all GetHandleInformation
             //  failure paths for robustness.
             //
-            // Need to add reference before calling BeginRead because request can complete by the time 
+            // Need to add reference before calling BeginRead because request can complete by the time
             // reference is added, and it will be leaked if added to table after completion
             //
             if (!this.useThreadPool)
@@ -3012,7 +2975,7 @@ namespace System.Messaging
 
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveCurrent"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         internal unsafe Message ReceiveCurrent(TimeSpan timeout, int action, CursorHandle cursor, MessagePropertyFilter filter, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
@@ -3065,7 +3028,7 @@ namespace System.Messaging
                     //Concurrent scenarions might not succeed on the second retry.
                     while (MessageQueue.IsMemoryError(status))
                     {
-                        // Need to special-case retrying PeekNext after a buffer overflow 
+                        // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
                         if (action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
@@ -3244,7 +3207,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SendInternal"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         private void SendInternal(object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
         {
             if (!sendGranted)
@@ -3266,7 +3229,7 @@ namespace System.Messaging
                 message.Body = obj;
             }
 
-            //Write cached properties and if message is being forwarded Clear queue specific properties            
+            //Write cached properties and if message is being forwarded Clear queue specific properties
             int status = 0;
             message.AdjustToSend();
             MessagePropertyVariants.MQPROPS properties = message.Lock();
@@ -3439,7 +3402,7 @@ namespace System.Messaging
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SetPermissions3"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
-        /// </devdoc>       
+        /// </devdoc>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "0#dacl")]
         public void SetPermissions(AccessControlList dacl)
         {
@@ -3529,7 +3492,7 @@ namespace System.Messaging
 
                 //If the format name has been cached, let's
                 //remove it, since the process might no longer
-                //have access to the corresponding queue.                                
+                //have access to the corresponding queue.
                 queueInfoCache.Remove(QueueInfoKey);
                 formatNameCache.Remove(path.ToUpper(CultureInfo.InvariantCulture));
             }
@@ -3684,7 +3647,7 @@ namespace System.Messaging
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsynchronousRequest"]/*' />
             /// <devdoc>
-            ///    Creates a new asynchronous request that 
+            ///    Creates a new asynchronous request that
             ///    represents a pending asynchronous operation.
             /// </devdoc>
             /// <internalonly/>
@@ -3718,8 +3681,8 @@ namespace System.Messaging
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsyncState"]/*' />
             /// <devdoc>
-            ///    IAsyncResult implementation        
-            /// </devdoc>            
+            ///    IAsyncResult implementation
+            /// </devdoc>
             public object AsyncState
             {
                 get
@@ -3731,8 +3694,8 @@ namespace System.Messaging
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsyncWaitHandle"]/*' />
             /// <devdoc>
-            ///    IAsyncResult implementation        
-            /// </devdoc>           
+            ///    IAsyncResult implementation
+            /// </devdoc>
             public WaitHandle AsyncWaitHandle
             {
                 get
@@ -3744,8 +3707,8 @@ namespace System.Messaging
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.CompletedSynchronously"]/*' />
             /// <devdoc>
-            ///    IAsyncResult implementation        
-            /// </devdoc>            
+            ///    IAsyncResult implementation
+            /// </devdoc>
             public bool CompletedSynchronously
             {
                 get
@@ -3756,7 +3719,7 @@ namespace System.Messaging
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.IsCompleted"]/*' />
             /// <devdoc>
-            ///    IAsyncResult implementation        
+            ///    IAsyncResult implementation
             /// </devdoc>
             /// <internalonly/>
             public bool IsCompleted
@@ -3772,7 +3735,7 @@ namespace System.Messaging
             /// <devdoc>
             ///   Does the actual asynchronous receive posting.
             /// </devdoc>
-            /// <internalonly/>            
+            /// <internalonly/>
             internal unsafe void BeginRead()
             {
                 NativeOverlapped* overlappedPointer = null;
@@ -3791,7 +3754,7 @@ namespace System.Messaging
                     localStatus = this.owner.StaleSafeReceiveMessage(this.timeout, this.action, this.message.Lock(), overlappedPointer, this.onMessageReceived, this.cursorHandle, IntPtr.Zero);
                     while (MessageQueue.IsMemoryError(localStatus))
                     {
-                        // Need to special-case retrying PeekNext after a buffer overflow 
+                        // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
                         if (this.action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
@@ -3805,7 +3768,7 @@ namespace System.Messaging
                 {
                     // Here will would do all the cleanup that RaiseCompletionEvent does on failure path,
                     // but without raising completion event.
-                    // This is to preserve pre-Whidbey Beta 2 behavior, when exception thrown from this method 
+                    // This is to preserve pre-Whidbey Beta 2 behavior, when exception thrown from this method
                     // would prevent RaiseCompletionEvent from being called (and also leak resources)
                     this.message.Unlock();
 
@@ -3832,7 +3795,7 @@ namespace System.Messaging
             /// <devdoc>
             ///   Waits until the request has been completed.
             /// </devdoc>
-            /// <internalonly/>            
+            /// <internalonly/>
             internal Message End()
             {
                 this.resetEvent.WaitOne();
@@ -3849,22 +3812,22 @@ namespace System.Messaging
             /// <devdoc>
             ///   Thread pool IOCompletionPort bound callback.
             /// </devdoc>
-            /// <internalonly/>            
+            /// <internalonly/>
             private unsafe void OnCompletionStatusChanged(uint errorCode, uint numBytes, NativeOverlapped* overlappedPointer)
             {
                 int result = 0;
                 if (errorCode != 0)
                 {
-                    // MSMQ does a hacky trick to return the operation 
+                    // MSMQ does a hacky trick to return the operation
                     // result through the completion port.
 
-                    // eugenesh Dec 2004. Bug 419155: 
+                    // eugenesh Dec 2004. Bug 419155:
                     // NativeOverlapped.InternalLow returns IntPtr, which is 64 bits on a 64 bit platform.
                     // It contains MSMQ error code, which, when set to an error value, is outside of the int range
-                    // Therefore, OverflowException is thrown in checked context. 
+                    // Therefore, OverflowException is thrown in checked context.
                     // However, IntPtr (int) operator ALWAYS runs in checked context on 64 bit platforms.
                     // Therefore, we first cast to long to avoid OverflowException, and then cast to int
-                    // in unchecked context 
+                    // in unchecked context
                     long msmqError = (long)overlappedPointer->InternalLow;
                     unchecked
                     {
@@ -3888,7 +3851,7 @@ namespace System.Messaging
 
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.RaiseCompletionEvent"]/*' />
-            /// <internalonly/>   
+            /// <internalonly/>
             // See comment explaining this SuppressMessage below
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2102:CatchNonClsCompliantExceptionsInGeneralHandlers")]
             private unsafe void RaiseCompletionEvent(int result, NativeOverlapped* overlappedPointer)
@@ -3898,7 +3861,7 @@ namespace System.Messaging
                 {
                     while (MessageQueue.IsMemoryError(result))
                     {
-                        // Need to special-case retrying PeekNext after a buffer overflow 
+                        // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
                         if (this.action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
@@ -3908,7 +3871,7 @@ namespace System.Messaging
                         try
                         {
                             // ReadHandle called from StaleSafeReceiveMessage can throw if the handle has been invalidated
-                            // (for example, by closing it), and subsequent MQOpenQueue fails for some reason. 
+                            // (for example, by closing it), and subsequent MQOpenQueue fails for some reason.
                             // Therefore catch exception (otherwise process will die) and propagate error
                             // EugeneSh Jan 2006 (Whidbey bug 570055)
                             result = this.owner.StaleSafeReceiveMessage(this.timeout, this.action, this.message.Lock(), overlappedPointer, this.onMessageReceived, this.cursorHandle, IntPtr.Zero);
@@ -3956,10 +3919,10 @@ namespace System.Messaging
                     //
                     // 511878: The code below breaks the contract of ISynchronizeInvoke.
                     // We fixed it in 367076, but that fix resulted in a regression that is bug 511878.
-                    // "Proper fix" for 511878 requires special-casing Form. That causes us to 
-                    // load System.Windows.Forms and System.Drawing, 
-                    // which were previously not loaded on this path. 
-                    // As only one customer complained about 367076, we decided to revert to 
+                    // "Proper fix" for 511878 requires special-casing Form. That causes us to
+                    // load System.Windows.Forms and System.Drawing,
+                    // which were previously not loaded on this path.
+                    // As only one customer complained about 367076, we decided to revert to
                     // Everett behavior
                     //
                     if (this.owner.SynchronizingObject != null &&
@@ -3973,8 +3936,8 @@ namespace System.Messaging
                 catch (Exception)
                 {
                     // eugenesh, Dec 2004: Swallowing exceptions here is a serious bug.
-                    // However, it would be a breaking change to remove this catch, 
-                    // therefore we decided to preserve the existing behavior 
+                    // However, it would be a breaking change to remove this catch,
+                    // therefore we decided to preserve the existing behavior
 
                 }
                 finally
@@ -4004,7 +3967,7 @@ namespace System.Messaging
             //
             // TransactionType.Automatic uses current System.Transactions transaction, if one is available;
             // otherwise, it passes Automatic to MSMQ to support COM+ transactions
-            // NOTE: Need careful qualification of class names, 
+            // NOTE: Need careful qualification of class names,
             // since ITransaction is defined by System.Messaging.Interop, System.Transactions and System.EnterpriseServices
             //
             if ((MessageQueueTransactionType)transaction == MessageQueueTransactionType.Automatic)
@@ -4046,7 +4009,7 @@ namespace System.Messaging
             //
             // TransactionType.Automatic uses current System.Transactions transaction, if one is available;
             // otherwise, it passes Automatic to MSMQ to support COM+ transactions
-            // NOTE: Need careful qualification of class names, 
+            // NOTE: Need careful qualification of class names,
             // since ITransaction is defined by System.Messaging.Interop, System.Transactions and System.EnterpriseServices
             //
             if ((MessageQueueTransactionType)transaction == MessageQueueTransactionType.Automatic)
@@ -4127,9 +4090,9 @@ namespace System.Messaging
         private bool IsCashedInfoInvalidOnReceive(int receiveResult)
         {
             // returns true if return code of ReceiveMessage indicates
-            // that cached handle used for receive has become invalid 
+            // that cached handle used for receive has become invalid
             return (receiveResult == (int)MessageQueueErrorCode.StaleHandle ||      //both qm and ac restarted
-                    receiveResult == (int)MessageQueueErrorCode.InvalidHandle ||    //get this if ac is not restarted 
+                    receiveResult == (int)MessageQueueErrorCode.InvalidHandle ||    //get this if ac is not restarted
                     receiveResult == (int)MessageQueueErrorCode.InvalidParameter); // get this on w2k
         }
 
@@ -4299,7 +4262,7 @@ namespace System.Messaging
                 this.shareMode = shareMode;
 
                 // For each accessMode, corresponding QueueAccessModeHolder is a singleton.
-                // Call factory method to return existing holder for this access mode, 
+                // Call factory method to return existing holder for this access mode,
                 // or make a new one if noone used this access mode before.
                 //
                 this.accessMode = QueueAccessModeHolder.GetQueueAccessModeHolder(accessMode);

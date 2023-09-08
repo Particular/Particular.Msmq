@@ -1,13 +1,11 @@
 //------------------------------------------------------------------------------
 // <copyright file="DefaultPropertiesToSend.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace System.Messaging
 {
-
-    using System.Diagnostics;
     using System;
     using System.ComponentModel;
 
@@ -108,7 +106,7 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>
         ///       Gets or sets application-generated information.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         [DefaultValueAttribute(0), MessagingDescription(Res.MsgAppSpecific)]
@@ -130,7 +128,7 @@ namespace System.Messaging
         ///    <para>
         ///       Gets or sets a value indicating if the sender ID is to be attached to the
         ///       message.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         [DefaultValueAttribute(true), MessagingDescription(Res.MsgAttachSenderId)]
@@ -162,7 +160,7 @@ namespace System.Messaging
         ///    <para>
         ///       Gets or sets the encryption algorithm used to encrypt the body of a
         ///       private message.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         [DefaultValueAttribute(EncryptionAlgorithm.Rc2), MessagingDescription(Res.MsgEncryptionAlgorithm)]
@@ -183,7 +181,7 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>
         ///       Gets or sets additional information associated with the message.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         [Editor("System.ComponentModel.Design.ArrayEditor, " + AssemblyRef.SystemDesign, "System.Drawing.Design.UITypeEditor, " + AssemblyRef.SystemDrawing),
@@ -209,7 +207,7 @@ namespace System.Messaging
         ///       Gets or sets the hashing algorithm used when
         ///       authenticating
         ///       messages.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         [DefaultValueAttribute(HashAlgorithm.Md5), MessagingDescription(Res.MsgHashAlgorithm)]
@@ -230,7 +228,7 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the message label.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         [DefaultValueAttribute(""), MessagingDescription(Res.MsgLabel)]
@@ -273,7 +271,7 @@ namespace System.Messaging
         ///       Gets or sets a value indicating whether the message is
         ///       guaranteed to be delivered in the event
         ///       of a computer failure or network problem.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         [DefaultValueAttribute(false), MessagingDescription(Res.MsgRecoverable)]
@@ -295,7 +293,7 @@ namespace System.Messaging
         ///    <para>
         ///       Gets or sets the queue which receives application-generated response
         ///       messages.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         [DefaultValueAttribute(null), MessagingDescription(Res.MsgResponseQueue)]
@@ -328,8 +326,6 @@ namespace System.Messaging
         ///       the target queue.
         ///    </para>
         /// </devdoc>
-        [TypeConverter(typeof(System.Messaging.Design.TimeoutConverter)),
-        MessagingDescription(Res.MsgTimeToBeReceived)]
         public TimeSpan TimeToBeReceived
         {
             get
@@ -348,11 +344,9 @@ namespace System.Messaging
         ///    <para>
         ///       Gets or sets the time limit for the message to
         ///       reach the queue.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
-        [TypeConverter(typeof(System.Messaging.Design.TimeoutConverter)),
-        MessagingDescription(Res.MsgTimeToReachQueue)]
         public TimeSpan TimeToReachQueue
         {
             get
@@ -370,7 +364,7 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>
         ///       Gets the transaction status queue on the source computer.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         [DefaultValueAttribute(null), MessagingDescription(Res.MsgTransactionStatusQueue)]

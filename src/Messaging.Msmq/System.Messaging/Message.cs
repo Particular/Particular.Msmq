@@ -1,25 +1,20 @@
 //------------------------------------------------------------------------------
 // <copyright file="Message.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 
 namespace System.Messaging
 {
-    using System.Runtime.Serialization.Formatters;
-    using System.Text;
-    using System.Configuration.Assemblies;
-    using System.Runtime.InteropServices;
-    using System.Runtime.Serialization;
+    using System;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System;
     using System.Globalization;
-    using System.Messaging.Interop;
     using System.IO;
-    using System.Security.Permissions;
-    using Microsoft.Win32;
+    using System.Messaging.Interop;
+    using System.Runtime.InteropServices;
+    using System.Text;
 
     /// <include file='doc\Message.uex' path='docs/doc[@for="Message"]/*' />
     /// <devdoc>
@@ -102,7 +97,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Message3"]/*' />
-        /// <internalonly/>                
+        /// <internalonly/>
         internal Message(MessagePropertyFilter filter)
         {
             properties = new MessagePropertyVariants();
@@ -540,10 +535,10 @@ namespace System.Messaging
                     throw new ArgumentNullException("value");
 
                 //Should not remove if default, the default value might change in future MQ clients
-                //if (value.CompareTo("Microsoft Base Cryptographic Provider, Ver. 1.0") == 0) {                    
+                //if (value.CompareTo("Microsoft Base Cryptographic Provider, Ver. 1.0") == 0) {
                 //    this.filter.AuthenticationProviderName = false;
                 //    properties.Remove(NativeMethods.MESSAGE_PROPID_PROV_NAME);
-                //    properties.Remove(NativeMethods.MESSAGE_PROPID_PROV_NAME_LEN);                    
+                //    properties.Remove(NativeMethods.MESSAGE_PROPID_PROV_NAME_LEN);
                 //}
                 //else {
                 this.filter.AuthenticationProviderName = true;
@@ -584,11 +579,11 @@ namespace System.Messaging
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(CryptographicProviderType));
 
                 //Should not remove if default, the default value might change in future MQ clients
-                //if (value == CryptographicProviderType.RsaFull) {                    
+                //if (value == CryptographicProviderType.RsaFull) {
                 //    this.filter.AuthenticationProviderType = false;
-                //    properties.Remove(NativeMethods.MESSAGE_PROPID_PROV_TYPE);                    
+                //    properties.Remove(NativeMethods.MESSAGE_PROPID_PROV_TYPE);
                 //}
-                //else {                    
+                //else {
                 this.filter.AuthenticationProviderType = true;
                 properties.SetUI4(NativeMethods.MESSAGE_PROPID_PROV_TYPE, (int)value);
                 //}
@@ -807,7 +802,7 @@ namespace System.Messaging
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DefaultBodySize"]/*' />
         /// <devdoc>
-        ///    The default body  buffer size to create,  
+        ///    The default body  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -821,7 +816,7 @@ namespace System.Messaging
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DefaultExtensionSize"]/*' />
         /// <devdoc>
-        ///    The default extension  buffer size to create,  
+        ///    The default extension  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -835,7 +830,7 @@ namespace System.Messaging
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DefaultLabelSize"]/*' />
         /// <devdoc>
-        ///    The default label  buffer size to create,  
+        ///    The default label  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -1011,11 +1006,11 @@ namespace System.Messaging
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(EncryptionAlgorithm));
 
                 //Should not remove if default, the default value might change in future MQ clients
-                //if (value == EncryptionAlgorithm.Rc2) {                
+                //if (value == EncryptionAlgorithm.Rc2) {
                 //    this.filter.EncryptionAlgorithm = false;
-                //    properties.Remove(NativeMethods.MESSAGE_PROPID_ENCRYPTION_ALG);                    
+                //    properties.Remove(NativeMethods.MESSAGE_PROPID_ENCRYPTION_ALG);
                 //}
-                //else {                    
+                //else {
                 this.filter.EncryptionAlgorithm = true;
                 properties.SetUI4(NativeMethods.MESSAGE_PROPID_ENCRYPTION_ALG, (int)value);
                 //}
@@ -1132,11 +1127,11 @@ namespace System.Messaging
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(HashAlgorithm));
 
                 //Should not remove if default since MQ3.0 changed the default algorithm
-                //if (value == HashAlgorithm.Md5) {                    
+                //if (value == HashAlgorithm.Md5) {
                 //    this.filter.HashAlgorithm = false;
-                //    properties.Remove(NativeMethods.MESSAGE_PROPID_HASH_ALG);                    
+                //    properties.Remove(NativeMethods.MESSAGE_PROPID_HASH_ALG);
                 //}
-                //else {                    
+                //else {
                 this.filter.HashAlgorithm = true;
                 properties.SetUI4(NativeMethods.MESSAGE_PROPID_HASH_ALG, (int)value);
                 //}
@@ -1490,7 +1485,7 @@ namespace System.Messaging
                 else
                 {
                     this.filter.SecurityContext = true;
-                    // Can't store IntPtr because property type is UI4, but IntPtr can be 64 bits  
+                    // Can't store IntPtr because property type is UI4, but IntPtr can be 64 bits
                     int handle = value.Handle.DangerousGetHandle().ToInt32(); // this is safe because MSMQ always returns 32-bit handle
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_SECURITY_CONTEXT, handle);
                 }
@@ -1676,10 +1671,6 @@ namespace System.Messaging
         ///       queue.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true),
-        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-        TypeConverter(typeof(System.Messaging.Design.TimeoutConverter)),
-        MessagingDescription(Res.MsgTimeToBeReceived)]
         public TimeSpan TimeToBeReceived
         {
             get
@@ -1866,11 +1857,11 @@ namespace System.Messaging
                     {
 
                         // Actually, we dont know what default is:
-                        // Algorithm to determine whether or not messages 
-                        // should be authenticated by default is non-trivial 
-                        // and should not be reproduced in System.Messaging. 
-                        // 
-                        // One idea is to add a new native API, 
+                        // Algorithm to determine whether or not messages
+                        // should be authenticated by default is non-trivial
+                        // and should not be reproduced in System.Messaging.
+                        //
+                        // One idea is to add a new native API,
                         // MQGetDefaultPropertyValue, to retrieve default values.
                         // (eugenesh, Nov 3 2004)
                         return false;
@@ -1884,7 +1875,7 @@ namespace System.Messaging
 
             set
             {
-                //default is different on different versions of MSMQ, 
+                //default is different on different versions of MSMQ,
                 //so dont make any assumptions and explicitly pass what user requested
                 this.filter.UseAuthentication = true;
                 if (!value)
@@ -2083,7 +2074,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AdjustMemory"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         internal void AdjustMemory()
         {
             if (filter.AdministrationQueue)
@@ -2172,7 +2163,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AdjustToSend"]/*' />
-        /// <internalonly/>     
+        /// <internalonly/>
         internal void AdjustToSend()
         {
             //Write cached properties
@@ -2343,7 +2334,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.IdFromByteArray"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         private string IdFromByteArray(byte[] bytes)
         {
             StringBuilder result = new StringBuilder();
@@ -2357,7 +2348,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.IdToByteArray"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         private byte[] IdToByteArray(string id)
         {
             string[] pieces = id.Split(new char[] { '\\' });
@@ -2395,14 +2386,14 @@ namespace System.Messaging
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Lock"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         internal MessagePropertyVariants.MQPROPS Lock()
         {
             return this.properties.Lock();
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.StringFromBytes"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         internal static string StringFromBytes(byte[] bytes, int len)
         {
             //If the string ends with 0, lets trim it.
@@ -2415,7 +2406,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.StringToBytes"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         internal static byte[] StringToBytes(string value)
         {
             int size = value.Length * 2 + 1;
@@ -2426,7 +2417,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Unlock"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         internal void Unlock()
         {
             this.properties.Unlock();

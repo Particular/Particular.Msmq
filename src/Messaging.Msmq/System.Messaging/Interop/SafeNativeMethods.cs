@@ -1,21 +1,15 @@
 //------------------------------------------------------------------------------
 // <copyright file="SafeNativeMethods.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
-//------------------------------------------------------------------------------    
+// </copyright>
+//------------------------------------------------------------------------------
 
 namespace System.Messaging.Interop
 {
+    using System;
+    using System.Runtime.InteropServices;
     using System.Text;
     using System.Threading;
-    using System.Runtime.InteropServices;
-    using System.Diagnostics;
-    using System;
-    using System.ComponentModel;
-    using Microsoft.Win32;
-    using System.Security;
-    using System.Security.Permissions;
-    using System.Runtime.ConstrainedExecution; //for ReliabilityContract
 
     [System.Runtime.InteropServices.ComVisible(false),
     System.Security.SuppressUnmanagedCodeSecurityAttribute()]
@@ -38,7 +32,6 @@ namespace System.Messaging.Interop
         }
 
         [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
-        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
         public static extern int MQCloseQueue(IntPtr handle);
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQPathNameToFormatName", CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
@@ -73,15 +66,12 @@ namespace System.Messaging.Interop
         public static extern int MQCreateCursor(MessageQueueHandle handle, out CursorHandle cursorHandle);
 
         [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
-        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
         public static extern int MQCloseCursor(IntPtr cursorHandle);
 
         [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
-        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
         public static extern void MQFreeSecurityContext(IntPtr handle);
 
         [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
-        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
         public static extern int MQLocateEnd(IntPtr enumHandle);
 
         [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
@@ -98,8 +88,8 @@ namespace System.Messaging.Interop
 
         [DllImport(ExternDll.Advapi32)]
         public static extern int SetEntriesInAclW(int count,
-            //[MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0, ArraySubType = ExplicitAccess)]
-            //ExplicitAccess[] entries,
+                                                  //[MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0, ArraySubType = ExplicitAccess)]
+                                                  //ExplicitAccess[] entries,
                                                   IntPtr entries,
                                                   IntPtr oldacl,
                                                   out IntPtr newAcl);
