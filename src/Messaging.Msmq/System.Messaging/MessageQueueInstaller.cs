@@ -1,23 +1,20 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageQueueInstaller.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 /*
  */
 namespace System.Messaging
 {
-    using System.ComponentModel;
-    using System.Diagnostics;
     using System;
-    using System.Configuration.Install;
     using System.Collections;
-    using Microsoft.Win32;
+    using System.ComponentModel;
 
     /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller"]/*' />
     /// <devdoc>
-    ///    <para>Allows you to install and configure a queue that your 
+    ///    <para>Allows you to install and configure a queue that your
     ///       application needs in order to run. This class is called by the installation
     ///       utility, installutil.exe, when installing a <see cref='System.Messaging.MessageQueue'/>
     ///       .</para>
@@ -68,7 +65,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para> Indicates whether the queue to be installed only accepts authenticated messages.</para>
         /// </devdoc>
-        [DefaultValue(false)]
         public bool Authenticate
         {
             get
@@ -83,11 +79,10 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller.BasePriority"]/*' />
         /// <devdoc>
-        ///    <para> 
+        ///    <para>
         ///       Indicates the base priority used
         ///       to route a public queue's messages over the network.</para>
         /// </devdoc>
-        [DefaultValue(0)]
         public short BasePriority
         {
             get
@@ -102,14 +97,13 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller.Category"]/*' />
         /// <devdoc>
-        ///    <para> 
+        ///    <para>
         ///       Indicates an implementation-specific queue type.</para>
         ///    <note type="rnotes">
         ///       Wording. Shorter
         ///       ("Indicates the queue's type") better here?
         ///    </note>
         /// </devdoc>
-        [TypeConverterAttribute("System.ComponentModel.GuidConverter, " + AssemblyRef.System)]
         public Guid Category
         {
             get
@@ -127,7 +121,6 @@ namespace System.Messaging
         ///    <para> Indicates whether the queue only accepts private
         ///       (encrypted) messages.</para>
         /// </devdoc>
-        [DefaultValue(EncryptionRequired.Optional)]
         public EncryptionRequired EncryptionRequired
         {
             get
@@ -147,7 +140,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>Indicates a description of the queue.</para>
         /// </devdoc>
-        [DefaultValue("")]
         public string Label
         {
             get
@@ -167,7 +159,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>Indicates the maximum size of the journal associated with the queue.</para>
         /// </devdoc>
-        [TypeConverterAttribute(typeof(System.Messaging.Design.SizeConverter))]
         public long MaximumJournalSize
         {
             get
@@ -187,7 +178,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para> Indicates the the maximum size of the queue.</para>
         /// </devdoc>
-        [TypeConverterAttribute(typeof(System.Messaging.Design.SizeConverter))]
         public long MaximumQueueSize
         {
             get
@@ -208,7 +198,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>Gets or sets the IP multicast address associated with the queue.</para>
         /// </devdoc>
-        [DefaultValue("")]
         public string MulticastAddress
         {
             get
@@ -231,16 +220,13 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller.Path"]/*' />
         /// <devdoc>
-        ///    <para> 
+        ///    <para>
         ///       Indicates the
         ///       location of
         ///       the queue that
         ///       will
         ///       be referenced by this object. .</para>
         /// </devdoc>
-        [Editor("System.Messaging.Design.QueuePathEditor", "System.Drawing.Design.UITypeEditor, " + AssemblyRef.SystemDrawing),
-        DefaultValue(""),
-        TypeConverter("System.Diagnostics.Design.StringValueConverter, " + AssemblyRef.SystemDesign)]
         public string Path
         {
             get
@@ -262,8 +248,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public AccessControlList Permissions
         {
             get
@@ -282,7 +266,6 @@ namespace System.Messaging
         ///     of a transaction. However, messages can be retrieved from a local transaction
         ///     queue with or without using a transaction.
         /// </devdoc>
-        [DefaultValue(false)]
         public bool Transactional
         {
             get
@@ -300,7 +283,6 @@ namespace System.Messaging
         ///    <para>Indicates what the installer does with the queue at uninstall time: remove it, restore it
         ///       to its pre-installation state, or leave it in its current installed state.</para>
         /// </devdoc>
-        [DefaultValue(UninstallAction.Remove)]
         public UninstallAction UninstallAction
         {
             get
@@ -323,7 +305,6 @@ namespace System.Messaging
         ///    <para>Indicates whether messages retrieved from the queue are also copied to the
         ///       associated journal queue.</para>
         /// </devdoc>
-        [DefaultValue(false)]
         public bool UseJournalQueue
         {
             get
@@ -338,7 +319,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller.Commit"]/*' />
         /// <devdoc>
-        /// <para>Completes the installation process by committing <see cref='System.Messaging.MessageQueue'/> 
+        /// <para>Completes the installation process by committing <see cref='System.Messaging.MessageQueue'/>
         /// installation information that was written to the registry by the <see cref='System.Messaging.MessageQueueInstaller.Install'/>
         /// method. This method is meant to be used by installation tools, which
         /// process the appropriate methods automatically.</para>
@@ -357,7 +338,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller.CopyFromComponent"]/*' />
         /// <devdoc>
-        /// <para>Copies the property values of a <see cref='System.Messaging.MessageQueue'/> 
+        /// <para>Copies the property values of a <see cref='System.Messaging.MessageQueue'/>
         /// component to this <see cref='System.Messaging.MessageQueueInstaller'/>
         /// . </para>
         /// </devdoc>
@@ -383,7 +364,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller.Install"]/*' />
         /// <devdoc>
-        ///    <para>Writes message queue information to the registry. This method is meant to be 
+        ///    <para>Writes message queue information to the registry. This method is meant to be
         ///       used by installation tools, which process the appropriate methods
         ///       automatically</para>
         /// </devdoc>
@@ -521,7 +502,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller.Rollback"]/*' />
         /// <devdoc>
-        ///    <para> Rolls back queue information that was written to the registry 
+        ///    <para> Rolls back queue information that was written to the registry
         ///       by the installation procedure. This method is meant to be used by installation
         ///       tools, which process the appropriate methods automatically.</para>
         /// </devdoc>
@@ -534,7 +515,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller.ShouldSerializeCategory"]/*' />
         /// <devdoc>
-        ///    <para>Indicates whether the value of the Category property should be persisted in 
+        ///    <para>Indicates whether the value of the Category property should be persisted in
         ///       generated code.</para>
         ///    <note type="rnotes">
         ///       The similar
@@ -550,7 +531,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueInstaller.uex' path='docs/doc[@for="MessageQueueInstaller.Uninstall"]/*' />
         /// <devdoc>
-        ///    <para>Uninstalls the queue by removing information concerning it from the registry. 
+        ///    <para>Uninstalls the queue by removing information concerning it from the registry.
         ///       If the <see cref='System.Messaging.MessageQueueInstaller.UninstallAction'/> is <see langword='Remove'/>,
         ///       Uninstall also deletes the queue associated with the <see cref='System.Messaging.MessageQueue'/>. </para>
         /// </devdoc>

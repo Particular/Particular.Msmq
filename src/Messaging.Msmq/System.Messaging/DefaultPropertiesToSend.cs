@@ -52,7 +52,6 @@ namespace System.Messaging
         ///       application.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(AcknowledgeTypes.None), MessagingDescription(Res.MsgAcknowledgeType)]
         public AcknowledgeTypes AcknowledgeType
         {
             get
@@ -75,7 +74,6 @@ namespace System.Messaging
         ///       send.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(null), MessagingDescription(Res.MsgAdministrationQueue)]
         public MessageQueue AdministrationQueue
         {
             get
@@ -109,7 +107,6 @@ namespace System.Messaging
         ///
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(0), MessagingDescription(Res.MsgAppSpecific)]
         public int AppSpecific
         {
             get
@@ -131,7 +128,6 @@ namespace System.Messaging
         ///
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgAttachSenderId)]
         public bool AttachSenderId
         {
             get
@@ -163,7 +159,6 @@ namespace System.Messaging
         ///
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(EncryptionAlgorithm.Rc2), MessagingDescription(Res.MsgEncryptionAlgorithm)]
         public EncryptionAlgorithm EncryptionAlgorithm
         {
             get
@@ -184,10 +179,6 @@ namespace System.Messaging
         ///
         ///    </para>
         /// </devdoc>
-        [Editor("System.ComponentModel.Design.ArrayEditor, " + AssemblyRef.SystemDesign, "System.Drawing.Design.UITypeEditor, " + AssemblyRef.SystemDrawing),
-        MessagingDescription(Res.MsgExtension)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public byte[] Extension
         {
             get
@@ -210,7 +201,6 @@ namespace System.Messaging
         ///
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(HashAlgorithm.Md5), MessagingDescription(Res.MsgHashAlgorithm)]
         public HashAlgorithm HashAlgorithm
         {
             get
@@ -231,7 +221,6 @@ namespace System.Messaging
         ///
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(""), MessagingDescription(Res.MsgLabel)]
         public string Label
         {
             get
@@ -251,7 +240,6 @@ namespace System.Messaging
         ///       Gets or sets the message priority.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(MessagePriority.Normal), MessagingDescription(Res.MsgPriority)]
         public MessagePriority Priority
         {
             get
@@ -274,7 +262,6 @@ namespace System.Messaging
         ///
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgRecoverable)]
         public bool Recoverable
         {
             get
@@ -296,7 +283,6 @@ namespace System.Messaging
         ///
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(null), MessagingDescription(Res.MsgResponseQueue)]
         public MessageQueue ResponseQueue
         {
             get
@@ -367,7 +353,6 @@ namespace System.Messaging
         ///
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(null), MessagingDescription(Res.MsgTransactionStatusQueue)]
         public MessageQueue TransactionStatusQueue
         {
             get
@@ -395,7 +380,6 @@ namespace System.Messaging
         ///       Gets or sets a value indicating whether the message must be authenticated.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgUseAuthentication)]
         public bool UseAuthentication
         {
             get
@@ -416,7 +400,6 @@ namespace System.Messaging
         ///       be delivered should be sent to a dead-letter queue.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgUseDeadLetterQueue)]
         public bool UseDeadLetterQueue
         {
             get
@@ -436,7 +419,6 @@ namespace System.Messaging
         ///       Gets or sets a value indicating whether to encrypt private messages.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgUseEncryption)]
         public bool UseEncryption
         {
             get
@@ -457,7 +439,6 @@ namespace System.Messaging
         ///       in a machine journal on the originating computer.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgUseJournalQueue)]
         public bool UseJournalQueue
         {
             get
@@ -478,7 +459,6 @@ namespace System.Messaging
         ///       its destination queue.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgUseTracing)]
         public bool UseTracing
         {
             get

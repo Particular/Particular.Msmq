@@ -1,21 +1,16 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageQueueException.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace System.Messaging
 {
-    using System.Runtime.InteropServices;
-    using System.Runtime.Serialization;
-    using System.Diagnostics;
     using System;
-    using System.Text;
-    using System.Messaging.Interop;
-    using System.ComponentModel;
-    using System.Security;
-    using Microsoft.Win32;
     using System.Globalization;
+    using System.Messaging.Interop;
+    using System.Runtime.InteropServices;
+    using System.Text;
 
     /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException"]/*' />
     /// <devdoc>
@@ -24,26 +19,15 @@ namespace System.Messaging
     ///       Queue Server (MSMQ) internal error occurs.
     ///    </para>
     /// </devdoc>
-    [Serializable]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors")]
-    public class MessageQueueException : ExternalException, ISerializable
+    public class MessageQueueException : ExternalException
     {
-
         private readonly int nativeErrorCode;
 
         /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException.MessageQueueException"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         internal MessageQueueException(int error)
         {
             nativeErrorCode = error;
-        }
-
-        /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException.MessageQueueException"]/*' />
-        /// <internalonly/>
-        protected MessageQueueException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            nativeErrorCode = info.GetInt32("NativeErrorCode");
         }
 
         /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException.MessageQueueErrorCode"]/*' />
@@ -100,23 +84,10 @@ namespace System.Messaging
             }
             else
             {
-                errorMsg = Res.GetString("UnknownError", Convert.ToString(error, 16));
+                errorMsg = $"Error 0x{Convert.ToString(error, 16)} is unknown";
             }
 
             return errorMsg;
         }
-
-        /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException.GetObjectData"]/*' />
-        [SecurityCritical]
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            if (info == null)
-            {
-                throw new ArgumentNullException("info");
-            }
-            info.AddValue("NativeErrorCode", nativeErrorCode);
-            base.GetObjectData(info, context);
-        }
-
     }
 }

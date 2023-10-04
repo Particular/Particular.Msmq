@@ -23,7 +23,6 @@ namespace System.Messaging
     ///       Message Queuing message.
     ///    </para>
     /// </devdoc>
-    [Designer("System.Messaging.Design.MessageDesigner, " + AssemblyRef.SystemDesign)]
     public class Message : Component
     {
         private const int GenericIdSize = 16;
@@ -248,7 +247,6 @@ namespace System.Messaging
         ///    <para>Gets the classification
         ///       of acknowledgment messages that Message Queuing posts.</para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgAcknowledgement)]
         public Acknowledgment Acknowledgment
         {
             get
@@ -277,7 +275,6 @@ namespace System.Messaging
         ///       Message Queuing when a message arrives in the queue.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgAcknowledgeType)]
         public AcknowledgeTypes AcknowledgeType
         {
             get
@@ -317,7 +314,6 @@ namespace System.Messaging
         ///       messages.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgAdministrationQueue)]
         public MessageQueue AdministrationQueue
         {
             get
@@ -371,7 +367,6 @@ namespace System.Messaging
         ///       application-generated information regarding the message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgAppSpecific)]
         public int AppSpecific
         {
             get
@@ -408,7 +403,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    Indicates when the message arrived at the queue.
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgArrivedTime)]
         public DateTime ArrivedTime
         {
             get
@@ -436,7 +430,6 @@ namespace System.Messaging
         ///       to the message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgAttachSenderId)]
         public bool AttachSenderId
         {
             get
@@ -483,7 +476,6 @@ namespace System.Messaging
         ///       authenticated.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgAuthenticated)]
         public bool Authenticated
         {
             get
@@ -508,7 +500,6 @@ namespace System.Messaging
         ///       provider used to generate the digital signature of the message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgAuthenticationProviderName)]
         public string AuthenticationProviderName
         {
             get
@@ -556,7 +547,6 @@ namespace System.Messaging
         ///       message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgAuthenticationProviderType)]
         public CryptographicProviderType AuthenticationProviderType
         {
             get
@@ -598,7 +588,6 @@ namespace System.Messaging
         ///       contents of the message.
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object Body
         {
             get
@@ -636,10 +625,6 @@ namespace System.Messaging
         ///       the message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true),
-        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-        Editor("System.ComponentModel.Design.BinaryEditor, " + AssemblyRef.SystemDesign, "System.Drawing.Design.UITypeEditor, " + AssemblyRef.SystemDrawing),
-        MessagingDescription(Res.MsgBodyStream)]
         public Stream BodyStream
         {
             get
@@ -688,7 +673,6 @@ namespace System.Messaging
         ///       or sets the type of data the message body contains.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgBodyType)]
         public int BodyType
         {
             get
@@ -723,7 +707,6 @@ namespace System.Messaging
         ///       MSMQ run time to use the symmetric key.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgConnectorType)]
         public Guid ConnectorType
         {
             get
@@ -764,7 +747,6 @@ namespace System.Messaging
         ///       message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgCorrelationId)]
         public string CorrelationId
         {
             get
@@ -805,7 +787,6 @@ namespace System.Messaging
         ///    The default body  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private int DefaultBodySize
         {
             get
@@ -819,7 +800,6 @@ namespace System.Messaging
         ///    The default extension  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private int DefaultExtensionSize
         {
             get
@@ -833,7 +813,6 @@ namespace System.Messaging
         ///    The default label  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private int DefaultLabelSize
         {
             get
@@ -851,7 +830,6 @@ namespace System.Messaging
         ///       response message back to a response queue.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgDestinationQueue)]
         public MessageQueue DestinationQueue
         {
             get
@@ -885,10 +863,6 @@ namespace System.Messaging
         ///       or sets the symmetric key used to encrypt messages.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-        MessagingDescription(Res.MsgDestinationSymmetricKey)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public byte[] DestinationSymmetricKey
         {
             get
@@ -935,9 +909,6 @@ namespace System.Messaging
         ///       the message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgDigitalSignature)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public byte[] DigitalSignature
         {
             get
@@ -984,7 +955,6 @@ namespace System.Messaging
         ///       body of a private message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgEncryptionAlgorithm)]
         public EncryptionAlgorithm EncryptionAlgorithm
         {
             get
@@ -1024,10 +994,6 @@ namespace System.Messaging
         ///       additional information associated with the message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-        MessagingDescription(Res.MsgExtension)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public byte[] Extension
         {
             get
@@ -1074,7 +1040,6 @@ namespace System.Messaging
         ///       body.
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IMessageFormatter Formatter
         {
             get
@@ -1098,7 +1063,6 @@ namespace System.Messaging
         ///       algorithm used when authenticating messages.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgHashAlgorithm)]
         public HashAlgorithm HashAlgorithm
         {
             get
@@ -1145,7 +1109,6 @@ namespace System.Messaging
         ///       the Message Queuing-generated identifier of the message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgId)]
         public string Id
         {
             get
@@ -1170,7 +1133,6 @@ namespace System.Messaging
         ///       whether the message was the first message sent in a transaction.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgIsFirstInTransaction)]
         public bool IsFirstInTransaction
         {
             get
@@ -1194,7 +1156,6 @@ namespace System.Messaging
         ///       the last message sent in a transaction.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgIsLastInTransaction)]
         public bool IsLastInTransaction
         {
             get
@@ -1217,7 +1178,6 @@ namespace System.Messaging
         ///       Gets or sets the message label.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgLabel)]
         public string Label
         {
             get
@@ -1297,7 +1257,6 @@ namespace System.Messaging
         ///       Gets the type of the message (normal, acknowledgment, or report).
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgMessageType)]
         public MessageType MessageType
         {
             get
@@ -1331,7 +1290,6 @@ namespace System.Messaging
         ///       queue.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgPriority)]
         public MessagePriority Priority
         {
             get
@@ -1375,7 +1333,6 @@ namespace System.Messaging
         ///       a computer failure or network problem.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgRecoverable)]
         public bool Recoverable
         {
             get
@@ -1415,7 +1372,6 @@ namespace System.Messaging
         ///       response messages.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgResponseQueue)]
         public MessageQueue ResponseQueue
         {
             get
@@ -1462,8 +1418,6 @@ namespace System.Messaging
             }
         }
 
-
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public SecurityContext SecurityContext
         {
             get
@@ -1493,16 +1447,12 @@ namespace System.Messaging
             }
         }
 
-
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.SenderCertificate"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Specifies the security certificate used to authenticate messages.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgSenderCertificate)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public byte[] SenderCertificate
         {
             get
@@ -1551,8 +1501,6 @@ namespace System.Messaging
         ///       the message originated and to verify the sender has access rights to a queue.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgSenderId)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
         public byte[] SenderId
         {
             get
@@ -1577,7 +1525,6 @@ namespace System.Messaging
         ///       Gets the version of Message Queuing used to send the message.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgSenderVersion)]
         public long SenderVersion
         {
             get
@@ -1599,7 +1546,6 @@ namespace System.Messaging
         ///    Indicates the date and time that the message was sent by
         ///    the source Queue Manager.
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgSentTime)]
         public DateTime SentTime
         {
             get
@@ -1623,7 +1569,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    Specifies the computer where the message originated.
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgSourceMachine)]
         public string SourceMachine
         {
             get
@@ -1717,10 +1662,6 @@ namespace System.Messaging
         ///       the queue.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true),
-        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-        TypeConverter(typeof(System.Messaging.Design.TimeoutConverter)),
-        MessagingDescription(Res.MsgTimeToReachQueue)]
         public TimeSpan TimeToReachQueue
         {
             get
@@ -1766,7 +1707,6 @@ namespace System.Messaging
         ///       identifier for the transaction of which the message was a part.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgTransactionId)]
         public string TransactionId
         {
             get
@@ -1791,7 +1731,6 @@ namespace System.Messaging
         ///       transaction status queue on the source computer.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgTransactionStatusQueue)]
         public MessageQueue TransactionStatusQueue
         {
             get
@@ -1845,7 +1784,6 @@ namespace System.Messaging
         ///       or sets a value indicating whether a message must be authenticated.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgUseAuthentication)]
         public bool UseAuthentication
         {
             get
@@ -1896,7 +1834,6 @@ namespace System.Messaging
         ///       a copy of an undeliverable message should be sent to a dead-letter queue.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgUseDeadLetterQueue)]
         public bool UseDeadLetterQueue
         {
             get
@@ -1945,7 +1882,6 @@ namespace System.Messaging
         ///       Gets or sets a value indicating whether to encrypt messages.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgUseEncryption)]
         public bool UseEncryption
         {
             get
@@ -1985,7 +1921,6 @@ namespace System.Messaging
         ///       journal on the originating computer.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgUseJournalQueue)]
         public bool UseJournalQueue
         {
             get
@@ -2036,7 +1971,6 @@ namespace System.Messaging
         ///       it moves toward its destination queue.
         ///    </para>
         /// </devdoc>
-        [ReadOnly(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MsgUseTracing)]
         public bool UseTracing
         {
             get

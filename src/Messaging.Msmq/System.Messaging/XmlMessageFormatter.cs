@@ -1,24 +1,22 @@
 //------------------------------------------------------------------------------
 // <copyright file="XmlMessageFormatter.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace System.Messaging
 {
     using System;
+    using System.Collections;
     using System.IO;
     using System.Xml;
-    using System.Collections;
     using System.Xml.Serialization;
-    using System.ComponentModel;
-    using System.Security.Permissions;
 
     /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter"]/*' />
     /// <devdoc>
     ///    Formatter class that serializes and deserializes objects into
     ///    and from  MessageQueue messages using Xml.
-    /// </devdoc>    
+    /// </devdoc>
     public class XmlMessageFormatter : IMessageFormatter
     {
         private Type[] targetTypes;
@@ -62,12 +60,9 @@ namespace System.Messaging
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.TargetTypeNames"]/*' />
         /// <devdoc>
         ///    Specifies the set of possible types that will
-        ///    be deserialized by the formatter from the 
+        ///    be deserialized by the formatter from the
         ///    message provided.
         /// </devdoc>
-        [MessagingDescription(Res.XmlMsgTargetTypeNames)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public string[] TargetTypeNames
         {
             get
@@ -88,12 +83,9 @@ namespace System.Messaging
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.TargetTypes"]/*' />
         /// <devdoc>
         ///    Specifies the set of possible types that will
-        ///    be deserialized by the formatter from the 
+        ///    be deserialized by the formatter from the
         ///    message provided.
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.XmlMsgTargetTypes)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public Type[] TargetTypes
         {
             get
@@ -113,7 +105,7 @@ namespace System.Messaging
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.CanRead"]/*' />
         /// <devdoc>
-        ///    When this method is called, the formatter will attempt to determine 
+        ///    When this method is called, the formatter will attempt to determine
         ///    if the contents of the message are something the formatter can deal with.
         /// </devdoc>
         public bool CanRead(Message message)
@@ -143,7 +135,7 @@ namespace System.Messaging
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.Clone"]/*' />
         /// <devdoc>
-        ///    This method is needed to improve scalability on Receive and ReceiveAsync scenarios.  Not requiring 
+        ///    This method is needed to improve scalability on Receive and ReceiveAsync scenarios.  Not requiring
         ///     thread safety on read and write.
         /// </devdoc>
         public object Clone()
@@ -159,8 +151,7 @@ namespace System.Messaging
             return formatter;
         }
 
-
-        /// <internalonly/>        
+        /// <internalonly/>
         private void CreateTargetSerializerTable()
         {
             if (!this.typeNamesAdded)
@@ -189,7 +180,7 @@ namespace System.Messaging
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.Read"]/*' />
         /// <devdoc>
-        ///    This method is used to read the contents from the given message 
+        ///    This method is used to read the contents from the given message
         ///     and create an object.
         /// </devdoc>
         public object Read(Message message)
@@ -214,7 +205,7 @@ namespace System.Messaging
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.Write"]/*' />
         /// <devdoc>
-        ///    This method is used to write the given object into the given message.  
+        ///    This method is used to write the given object into the given message.
         ///     If the formatter cannot understand the given object, an exception is thrown.
         /// </devdoc>
         public void Write(Message message, object obj)

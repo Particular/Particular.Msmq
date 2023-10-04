@@ -1,17 +1,13 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessagePropertyFilter.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace System.Messaging
 {
-    using System.Configuration.Assemblies;
-    using System.Diagnostics;
     using System;
-    using System.Messaging.Interop;
     using System.ComponentModel;
-    using Microsoft.Win32;
 
     /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter"]/*' />
     /// <devdoc>
@@ -105,7 +101,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgAcknowledgement)]
         public bool Acknowledgment
         {
             get
@@ -126,7 +121,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgAcknowledgeType)]
         public bool AcknowledgeType
         {
             get
@@ -147,7 +141,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgAdministrationQueue)]
         public bool AdministrationQueue
         {
             get
@@ -168,7 +161,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgAppSpecific)]
         public bool AppSpecific
         {
             get
@@ -189,7 +181,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgArrivedTime)]
         public bool ArrivedTime
         {
             get
@@ -210,7 +201,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgAttachSenderId)]
         public bool AttachSenderId
         {
             get
@@ -231,7 +221,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgAuthenticated)]
         public bool Authenticated
         {
             get
@@ -252,7 +241,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgAuthenticationProviderName)]
         public bool AuthenticationProviderName
         {
             get
@@ -273,7 +261,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgAuthenticationProviderType)]
         public bool AuthenticationProviderType
         {
             get
@@ -294,7 +281,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgBody)]
         public bool Body
         {
             get
@@ -315,7 +301,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgConnectorType)]
         public bool ConnectorType
         {
             get
@@ -336,7 +321,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgCorrelationId)]
         public bool CorrelationId
         {
             get
@@ -358,7 +342,6 @@ namespace System.Messaging
         ///       in bytes, of the default body buffer.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(MessagePropertyFilter.defaultBodySize), MessagingDescription(Res.MsgDefaultBodySize)]
         public int DefaultBodySize
         {
             get
@@ -383,7 +366,6 @@ namespace System.Messaging
         ///       size, in bytes, of the default extension buffer.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(MessagePropertyFilter.defaultExtensionSize), MessagingDescription(Res.MsgDefaultExtensionSize)]
         public int DefaultExtensionSize
         {
             get
@@ -408,7 +390,6 @@ namespace System.Messaging
         ///       in bytes, of the default label buffer.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(MessagePropertyFilter.defaultLabelSize), MessagingDescription(Res.MsgDefaultLabelSize)]
         public int DefaultLabelSize
         {
             get
@@ -432,7 +413,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgDestinationQueue)]
         public bool DestinationQueue
         {
             get
@@ -454,7 +434,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgDestinationSymmetricKey)]
         public bool DestinationSymmetricKey
         {
             get
@@ -475,7 +454,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgDigitalSignature)]
         public bool DigitalSignature
         {
             get
@@ -496,7 +474,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgEncryptionAlgorithm)]
         public bool EncryptionAlgorithm
         {
             get
@@ -517,7 +494,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgExtension)]
         public bool Extension
         {
             get
@@ -538,7 +514,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgHashAlgorithm)]
         public bool HashAlgorithm
         {
             get
@@ -559,7 +534,6 @@ namespace System.Messaging
         ///       property information when receiving or peeking a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgId)]
         public bool Id
         {
             get
@@ -580,7 +554,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgIsFirstInTransaction)]
         public bool IsFirstInTransaction
         {
             get
@@ -601,7 +574,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgIsLastInTransaction)]
         public bool IsLastInTransaction
         {
             get
@@ -622,7 +594,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgLabel)]
         public bool Label
         {
             get
@@ -644,7 +615,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgLookupId)]
         public bool LookupId
         {
             get
@@ -671,7 +641,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgMessageType)]
         public bool MessageType
         {
             get
@@ -692,7 +661,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgPriority)]
         public bool Priority
         {
             get
@@ -713,7 +681,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgRecoverable)]
         public bool Recoverable
         {
             get
@@ -734,7 +701,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgResponseQueue)]
         public bool ResponseQueue
         {
             get
@@ -748,7 +714,7 @@ namespace System.Messaging
             }
         }
 
-        // SecurityContext is send-only property, so there's no point in 
+        // SecurityContext is send-only property, so there's no point in
         // publicly exposing it in the filter
         internal bool SecurityContext
         {
@@ -771,7 +737,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgSenderCertificate)]
         public bool SenderCertificate
         {
             get
@@ -792,7 +757,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgSenderId)]
         public bool SenderId
         {
             get
@@ -813,7 +777,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgSenderVersion)]
         public bool SenderVersion
         {
             get
@@ -834,7 +797,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgSentTime)]
         public bool SentTime
         {
             get
@@ -855,7 +817,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgSourceMachine)]
         public bool SourceMachine
         {
             get
@@ -876,7 +837,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgTimeToBeReceived)]
         public bool TimeToBeReceived
         {
             get
@@ -897,7 +857,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgTimeToReachQueue)]
         public bool TimeToReachQueue
         {
             get
@@ -918,7 +877,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgTransactionId)]
         public bool TransactionId
         {
             get
@@ -939,7 +897,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgTransactionStatusQueue)]
         public bool TransactionStatusQueue
         {
             get
@@ -960,7 +917,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgUseAuthentication)]
         public bool UseAuthentication
         {
             get
@@ -981,7 +937,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgUseDeadLetterQueue)]
         public bool UseDeadLetterQueue
         {
             get
@@ -1002,7 +957,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgUseEncryption)]
         public bool UseEncryption
         {
             get
@@ -1023,7 +977,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(true), MessagingDescription(Res.MsgUseJournalQueue)]
         public bool UseJournalQueue
         {
             get
@@ -1044,7 +997,6 @@ namespace System.Messaging
         ///       a message.
         ///    </para>
         /// </devdoc>
-        [DefaultValueAttribute(false), MessagingDescription(Res.MsgUseTracing)]
         public bool UseTracing
         {
             get

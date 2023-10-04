@@ -280,7 +280,6 @@ namespace System.Messaging
         ///       messages.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_Authenticate)]
         public bool Authenticate
         {
             get
@@ -316,7 +315,6 @@ namespace System.Messaging
         ///    <para>Gets or sets a value indicating the base
         ///       priority used to route a public queue's messages over the network.</para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_BasePriority)]
         public short BasePriority
         {
             get
@@ -351,7 +349,6 @@ namespace System.Messaging
         ///       has read permission.
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_CanRead)]
         public bool CanRead
         {
             get
@@ -375,7 +372,6 @@ namespace System.Messaging
         ///       has write permission.
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_CanWrite)]
         public bool CanWrite
         {
             get
@@ -396,7 +392,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>Gets or sets the queue type.</para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_Category)]
         public Guid Category
         {
             get
@@ -460,7 +455,6 @@ namespace System.Messaging
         ///       Gets the time and date of the queue's creation.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_CreateTime)]
         public DateTime CreateTime
         {
             get
@@ -487,7 +481,6 @@ namespace System.Messaging
         ///       .
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Content), MessagingDescription(Res.MQ_DefaultPropertiesToSend)]
         public DefaultPropertiesToSend DefaultPropertiesToSend
         {
             get
@@ -517,7 +510,6 @@ namespace System.Messaging
         ///       no other queue object will be able to receive messages from the queue resource.
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DefaultValueAttribute(false), MessagingDescription(Res.MQ_DenySharedReceive)]
         public bool DenySharedReceive
         {
             get
@@ -564,7 +556,6 @@ namespace System.Messaging
         ///       (non-encrypted) messages.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_EncryptionRequired)]
         public EncryptionRequired EncryptionRequired
         {
             get
@@ -599,7 +590,6 @@ namespace System.Messaging
         ///       Gets the unique name that was generated for the queue when the queue was created.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_FormatName)]
         public string FormatName
         {
             get
@@ -720,7 +710,6 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>Gets or sets the queue description.</para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_Label)]
         public string Label
         {
             get
@@ -768,7 +757,6 @@ namespace System.Messaging
         ///       Indicates the last time the properties of a queue were modified.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_LastModifyTime)]
         public DateTime LastModifyTime
         {
             get
@@ -795,7 +783,6 @@ namespace System.Messaging
         ///       is located.
         ///    </para>
         /// </devdoc>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), MessagingDescription(Res.MQ_MachineName)]
         public string MachineName
         {
             get
@@ -839,9 +826,6 @@ namespace System.Messaging
         ///       Gets or sets the maximum size of the journal queue.
         ///    </para>
         /// </devdoc>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-        MessagingDescription(Res.MQ_MaximumJournalSize),
-        TypeConverterAttribute(typeof(System.Messaging.Design.SizeConverter))]
         public long MaximumJournalSize
         {
             get
