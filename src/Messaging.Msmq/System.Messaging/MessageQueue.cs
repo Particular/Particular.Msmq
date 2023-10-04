@@ -12,6 +12,7 @@ namespace System.Messaging
     using System.ComponentModel;
     using System.ComponentModel.Design;
     using System.Diagnostics;
+    using System.DirectoryServices;
     using System.Globalization;
     using System.Messaging.Interop;
     using System.Runtime.InteropServices;
@@ -3645,7 +3646,7 @@ namespace System.Messaging
                         localStatus = this.owner.StaleSafeReceiveMessage(this.timeout, this.action, this.message.Lock(), overlappedPointer, this.onMessageReceived, this.cursorHandle, IntPtr.Zero);
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     // Here will would do all the cleanup that RaiseCompletionEvent does on failure path,
                     // but without raising completion event.
@@ -3659,7 +3660,7 @@ namespace System.Messaging
                     if (!this.owner.useThreadPool)
                         this.owner.OutstandingAsyncRequests.Remove(this);
 
-                    throw e;
+                    throw;
                 }
 
                 // NOTE: RaiseCompletionEvent is not in a finally block by design, for two reasons:
