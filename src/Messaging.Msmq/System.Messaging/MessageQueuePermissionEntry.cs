@@ -1,7 +1,7 @@
 //----------------------------------------------------
 // <copyright file="MessageQueuePermissionEntry.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace System.Messaging
@@ -24,7 +24,7 @@ namespace System.Messaging
             if (path == null)
                 throw new ArgumentNullException("path");
 
-            if (path != MessageQueuePermission.Any && !MessageQueue.ValidatePath(path, false))
+            if (!MessageQueue.ValidatePath(path, false))
                 throw new ArgumentException(Res.GetString(Res.PathSyntax));
 
             this.path = path;

@@ -1,19 +1,15 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageQueueCriteria.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace System.Messaging
 {
-
-    using System.Diagnostics;
     using System;
-    using System.Messaging.Interop;
-    using Microsoft.Win32;
     using System.ComponentModel;
-    using System.Security.Permissions;
     using System.Globalization; //for CultureInfo
+    using System.Messaging.Interop;
 
     /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria"]/*' />
     /// <devdoc>
@@ -40,7 +36,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.CreatedAfter"]/*' />
         /// <devdoc>
-        ///    Specifies the lower bound of the interval 
+        ///    Specifies the lower bound of the interval
         ///    that will be used as  the queue creation time
         ///    search criteria.
         /// </devdoc>
@@ -69,7 +65,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.CreatedBefore"]/*' />
         /// <devdoc>
-        ///    Specifies the upper bound of the interval 
+        ///    Specifies the upper bound of the interval
         ///    that will be used as  the queue creation time
         ///    search criteria.
         /// </devdoc>
@@ -106,8 +102,8 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.Label"]/*' />
         /// <devdoc>
-        ///    Specifies the label that that will be used as 
-        ///    the criteria to search queues in the network.        
+        ///    Specifies the label that that will be used as
+        ///    the criteria to search queues in the network.
         /// </devdoc>
         public string Label
         {
@@ -151,19 +147,7 @@ namespace System.Messaging
                 if (!SyntaxCheck.CheckMachineName(value))
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MachineName", value));
 
-                //SECREVIEW: Setting this property shouldn't demmand any permissions,
-                //                    the machine id will only be used internally.
-                MessageQueuePermission permission = new MessageQueuePermission(PermissionState.Unrestricted);
-                permission.Assert();
-                try
-                {
-                    this.machineId = MessageQueue.GetMachineId(value);
-                }
-                finally
-                {
-                    MessageQueuePermission.RevertAssert();
-                }
-
+                this.machineId = MessageQueue.GetMachineId(value);
                 this.machine = value;
                 this.filter.MachineName = true;
             }
@@ -171,7 +155,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.ModifiedAfter"]/*' />
         /// <devdoc>
-        ///    Specifies the lower bound of the interval 
+        ///    Specifies the lower bound of the interval
         ///    that will be used as  the queue modified time
         ///    search criteria.
         /// </devdoc>
@@ -201,7 +185,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.ModifiedBefore"]/*' />
         /// <devdoc>
-        ///    Specifies the upper bound of the interval 
+        ///    Specifies the upper bound of the interval
         ///    that will be used as  the queue modified time
         ///    search criteria.
         /// </devdoc>
@@ -269,8 +253,8 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.Category"]/*' />
         /// <devdoc>
-        ///    Specifies the Category that will be used 
-        ///    as the criteria to search queues in the network.        
+        ///    Specifies the Category that will be used
+        ///    as the criteria to search queues in the network.
         /// </devdoc>
         public Guid Category
         {

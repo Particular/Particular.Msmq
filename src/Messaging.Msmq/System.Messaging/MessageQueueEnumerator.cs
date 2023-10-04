@@ -1,22 +1,21 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageQueueEnumerator.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace System.Messaging
 {
-    using System.Runtime.InteropServices;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System;
     using System.Collections;
-    using System.Messaging.Interop;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
+    using System.Messaging.Interop;
+    using System.Runtime.InteropServices;
 
     /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator"]/*' />
     /// <devdoc>
-    ///    <para>Provides (forward-only) cursor semantics to enumerate the queues on a 
+    ///    <para>Provides (forward-only) cursor semantics to enumerate the queues on a
     ///       computer.</para>
     ///    <note type="rnotes">
     ///       I'm assuming all the queues have to
@@ -52,12 +51,12 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.Current"]/*' />
         /// <devdoc>
-        ///     Returns the current MessageQueue of the  enumeration. 
-        ///     Before the first call to MoveNext and following a call to MoveNext that 
-        ///     returned false an InvalidOperationException will be thrown. Multiple 
-        ///     calls to Current with no intervening calls to MoveNext will return the 
+        ///     Returns the current MessageQueue of the  enumeration.
+        ///     Before the first call to MoveNext and following a call to MoveNext that
+        ///     returned false an InvalidOperationException will be thrown. Multiple
+        ///     calls to Current with no intervening calls to MoveNext will return the
         ///     same MessageQueue object.
-        /// </devdoc>        
+        /// </devdoc>
         public MessageQueue Current
         {
             get
@@ -121,7 +120,7 @@ namespace System.Messaging
         /// <devdoc>
         ///    <para>Indicates the native Message Queuing handle used to locate queues in a network. This
         ///       property is read-only.</para>
-        /// </devdoc>      
+        /// </devdoc>
         public IntPtr LocatorHandle
         {
             get { return this.Handle.DangerousGetHandle(); }
@@ -137,12 +136,6 @@ namespace System.Messaging
                     //Cannot allocate the locatorHandle if the object has been disposed, since finalization has been suppressed.
                     if (this.disposed)
                         throw new ObjectDisposedException(GetType().Name);
-
-                    if (this.checkSecurity)
-                    {
-                        MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Browse, MessageQueuePermission.Any);
-                        permission.Demand();
-                    }
 
                     Columns columns = new Columns(2);
                     LocatorHandle enumHandle;
@@ -169,7 +162,7 @@ namespace System.Messaging
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.MoveNext"]/*' />
         /// <devdoc>
-        ///    <para> 
+        ///    <para>
         ///       Advances the enumerator to the next queue of the enumeration, if one
         ///       is currently available.</para>
         /// </devdoc>

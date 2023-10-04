@@ -1,14 +1,13 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageQueueTransaction.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace System.Messaging
 {
-    using System.Threading;
-    using System.Diagnostics;
     using System.Messaging.Interop;
+    using System.Threading;
 
     /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction"]/*' />
     /// <devdoc>
@@ -25,7 +24,7 @@ namespace System.Messaging
         ///    <para>
         ///       Creates a new Message Queuing internal transaction context.
         ///    </para>
-        /// </devdoc>                
+        /// </devdoc>
         public MessageQueueTransaction()
         {
             this.transactionStatus = MessageQueueTransactionStatus.Initialized;
@@ -44,7 +43,7 @@ namespace System.Messaging
         ///    <para>
         ///       The status of the transaction that this object represents.
         ///    </para>
-        /// </devdoc>   
+        /// </devdoc>
         public MessageQueueTransactionStatus Status
         {
             get
@@ -73,7 +72,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.AbortInternalTransaction"]/*' />
-        /// <internalonly/>                                 
+        /// <internalonly/>
         private void AbortInternalTransaction()
         {
             int status = this.internalTransaction.Abort(0, 0, 0);
@@ -115,7 +114,7 @@ namespace System.Messaging
         }
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.BeginQueueOperation"]/*' />
-        /// <internalonly/>                                           
+        /// <internalonly/>
         internal ITransaction BeginQueueOperation()
         {
 #pragma warning disable 0618
@@ -152,10 +151,10 @@ namespace System.Messaging
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Dispose"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Disposes this transaction instance, if it is in a 
-        ///       pending status, the transaction will be aborted.  
+        ///       Disposes this transaction instance, if it is in a
+        ///       pending status, the transaction will be aborted.
         ///    </para>
-        /// </devdoc>   
+        /// </devdoc>
         public void Dispose()
         {
             Dispose(true);
@@ -182,14 +181,14 @@ namespace System.Messaging
         }
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Finalize"]/*' />
-        /// <internalonly/>   
+        /// <internalonly/>
         ~MessageQueueTransaction()
         {
             Dispose(false);
         }
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.EndQueueOperation"]/*' />
-        /// <internalonly/>        
+        /// <internalonly/>
         internal void EndQueueOperation()
         {
             Monitor.Exit(this);

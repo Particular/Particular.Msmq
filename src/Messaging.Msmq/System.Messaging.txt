@@ -277,7 +277,7 @@ C00E0069=Remote computer is not available.
 C00E006A=A workgroup installation computer does not support the operation.
 C00E006B=The Cryptographic Service Provider is not supported by Message Queuing.
 C00E006C=Cannot set the Security descriptor for the cryptographic keys.
-C00E006D=A user attempted to send an authenticated message without a certificate. 
+C00E006D=A user attempted to send an authenticated message without a certificate.
 C00E006E=Column PROPID_Q_PATHNAME_DNS is not supported for the MQLocateBegin API.
 C00E006F=Cannot create a certificate store for the internal certificate.
 

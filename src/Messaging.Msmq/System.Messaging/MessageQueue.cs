@@ -15,7 +15,6 @@ namespace System.Messaging
     using System.Globalization;
     using System.Messaging.Interop;
     using System.Runtime.InteropServices;
-    using System.Security.Permissions;
     using System.Text;
     using System.Threading;
 
@@ -130,20 +129,6 @@ namespace System.Messaging
 
         private object syncRoot = new object();
         private static object staticSyncRoot = new object();
-
-        static MessageQueue()
-        {
-            try
-            {
-                using (TelemetryEventSource eventSource = new TelemetryEventSource())
-                {
-                    eventSource.MessageQueue();
-                }
-            }
-            catch
-            {
-            }
-        }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue"]/*' />
         /// <devdoc>
@@ -355,9 +340,6 @@ namespace System.Messaging
             {
                 if (!browseGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Browse, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     browseGranted = true;
                 }
 
@@ -378,9 +360,6 @@ namespace System.Messaging
             {
                 if (!browseGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Browse, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     browseGranted = true;
                 }
 
@@ -1166,9 +1145,6 @@ namespace System.Messaging
             {
                 if (!receiveGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Receive, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     receiveGranted = true;
                 }
 
@@ -1223,9 +1199,6 @@ namespace System.Messaging
             {
                 if (!browseGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Browse, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     browseGranted = true;
                 }
 
@@ -1282,9 +1255,6 @@ namespace System.Messaging
             {
                 if (!sendGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Send, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     sendGranted = true;
                 }
 
@@ -1304,9 +1274,6 @@ namespace System.Messaging
             {
                 if (!peekGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Peek, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     peekGranted = true;
                 }
 
@@ -1332,9 +1299,6 @@ namespace System.Messaging
             {
                 if (!receiveGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Receive, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     receiveGranted = true;
                 }
 
@@ -1609,9 +1573,6 @@ namespace System.Messaging
             if (!IsCanonicalPath(path, true))
                 throw new ArgumentException(Res.GetString(Res.InvalidQueuePathToCreate, path));
 
-            MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Administer, MessageQueuePermission.Any);
-            permission.Demand();
-
             //Create properties.
             QueuePropertyVariants properties = new QueuePropertyVariants();
             properties.SetString(NativeMethods.QUEUE_PROPID_PATHNAME, Message.StringToBytes(path));
@@ -1683,8 +1644,6 @@ namespace System.Messaging
 
             int status = 0;
             MessageQueue queue = new MessageQueue(path);
-            MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Administer, PREFIX_FORMAT_NAME + queue.FormatName);
-            permission.Demand();
 
             status = UnsafeNativeMethods.MQDeleteQueue(queue.FormatName);
             if (MessageQueue.IsFatalError(status))
@@ -1762,9 +1721,6 @@ namespace System.Messaging
             if (!ValidatePath(path, false))
                 throw new ArgumentException(Res.GetString(Res.PathSyntax));
 
-            MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Browse, MessageQueuePermission.Any);
-            permission.Demand();
-
             string pathUpper = path.ToUpper(CultureInfo.InvariantCulture);
             if (pathUpper.StartsWith(PREFIX_FORMAT_NAME))
                 throw new InvalidOperationException(Res.GetString(Res.QueueExistsError));
@@ -1793,9 +1749,6 @@ namespace System.Messaging
         {
             if (!browseGranted)
             {
-                MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Browse, PREFIX_FORMAT_NAME + this.FormatName);
-                permission.Demand();
-
                 browseGranted = true;
             }
 
@@ -1847,9 +1800,6 @@ namespace System.Messaging
 
             if (machineName == ".")
                 machineName = MessageQueue.ComputerName;
-
-            MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Browse, MessageQueuePermission.Any);
-            permission.Demand();
 
             MachinePropertyVariants machineProperties = new MachinePropertyVariants();
             byte[] bytes = new byte[16];
@@ -1932,9 +1882,6 @@ namespace System.Messaging
         {
             if (!peekGranted)
             {
-                MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Peek, PREFIX_FORMAT_NAME + this.FormatName);
-                permission.Demand();
-
                 peekGranted = true;
             }
 
@@ -1951,9 +1898,6 @@ namespace System.Messaging
         {
             if (!peekGranted)
             {
-                MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Peek, PREFIX_FORMAT_NAME + this.FormatName);
-                permission.Demand();
-
                 peekGranted = true;
             }
 
@@ -1971,9 +1915,6 @@ namespace System.Messaging
         {
             if (!SyntaxCheck.CheckMachineName(machineName))
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
-
-            MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Browse, MessageQueuePermission.Any);
-            permission.Demand();
 
             if (machineName == "." || (String.Compare(machineName, MessageQueue.ComputerName, true, CultureInfo.InvariantCulture) == 0))
                 machineName = null;
@@ -2072,14 +2013,8 @@ namespace System.Messaging
             if (!SyntaxCheck.CheckMachineName(machineName))
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
 
-            MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Browse, MessageQueuePermission.Any);
-            permission.Demand();
-
             try
             {
-                DirectoryServicesPermission dsPermission = new DirectoryServicesPermission(PermissionState.Unrestricted);
-                dsPermission.Assert();
-
                 DirectorySearcher localComputerSearcher = new DirectorySearcher(String.Format(CultureInfo.InvariantCulture, "(&(CN={0})(objectCategory=Computer))", ComputerName));
                 SearchResult localComputer = localComputerSearcher.FindOne();
                 if (localComputer != null)
@@ -2124,10 +2059,6 @@ namespace System.Messaging
             catch
             {
                 //Ignore all exceptions, so we can gracefully downgrade to use MQ locator.
-            }
-            finally
-            {
-                DirectoryServicesPermission.RevertAssert();
             }
 
             MessageQueueCriteria criteria = new MessageQueueCriteria();
@@ -2320,12 +2251,8 @@ namespace System.Messaging
         {
             if (!receiveGranted)
             {
-                MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Receive, PREFIX_FORMAT_NAME + this.FormatName);
-                permission.Demand();
-
                 receiveGranted = true;
             }
-
 
             int status = StaleSafePurgeQueue();
             if (MessageQueue.IsFatalError(status))
@@ -2463,9 +2390,6 @@ namespace System.Messaging
             {
                 if (!receiveGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Receive, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     receiveGranted = true;
                 }
             }
@@ -2473,9 +2397,6 @@ namespace System.Messaging
             {
                 if (!peekGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Peek, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     peekGranted = true;
                 }
             }
@@ -2876,9 +2797,6 @@ namespace System.Messaging
             {
                 if (!receiveGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Receive, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     receiveGranted = true;
                 }
 
@@ -2889,9 +2807,6 @@ namespace System.Messaging
             {
                 if (!peekGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Peek, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     peekGranted = true;
                 }
 
@@ -2970,9 +2885,6 @@ namespace System.Messaging
             {
                 if (!receiveGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Receive, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     receiveGranted = true;
                 }
             }
@@ -2980,9 +2892,6 @@ namespace System.Messaging
             {
                 if (!peekGranted)
                 {
-                    MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Peek, PREFIX_FORMAT_NAME + this.FormatName);
-                    permission.Demand();
-
                     peekGranted = true;
                 }
             }
@@ -3009,7 +2918,7 @@ namespace System.Messaging
                 if (receiveMessage != null)
                 {
                     //Need to keep trying until enough space has been allocated.
-                    //Concurrent scenarions might not succeed on the second retry.
+                    //Concurrent scenarios might not succeed on the second retry.
                     while (MessageQueue.IsMemoryError(status))
                     {
                         // Need to special-case retrying PeekNext after a buffer overflow
@@ -3063,9 +2972,6 @@ namespace System.Messaging
         {
             if (!administerGranted)
             {
-                MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Administer, PREFIX_FORMAT_NAME + this.FormatName);
-                permission.Demand();
-
                 administerGranted = true;
             }
 
@@ -3196,9 +3102,6 @@ namespace System.Messaging
         {
             if (!sendGranted)
             {
-                MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Send, PREFIX_FORMAT_NAME + this.FormatName);
-                permission.Demand();
-
                 sendGranted = true;
             }
 
@@ -3330,9 +3233,6 @@ namespace System.Messaging
         {
             if (!administerGranted)
             {
-                MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Administer, PREFIX_FORMAT_NAME + this.FormatName);
-                permission.Demand();
-
                 administerGranted = true;
             }
 
@@ -3395,9 +3295,6 @@ namespace System.Messaging
 
             if (!administerGranted)
             {
-                MessageQueuePermission permission = new MessageQueuePermission(MessageQueuePermissionAccess.Administer, PREFIX_FORMAT_NAME + this.FormatName);
-                permission.Demand();
-
                 administerGranted = true;
             }
 
@@ -3552,7 +3449,7 @@ namespace System.Messaging
         {
             //
             // this method should only be called from a constructor.
-            // we dont support changing queue access mode after contruction time.
+            // we don't support changing queue access mode after construction time.
             //
             if (!ValidationUtility.ValidateQueueAccessMode(accessMode))
                 throw new InvalidEnumArgumentException("accessMode", (int)accessMode, typeof(QueueAccessMode));
@@ -4418,19 +4315,7 @@ namespace System.Messaging
                     {
                         if (!this.boundToThreadPool)
                         {
-                            //SECREVIEW: At this point at least MessageQueue permission with Browse
-                            //                         access has already been demanded.
-                            SecurityPermission permission = new SecurityPermission(PermissionState.Unrestricted);
-                            permission.Assert();
-                            try
-                            {
-                                ThreadPool.BindHandle(ReadHandle);
-                            }
-                            finally
-                            {
-                                SecurityPermission.RevertAssert();
-                            }
-
+                            ThreadPool.BindHandle(ReadHandle);
                             this.boundToThreadPool = true;
                         }
                     }
