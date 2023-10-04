@@ -1,19 +1,13 @@
 //------------------------------------------------------------------------------
 // <copyright file="Restrictions.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq.Interop
 {
-    using System.Runtime.InteropServices;
-
-    using System.Diagnostics;
-
     using System;
-    using System.ComponentModel;
-
-    using Microsoft.Win32;
+    using System.Runtime.InteropServices;
 
     internal class Restrictions
     {
@@ -83,7 +77,6 @@ namespace Messaging.Msmq.Interop
         {
             public int restrictionCount;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             public IntPtr restrinctions;
 
             public MQRESTRICTION(int maxCount)

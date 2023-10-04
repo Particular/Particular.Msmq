@@ -1,19 +1,16 @@
 //------------------------------------------------------------------------------
 // <copyright file="PeekCompletedEventArgs.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
 {
-
-    using System.Diagnostics;
-
     using System;
 
     /// <include file='doc\PeekCompletedEventArgs.uex' path='docs/doc[@for="PeekCompletedEventArgs"]/*' />
     /// <devdoc>
-    /// <para>Provides data for the <see cref='System.Messaging.MessageQueue.PeekCompleted'/> event. When your asynchronous 
+    /// <para>Provides data for the <see cref='System.Messaging.MessageQueue.PeekCompleted'/> event. When your asynchronous
     ///    operation calls an event handler, an instance of this class is passed to the
     ///    handler.</para>
     /// </devdoc>
@@ -24,7 +21,7 @@ namespace Messaging.Msmq
         private MessageQueue sender;
 
         /// <include file='doc\PeekCompletedEventArgs.uex' path='docs/doc[@for="PeekCompletedEventArgs.PeekCompletedEventArgs"]/*' />
-        /// <internalonly/>            
+        /// <internalonly/>
         internal PeekCompletedEventArgs(MessageQueue sender, IAsyncResult result)
         {
             this.result = result;

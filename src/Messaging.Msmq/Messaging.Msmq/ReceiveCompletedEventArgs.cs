@@ -1,19 +1,16 @@
 //------------------------------------------------------------------------------
 // <copyright file="ReceiveCompletedEventArgs.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
 {
-
-    using System.Diagnostics;
-
     using System;
 
     /// <include file='doc\ReceiveCompletedEventArgs.uex' path='docs/doc[@for="ReceiveCompletedEventArgs"]/*' />
     /// <devdoc>
-    /// <para>Provides data for the <see cref='System.Messaging.MessageQueue.ReceiveCompleted'/> 
+    /// <para>Provides data for the <see cref='System.Messaging.MessageQueue.ReceiveCompleted'/>
     /// event.</para>
     /// </devdoc>
     public class ReceiveCompletedEventArgs : EventArgs
@@ -23,7 +20,7 @@ namespace Messaging.Msmq
         private MessageQueue sender;
 
         /// <include file='doc\ReceiveCompletedEventArgs.uex' path='docs/doc[@for="ReceiveCompletedEventArgs.ReceiveCompletedEventArgs"]/*' />
-        /// <internalonly/>            
+        /// <internalonly/>
         internal ReceiveCompletedEventArgs(MessageQueue sender, IAsyncResult result)
         {
             this.result = result;

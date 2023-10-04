@@ -1,15 +1,11 @@
 //------------------------------------------------------------------------------
 // <copyright file="QueueAccessMode.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
 {
-
-    using System.Diagnostics;
-
-    using System;
     using System.Collections.Generic;
     using Messaging.Msmq.Interop;
 
@@ -18,8 +14,7 @@ namespace Messaging.Msmq
     ///    <para>
     ///       Specifies what operations can be performed on the queue.
     ///    </para>
-    /// </devdoc>  
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
+    /// </devdoc>
     public enum QueueAccessMode
     {
         Send = NativeMethods.QUEUE_ACCESS_SEND,
@@ -29,7 +24,7 @@ namespace Messaging.Msmq
         ReceiveAndAdmin = NativeMethods.QUEUE_ACCESS_RECEIVE | NativeMethods.QUEUE_ACCESS_ADMIN,
 
         ///
-        /// SendAndReceive is supported for compatibility only. 
+        /// SendAndReceive is supported for compatibility only.
         ///
         SendAndReceive = NativeMethods.QUEUE_ACCESS_SEND | NativeMethods.QUEUE_ACCESS_RECEIVE,
 

@@ -1,13 +1,11 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageLookupAction.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
 {
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1027:MarkEnumsWithFlags")]
     public enum MessageLookupAction
     {
 

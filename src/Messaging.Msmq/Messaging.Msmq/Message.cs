@@ -12,9 +12,9 @@ namespace Messaging.Msmq
     using System.Diagnostics;
     using System.Globalization;
     using System.IO;
-    using Messaging.Msmq.Interop;
     using System.Runtime.InteropServices;
     using System.Text;
+    using Messaging.Msmq.Interop;
 
     /// <include file='doc\Message.uex' path='docs/doc[@for="Message"]/*' />
     /// <devdoc>

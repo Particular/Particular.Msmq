@@ -6,7 +6,6 @@ namespace Messaging.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
     public enum AccessControlEntryType
     {
         /// <include file='doc\AccessControlEntryType.uex' path='docs/doc[@for="AccessControlEntryType.Allow"]/*' />

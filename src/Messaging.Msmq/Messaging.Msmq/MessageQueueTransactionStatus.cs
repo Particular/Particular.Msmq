@@ -1,14 +1,11 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageQueueTransactionStatus.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
 {
-    using System.Diagnostics;
-    using Messaging.Msmq.Interop;
-
     /// <include file='doc\MessageQueueTransactionStatus.uex' path='docs/doc[@for="MessageQueueTransactionStatus"]/*' />
     /// <devdoc>
     ///    <para>[To be supplied.]</para>

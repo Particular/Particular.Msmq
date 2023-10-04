@@ -1,21 +1,16 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageType.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
 {
-
-    using System.Diagnostics;
-    using System;
-
     /// <include file='doc\MessageType.uex' path='docs/doc[@for="MessageType"]/*' />
     /// <devdoc>
-    ///    A message can be a normal MSMQ message, a positive or negative 
+    ///    A message can be a normal MSMQ message, a positive or negative
     ///    (arrival and read) acknowledgment message, or a report message.
     /// </devdoc>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
     public enum MessageType
     {
         /// <include file='doc\MessageType.uex' path='docs/doc[@for="MessageType.Acknowledgment"]/*' />

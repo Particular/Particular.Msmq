@@ -1,20 +1,15 @@
 //------------------------------------------------------------------------------
 // <copyright file="UnsafeNativeMethods.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq.Interop
 {
+    using System;
+    using System.Runtime.InteropServices;
     using System.Text;
     using System.Threading;
-    using System.Runtime.InteropServices;
-    using System.Diagnostics;
-    using System;
-    using System.ComponentModel;
-    using Microsoft.Win32;
-    using System.Security;
-    using System.Security.Permissions;
 
     [System.Runtime.InteropServices.ComVisible(false),
     System.Security.SuppressUnmanagedCodeSecurityAttribute()]

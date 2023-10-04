@@ -1,14 +1,11 @@
 //------------------------------------------------------------------------------
 // <copyright file="AcknowledgeTypes.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
 {
-
-    using System.Diagnostics;
-
     using System;
     using Messaging.Msmq.Interop;
 
@@ -26,7 +23,7 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///    <para>
         ///       Use this value to request a positive acknowledgment when the message
-        ///       reaches the queue. 
+        ///       reaches the queue.
         ///    </para>
         /// </devdoc>
         PositiveArrival = NativeMethods.ACKNOWLEDGE_POSITIVE_ARRIVAL,
@@ -34,7 +31,7 @@ namespace Messaging.Msmq
         /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.PositiveReceive"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Use this value to request a positive acknowledgment when the message 
+        ///       Use this value to request a positive acknowledgment when the message
         ///       is successfully retrieved from the queue.
         ///    </para>
         /// </devdoc>
@@ -44,9 +41,9 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///    <para>
         ///       Use this value to request a negative acknowledgment when the message fails
-        ///       to be retrieved from the queue. 
+        ///       to be retrieved from the queue.
         ///    </para>
-        /// </devdoc>                    
+        /// </devdoc>
         NegativeReceive = NativeMethods.ACKNOWLEDGE_NEGATIVE_RECEIVE,
 
         /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.None"]/*' />

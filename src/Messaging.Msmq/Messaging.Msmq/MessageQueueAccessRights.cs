@@ -1,9 +1,4 @@
 using System;
-using System.Collections;
-using System.Runtime.InteropServices;
-using System.ComponentModel;
-using System.Text;
-using Messaging.Msmq.Interop;
 
 namespace Messaging.Msmq
 {
@@ -13,7 +8,6 @@ namespace Messaging.Msmq
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
     [Flags]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
     public enum MessageQueueAccessRights
     {
         /// <include file='doc\MessageQueueAccessRights.uex' path='docs/doc[@for="MessageQueueAccessRights.DeleteMessage"]/*' />

@@ -1,20 +1,13 @@
 //------------------------------------------------------------------------------
 // <copyright file="NativeMethods.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
-//------------------------------------------------------------------------------    
+// </copyright>
+//------------------------------------------------------------------------------
 
 namespace Messaging.Msmq.Interop
 {
-    using System.Text;
-    using System.Threading;
-    using System.Runtime.InteropServices;
-    using System.Diagnostics;
     using System;
-    using System.ComponentModel;
-    using Microsoft.Win32;
-    using System.Security;
-    using System.Security.Permissions;
+    using System.Runtime.InteropServices;
 
     [System.Runtime.InteropServices.ComVisible(false)]
     internal static class NativeMethods
@@ -278,9 +271,9 @@ namespace Messaging.Msmq.Interop
         public const int QUEUE_PROPID_AUTHENTICATE = QUEUE_PROPID_BASE + 11;      /* VT_UI1       */
         public const int QUEUE_PROPID_PRIV_LEVEL = QUEUE_PROPID_BASE + 12;        /* VT_UI4       */
         public const int QUEUE_PROPID_TRANSACTION = QUEUE_PROPID_BASE + 13;       /* VT_UI1       */
-        //public const int QUEUE_PROPID_PATHNAME_DNS  = QUEUE_PROPID_BASE + 24; /* VT_LPWSTR */ 
+        //public const int QUEUE_PROPID_PATHNAME_DNS  = QUEUE_PROPID_BASE + 24; /* VT_LPWSTR */
         public const int QUEUE_PROPID_MULTICAST_ADDRESS = QUEUE_PROPID_BASE + 25; /* VT_LPWSTR /
-        //public const int QUEUE_PROPID_ADS_PATH  = QUEUE_PROPID_BASE + 26; //needed to add queue to DL /* VT_LPWSTR    */ 
+        //public const int QUEUE_PROPID_ADS_PATH  = QUEUE_PROPID_BASE + 26; //needed to add queue to DL /* VT_LPWSTR    */
 
 
         //Queue Shared Mode constants.
@@ -318,7 +311,7 @@ namespace Messaging.Msmq.Interop
         public const int SECURITY_DESCRIPTOR_REVISION = 1;
 
         // This call is here because we don't want to invent a separate MessageQueuePermission
-        // for this call, and there's no suitable existing permission. 
+        // for this call, and there's no suitable existing permission.
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQGetSecurityContextEx", CharSet = CharSet.Unicode)]
         private static extern int IntMQGetSecurityContextEx(IntPtr lpCertBuffer, int dwCertBufferLength, out SecurityContextHandle phSecurityContext);
         public static int MQGetSecurityContextEx(out SecurityContextHandle securityContext)
@@ -347,16 +340,12 @@ namespace Messaging.Msmq.Interop
             public byte size = 0;
             public short control = 0;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             public IntPtr owner = (IntPtr)0;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             public IntPtr Group = (IntPtr)0;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             public IntPtr Sacl = (IntPtr)0;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             public IntPtr Dacl = (IntPtr)0;
         }
 
@@ -367,13 +356,11 @@ namespace Messaging.Msmq.Interop
             public int grfAccessMode;
             public int grfInheritance;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             public IntPtr pMultipleTrustees;
             public int MultipleTrusteeOperation;
             public int TrusteeForm;
             public int TrusteeType;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             public IntPtr data;
         }
     }

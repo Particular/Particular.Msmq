@@ -113,7 +113,6 @@ namespace Messaging.Msmq
         /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.Dispose"]/*' />
         /// <devdoc>
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed")]
         public void Dispose()
         {
             Dispose(true);

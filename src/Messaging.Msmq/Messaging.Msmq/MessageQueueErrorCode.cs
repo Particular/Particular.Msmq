@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessageQueueErrorCode.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
@@ -10,11 +10,9 @@ namespace Messaging.Msmq
     /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode"]/*' />
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
-    /// </devdoc>    
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
+    /// </devdoc>
     public enum MessageQueueErrorCode
     {
-
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.Base"]/*' />
         /// <internalonly/>
         Base = unchecked((int)0xC00E0000),
@@ -75,7 +73,6 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///     No connection with this site's controller(s).
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUpperCased")]
         NoDs = unchecked((int)0xC00E0013),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.IllegalQueuePathName"]/*' />
         /// <devdoc>
@@ -89,7 +86,6 @@ namespace Messaging.Msmq
         IllegalPropertyValue = unchecked((int)0xC00E0018),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.IllegalPropertyVt"]/*' />
         /// <internalonly/>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUpperCased")]
         IllegalPropertyVt = unchecked((int)0xC00E0019),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.BufferOverflow"]/*' />
         /// <internalonly/>
@@ -205,7 +201,7 @@ namespace Messaging.Msmq
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.CouldNotGetAccountInfo"]/*' />
         /// <devdoc>
         ///     Could not get the account information for the user.
-        /// </devdoc>        
+        /// </devdoc>
         CouldNotGetAccountInfo = unchecked((int)0xC00E0037),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.IllegalCriteriaColumns"]/*' />
         /// <internalonly/>
@@ -248,13 +244,11 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///     DS is full.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUpperCased")]
         DsIsFull = unchecked((int)0xC00E0042),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.DsError"]/*' />
         /// <devdoc>
         ///     internal DS error.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUpperCased")]
         DsError = unchecked((int)0xC00E0043),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.InvalidOwner"]/*' />
         /// <devdoc>
@@ -294,7 +288,6 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///     Cannot connect to MS DTC.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
         DtcConnect = unchecked((int)0xC00E004C),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.TransactionImport"]/*' />
         /// <devdoc>
@@ -345,13 +338,11 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///     The list of MQIS servers (in registry) is empty.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
         MqisServerEmpty = unchecked((int)0xC00E005F),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.MqisReadOnlyMode"]/*' />
         /// <devdoc>
         ///     MQIS database is in read-only mode.
-        /// </devdoc>        
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+        /// </devdoc>
         MqisReadOnlyMode = unchecked((int)0xC00E0060),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.SymmetricKeyBufferTooSmall"]/*' />
         /// <internalonly/>
@@ -440,21 +431,17 @@ namespace Messaging.Msmq
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.CannotLoadMsmqOcm"]/*' />
         /// <devdoc>
         ///  Can't load the MSMQOCM.DLL library.
-        /// </devdoc>        
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+        /// </devdoc>
         CannotLoadMsmqOcm = unchecked((int)0xC00E0073),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.NoEntryPointMsmqOcm"]/*' />
         /// <devdoc>
         ///  Cannot locate an entry point in the MSMQOCM.DLL library.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
         NoEntryPointMsmqOcm = unchecked((int)0xC00E0074),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.NoMsmqServersOnDc"]/*' />
         /// <devdoc>
         ///  Failed to find Message Queuing servers on domain controllers.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUpperCased")]
         NoMsmqServersOnDc = unchecked((int)0xC00E0075),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.CannotJoinDomain"]/*' />
         /// <devdoc>
@@ -493,7 +480,6 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///  Failed to find Message Queuing servers on Global Catalog domain controllers.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
         NoMsmqServersOnGlobalCatalog = unchecked((int)0xC00E007D),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.CannotGetDistinguishedName"]/*' />
         /// <devdoc>
@@ -504,31 +490,26 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///  Unable to hash data for an authenticated message.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUpperCased")]
         CannotHashDataEx = unchecked((int)0xC00E007F),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.CannotSignDataEx"]/*' />
         /// <devdoc>
         ///  Unable to sign data before sending an authenticated message.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUpperCased")]
         CannotSignDataEx = unchecked((int)0xC00E0080),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.CannotCreateHashEx"]/*' />
         /// <devdoc>
         ///  Unable to create hash object for an authenticated message.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUpperCased")]
         CannotCreateHashEx = unchecked((int)0xC00E0081),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.FailVerifySignatureEx"]/*' />
         /// <devdoc>
         ///  Signature of recieved message is not valid.
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUpperCased")]
         FailVerifySignatureEx = unchecked((int)0xC00E0082),
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.MessageNotFound"]/*' />
         /// <devdoc>
         ///  The message referenced by the lookup identifier does not exist.
         /// </devdoc>
         MessageNotFound = unchecked((int)0xC00E0088),
-
     }
 }

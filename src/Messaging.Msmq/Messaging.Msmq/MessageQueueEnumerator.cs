@@ -8,7 +8,6 @@ namespace Messaging.Msmq
 {
     using System;
     using System.Collections;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Runtime.InteropServices;
     using Messaging.Msmq.Interop;
@@ -94,7 +93,6 @@ namespace Messaging.Msmq
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.Dispose"]/*' />
         /// <devdoc>
         /// </devdoc>
-        [SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed")]
         public void Dispose()
         {
             Dispose(true);
@@ -105,7 +103,6 @@ namespace Messaging.Msmq
         ///    <para>
         ///    </para>
         /// </devdoc>
-        [SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "currentMessageQueue")]
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

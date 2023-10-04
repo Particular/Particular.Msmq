@@ -44,7 +44,6 @@ namespace Messaging.Msmq.Interop
         {
             public int columnCount;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             public IntPtr columnIdentifiers;
 
             ~MQCOLUMNSET()

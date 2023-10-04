@@ -1,15 +1,11 @@
 //------------------------------------------------------------------------------
 // <copyright file="HashAlgorithm.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
 {
-
-    using System.Diagnostics;
-
-    using System;
     using Messaging.Msmq.Interop;
 
     /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm"]/*' />
@@ -17,7 +13,7 @@ namespace Messaging.Msmq
     ///    <para>
     ///       Specifies the hash algorithm used by Message
     ///       Queuing when authenticating messages.
-    ///       
+    ///
     ///    </para>
     /// </devdoc>
     public enum HashAlgorithm
@@ -28,7 +24,7 @@ namespace Messaging.Msmq
         ///    <para>
         ///       No hashing
         ///       algorithm.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         None = 0,
@@ -45,7 +41,7 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///    <para>
         ///       MD4 hashing algorithm.
-        ///       
+        ///
         ///    </para>
         /// </devdoc>
         Md4 = NativeMethods.CALG_MD4,
@@ -64,7 +60,6 @@ namespace Messaging.Msmq
         ///       SHA hashing algorithm.
         ///    </para>
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
         Sha = NativeMethods.CALG_SHA,
 
         /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Mac"]/*' />
@@ -81,7 +76,6 @@ namespace Messaging.Msmq
         ///       SHA256 hashing algorithm.
         ///    </para>
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
         Sha256 = NativeMethods.CALG_SHA256,
 
         /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Sha384"]/*' />
@@ -90,7 +84,6 @@ namespace Messaging.Msmq
         ///       SHA384 hashing algorithm.
         ///    </para>
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
         Sha384 = NativeMethods.CALG_SHA384,
 
         /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Sha512"]/*' />
@@ -99,7 +92,6 @@ namespace Messaging.Msmq
         ///       SHA512 hashing algorithm.
         ///    </para>
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
         Sha512 = NativeMethods.CALG_SHA512,
     }
 }

@@ -14,10 +14,10 @@ namespace Messaging.Msmq
     using System.Diagnostics;
     using System.DirectoryServices;
     using System.Globalization;
-    using Messaging.Msmq.Interop;
     using System.Runtime.InteropServices;
     using System.Text;
     using System.Threading;
+    using Messaging.Msmq.Interop;
 
     /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue"]/*' />
     /// <devdoc>
@@ -26,8 +26,6 @@ namespace Messaging.Msmq
     ///       access to a Message Queuing backend queue resource.
     ///    </para>
     /// </devdoc>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
     public class MessageQueue : Component, IEnumerable
     {
         //Public constants
@@ -3288,7 +3286,6 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "0#dacl")]
         public void SetPermissions(AccessControlList dacl)
         {
             if (dacl == null)
@@ -3735,7 +3732,6 @@ namespace Messaging.Msmq
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.RaiseCompletionEvent"]/*' />
             /// <internalonly/>
             // See comment explaining this SuppressMessage below
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2102:CatchNonClsCompliantExceptionsInGeneralHandlers")]
             private unsafe void RaiseCompletionEvent(int result, NativeOverlapped* overlappedPointer)
             {
 

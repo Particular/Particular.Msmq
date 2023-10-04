@@ -1,15 +1,13 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessagePropertyVariants.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq.Interop
 {
-    using System.Diagnostics;
     using System;
     using System.Runtime.InteropServices;
-    using Microsoft.Win32;
 
 
     // definition for tagMQPROPVARIANT
@@ -23,7 +21,6 @@ namespace Messaging.Msmq.Interop
         {
             internal uint cElems;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             internal IntPtr pElems;
         }
 
@@ -44,7 +41,6 @@ namespace Messaging.Msmq.Interop
         [FieldOffset(8)]
         internal long hVal;
         [FieldOffset(8)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
         internal IntPtr ptr;
         [FieldOffset(8)]
         internal CAUB caub;
@@ -54,7 +50,7 @@ namespace Messaging.Msmq.Interop
     internal class MessagePropertyVariants
     {
         private const short VT_UNDEFINED = 0;
-        public const short VT_EMPTY = short.MaxValue; //this is hack, VT_EMPTY is really 0, 
+        public const short VT_EMPTY = short.MaxValue; //this is hack, VT_EMPTY is really 0,
         //but redefining VT_UNDEFINED is risky since 0 is a good semantic default for it
         public const short VT_ARRAY = 0x2000;
         public const short VT_BOOL = 11;
@@ -436,13 +432,10 @@ namespace Messaging.Msmq.Interop
         {
             internal int propertyCount;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             internal IntPtr propertyIdentifiers;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             internal IntPtr propertyValues;
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
             internal IntPtr status;
         }
     }

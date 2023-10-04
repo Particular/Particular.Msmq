@@ -1,22 +1,17 @@
 //------------------------------------------------------------------------------
 // <copyright file="MessagePriority.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq
 {
-
-    using System.Diagnostics;
-
-    using System;
-
     /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority"]/*' />
     /// <devdoc>
-    ///    Message priority effects how MSMQ handles the message while it is in route, 
-    ///    as well as where the message is placed in the queue. Higher priority messages 
-    ///    are given preference during routing, and inserted toward the front of the queue. 
-    ///    Messages with the same priority are placed in the queue according to their arrival 
+    ///    Message priority effects how MSMQ handles the message while it is in route,
+    ///    as well as where the message is placed in the queue. Higher priority messages
+    ///    are given preference during routing, and inserted toward the front of the queue.
+    ///    Messages with the same priority are placed in the queue according to their arrival
     ///    time.
     /// </devdoc>
     public enum MessagePriority

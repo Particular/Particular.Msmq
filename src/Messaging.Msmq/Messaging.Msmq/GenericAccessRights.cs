@@ -7,7 +7,6 @@ namespace Messaging.Msmq
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
     [Flags]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2217:DoNotMarkEnumsWithFlags")]
     public enum GenericAccessRights
     {
         /// <include file='doc\GenericAccessRights.uex' path='docs/doc[@for="GenericAccessRights.All"]/*' />

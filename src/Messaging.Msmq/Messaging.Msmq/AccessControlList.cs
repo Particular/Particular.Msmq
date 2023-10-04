@@ -12,8 +12,6 @@ namespace Messaging.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1039:ListsAreStronglyTyped")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
     public class AccessControlList : CollectionBase
     {
 
