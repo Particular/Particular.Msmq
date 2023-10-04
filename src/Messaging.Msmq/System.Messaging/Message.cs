@@ -1072,10 +1072,6 @@ namespace System.Messaging
                     //This property has not been set, lets return an empty queue.
                     if (!receiveCreated)
                     {
-                        if (LocalAppContextSwitches.UseMD5ForDefaultHashAlgorithm)
-                        {
-                            return HashAlgorithm.Md5;
-                        }
                         return HashAlgorithm.Sha512;
                     }
 
