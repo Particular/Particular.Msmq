@@ -4,9 +4,9 @@
     {
         public static string GetString(string text) => text;
 
-        public static string GetString(string text, string input0) => string.Format(text, input0);
+        public static string GetString(string text, object input0) => string.Format(text, input0);
 
-        public static string GetString(string text, string input0, string input1) => string.Format(text, input0, input1);
+        public static string GetString(string text, object input0, object input1) => string.Format(text, input0, input1);
 
         public const string MSMQNotInstalled = "Message Queuing has not been installed on this computer.";
         public const string PlatformNotSupported = "Requested operation is not supported on this platform.";
