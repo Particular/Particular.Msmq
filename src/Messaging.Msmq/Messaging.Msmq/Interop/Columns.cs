@@ -59,7 +59,7 @@ namespace Messaging.Msmq.Interop
 
             public virtual void SetId(int columnId, int index)
             {
-                Marshal.WriteInt32((IntPtr)((long)columnIdentifiers + (index * 4)), columnId);
+                Marshal.WriteInt32(checked((IntPtr)((long)columnIdentifiers + (index * 4))), columnId);
             }
         }
     }
