@@ -606,7 +606,7 @@ namespace Messaging.Msmq
 
                         if (pathUpper.StartsWith(PREFIX_FORMAT_NAME))
                         {
-                            this.formatName = this.path.Substring(PREFIX_FORMAT_NAME.Length);
+                            this.formatName = this.path[PREFIX_FORMAT_NAME.Length..];
                         }
                         else if (pathUpper.StartsWith(PREFIX_LABEL))
                         {
@@ -768,7 +768,7 @@ namespace Messaging.Msmq
                 {
                     return queuePath;
                 }
-                return queuePath.Substring(0, queuePath.IndexOf('\\'));
+                return queuePath[..queuePath.IndexOf('\\')];
             }
 
             set
@@ -1059,7 +1059,7 @@ namespace Messaging.Msmq
                 {
                     return queuePath;
                 }
-                return queuePath.Substring(queuePath.IndexOf('\\') + 1);
+                return queuePath[(queuePath.IndexOf('\\') + 1)..];
             }
 
             set
@@ -3068,16 +3068,16 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private static MessageQueue ResolveQueueFromLabel(string path, bool throwException)
         {
-            MessageQueue[] queues = GetPublicQueuesByLabel(path.Substring(PREFIX_LABEL.Length), false);
+            MessageQueue[] queues = GetPublicQueuesByLabel(path[PREFIX_LABEL.Length..], false);
             if (queues.Length == 0)
             {
                 if (throwException)
-                    throw new InvalidOperationException(Res.GetString(Res.InvalidLabel, path.Substring(PREFIX_LABEL.Length)));
+                    throw new InvalidOperationException(Res.GetString(Res.InvalidLabel, path[PREFIX_LABEL.Length..]));
 
                 return null;
             }
             else if (queues.Length > 1)
-                throw new InvalidOperationException(Res.GetString(Res.AmbiguousLabel, path.Substring(PREFIX_LABEL.Length)));
+                throw new InvalidOperationException(Res.GetString(Res.AmbiguousLabel, path[PREFIX_LABEL.Length..]));
 
             return queues[0];
         }
@@ -3085,9 +3085,9 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private static string ResolveFormatNameFromQueuePath(string queuePath, bool throwException)
         {
-            string machine = queuePath.Substring(0, queuePath.IndexOf('\\'));
+            string machine = queuePath[..queuePath.IndexOf('\\')];
             //The name includes the \\
-            string name = queuePath.Substring(queuePath.IndexOf('\\'));
+            string name = queuePath[queuePath.IndexOf('\\')..];
             //Check for machine DeadLetter or Journal
             if (String.Compare(name, SUFIX_DEADLETTER, true, CultureInfo.InvariantCulture) == 0 ||
                 String.Compare(name, SUFIX_DEADXACT, true, CultureInfo.InvariantCulture) == 0 ||
@@ -3124,7 +3124,7 @@ namespace Messaging.Msmq
                 {
                     journal = true;
                     int lastIndex = realPath.LastIndexOf('\\');
-                    realPath = realPath.Substring(0, lastIndex);
+                    realPath = realPath[..lastIndex];
                 }
 
                 int result;
