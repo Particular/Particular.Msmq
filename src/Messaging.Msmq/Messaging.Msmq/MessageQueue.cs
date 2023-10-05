@@ -2004,7 +2004,7 @@ namespace Messaging.Msmq
             var queues = new MessageQueue[len];
             for (int index = 0; index < len; ++index)
             {
-                IntPtr stringPointer = checked(Marshal.ReadIntPtr((IntPtr)((long)basePointer + index * IntPtr.Size)));
+                IntPtr stringPointer = checked(Marshal.ReadIntPtr((IntPtr)((long)basePointer + (index * IntPtr.Size))));
                 //Using Unicode API even on Win9x
                 string path = Marshal.PtrToStringUni(stringPointer);
                 queues[index] = new MessageQueue("FormatName:DIRECT=OS:" + path)

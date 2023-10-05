@@ -108,7 +108,7 @@ namespace Messaging.Msmq.Interop
 
             public IntPtr GetNextValidPtr(int offset)
             {
-                return (IntPtr)((long)restrinctions + restrictionCount * GetRestrictionSize() + offset);
+                return (IntPtr)((long)restrinctions + (restrictionCount * GetRestrictionSize()) + offset);
             }
 
             public static int GetRestrictionSize()

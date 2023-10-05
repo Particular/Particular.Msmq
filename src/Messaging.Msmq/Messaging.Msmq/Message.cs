@@ -2598,7 +2598,7 @@ namespace Messaging.Msmq
         internal static string StringFromBytes(byte[] bytes, int len)
         {
             //If the string ends with 0, lets trim it.
-            if (len != 0 && bytes[len * 2 - 1] == 0 && bytes[len * 2 - 2] == 0)
+            if (len != 0 && bytes[(len * 2) - 1] == 0 && bytes[(len * 2) - 2] == 0)
             {
                 --len;
             }
@@ -2612,7 +2612,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         internal static byte[] StringToBytes(string value)
         {
-            int size = value.Length * 2 + 1;
+            int size = (value.Length * 2) + 1;
             byte[] byteBuffer = new byte[size];
             byteBuffer[size - 1] = 0;
             Encoding.Unicode.GetBytes(value.ToCharArray(), 0, value.Length, byteBuffer, 0);
