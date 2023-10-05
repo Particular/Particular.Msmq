@@ -4186,9 +4186,9 @@ namespace Messaging.Msmq
                 rwLock.AcquireReaderLock(-1);
                 try
                 {
-                    if (table.ContainsKey(key))
+                    if (table.TryGetValue(key, out CacheEntry<Value> value))
                     {
-                        CacheEntry<Value> entry = table[key];
+                        CacheEntry<Value> entry = value;
                         if (entry != null)
                         {
                             entry.timeStamp = DateTime.UtcNow;
@@ -4215,9 +4215,9 @@ namespace Messaging.Msmq
                     else
                     {
                         CacheEntry<Value> entry = null;
-                        if (table.ContainsKey(key))
+                        if (table.TryGetValue(key, out CacheEntry<Value> value))
                         {
-                            entry = table[key]; //which could be null also
+                            entry = value; //which could be null also
                         }
 
                         if (entry == null)
@@ -4244,10 +4244,7 @@ namespace Messaging.Msmq
                 rwLock.AcquireWriterLock(-1);
                 try
                 {
-                    if (table.ContainsKey(key))
-                    {
-                        table.Remove(key);
-                    }
+                    table.Remove(key);
                 }
                 finally
                 {

@@ -48,9 +48,9 @@ namespace Messaging.Msmq
         /// </devdoc>
         public static QueueAccessModeHolder GetQueueAccessModeHolder(QueueAccessMode accessMode)
         {
-            if (holders.ContainsKey(accessMode))
+            if (holders.TryGetValue(accessMode, out QueueAccessModeHolder value))
             {
-                return holders[accessMode];
+                return value;
             }
 
             lock (holders)
