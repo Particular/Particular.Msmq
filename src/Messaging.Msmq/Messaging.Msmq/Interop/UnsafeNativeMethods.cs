@@ -207,7 +207,7 @@ namespace Messaging.Msmq.Interop
         [DllImport(ExternDll.Advapi32, SetLastError = true)]
         public static extern bool InitializeSecurityDescriptor(NativeMethods.SECURITY_DESCRIPTOR SD, int revision);
 
-        [DllImport(ExternDll.Advapi32, CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport(ExternDll.Advapi32, CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern bool LookupAccountName(string lpSystemName,
                                                      string lpAccountName,
                                                      IntPtr sid,
