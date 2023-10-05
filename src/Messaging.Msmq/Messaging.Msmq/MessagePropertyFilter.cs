@@ -103,7 +103,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & ACKNOWLEDGEMENT) != 0);
+                return (data1 & ACKNOWLEDGEMENT) != 0;
             }
 
             set
@@ -123,7 +123,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & ACKNOWLEDGE_TYPE) != 0);
+                return (data1 & ACKNOWLEDGE_TYPE) != 0;
             }
 
             set
@@ -143,7 +143,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & ADMIN_QUEUE) != 0);
+                return (data1 & ADMIN_QUEUE) != 0;
             }
 
             set
@@ -163,7 +163,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & APP_SPECIFIC) != 0);
+                return (data2 & APP_SPECIFIC) != 0;
             }
 
             set
@@ -183,7 +183,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & ARRIVED_TIME) != 0);
+                return (data2 & ARRIVED_TIME) != 0;
             }
 
             set
@@ -203,7 +203,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & ATTACH_SENDER_ID) != 0);
+                return (data2 & ATTACH_SENDER_ID) != 0;
             }
 
             set
@@ -223,7 +223,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & AUTHENTICATED) != 0);
+                return (data2 & AUTHENTICATED) != 0;
             }
 
             set
@@ -243,7 +243,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & CRYPTOGRAPHIC_PROVIDER_NAME) != 0);
+                return (data2 & CRYPTOGRAPHIC_PROVIDER_NAME) != 0;
             }
 
             set
@@ -263,7 +263,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & CRYPTOGRAPHIC_PROVIDER_TYPE) != 0);
+                return (data2 & CRYPTOGRAPHIC_PROVIDER_TYPE) != 0;
             }
 
             set
@@ -283,7 +283,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & BODY) != 0);
+                return (data1 & BODY) != 0;
             }
 
             set
@@ -303,7 +303,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & CONNECTOR_TYPE) != 0);
+                return (data2 & CONNECTOR_TYPE) != 0;
             }
 
             set
@@ -323,7 +323,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & CORRELATION_ID) != 0);
+                return (data2 & CORRELATION_ID) != 0;
             }
 
             set
@@ -421,7 +421,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & DESTINATION_QUEUE) != 0);
+                return (data2 & DESTINATION_QUEUE) != 0;
             }
 
             set
@@ -442,7 +442,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & SYMMETRIC_KEY) != 0);
+                return (data2 & SYMMETRIC_KEY) != 0;
             }
 
             set
@@ -462,7 +462,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & DIGITAL_SIGNATURE) != 0);
+                return (data2 & DIGITAL_SIGNATURE) != 0;
             }
 
             set
@@ -482,7 +482,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & ENCRYPTION_ALGORITHM) != 0);
+                return (data2 & ENCRYPTION_ALGORITHM) != 0;
             }
 
             set
@@ -502,7 +502,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & EXTENSION) != 0);
+                return (data2 & EXTENSION) != 0;
             }
 
             set
@@ -522,7 +522,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & HASH_ALGORITHM) != 0);
+                return (data2 & HASH_ALGORITHM) != 0;
             }
 
             set
@@ -542,7 +542,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & ID) != 0);
+                return (data1 & ID) != 0;
             }
 
             set
@@ -562,7 +562,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & IS_FIRST_IN_TRANSACTION) != 0);
+                return (data2 & IS_FIRST_IN_TRANSACTION) != 0;
             }
 
             set
@@ -582,7 +582,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & IS_LAST_IN_TRANSACTION) != 0);
+                return (data2 & IS_LAST_IN_TRANSACTION) != 0;
             }
 
             set
@@ -602,7 +602,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & LABEL) != 0);
+                return (data1 & LABEL) != 0;
             }
 
             set
@@ -628,7 +628,7 @@ namespace Messaging.Msmq
                     throw new PlatformNotSupportedException(Res.GetString(Res.PlatformNotSupported));
                 }
 
-                return ((data1 & LOOKUP_ID) != 0);
+                return (data1 & LOOKUP_ID) != 0;
             }
 
             set
@@ -653,7 +653,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & MESSAGE_TYPE) != 0);
+                return (data1 & MESSAGE_TYPE) != 0;
             }
 
             set
@@ -673,7 +673,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & PRIORITY) != 0);
+                return (data2 & PRIORITY) != 0;
             }
 
             set
@@ -693,7 +693,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & IS_RECOVERABLE) != 0);
+                return (data2 & IS_RECOVERABLE) != 0;
             }
 
             set
@@ -713,7 +713,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & RESPONSE_QUEUE) != 0);
+                return (data1 & RESPONSE_QUEUE) != 0;
             }
 
             set
@@ -728,7 +728,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & SECURITY_CONTEXT) != 0);
+                return (data2 & SECURITY_CONTEXT) != 0;
             }
 
             set
@@ -749,7 +749,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & SENDER_CERTIFICATE) != 0);
+                return (data2 & SENDER_CERTIFICATE) != 0;
             }
 
             set
@@ -769,7 +769,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & SENDER_ID) != 0);
+                return (data2 & SENDER_ID) != 0;
             }
 
             set
@@ -789,7 +789,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & VERSION) != 0);
+                return (data2 & VERSION) != 0;
             }
 
             set
@@ -809,7 +809,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & SENT_TIME) != 0);
+                return (data2 & SENT_TIME) != 0;
             }
 
             set
@@ -829,7 +829,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & SOURCE_MACHINE) != 0);
+                return (data2 & SOURCE_MACHINE) != 0;
             }
 
             set
@@ -849,7 +849,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & TIME_TO_BE_RECEIVED) != 0);
+                return (data2 & TIME_TO_BE_RECEIVED) != 0;
             }
 
             set
@@ -869,7 +869,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & TIME_TO_REACH_QUEUE) != 0);
+                return (data2 & TIME_TO_REACH_QUEUE) != 0;
             }
 
             set
@@ -889,7 +889,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & TRANSACTION_ID) != 0);
+                return (data2 & TRANSACTION_ID) != 0;
             }
 
             set
@@ -909,7 +909,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & FOREIGN_ADMIN_QUEUE) != 0);
+                return (data2 & FOREIGN_ADMIN_QUEUE) != 0;
             }
 
             set
@@ -929,7 +929,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & USE_AUTHENTICATION) != 0);
+                return (data2 & USE_AUTHENTICATION) != 0;
             }
 
             set
@@ -949,7 +949,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & USE_DEADLETTER_QUEUE) != 0);
+                return (data1 & USE_DEADLETTER_QUEUE) != 0;
             }
 
             set
@@ -969,7 +969,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & USE_ENCRYPTION) != 0);
+                return (data2 & USE_ENCRYPTION) != 0;
             }
 
             set
@@ -989,7 +989,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data1 & USE_JOURNALING) != 0);
+                return (data1 & USE_JOURNALING) != 0;
             }
 
             set
@@ -1009,7 +1009,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return ((data2 & USE_TRACING) != 0);
+                return (data2 & USE_TRACING) != 0;
             }
 
             set

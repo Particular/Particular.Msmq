@@ -64,12 +64,12 @@ namespace Messaging.Msmq
 
         public bool CanRead()
         {
-            return (((accessMode & QueueAccessMode.Receive) != 0) || ((accessMode & QueueAccessMode.Peek) != 0));
+            return ((accessMode & QueueAccessMode.Receive) != 0) || ((accessMode & QueueAccessMode.Peek) != 0);
         }
 
         public bool CanWrite()
         {
-            return ((accessMode & QueueAccessMode.Send) != 0);
+            return (accessMode & QueueAccessMode.Send) != 0;
         }
 
         public int GetReadAccessMode()

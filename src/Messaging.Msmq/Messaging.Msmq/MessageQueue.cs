@@ -271,7 +271,7 @@ namespace Messaging.Msmq
                 {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, 0);
                     GenerateQueueProperties();
-                    authenticate = (Properties.GetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE) != NativeMethods.QUEUE_AUTHENTICATE_NONE);
+                    authenticate = Properties.GetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE) != NativeMethods.QUEUE_AUTHENTICATE_NONE;
                     PropertyFilter.Authenticate = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_AUTHENTICATE);
                 }
@@ -499,7 +499,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return (sharedMode == NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE);
+                return sharedMode == NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE;
             }
             set
             {
@@ -841,7 +841,7 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MaximumJournalSize", value));
                 }
 
-                Properties.SetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA, (int)((uint)value));
+                Properties.SetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA, (int)(uint)value);
                 SaveQueueProperties();
                 journalSize = value;
                 PropertyFilter.MaximumJournalSize = true;
@@ -878,7 +878,7 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MaximumQueueSize", value));
                 }
 
-                Properties.SetUI4(NativeMethods.QUEUE_PROPID_QUOTA, (int)((uint)value));
+                Properties.SetUI4(NativeMethods.QUEUE_PROPID_QUOTA, (int)(uint)value);
                 SaveQueueProperties();
                 queueSize = value;
                 PropertyFilter.MaximumQueueSize = true;
@@ -1249,7 +1249,7 @@ namespace Messaging.Msmq
                 {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, 0);
                     GenerateQueueProperties();
-                    useJournaling = (Properties.GetUI1(NativeMethods.QUEUE_PROPID_JOURNAL) != NativeMethods.QUEUE_JOURNAL_NONE);
+                    useJournaling = Properties.GetUI1(NativeMethods.QUEUE_PROPID_JOURNAL) != NativeMethods.QUEUE_JOURNAL_NONE;
                     PropertyFilter.UseJournalQueue = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL);
                 }
@@ -2127,9 +2127,9 @@ namespace Messaging.Msmq
         /// <internalonly/>
         internal static bool IsFatalError(int value)
         {
-            bool isSuccessful = (value == 0x00000000);
-            bool isInformation = ((value & unchecked((int)0xC0000000)) == 0x40000000);
-            return (!isInformation && !isSuccessful);
+            bool isSuccessful = value == 0x00000000;
+            bool isInformation = (value & unchecked((int)0xC0000000)) == 0x40000000;
+            return !isInformation && !isSuccessful;
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.IsMemoryError"]/*' />
@@ -4146,9 +4146,9 @@ namespace Messaging.Msmq
         {
             // returns true if return code of ReceiveMessage indicates
             // that cached handle used for receive has become invalid
-            return (receiveResult is ((int)MessageQueueErrorCode.StaleHandle) or      //both qm and ac restarted
+            return receiveResult is ((int)MessageQueueErrorCode.StaleHandle) or      //both qm and ac restarted
                     ((int)MessageQueueErrorCode.InvalidHandle) or    //get this if ac is not restarted
-                    ((int)MessageQueueErrorCode.InvalidParameter)); // get this on w2k
+                    ((int)MessageQueueErrorCode.InvalidParameter); // get this on w2k
         }
 
 
@@ -4474,7 +4474,7 @@ namespace Messaging.Msmq
                                     throw new MessageQueueException(status);
                                 }
 
-                                isTransactional = (props.GetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION) != NativeMethods.QUEUE_TRANSACTIONAL_NONE);
+                                isTransactional = props.GetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION) != NativeMethods.QUEUE_TRANSACTIONAL_NONE;
                                 isTransactional_valid = true;
                             }
                         }
@@ -4606,7 +4606,7 @@ namespace Messaging.Msmq
 
                 // string.Equals performs case-sensitive and culture-insensitive comparison
                 // we address case sensitivity by normalizing format name in the constructor
-                return ((accessMode == qik.accessMode) && formatName.Equals(qik.formatName));
+                return (accessMode == qik.accessMode) && formatName.Equals(qik.formatName);
             }
         }
 

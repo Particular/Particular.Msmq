@@ -589,7 +589,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Authenticated"));
                 }
 
-                return (properties.GetUI1(NativeMethods.MESSAGE_PROPID_AUTHENTICATED) != 0);
+                return properties.GetUI1(NativeMethods.MESSAGE_PROPID_AUTHENTICATED) != 0;
             }
         }
 
@@ -1273,7 +1273,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "IsFirstInTransaction"));
                 }
 
-                return (properties.GetUI1(NativeMethods.MESSAGE_PROPID_FIRST_IN_XACT) != 0);
+                return properties.GetUI1(NativeMethods.MESSAGE_PROPID_FIRST_IN_XACT) != 0;
             }
         }
 
@@ -1298,7 +1298,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "IsLastInTransaction"));
                 }
 
-                return (properties.GetUI1(NativeMethods.MESSAGE_PROPID_LAST_IN_XACT) != 0);
+                return properties.GetUI1(NativeMethods.MESSAGE_PROPID_LAST_IN_XACT) != 0;
             }
         }
 
@@ -1824,7 +1824,7 @@ namespace Messaging.Msmq
                 else
                 {
                     filter.TimeToBeReceived = true;
-                    properties.SetUI4(NativeMethods.MESSAGE_PROPID_TIME_TO_BE_RECEIVED, (int)((uint)timeoutInSeconds));
+                    properties.SetUI4(NativeMethods.MESSAGE_PROPID_TIME_TO_BE_RECEIVED, (int)(uint)timeoutInSeconds);
                 }
             }
         }
@@ -1875,7 +1875,7 @@ namespace Messaging.Msmq
                 else
                 {
                     filter.TimeToReachQueue = true;
-                    properties.SetUI4(NativeMethods.MESSAGE_PROPID_TIME_TO_REACH_QUEUE, (int)((uint)timeoutInSeconds));
+                    properties.SetUI4(NativeMethods.MESSAGE_PROPID_TIME_TO_REACH_QUEUE, (int)(uint)timeoutInSeconds);
                 }
             }
         }
@@ -1994,7 +1994,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "UseAuthentication"));
                 }
 
-                return (properties.GetUI4(NativeMethods.MESSAGE_PROPID_AUTH_LEVEL) != NativeMethods.MESSAGE_AUTHENTICATION_LEVEL_NONE);
+                return properties.GetUI4(NativeMethods.MESSAGE_PROPID_AUTH_LEVEL) != NativeMethods.MESSAGE_AUTHENTICATION_LEVEL_NONE;
             }
 
             set
@@ -2035,7 +2035,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "UseDeadLetterQueue"));
                 }
 
-                return ((properties.GetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL) & NativeMethods.MESSAGE_JOURNAL_DEADLETTER) != 0);
+                return (properties.GetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL) & NativeMethods.MESSAGE_JOURNAL_DEADLETTER) != 0;
             }
 
             set
@@ -2093,7 +2093,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "UseEncryption"));
                 }
 
-                return (properties.GetUI4(NativeMethods.MESSAGE_PROPID_PRIV_LEVEL) != NativeMethods.MESSAGE_PRIVACY_LEVEL_NONE);
+                return properties.GetUI4(NativeMethods.MESSAGE_PROPID_PRIV_LEVEL) != NativeMethods.MESSAGE_PRIVACY_LEVEL_NONE;
             }
 
             set
@@ -2134,7 +2134,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "UseJournalQueue"));
                 }
 
-                return ((properties.GetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL) & NativeMethods.MESSAGE_JOURNAL_JOURNAL) != 0);
+                return (properties.GetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL) & NativeMethods.MESSAGE_JOURNAL_JOURNAL) != 0;
             }
 
             set
@@ -2194,7 +2194,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "UseTracing"));
                 }
 
-                return (properties.GetUI1(NativeMethods.MESSAGE_PROPID_TRACE) != NativeMethods.MESSAGE_TRACE_NONE);
+                return properties.GetUI1(NativeMethods.MESSAGE_PROPID_TRACE) != NativeMethods.MESSAGE_TRACE_NONE;
             }
 
             set
@@ -2540,7 +2540,7 @@ namespace Messaging.Msmq
             byte[] guidBytes = new byte[GenericIdSize];
             Array.Copy(bytes, guidBytes, GenericIdSize);
             int id = BitConverter.ToInt32(bytes, GenericIdSize);
-            result.Append((new Guid(guidBytes)).ToString());
+            result.Append(new Guid(guidBytes).ToString());
             result.Append('\\');
             result.Append(id);
             return result.ToString();

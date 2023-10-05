@@ -98,7 +98,7 @@ namespace Messaging.Msmq
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(GenericAccessRights));
                 }
 
-                accessFlags = (accessFlags & (int)(~genericRightsMask)) | (int)value;
+                accessFlags = (accessFlags & (int)~genericRightsMask) | (int)value;
             }
         }
 
@@ -120,7 +120,7 @@ namespace Messaging.Msmq
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(StandardAccessRights));
                 }
 
-                accessFlags = (accessFlags & (int)(~standardRightsMask)) | (int)value;
+                accessFlags = (accessFlags & (int)~standardRightsMask) | (int)value;
             }
         }
 

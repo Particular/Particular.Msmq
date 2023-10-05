@@ -129,7 +129,7 @@ namespace Messaging.Msmq.Interop
 
         public void SetI2(int propertyId, short value)
         {
-            if ((variantTypes[propertyId - basePropertyId]) == VT_UNDEFINED)
+            if (variantTypes[propertyId - basePropertyId] == VT_UNDEFINED)
             {
                 variantTypes[propertyId - basePropertyId] = VT_I2;
                 ++propertyCount;
