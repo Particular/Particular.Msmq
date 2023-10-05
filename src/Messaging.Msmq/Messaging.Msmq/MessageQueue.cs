@@ -806,7 +806,7 @@ namespace Messaging.Msmq
                 else
                 {
                     newPath.Append(value);
-                    newPath.Append("\\");
+                    newPath.Append('\\');
                     newPath.Append(QueueName);
                 }
                 Path = newPath.ToString();
@@ -1107,7 +1107,7 @@ namespace Messaging.Msmq
                 else
                 {
                     newPath.Append(MachineName);
-                    newPath.Append("\\");
+                    newPath.Append('\\');
                     newPath.Append(value);
                 }
                 Path = newPath.ToString();

@@ -2541,7 +2541,7 @@ namespace Messaging.Msmq
             Array.Copy(bytes, guidBytes, GenericIdSize);
             int id = BitConverter.ToInt32(bytes, GenericIdSize);
             result.Append((new Guid(guidBytes)).ToString());
-            result.Append("\\");
+            result.Append('\\');
             result.Append(id);
             return result.ToString();
         }
