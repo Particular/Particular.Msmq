@@ -38,19 +38,19 @@ namespace Messaging.Msmq.Interop
 
 
         [DllImport(ExternDll.Mqrt, CharSet = CharSet.Unicode)]
-        public unsafe static extern int MQReceiveMessage(MessageQueueHandle handle, uint timeout, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
+        public static extern unsafe int MQReceiveMessage(MessageQueueHandle handle, uint timeout, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
                                                                                                      SafeNativeMethods.ReceiveCallback receiveCallback, CursorHandle cursorHandle, IntPtr transaction);
 
         [DllImport(ExternDll.Mqrt, CharSet = CharSet.Unicode)]
-        public unsafe static extern int MQReceiveMessage(MessageQueueHandle handle, uint timeout, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
+        public static extern unsafe int MQReceiveMessage(MessageQueueHandle handle, uint timeout, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
                                                                                                     SafeNativeMethods.ReceiveCallback receiveCallback, CursorHandle cursorHandle, ITransaction transaction);
 
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQReceiveMessageByLookupId", CharSet = CharSet.Unicode)]
-        static unsafe extern int IntMQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
+        static extern unsafe int IntMQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
                                                                     SafeNativeMethods.ReceiveCallback receiveCallback, IntPtr transaction);
 
-        public unsafe static int MQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
+        public static unsafe int MQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
                                                      SafeNativeMethods.ReceiveCallback receiveCallback, IntPtr transaction)
         {
             try
@@ -65,10 +65,10 @@ namespace Messaging.Msmq.Interop
 
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQReceiveMessageByLookupId", CharSet = CharSet.Unicode)]
-        static unsafe extern int IntMQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
+        static extern unsafe int IntMQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
                                                                         SafeNativeMethods.ReceiveCallback receiveCallback, ITransaction transaction);
 
-        public unsafe static int MQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
+        public static unsafe int MQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
                                                      SafeNativeMethods.ReceiveCallback receiveCallback, ITransaction transaction)
         {
             try
