@@ -11,11 +11,9 @@ namespace Messaging.Msmq.Interop
 
     class MessageQueueHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
-
         public static readonly MessageQueueHandle InvalidHandle = new InvalidMessageQueueHandle();
 
-        MessageQueueHandle() : base(true) { }
-
+        protected MessageQueueHandle() : base(true) { }
 
         protected override bool ReleaseHandle()
         {
@@ -26,14 +24,12 @@ namespace Messaging.Msmq.Interop
 
         public override bool IsInvalid => base.IsInvalid || IsClosed;
 
-
         // A subclass needed to express InvalidHandle. The reason is that CLR notices that
         // ReleaseHandle requires a call to MQRT.DLL, and throws in the ctor if MQRT.DLL is not available,
         // even though CTOR ITSELF DOES NOT REQUIRE MQRT.DLL.
         // We address this by defining a NOOP ReleaseHandle
         sealed class InvalidMessageQueueHandle : MessageQueueHandle
         {
-
             protected override bool ReleaseHandle()
             {
                 return true;
@@ -41,10 +37,8 @@ namespace Messaging.Msmq.Interop
         }
     }
 
-
     class CursorHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
-
         public static readonly CursorHandle NullHandle = new InvalidCursorHandle();
 
         protected CursorHandle() : base(true) { }
@@ -58,14 +52,12 @@ namespace Messaging.Msmq.Interop
 
         public override bool IsInvalid => base.IsInvalid || IsClosed;
 
-
         // A subclass needed to express InvalidHandle. The reason is that CLR notices that
         // ReleaseHandle requires a call to MQRT.DLL, and throws in the ctor if MQRT.DLL is not available,
         // even though CTOR ITSELF DOES NOT REQUIRE MQRT.DLL.
         // We address this by defining a NOOP ReleaseHandle
         sealed class InvalidCursorHandle : CursorHandle
         {
-
             protected override bool ReleaseHandle()
             {
                 return true;
@@ -73,10 +65,8 @@ namespace Messaging.Msmq.Interop
         }
     }
 
-
     class LocatorHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
-
         public static readonly LocatorHandle InvalidHandle = new InvalidLocatorHandle();
 
         protected LocatorHandle() : base(true) { }
@@ -90,14 +80,12 @@ namespace Messaging.Msmq.Interop
 
         public override bool IsInvalid => base.IsInvalid || IsClosed;
 
-
         // A subclass needed to express InvalidHandle. The reason is that CLR notices that
         // ReleaseHandle requires a call to MQRT.DLL, and throws in the ctor if MQRT.DLL is not available,
         // even though CTOR ITSELF DOES NOT REQUIRE MQRT.DLL.
         // We address this by defining a NOOP ReleaseHandle
         sealed class InvalidLocatorHandle : LocatorHandle
         {
-
             protected override bool ReleaseHandle()
             {
                 return true;
@@ -105,12 +93,8 @@ namespace Messaging.Msmq.Interop
         }
     }
 
-
-
-
     sealed class SecurityContextHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
-
         internal SecurityContextHandle(IntPtr existingHandle)
             : base(true)
         {
