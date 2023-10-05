@@ -24,10 +24,7 @@ namespace Messaging.Msmq.Interop
             return true;
         }
 
-        public override bool IsInvalid
-        {
-            get { return base.IsInvalid || IsClosed; }
-        }
+        public override bool IsInvalid => base.IsInvalid || IsClosed;
 
 
         // A subclass needed to express InvalidHandle. The reason is that CLR notices that
@@ -59,10 +56,7 @@ namespace Messaging.Msmq.Interop
             return true;
         }
 
-        public override bool IsInvalid
-        {
-            get { return base.IsInvalid || IsClosed; }
-        }
+        public override bool IsInvalid => base.IsInvalid || IsClosed;
 
 
         // A subclass needed to express InvalidHandle. The reason is that CLR notices that
@@ -94,10 +88,7 @@ namespace Messaging.Msmq.Interop
             return true;
         }
 
-        public override bool IsInvalid
-        {
-            get { return base.IsInvalid || IsClosed; }
-        }
+        public override bool IsInvalid => base.IsInvalid || IsClosed;
 
 
         // A subclass needed to express InvalidHandle. The reason is that CLR notices that
@@ -133,10 +124,7 @@ namespace Messaging.Msmq.Interop
             return true;
         }
 
-        public override bool IsInvalid
-        {
-            get { return base.IsInvalid || IsClosed; }
-        }
+        public override bool IsInvalid => base.IsInvalid || IsClosed;
     }
 }
 

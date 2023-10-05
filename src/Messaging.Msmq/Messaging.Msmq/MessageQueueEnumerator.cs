@@ -71,13 +71,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.IEnumerator.Current"]/*' />
         /// <internalonly/>
-        object IEnumerator.Current
-        {
-            get
-            {
-                return Current;
-            }
-        }
+        object IEnumerator.Current => Current;
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.Close"]/*' />
         /// <devdoc>
@@ -120,10 +114,7 @@ namespace Messaging.Msmq
         ///    <para>Indicates the native Message Queuing handle used to locate queues in a network. This
         ///       property is read-only.</para>
         /// </devdoc>
-        public IntPtr LocatorHandle
-        {
-            get { return Handle.DangerousGetHandle(); }
-        }
+        public IntPtr LocatorHandle => Handle.DangerousGetHandle();
 
 
         LocatorHandle Handle

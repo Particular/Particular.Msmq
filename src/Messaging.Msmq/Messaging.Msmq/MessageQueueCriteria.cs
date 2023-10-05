@@ -104,13 +104,7 @@ namespace Messaging.Msmq
             }
         }
 
-        internal bool FilterMachine
-        {
-            get
-            {
-                return filter.MachineName;
-            }
-        }
+        internal bool FilterMachine => filter.MachineName;
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.Label"]/*' />
         /// <devdoc>

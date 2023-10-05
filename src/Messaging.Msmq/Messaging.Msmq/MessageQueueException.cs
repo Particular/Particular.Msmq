@@ -34,13 +34,7 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
-        public MessageQueueErrorCode MessageQueueErrorCode
-        {
-            get
-            {
-                return (MessageQueueErrorCode)nativeErrorCode;
-            }
-        }
+        public MessageQueueErrorCode MessageQueueErrorCode => (MessageQueueErrorCode)nativeErrorCode;
 
         /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException.Message"]/*' />
         /// <devdoc>

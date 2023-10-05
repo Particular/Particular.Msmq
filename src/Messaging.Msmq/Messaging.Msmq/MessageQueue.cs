@@ -3690,26 +3690,14 @@ namespace Messaging.Msmq
             /// <devdoc>
             ///    IAsyncResult implementation
             /// </devdoc>
-            public WaitHandle AsyncWaitHandle
-            {
-                get
-                {
-                    return resetEvent;
-                }
-            }
+            public WaitHandle AsyncWaitHandle => resetEvent;
 
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.CompletedSynchronously"]/*' />
             /// <devdoc>
             ///    IAsyncResult implementation
             /// </devdoc>
-            public bool CompletedSynchronously
-            {
-                get
-                {
-                    return false;
-                }
-            }
+            public bool CompletedSynchronously => false;
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.IsCompleted"]/*' />
             /// <devdoc>

@@ -30,13 +30,7 @@ namespace Messaging.Msmq
             Status = MessageQueueTransactionStatus.Initialized;
         }
 
-        internal ITransaction InnerTransaction
-        {
-            get
-            {
-                return internalTransaction;
-            }
-        }
+        internal ITransaction InnerTransaction => internalTransaction;
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Status"]/*' />
         /// <devdoc>

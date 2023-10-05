@@ -56,23 +56,14 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.IEnumerator.Current"]/*' />
         /// <internalonly/>
-        object IEnumerator.Current
-        {
-            get
-            {
-                return Current;
-            }
-        }
+        object IEnumerator.Current => Current;
 
         /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.CursorHandle"]/*' />
         /// <devdoc>
         ///    <para>Gets the native Message Queuing cursor handle used to browse messages
         ///       in the queue.</para>
         /// </devdoc>
-        public IntPtr CursorHandle
-        {
-            get { return Handle.DangerousGetHandle(); }
-        }
+        public IntPtr CursorHandle => Handle.DangerousGetHandle();
 
 
         internal CursorHandle Handle

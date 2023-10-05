@@ -905,39 +905,21 @@ namespace Messaging.Msmq
         ///    The default body  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
-        int DefaultBodySize
-        {
-            get
-            {
-                return filter.DefaultBodySize;
-            }
-        }
+        int DefaultBodySize => filter.DefaultBodySize;
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DefaultExtensionSize"]/*' />
         /// <devdoc>
         ///    The default extension  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
-        int DefaultExtensionSize
-        {
-            get
-            {
-                return filter.DefaultExtensionSize;
-            }
-        }
+        int DefaultExtensionSize => filter.DefaultExtensionSize;
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DefaultLabelSize"]/*' />
         /// <devdoc>
         ///    The default label  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
-        int DefaultLabelSize
-        {
-            get
-            {
-                return filter.DefaultLabelSize;
-            }
-        }
+        int DefaultLabelSize => filter.DefaultLabelSize;
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DestinationQueue"]/*' />
         /// <devdoc>
