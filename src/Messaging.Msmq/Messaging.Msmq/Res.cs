@@ -49,6 +49,8 @@
         public const string InvalidId = "Identifier is not in the incorrect format.";
         public const string TransactionStarted = "Cannot start a transaction while a pending transaction exists.";
         public const string InvalidTypeDeserialization = "Cannot deserialize the message passed as an argument. Cannot recognize the serialization format.";
+        public const string UnknownError = "Error 0x{0} is unknown.";
+        public const string MessageNotFound = "Message requested was not found in the queue specified.";
     }
 }
 

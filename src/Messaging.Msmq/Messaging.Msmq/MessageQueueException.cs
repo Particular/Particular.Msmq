@@ -88,7 +88,7 @@ namespace Messaging.Msmq
             }
             else
             {
-                errorMsg = $"Error 0x{Convert.ToString(error, 16)} is unknown";
+                errorMsg = Res.GetString(Res.UnknownError, Convert.ToString(error, 16));
             }
 
             return errorMsg;

@@ -2608,7 +2608,7 @@ namespace Messaging.Msmq
 
             if (!throwTimeout)
             {
-                throw new InvalidOperationException(Res.GetString("MessageNotFound"));
+                throw new InvalidOperationException(Res.GetString(Res.MessageNotFound));
             }
             else
             {
@@ -2949,7 +2949,7 @@ namespace Messaging.Msmq
 
             if (status == (int)MessageQueueErrorCode.MessageNotFound)
             {
-                throw new InvalidOperationException(Res.GetString("MessageNotFound"));
+                throw new InvalidOperationException(Res.GetString(Res.MessageNotFound));
             }
 
             if (IsFatalError(status))
