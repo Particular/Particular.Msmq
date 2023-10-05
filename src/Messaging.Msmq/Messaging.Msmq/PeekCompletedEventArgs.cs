@@ -23,7 +23,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         internal PeekCompletedEventArgs(MessageQueue sender, IAsyncResult result)
         {
-            this.AsyncResult = result;
+            AsyncResult = result;
             this.sender = sender;
         }
 

@@ -22,7 +22,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         internal ReceiveCompletedEventArgs(MessageQueue sender, IAsyncResult result)
         {
-            this.AsyncResult = result;
+            AsyncResult = result;
             this.sender = sender;
         }
 

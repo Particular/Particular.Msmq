@@ -3572,7 +3572,7 @@ namespace Messaging.Msmq
                 throw new InvalidEnumArgumentException("accessMode", (int)accessMode, typeof(QueueAccessMode));
             }
 
-            this.AccessMode = accessMode;
+            AccessMode = accessMode;
         }
 
 
@@ -3650,9 +3650,9 @@ namespace Messaging.Msmq
             internal unsafe AsynchronousRequest(MessageQueue owner, uint timeout, CursorHandle cursorHandle, int action, bool useThreadPool, object asyncState, AsyncCallback callback)
             {
                 this.owner = owner;
-                this.AsyncState = asyncState;
+                AsyncState = asyncState;
                 this.callback = callback;
-                this.Action = action;
+                Action = action;
                 this.timeout = timeout;
                 resetEvent = new ManualResetEvent(false);
                 this.cursorHandle = cursorHandle;
