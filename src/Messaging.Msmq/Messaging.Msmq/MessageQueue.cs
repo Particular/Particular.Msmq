@@ -4211,7 +4211,7 @@ namespace Messaging.Msmq
             }
         }
 
-        internal class MQCacheableInfo
+        internal class MQCacheableInfo : IDisposable
         {
             // Double-checked locking pattern requires volatile for read/write synchronization
             volatile MessageQueueHandle readHandle = MessageQueueHandle.InvalidHandle;
@@ -4275,7 +4275,6 @@ namespace Messaging.Msmq
                     return true;
                 }
             }
-
 
             public bool CanWrite
             {
@@ -4476,9 +4475,7 @@ namespace Messaging.Msmq
                     --RefCount;
                 }
             }
-
         }
-
 
         internal class QueueInfoKeyHolder
         {
@@ -4519,7 +4516,6 @@ namespace Messaging.Msmq
                 return (accessMode == qik.accessMode) && formatName.Equals(qik.formatName);
             }
         }
-
     }
 }
 

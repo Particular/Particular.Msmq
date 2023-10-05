@@ -65,7 +65,6 @@ namespace Messaging.Msmq
         /// </devdoc>
         public IntPtr CursorHandle => Handle.DangerousGetHandle();
 
-
         internal CursorHandle Handle
         {
             get
@@ -109,6 +108,7 @@ namespace Messaging.Msmq
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.Dispose1"]/*' />
