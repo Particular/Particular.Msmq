@@ -30,7 +30,6 @@ namespace Messaging.Msmq
         Guid category;
         readonly CriteriaPropertyFilter filter = new();
         Restrictions restrictions;
-        Guid machineId;
         static readonly DateTime minDate = new(1970, 1, 1);
         static readonly DateTime maxDate = new(2038, 1, 19);
 
@@ -158,7 +157,6 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MachineName", value));
                 }
 
-                machineId = MessageQueue.GetMachineId(value);
                 machine = value;
                 filter.MachineName = true;
             }
