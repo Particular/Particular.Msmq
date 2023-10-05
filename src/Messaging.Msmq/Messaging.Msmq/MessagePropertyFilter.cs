@@ -7,7 +7,6 @@
 namespace Messaging.Msmq
 {
     using System;
-    using System.ComponentModel;
 
     /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter"]/*' />
     /// <devdoc>
@@ -16,7 +15,6 @@ namespace Messaging.Msmq
     ///       properties retrieved when receiving messages from a queue.
     ///    </para>
     /// </devdoc>
-    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class MessagePropertyFilter : ICloneable
     {
         internal const int ACKNOWLEDGEMENT = 1;

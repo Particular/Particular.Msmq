@@ -8,7 +8,6 @@ namespace Messaging.Msmq.Interop
 {
     using System;
     using System.Runtime.InteropServices;
-    using System.Security;
     using UnmanagedType = System.Runtime.InteropServices.UnmanagedType;
 
     [ComImport, Guid("0FB15084-AF41-11CE-BD2B-204C4F4F5020"), System.Runtime.InteropServices.InterfaceTypeAttribute(System.Runtime.InteropServices.ComInterfaceType.InterfaceIsIUnknown)]
@@ -16,7 +15,6 @@ namespace Messaging.Msmq.Interop
     {
 
         [return: MarshalAs(UnmanagedType.I4)]
-        [SuppressUnmanagedCodeSecurity()]
         [PreserveSig]
         int Commit(
            [In, MarshalAs(UnmanagedType.I4)]
@@ -27,7 +25,6 @@ namespace Messaging.Msmq.Interop
              int grfRM);
 
         [return: MarshalAs(UnmanagedType.I4)]
-        [SuppressUnmanagedCodeSecurity()]
         [PreserveSig]
         int Abort(
            [In, MarshalAs(UnmanagedType.U4)]
@@ -38,7 +35,6 @@ namespace Messaging.Msmq.Interop
              int fAsync);
 
         [return: MarshalAs(UnmanagedType.I4)]
-        [SuppressUnmanagedCodeSecurity()]
         [PreserveSig]
         int GetTransactionInfo(
            [In, Out]

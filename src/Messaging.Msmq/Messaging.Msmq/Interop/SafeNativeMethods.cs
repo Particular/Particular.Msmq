@@ -11,8 +11,7 @@ namespace Messaging.Msmq.Interop
     using System.Text;
     using System.Threading;
 
-    [System.Runtime.InteropServices.ComVisible(false),
-    System.Security.SuppressUnmanagedCodeSecurityAttribute()]
+    [System.Runtime.InteropServices.ComVisible(false)]
     internal static class SafeNativeMethods
     {
         public unsafe delegate void ReceiveCallback(int result, IntPtr handle, int timeout, int action, IntPtr propertiesPointer, NativeOverlapped* overlappedPointer, IntPtr cursorHandle);

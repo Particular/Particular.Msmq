@@ -7,7 +7,6 @@
 namespace Messaging.Msmq
 {
     using System;
-    using System.ComponentModel;
 
     /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend"]/*' />
     /// <devdoc>
@@ -16,7 +15,6 @@ namespace Messaging.Msmq
     ///       sending objects using the message queue.
     ///    </para>
     /// </devdoc>
-    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class DefaultPropertiesToSend
     {
         private Message cachedMessage = new Message();
