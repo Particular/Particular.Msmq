@@ -11,7 +11,7 @@ namespace Messaging.Msmq.Interop
 
     [ComImport(),
     Guid("0000010C-0000-0000-C000-000000000046"),
-    InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     interface IPersist
     {
         void GetClassID([Out] out Guid pClassID);

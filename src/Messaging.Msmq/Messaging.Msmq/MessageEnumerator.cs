@@ -155,7 +155,7 @@ namespace Messaging.Msmq
         public unsafe bool MoveNext(TimeSpan timeout)
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
-            if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
+            if (timeoutInMilliseconds is < 0 or > uint.MaxValue)
             {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
             }
@@ -269,7 +269,7 @@ namespace Messaging.Msmq
         Message RemoveCurrent(TimeSpan timeout, MessageQueueTransaction transaction, MessageQueueTransactionType transactionType)
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
-            if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
+            if (timeoutInMilliseconds is < 0 or > uint.MaxValue)
             {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
             }

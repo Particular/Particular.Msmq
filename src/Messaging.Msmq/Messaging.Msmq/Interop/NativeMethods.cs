@@ -9,7 +9,7 @@ namespace Messaging.Msmq.Interop
     using System;
     using System.Runtime.InteropServices;
 
-    [System.Runtime.InteropServices.ComVisible(false)]
+    [ComVisible(false)]
     static class NativeMethods
     {
         //Message Acknowledge constants.

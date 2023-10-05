@@ -11,7 +11,7 @@ namespace Messaging.Msmq.Interop
     using System.Text;
     using System.Threading;
 
-    [System.Runtime.InteropServices.ComVisible(false)]
+    [ComVisible(false)]
     static class UnsafeNativeMethods
     {
 

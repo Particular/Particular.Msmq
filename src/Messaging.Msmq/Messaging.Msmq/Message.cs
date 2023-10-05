@@ -39,7 +39,7 @@ namespace Messaging.Msmq
         ///       Specifies that there is no timeout.
         ///    </para>
         /// </devdoc>
-        public static readonly TimeSpan InfiniteTimeout = TimeSpan.FromSeconds(UInt32.MaxValue);
+        public static readonly TimeSpan InfiniteTimeout = TimeSpan.FromSeconds(uint.MaxValue);
 
         readonly MessagePropertyFilter filter;
         string machineName;
@@ -873,7 +873,7 @@ namespace Messaging.Msmq
                     //Return default
                     if (!receiveCreated)
                     {
-                        return String.Empty;
+                        return string.Empty;
                     }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "CorrelationId"));
@@ -1317,7 +1317,7 @@ namespace Messaging.Msmq
                     //Return default
                     if (!receiveCreated)
                     {
-                        return String.Empty;
+                        return string.Empty;
                     }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Label"));
@@ -1810,13 +1810,13 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "TimeToBeReceived", value.ToString()));
                 }
 
-                if (timeoutInSeconds > UInt32.MaxValue)
+                if (timeoutInSeconds > uint.MaxValue)
                 {
-                    timeoutInSeconds = UInt32.MaxValue;
+                    timeoutInSeconds = uint.MaxValue;
                 }
 
                 //If default
-                if (timeoutInSeconds == UInt32.MaxValue)
+                if (timeoutInSeconds == uint.MaxValue)
                 {
                     filter.TimeToBeReceived = false;
                     properties.Remove(NativeMethods.MESSAGE_PROPID_TIME_TO_BE_RECEIVED);
@@ -1862,12 +1862,12 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "TimeToReachQueue", value.ToString()));
                 }
 
-                if (timeoutInSeconds > UInt32.MaxValue)
+                if (timeoutInSeconds > uint.MaxValue)
                 {
-                    timeoutInSeconds = UInt32.MaxValue;
+                    timeoutInSeconds = uint.MaxValue;
                 }
 
-                if (timeoutInSeconds == UInt32.MaxValue)
+                if (timeoutInSeconds == uint.MaxValue)
                 {
                     filter.TimeToReachQueue = false;
                     properties.Remove(NativeMethods.MESSAGE_PROPID_TIME_TO_REACH_QUEUE);
@@ -1896,7 +1896,7 @@ namespace Messaging.Msmq
                     //Return default
                     if (!receiveCreated)
                     {
-                        return String.Empty;
+                        return string.Empty;
                     }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "TransactionId"));
@@ -2605,7 +2605,7 @@ namespace Messaging.Msmq
 
             char[] charBuffer = new char[len];
             Encoding.Unicode.GetChars(bytes, 0, len * 2, charBuffer, 0);
-            return new String(charBuffer, 0, len);
+            return new string(charBuffer, 0, len);
         }
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.StringToBytes"]/*' />

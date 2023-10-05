@@ -10,7 +10,7 @@ namespace Messaging.Msmq.Interop
     using System.Runtime.InteropServices;
     using UnmanagedType = System.Runtime.InteropServices.UnmanagedType;
 
-    [ComImport, Guid("0FB15084-AF41-11CE-BD2B-204C4F4F5020"), System.Runtime.InteropServices.InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport, Guid("0FB15084-AF41-11CE-BD2B-204C4F4F5020"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     interface ITransaction
     {
 

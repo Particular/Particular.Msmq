@@ -36,12 +36,12 @@ namespace Messaging.Msmq
         ///       timeout period for calls to peek or receive messages.
         ///    </para>
         /// </devdoc>
-        public static readonly TimeSpan InfiniteTimeout = TimeSpan.FromMilliseconds(UInt32.MaxValue);
+        public static readonly TimeSpan InfiniteTimeout = TimeSpan.FromMilliseconds(uint.MaxValue);
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.InfiniteQueueSize"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
-        public static readonly long InfiniteQueueSize = UInt32.MaxValue;
+        public static readonly long InfiniteQueueSize = uint.MaxValue;
 
 
         //Internal members
@@ -139,7 +139,7 @@ namespace Messaging.Msmq
         //
         public MessageQueue()
         {
-            path = String.Empty;
+            path = string.Empty;
             accessMode = QueueAccessMode.SendAndReceive;
         }
 
@@ -964,7 +964,7 @@ namespace Messaging.Msmq
                     // don't throw in design mode: this makes component unusable
                     if (DesignMode)
                     {
-                        return String.Empty;
+                        return string.Empty;
                     }
                     else
                     {
@@ -1034,14 +1034,14 @@ namespace Messaging.Msmq
 
             set
             {
-                value ??= String.Empty;
+                value ??= string.Empty;
 
                 if (!ValidatePath(value, false))
                 {
                     throw new ArgumentException(Res.GetString(Res.PathSyntax));
                 }
 
-                if (!String.IsNullOrEmpty(path))
+                if (!string.IsNullOrEmpty(path))
                 {
                     Close();
                 }
@@ -1985,7 +1985,7 @@ namespace Messaging.Msmq
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
             }
 
-            if (machineName == "." || (String.Compare(machineName, ComputerName, true, CultureInfo.InvariantCulture) == 0))
+            if (machineName == "." || (string.Compare(machineName, ComputerName, true, CultureInfo.InvariantCulture) == 0))
             {
                 machineName = null;
             }
@@ -2427,7 +2427,7 @@ namespace Messaging.Msmq
         unsafe AsynchronousRequest ReceiveAsync(TimeSpan timeout, CursorHandle cursorHandle, int action, AsyncCallback callback, object stateObject)
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
-            if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
+            if (timeoutInMilliseconds is < 0 or > uint.MaxValue)
             {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
             }
@@ -2554,8 +2554,8 @@ namespace Messaging.Msmq
 
                     while (message != null)
                     {
-                        if ((compareId && String.Compare(message.Id, id, true, CultureInfo.InvariantCulture) == 0) ||
-                            (!compareId && String.Compare(message.CorrelationId, id, true, CultureInfo.InvariantCulture) == 0))
+                        if ((compareId && string.Compare(message.Id, id, true, CultureInfo.InvariantCulture) == 0) ||
+                            (!compareId && string.Compare(message.CorrelationId, id, true, CultureInfo.InvariantCulture) == 0))
                         {
                             //
                             // Found matching message, receive it and return
@@ -2964,7 +2964,7 @@ namespace Messaging.Msmq
         internal unsafe Message ReceiveCurrent(TimeSpan timeout, int action, CursorHandle cursor, MessagePropertyFilter filter, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
-            if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
+            if (timeoutInMilliseconds is < 0 or > uint.MaxValue)
             {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
             }
@@ -3279,9 +3279,9 @@ namespace Messaging.Msmq
             //The name includes the \\
             string name = queuePath[queuePath.IndexOf('\\')..];
             //Check for machine DeadLetter or Journal
-            if (String.Compare(name, SUFIX_DEADLETTER, true, CultureInfo.InvariantCulture) == 0 ||
-                String.Compare(name, SUFIX_DEADXACT, true, CultureInfo.InvariantCulture) == 0 ||
-                String.Compare(name, SUFIX_JOURNAL, true, CultureInfo.InvariantCulture) == 0)
+            if (string.Compare(name, SUFIX_DEADLETTER, true, CultureInfo.InvariantCulture) == 0 ||
+                string.Compare(name, SUFIX_DEADXACT, true, CultureInfo.InvariantCulture) == 0 ||
+                string.Compare(name, SUFIX_JOURNAL, true, CultureInfo.InvariantCulture) == 0)
             {
                 //Need to get the machine Id to construct the format name.
 
@@ -3299,11 +3299,11 @@ namespace Messaging.Msmq
                 //MACHINE=guid;JOURNAL
                 newFormatName.Append("MACHINE=");
                 newFormatName.Append(machineId.ToString());
-                if (String.Compare(name, SUFIX_DEADXACT, true, CultureInfo.InvariantCulture) == 0)
+                if (string.Compare(name, SUFIX_DEADXACT, true, CultureInfo.InvariantCulture) == 0)
                 {
                     newFormatName.Append(";DEADXACT");
                 }
-                else if (String.Compare(name, SUFIX_DEADLETTER, true, CultureInfo.InvariantCulture) == 0)
+                else if (string.Compare(name, SUFIX_DEADLETTER, true, CultureInfo.InvariantCulture) == 0)
                 {
                     newFormatName.Append(";DEADLETTER");
                 }
@@ -3521,7 +3521,7 @@ namespace Messaging.Msmq
                 return true;
             }
 
-            String upperPath = path.ToUpper(CultureInfo.InvariantCulture);
+            string upperPath = path.ToUpper(CultureInfo.InvariantCulture);
             if (upperPath.StartsWith(PREFIX_LABEL))
             {
                 return true;
@@ -4176,7 +4176,7 @@ namespace Messaging.Msmq
                 this.capacity = capacity;
                 this.staleTime = staleTime;
                 this.name = name;
-                rwLock = new System.Threading.ReaderWriterLock();
+                rwLock = new ReaderWriterLock();
                 table = [];
             }
 

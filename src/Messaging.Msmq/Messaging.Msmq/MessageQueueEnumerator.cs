@@ -214,7 +214,7 @@ namespace Messaging.Msmq
                 SafeNativeMethods.MQFreeMemory(array[1].ptr);
             }
             while (machineName != null && (machineName.Length >= currentItem.Length ||
-                                           String.Compare(machineName, 0, currentItem, 0, machineName.Length, true, CultureInfo.InvariantCulture) != 0));
+                                           string.Compare(machineName, 0, currentItem, 0, machineName.Length, true, CultureInfo.InvariantCulture) != 0));
 
             currentMessageQueue = new MessageQueue(currentItem, new Guid(currentGuid));
             return true;
