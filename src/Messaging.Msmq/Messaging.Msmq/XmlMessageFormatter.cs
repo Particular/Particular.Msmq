@@ -31,8 +31,8 @@ namespace Messaging.Msmq
         /// </devdoc>
         public XmlMessageFormatter()
         {
-            TargetTypes = Array.Empty<Type>();
-            TargetTypeNames = Array.Empty<string>();
+            TargetTypes = [];
+            TargetTypeNames = [];
         }
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.XmlMessageFormatter1"]/*' />
@@ -43,7 +43,7 @@ namespace Messaging.Msmq
         public XmlMessageFormatter(string[] targetTypeNames)
         {
             TargetTypeNames = targetTypeNames;
-            TargetTypes = Array.Empty<Type>();
+            TargetTypes = [];
         }
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.XmlMessageFormatter2"]/*' />
@@ -54,7 +54,7 @@ namespace Messaging.Msmq
         public XmlMessageFormatter(Type[] targetTypes)
         {
             TargetTypes = targetTypes;
-            TargetTypeNames = Array.Empty<string>();
+            TargetTypeNames = [];
         }
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.TargetTypeNames"]/*' />

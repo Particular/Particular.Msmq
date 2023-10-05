@@ -991,7 +991,7 @@ namespace Messaging.Msmq
                 {
                     if (!receiveCreated)
                     {
-                        return Array.Empty<byte>();
+                        return [];
                     }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "DestinationSymmetricKey"));
@@ -1038,7 +1038,7 @@ namespace Messaging.Msmq
                 {
                     if (!receiveCreated)
                     {
-                        return Array.Empty<byte>();
+                        return [];
                     }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "DigitalSignature"));
@@ -1129,7 +1129,7 @@ namespace Messaging.Msmq
                     //Return default.
                     if (!receiveCreated)
                     {
-                        return Array.Empty<byte>();
+                        return [];
                     }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Extension"));
@@ -1619,7 +1619,7 @@ namespace Messaging.Msmq
                     //Return default
                     if (!receiveCreated)
                     {
-                        return Array.Empty<byte>();
+                        return [];
                     }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "SenderCertificate"));
