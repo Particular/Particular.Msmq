@@ -633,8 +633,7 @@ namespace Messaging.Msmq
                     if (!receiveCreated)
                     {
                         this.filter.Body = true;
-                        if (this.cachedBodyStream == null)
-                            this.cachedBodyStream = new MemoryStream();
+                        this.cachedBodyStream ??= new MemoryStream();
 
                         return this.cachedBodyStream;
                     }
@@ -642,8 +641,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Body"));
                 }
 
-                if (this.cachedBodyStream == null)
-                    this.cachedBodyStream = new MemoryStream(properties.GetUI1Vector(NativeMethods.MESSAGE_PROPID_BODY),
+                this.cachedBodyStream ??= new MemoryStream(properties.GetUI1Vector(NativeMethods.MESSAGE_PROPID_BODY),
                                                                                                 0, properties.GetUI4(NativeMethods.MESSAGE_PROPID_BODY_SIZE));
 
                 return this.cachedBodyStream;
@@ -2113,8 +2111,7 @@ namespace Messaging.Msmq
 
             if (this.filter.Body && this.cachedBodyObject != null)
             {
-                if (this.Formatter == null)
-                    this.Formatter = new XmlMessageFormatter();
+                this.Formatter ??= new XmlMessageFormatter();
 
                 this.Formatter.Write(this, this.cachedBodyObject);
             }

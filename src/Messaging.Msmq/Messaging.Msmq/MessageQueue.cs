@@ -1003,8 +1003,7 @@ namespace Messaging.Msmq
 
             set
             {
-                if (value == null)
-                    value = String.Empty;
+                value ??= String.Empty;
 
                 if (!ValidatePath(value, false))
                     throw new ArgumentException(Res.GetString(Res.PathSyntax));
@@ -1022,8 +1021,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.properties == null)
-                    this.properties = new QueuePropertyVariants();
+                this.properties ??= new QueuePropertyVariants();
 
                 return this.properties;
             }
@@ -1035,8 +1033,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.filter == null)
-                    this.filter = new QueuePropertyFilter();
+                this.filter ??= new QueuePropertyFilter();
 
                 return this.filter;
             }
@@ -2367,8 +2364,7 @@ namespace Messaging.Msmq
 
             if (callback == null)
             {
-                if (this.onRequestCompleted == null)
-                    this.onRequestCompleted = new AsyncCallback(this.OnRequestCompleted);
+                this.onRequestCompleted ??= new AsyncCallback(this.OnRequestCompleted);
 
                 callback = this.onRequestCompleted;
             }
