@@ -9,9 +9,9 @@ namespace Messaging.Msmq.Interop
     using System;
     using System.Runtime.InteropServices;
 
-    internal class Restrictions
+    class Restrictions
     {
-        private readonly MQRESTRICTION restrictionStructure;
+        readonly MQRESTRICTION restrictionStructure;
         public const int PRLT = 0;
         public const int PRLE = 1;
         public const int PRGT = 2;
@@ -37,7 +37,7 @@ namespace Messaging.Msmq.Interop
             AddItem(propertyId, op, MessagePropertyVariants.VT_CLSID, data);
         }
 
-        private void AddItem(int id, int op, short vt, IntPtr data)
+        void AddItem(int id, int op, short vt, IntPtr data)
         {
             Marshal.WriteInt32(restrictionStructure.GetNextValidPtr(0), op);
             Marshal.WriteInt32(restrictionStructure.GetNextValidPtr(4), id);

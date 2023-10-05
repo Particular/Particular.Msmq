@@ -20,9 +20,9 @@ namespace Messaging.Msmq
         internal static readonly int NonNtEnvironment = 3;
 
         // Double-checked locking pattern requires volatile for read/write synchronization
-        private static volatile int environment = UnknownEnvironment;
+        static volatile int environment = UnknownEnvironment;
 
-        private static readonly object staticLock = new();
+        static readonly object staticLock = new();
 
         /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.AccessControlList"]/*' />
         public AccessControlList()

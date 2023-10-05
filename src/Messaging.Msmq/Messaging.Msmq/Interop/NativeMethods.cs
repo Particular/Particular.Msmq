@@ -10,7 +10,7 @@ namespace Messaging.Msmq.Interop
     using System.Runtime.InteropServices;
 
     [System.Runtime.InteropServices.ComVisible(false)]
-    internal static class NativeMethods
+    static class NativeMethods
     {
         //Message Acknowledge constants.
         public const int ACKNOWLEDGE_NEGATIVE_ARRIVAL = 0x04;
@@ -27,30 +27,30 @@ namespace Messaging.Msmq.Interop
                                                               ACKNOWLEDGE_NEGATIVE_RECEIVE;
 
         // Algorithm classes.
-        private const int ALG_CLASS_DATA_ENCRYPT = (3 << 13);
-        private const int ALG_CLASS_HASH = (4 << 13);
+        const int ALG_CLASS_DATA_ENCRYPT = (3 << 13);
+        const int ALG_CLASS_HASH = (4 << 13);
 
         // Hash sub ids.
-        private const int ALG_SID_MD2 = 1;
-        private const int ALG_SID_MD4 = 2;
-        private const int ALG_SID_MD5 = 3;
-        private const int ALG_SID_SHA = 4;
-        private const int ALG_SID_MAC = 5;
-        private const int ALG_SID_SHA256 = 12; // 0xC
-        private const int ALG_SID_SHA384 = 13; // 0xD
-        private const int ALG_SID_SHA512 = 14; // 0xE
-        private const int ALG_SID_RIPEMD = 6;
-        private const int ALG_SID_RIPEMD160 = 7;
-        private const int ALG_SID_SSL3SHAMD5 = 8;
+        const int ALG_SID_MD2 = 1;
+        const int ALG_SID_MD4 = 2;
+        const int ALG_SID_MD5 = 3;
+        const int ALG_SID_SHA = 4;
+        const int ALG_SID_MAC = 5;
+        const int ALG_SID_SHA256 = 12; // 0xC
+        const int ALG_SID_SHA384 = 13; // 0xD
+        const int ALG_SID_SHA512 = 14; // 0xE
+        const int ALG_SID_RIPEMD = 6;
+        const int ALG_SID_RIPEMD160 = 7;
+        const int ALG_SID_SSL3SHAMD5 = 8;
 
         // RC2 sub-ids.
-        private const int ALG_SID_RC2 = 2;
-        private const int ALG_SID_RC4 = 1;
+        const int ALG_SID_RC2 = 2;
+        const int ALG_SID_RC4 = 1;
 
         // Algorithm types.
-        private const int ALG_TYPE_ANY = 0;
-        private const int ALG_TYPE_BLOCK = (3 << 9);
-        private const int ALG_TYPE_STREAM = (4 << 9);
+        const int ALG_TYPE_ANY = 0;
+        const int ALG_TYPE_BLOCK = (3 << 9);
+        const int ALG_TYPE_STREAM = (4 << 9);
 
         // Algorithm identifier definitions.
         public const int CALG_MD2 = (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_MD2);
@@ -313,7 +313,7 @@ namespace Messaging.Msmq.Interop
         // This call is here because we don't want to invent a separate MessageQueuePermission
         // for this call, and there's no suitable existing permission.
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQGetSecurityContextEx", CharSet = CharSet.Unicode)]
-        private static extern int IntMQGetSecurityContextEx(IntPtr lpCertBuffer, int dwCertBufferLength, out SecurityContextHandle phSecurityContext);
+        static extern int IntMQGetSecurityContextEx(IntPtr lpCertBuffer, int dwCertBufferLength, out SecurityContextHandle phSecurityContext);
         public static int MQGetSecurityContextEx(out SecurityContextHandle securityContext)
         {
             try

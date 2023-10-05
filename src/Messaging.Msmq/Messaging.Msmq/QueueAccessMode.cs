@@ -30,13 +30,13 @@ namespace Messaging.Msmq
 
     }
 
-    internal class QueueAccessModeHolder
+    class QueueAccessModeHolder
     {
-        private readonly QueueAccessMode accessMode;
+        readonly QueueAccessMode accessMode;
 
-        private static readonly Dictionary<QueueAccessMode, QueueAccessModeHolder> holders = new();
+        static readonly Dictionary<QueueAccessMode, QueueAccessModeHolder> holders = new();
 
-        private QueueAccessModeHolder(QueueAccessMode accessMode)
+        QueueAccessModeHolder(QueueAccessMode accessMode)
         {
             this.accessMode = accessMode;
         }

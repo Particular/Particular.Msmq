@@ -12,7 +12,7 @@ namespace Messaging.Msmq.Interop
 
     // definition for tagMQPROPVARIANT
     [StructLayout(LayoutKind.Explicit)]
-    internal struct MQPROPVARIANTS
+    struct MQPROPVARIANTS
     {
 
         // definition for struct tagCAUB
@@ -47,9 +47,9 @@ namespace Messaging.Msmq.Interop
 
     }
 
-    internal class MessagePropertyVariants
+    class MessagePropertyVariants
     {
-        private const short VT_UNDEFINED = 0;
+        const short VT_UNDEFINED = 0;
         public const short VT_EMPTY = short.MaxValue; //this is hack, VT_EMPTY is really 0,
         //but redefining VT_UNDEFINED is risky since 0 is a good semantic default for it
         public const short VT_ARRAY = 0x2000;
@@ -74,19 +74,19 @@ namespace Messaging.Msmq.Interop
         public const short VT_UI4 = 19;
         public const short VT_UI8 = 21;
         public const short VT_VECTOR = 0x1000;
-        private readonly int MAX_PROPERTIES = 61;
-        private readonly int basePropertyId = NativeMethods.MESSAGE_PROPID_BASE + 1;
-        private int propertyCount;
-        private GCHandle handleVectorProperties;
-        private GCHandle handleVectorIdentifiers;
-        private GCHandle handleVectorStatus;
-        private readonly MQPROPS reference;
-        private int[] vectorIdentifiers;
-        private int[] vectorStatus;
-        private MQPROPVARIANTS[] vectorProperties;
-        private readonly short[] variantTypes;
-        private readonly object[] objects;
-        private readonly object[] handles;
+        readonly int MAX_PROPERTIES = 61;
+        readonly int basePropertyId = NativeMethods.MESSAGE_PROPID_BASE + 1;
+        int propertyCount;
+        GCHandle handleVectorProperties;
+        GCHandle handleVectorIdentifiers;
+        GCHandle handleVectorStatus;
+        readonly MQPROPS reference;
+        int[] vectorIdentifiers;
+        int[] vectorStatus;
+        MQPROPVARIANTS[] vectorProperties;
+        readonly short[] variantTypes;
+        readonly object[] objects;
+        readonly object[] handles;
 
         internal MessagePropertyVariants(int maxProperties, int baseId)
         {

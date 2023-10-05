@@ -12,7 +12,7 @@ namespace Messaging.Msmq.Interop
     [ComImport(),
     Guid("0000000C-0000-0000-C000-000000000046"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IStream
+    interface IStream
     {
 
         int Read(IntPtr buf, int len);

@@ -12,8 +12,8 @@ namespace Messaging.Msmq
     public sealed class Cursor : IDisposable
     {
 
-        private CursorHandle handle;
-        private bool disposed;
+        CursorHandle handle;
+        bool disposed;
 
 
         internal Cursor(MessageQueue queue)

@@ -21,18 +21,18 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class MessageQueueCriteria
     {
-        private DateTime createdAfter;
-        private DateTime createdBefore;
-        private string label;
-        private string machine;
-        private DateTime modifiedAfter;
-        private DateTime modifiedBefore;
-        private Guid category;
-        private readonly CriteriaPropertyFilter filter = new();
-        private Restrictions restrictions;
-        private Guid machineId;
-        private static readonly DateTime minDate = new(1970, 1, 1);
-        private static readonly DateTime maxDate = new(2038, 1, 19);
+        DateTime createdAfter;
+        DateTime createdBefore;
+        string label;
+        string machine;
+        DateTime modifiedAfter;
+        DateTime modifiedBefore;
+        Guid category;
+        readonly CriteriaPropertyFilter filter = new();
+        Restrictions restrictions;
+        Guid machineId;
+        static readonly DateTime minDate = new(1970, 1, 1);
+        static readonly DateTime maxDate = new(2038, 1, 19);
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.CreatedAfter"]/*' />
         /// <devdoc>
@@ -349,7 +349,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.ConvertTime"]/*' />
         /// <internalonly/>
-        private int ConvertTime(DateTime time)
+        int ConvertTime(DateTime time)
         {
             time = time.ToUniversalTime();
             return (int)(time - minDate).TotalSeconds;
@@ -357,7 +357,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.CriteriaPropertyFilter"]/*' />
         /// <internalonly/>
-        private class CriteriaPropertyFilter
+        class CriteriaPropertyFilter
         {
             public bool CreatedAfter;
             public bool CreatedBefore;

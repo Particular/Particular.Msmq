@@ -21,7 +21,7 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class MessageQueueException : ExternalException
     {
-        private readonly int nativeErrorCode;
+        readonly int nativeErrorCode;
 
         /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException.MessageQueueException"]/*' />
         /// <internalonly/>
@@ -61,7 +61,7 @@ namespace Messaging.Msmq
             }
         }
 
-        private static string GetUnknownErrorMessage(int error)
+        static string GetUnknownErrorMessage(int error)
         {
             StringBuilder sb = new(256);
             int result = SafeNativeMethods.FormatMessage(SafeNativeMethods.FORMAT_MESSAGE_IGNORE_INSERTS |

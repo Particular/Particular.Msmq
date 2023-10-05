@@ -12,11 +12,11 @@ namespace Messaging.Msmq.Interop
     using System.Threading;
 
     [System.Runtime.InteropServices.ComVisible(false)]
-    internal static class UnsafeNativeMethods
+    static class UnsafeNativeMethods
     {
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQOpenQueue", CharSet = CharSet.Unicode)]
-        private static extern int IntMQOpenQueue(string formatName, int access, int shareMode, out MessageQueueHandle handle);
+        static extern int IntMQOpenQueue(string formatName, int access, int shareMode, out MessageQueueHandle handle);
         public static int MQOpenQueue(string formatName, int access, int shareMode, out MessageQueueHandle handle)
         {
             try
@@ -47,7 +47,7 @@ namespace Messaging.Msmq.Interop
 
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQReceiveMessageByLookupId", CharSet = CharSet.Unicode)]
-        private unsafe static extern int IntMQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
+        static unsafe extern int IntMQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
                                                                     SafeNativeMethods.ReceiveCallback receiveCallback, IntPtr transaction);
 
         public unsafe static int MQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
@@ -65,7 +65,7 @@ namespace Messaging.Msmq.Interop
 
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQReceiveMessageByLookupId", CharSet = CharSet.Unicode)]
-        private unsafe static extern int IntMQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
+        static unsafe extern int IntMQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
                                                                         SafeNativeMethods.ReceiveCallback receiveCallback, ITransaction transaction);
 
         public unsafe static int MQReceiveMessageByLookupId(MessageQueueHandle handle, long lookupId, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
@@ -83,7 +83,7 @@ namespace Messaging.Msmq.Interop
 
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQCreateQueue", CharSet = CharSet.Unicode)]
-        private static extern int IntMQCreateQueue(IntPtr securityDescriptor, MessagePropertyVariants.MQPROPS queueProperties, StringBuilder formatName, ref int formatNameLength);
+        static extern int IntMQCreateQueue(IntPtr securityDescriptor, MessagePropertyVariants.MQPROPS queueProperties, StringBuilder formatName, ref int formatNameLength);
 
         public static int MQCreateQueue(IntPtr securityDescriptor, MessagePropertyVariants.MQPROPS queueProperties, StringBuilder formatName, ref int formatNameLength)
         {
@@ -98,7 +98,7 @@ namespace Messaging.Msmq.Interop
         }
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQDeleteQueue", CharSet = CharSet.Unicode)]
-        private static extern int IntMQDeleteQueue(string formatName);
+        static extern int IntMQDeleteQueue(string formatName);
         public static int MQDeleteQueue(string formatName)
         {
             try
@@ -112,7 +112,7 @@ namespace Messaging.Msmq.Interop
         }
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQLocateBegin", CharSet = CharSet.Unicode)]
-        private static extern int IntMQLocateBegin(string context, Restrictions.MQRESTRICTION Restriction, Columns.MQCOLUMNSET columnSet, IntPtr sortSet, out LocatorHandle enumHandle);
+        static extern int IntMQLocateBegin(string context, Restrictions.MQRESTRICTION Restriction, Columns.MQCOLUMNSET columnSet, IntPtr sortSet, out LocatorHandle enumHandle);
         public static int MQLocateBegin(string context, Restrictions.MQRESTRICTION Restriction, Columns.MQCOLUMNSET columnSet, out LocatorHandle enumHandle)
         {
             try
@@ -126,7 +126,7 @@ namespace Messaging.Msmq.Interop
         }
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQGetMachineProperties", CharSet = CharSet.Unicode)]
-        private static extern int IntMQGetMachineProperties(string machineName, IntPtr machineIdPointer, MessagePropertyVariants.MQPROPS machineProperties);
+        static extern int IntMQGetMachineProperties(string machineName, IntPtr machineIdPointer, MessagePropertyVariants.MQPROPS machineProperties);
         public static int MQGetMachineProperties(string machineName, IntPtr machineIdPointer, MessagePropertyVariants.MQPROPS machineProperties)
         {
             try
@@ -140,7 +140,7 @@ namespace Messaging.Msmq.Interop
         }
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQGetQueueProperties", CharSet = CharSet.Unicode)]
-        private static extern int IntMQGetQueueProperties(string formatName, MessagePropertyVariants.MQPROPS queueProperties);
+        static extern int IntMQGetQueueProperties(string formatName, MessagePropertyVariants.MQPROPS queueProperties);
         public static int MQGetQueueProperties(string formatName, MessagePropertyVariants.MQPROPS queueProperties)
         {
             try
@@ -154,7 +154,7 @@ namespace Messaging.Msmq.Interop
         }
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQMgmtGetInfo", CharSet = CharSet.Unicode)]
-        private static extern int IntMQMgmtGetInfo(string machineName, string objectName, MessagePropertyVariants.MQPROPS queueProperties);
+        static extern int IntMQMgmtGetInfo(string machineName, string objectName, MessagePropertyVariants.MQPROPS queueProperties);
         public static int MQMgmtGetInfo(string machineName, string objectName, MessagePropertyVariants.MQPROPS queueProperties)
         {
             try
@@ -175,7 +175,7 @@ namespace Messaging.Msmq.Interop
         public static extern int MQPurgeQueue(MessageQueueHandle handle);
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQSetQueueProperties", CharSet = CharSet.Unicode)]
-        private static extern int IntMQSetQueueProperties(string formatName, MessagePropertyVariants.MQPROPS queueProperties);
+        static extern int IntMQSetQueueProperties(string formatName, MessagePropertyVariants.MQPROPS queueProperties);
         public static int MQSetQueueProperties(string formatName, MessagePropertyVariants.MQPROPS queueProperties)
         {
             try

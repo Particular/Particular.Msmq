@@ -47,86 +47,86 @@ namespace Messaging.Msmq
         //Internal members
 
 
-        private DefaultPropertiesToSend defaultProperties;
-        private MessagePropertyFilter receiveFilter;
-        private QueueAccessMode accessMode;
-        private int sharedMode;
-        private string formatName;
-        private string queuePath;
-        private string path;
-        private readonly bool enableCache;
-        private QueuePropertyVariants properties;
-        private IMessageFormatter formatter;
+        DefaultPropertiesToSend defaultProperties;
+        MessagePropertyFilter receiveFilter;
+        QueueAccessMode accessMode;
+        int sharedMode;
+        string formatName;
+        string queuePath;
+        string path;
+        readonly bool enableCache;
+        QueuePropertyVariants properties;
+        IMessageFormatter formatter;
 
         // Double-checked locking pattern requires volatile for read/write synchronization
-        private static volatile string computerName;
+        static volatile string computerName;
 
         internal static readonly Version OSVersion = Environment.OSVersion.Version;
         internal static readonly Version WinXP = new(5, 1);
         internal static readonly bool Msmq3OrNewer = OSVersion >= WinXP;
 
         //Cached properties
-        private QueuePropertyFilter filter;
-        private bool authenticate;
-        private short basePriority;
-        private DateTime createTime;
-        private int encryptionLevel;
-        private Guid id;
-        private string label;
-        private string multicastAddress;
-        private DateTime lastModifyTime;
-        private long journalSize;
-        private long queueSize;
-        private Guid queueType;
-        private bool useJournaling;
-        private MQCacheableInfo mqInfo;
+        QueuePropertyFilter filter;
+        bool authenticate;
+        short basePriority;
+        DateTime createTime;
+        int encryptionLevel;
+        Guid id;
+        string label;
+        string multicastAddress;
+        DateTime lastModifyTime;
+        long journalSize;
+        long queueSize;
+        Guid queueType;
+        bool useJournaling;
+        MQCacheableInfo mqInfo;
 
         // Double-checked locking pattern requires volatile for read/write synchronization
         //Async IO support
-        private volatile bool attached;
-        private bool useThreadPool;
-        private AsyncCallback onRequestCompleted;
-        private PeekCompletedEventHandler onPeekCompleted;
-        private ReceiveCompletedEventHandler onReceiveCompleted;
-        private ISynchronizeInvoke synchronizingObject;
+        volatile bool attached;
+        bool useThreadPool;
+        AsyncCallback onRequestCompleted;
+        PeekCompletedEventHandler onPeekCompleted;
+        ReceiveCompletedEventHandler onReceiveCompleted;
+        ISynchronizeInvoke synchronizingObject;
 
         // Double-checked locking pattern requires volatile for read/write synchronization
-        private volatile Hashtable outstandingAsyncRequests;
+        volatile Hashtable outstandingAsyncRequests;
 
         //Path sufixes
-        private static readonly string SUFIX_PRIVATE = "\\PRIVATE$";
-        private static readonly string SUFIX_JOURNAL = "\\JOURNAL$";
-        private static readonly string SUFIX_DEADLETTER = "\\DEADLETTER$";
-        private static readonly string SUFIX_DEADXACT = "\\XACTDEADLETTER$";
+        static readonly string SUFIX_PRIVATE = "\\PRIVATE$";
+        static readonly string SUFIX_JOURNAL = "\\JOURNAL$";
+        static readonly string SUFIX_DEADLETTER = "\\DEADLETTER$";
+        static readonly string SUFIX_DEADXACT = "\\XACTDEADLETTER$";
 
         //Path prefixes
-        private static readonly string PREFIX_LABEL = "LABEL:";
-        private static readonly string PREFIX_FORMAT_NAME = "FORMATNAME:";
+        static readonly string PREFIX_LABEL = "LABEL:";
+        static readonly string PREFIX_FORMAT_NAME = "FORMATNAME:";
 
         //Connection pooling support
-        private static readonly CacheTable<string, string> formatNameCache =
+        static readonly CacheTable<string, string> formatNameCache =
             new("formatNameCache", 4, new TimeSpan(0, 0, 100));   // path -> formatname
 
-        private static readonly CacheTable<QueueInfoKeyHolder, MQCacheableInfo> queueInfoCache =
+        static readonly CacheTable<QueueInfoKeyHolder, MQCacheableInfo> queueInfoCache =
             new("queue info", 4, new TimeSpan(0, 0, 100));        // <formatname, accessMode> -> <readHandle. writeHandle, isTrans>
 
         // Whidbey Beta 2 SECREVIEW (Dec 2004 eugenesh):
         // Connection Cache can be a security vulnerability (see bug 422227)
         // Therefore, disable it by default
-        private static bool enableConnectionCache = false;
+        static bool enableConnectionCache = false;
 
         // Double-checked locking pattern requires volatile for read/write synchronization
-        private volatile QueueInfoKeyHolder queueInfoKey = null;
+        volatile QueueInfoKeyHolder queueInfoKey = null;
 
         //Code Acess Security support
-        private bool administerGranted;
-        private bool browseGranted;
-        private bool sendGranted;
-        private bool receiveGranted;
-        private bool peekGranted;
+        bool administerGranted;
+        bool browseGranted;
+        bool sendGranted;
+        bool receiveGranted;
+        bool peekGranted;
 
-        private readonly object syncRoot = new();
-        private static readonly object staticSyncRoot = new();
+        readonly object syncRoot = new();
+        static readonly object staticSyncRoot = new();
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue"]/*' />
         /// <devdoc>
@@ -1052,7 +1052,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Properties"]/*' />
         /// <internalonly/>
-        private QueuePropertyVariants Properties
+        QueuePropertyVariants Properties
         {
             get
             {
@@ -1064,7 +1064,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.PropertyFilter"]/*' />
         /// <internalonly/>
-        private QueuePropertyFilter PropertyFilter
+        QueuePropertyFilter PropertyFilter
         {
             get
             {
@@ -1343,7 +1343,7 @@ namespace Messaging.Msmq
         }
 
 
-        private Hashtable OutstandingAsyncRequests
+        Hashtable OutstandingAsyncRequests
         {
             get
             {
@@ -1366,7 +1366,7 @@ namespace Messaging.Msmq
         }
 
 
-        private QueueInfoKeyHolder QueueInfoKey
+        QueueInfoKeyHolder QueueInfoKey
         {
             get
             {
@@ -1541,7 +1541,7 @@ namespace Messaging.Msmq
         }
 
 
-        private void Cleanup(bool disposing)
+        void Cleanup(bool disposing)
         {
 
             //This is generated from the path.
@@ -1644,14 +1644,14 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CreateMessageQueuesSnapshot"]/*' />
         /// <internalonly/>
-        private static MessageQueue[] CreateMessageQueuesSnapshot(MessageQueueCriteria criteria)
+        static MessageQueue[] CreateMessageQueuesSnapshot(MessageQueueCriteria criteria)
         {
             return CreateMessageQueuesSnapshot(criteria, true);
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CreateMessageQueuesSnapshot1"]/*' />
         /// <internalonly/>
-        private static MessageQueue[] CreateMessageQueuesSnapshot(MessageQueueCriteria criteria, bool checkSecurity)
+        static MessageQueue[] CreateMessageQueuesSnapshot(MessageQueueCriteria criteria, bool checkSecurity)
         {
             ArrayList messageQueuesList = [];
             MessageQueueEnumerator messageQueues = GetMessageQueueEnumerator(criteria, checkSecurity);
@@ -1738,7 +1738,7 @@ namespace Messaging.Msmq
         }
 
 
-        private Message EndAsyncOperation(IAsyncResult asyncResult)
+        Message EndAsyncOperation(IAsyncResult asyncResult)
         {
             ArgumentNullException.ThrowIfNull(asyncResult);
 
@@ -1803,7 +1803,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GenerateQueueProperties"]/*' />
         /// <internalonly/>
-        private void GenerateQueueProperties()
+        void GenerateQueueProperties()
         {
             if (!browseGranted)
             {
@@ -2072,7 +2072,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPublicQueuesByLabel1"]/*' />
         /// <internalonly/>
-        private static MessageQueue[] GetPublicQueuesByLabel(string label, bool checkSecurity)
+        static MessageQueue[] GetPublicQueuesByLabel(string label, bool checkSecurity)
         {
             MessageQueueCriteria criteria = new()
             {
@@ -2103,7 +2103,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.IsCanonicalPath"]/*' />
         /// <internalonly/>
-        private static bool IsCanonicalPath(string path, bool checkQueueNameSize)
+        static bool IsCanonicalPath(string path, bool checkQueueNameSize)
         {
             if (!ValidatePath(path, checkQueueNameSize))
             {
@@ -2158,7 +2158,7 @@ namespace Messaging.Msmq
         ///    Used for component model event support.
         /// </devdoc>
         /// <internalonly/>
-        private void OnRequestCompleted(IAsyncResult asyncResult)
+        void OnRequestCompleted(IAsyncResult asyncResult)
         {
             if (((AsynchronousRequest)asyncResult).Action == NativeMethods.QUEUE_ACTION_PEEK_CURRENT)
             {
@@ -2424,7 +2424,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveAsync"]/*' />
         /// <internalonly/>
-        private unsafe AsynchronousRequest ReceiveAsync(TimeSpan timeout, CursorHandle cursorHandle, int action, AsyncCallback callback, object stateObject)
+        unsafe AsynchronousRequest ReceiveAsync(TimeSpan timeout, CursorHandle cursorHandle, int action, AsyncCallback callback, object stateObject)
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
             if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
@@ -2505,7 +2505,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveBy"]/*' />
         /// <internalonly/>
-        private Message ReceiveBy(string id, TimeSpan timeout, bool remove, bool compareId, bool throwTimeout, MessageQueueTransaction transaction, MessageQueueTransactionType transactionType)
+        Message ReceiveBy(string id, TimeSpan timeout, bool remove, bool compareId, bool throwTimeout, MessageQueueTransaction transaction, MessageQueueTransactionType transactionType)
         {
             ArgumentNullException.ThrowIfNull(id);
 
@@ -3069,7 +3069,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SaveQueueProperties"]/*' />
         /// <internalonly/>
-        private void SaveQueueProperties()
+        void SaveQueueProperties()
         {
             if (!administerGranted)
             {
@@ -3176,7 +3176,7 @@ namespace Messaging.Msmq
             Send(obj, label, null, transactionType);
         }
 
-        private void Send(object obj, string label, MessageQueueTransaction transaction, MessageQueueTransactionType transactionType)
+        void Send(object obj, string label, MessageQueueTransaction transaction, MessageQueueTransactionType transactionType)
         {
             ArgumentNullException.ThrowIfNull(label);
 
@@ -3202,7 +3202,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SendInternal"]/*' />
         /// <internalonly/>
-        private void SendInternal(object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
+        void SendInternal(object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
         {
             if (!sendGranted)
             {
@@ -3252,7 +3252,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ResolveQueueFromLabel"]/*' />
         /// <internalonly/>
-        private static MessageQueue ResolveQueueFromLabel(string path, bool throwException)
+        static MessageQueue ResolveQueueFromLabel(string path, bool throwException)
         {
             MessageQueue[] queues = GetPublicQueuesByLabel(path[PREFIX_LABEL.Length..], false);
             if (queues.Length == 0)
@@ -3273,7 +3273,7 @@ namespace Messaging.Msmq
         }
 
         /// <internalonly/>
-        private static string ResolveFormatNameFromQueuePath(string queuePath, bool throwException)
+        static string ResolveFormatNameFromQueuePath(string queuePath, bool throwException)
         {
             string machine = queuePath[..queuePath.IndexOf('\\')];
             //The name includes the \\
@@ -3607,7 +3607,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.QueuePropertyFilter"]/*' />
         /// <internalonly/>
-        private class QueuePropertyFilter
+        class QueuePropertyFilter
         {
             public bool Authenticate;
             public bool BasePriority;
@@ -3657,20 +3657,20 @@ namespace Messaging.Msmq
         ///    request was posted.
         /// </devdoc>
         /// <internalonly/>
-        private class AsynchronousRequest : IAsyncResult
+        class AsynchronousRequest : IAsyncResult
         {
-            private readonly IOCompletionCallback onCompletionStatusChanged;
-            private readonly SafeNativeMethods.ReceiveCallback onMessageReceived;
-            private readonly AsyncCallback callback;
-            private readonly ManualResetEvent resetEvent;
-            private readonly object asyncState;
-            private readonly MessageQueue owner;
-            private bool isCompleted = false;
-            private int status = 0;
-            private Message message;
-            private int action;
-            private readonly uint timeout;
-            private readonly CursorHandle cursorHandle;
+            readonly IOCompletionCallback onCompletionStatusChanged;
+            readonly SafeNativeMethods.ReceiveCallback onMessageReceived;
+            readonly AsyncCallback callback;
+            readonly ManualResetEvent resetEvent;
+            readonly object asyncState;
+            readonly MessageQueue owner;
+            bool isCompleted = false;
+            int status = 0;
+            Message message;
+            int action;
+            readonly uint timeout;
+            readonly CursorHandle cursorHandle;
 
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsynchronousRequest"]/*' />
@@ -3859,7 +3859,7 @@ namespace Messaging.Msmq
             ///   Thread pool IOCompletionPort bound callback.
             /// </devdoc>
             /// <internalonly/>
-            private unsafe void OnCompletionStatusChanged(uint errorCode, uint numBytes, NativeOverlapped* overlappedPointer)
+            unsafe void OnCompletionStatusChanged(uint errorCode, uint numBytes, NativeOverlapped* overlappedPointer)
             {
                 int result = 0;
                 if (errorCode != 0)
@@ -3890,7 +3890,7 @@ namespace Messaging.Msmq
             ///   MSMQ APC based callback.
             /// </devdoc>
             /// <internalonly/>
-            private unsafe void OnMessageReceived(int result, IntPtr handle, int timeout, int action, IntPtr propertiesPointer, NativeOverlapped* overlappedPointer, IntPtr cursorHandle)
+            unsafe void OnMessageReceived(int result, IntPtr handle, int timeout, int action, IntPtr propertiesPointer, NativeOverlapped* overlappedPointer, IntPtr cursorHandle)
             {
                 RaiseCompletionEvent(result, overlappedPointer);
             }
@@ -3899,7 +3899,7 @@ namespace Messaging.Msmq
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.RaiseCompletionEvent"]/*' />
             /// <internalonly/>
             // See comment explaining this SuppressMessage below
-            private unsafe void RaiseCompletionEvent(int result, NativeOverlapped* overlappedPointer)
+            unsafe void RaiseCompletionEvent(int result, NativeOverlapped* overlappedPointer)
             {
 
                 if (IsMemoryError(result))
@@ -4006,7 +4006,7 @@ namespace Messaging.Msmq
             }
         }
 
-        private int StaleSafePurgeQueue()
+        int StaleSafePurgeQueue()
         {
             int status = UnsafeNativeMethods.MQPurgeQueue(MQInfo.ReadHandle);
             if (status is ((int)MessageQueueErrorCode.StaleHandle) or ((int)MessageQueueErrorCode.QueueDeleted))
@@ -4017,7 +4017,7 @@ namespace Messaging.Msmq
             return status;
         }
 
-        private int StaleSafeSendMessage(MessagePropertyVariants.MQPROPS properties, IntPtr transaction)
+        int StaleSafeSendMessage(MessagePropertyVariants.MQPROPS properties, IntPtr transaction)
         {
             //
             // TransactionType.Automatic uses current System.Transactions transaction, if one is available;
@@ -4047,7 +4047,7 @@ namespace Messaging.Msmq
             return status;
         }
 
-        private int StaleSafeSendMessage(MessagePropertyVariants.MQPROPS properties, ITransaction transaction)
+        int StaleSafeSendMessage(MessagePropertyVariants.MQPROPS properties, ITransaction transaction)
         {
             int status = UnsafeNativeMethods.MQSendMessage(MQInfo.WriteHandle, properties, transaction);
             if (status is ((int)MessageQueueErrorCode.StaleHandle) or ((int)MessageQueueErrorCode.QueueDeleted))
@@ -4088,7 +4088,7 @@ namespace Messaging.Msmq
             return status;
         }
 
-        private unsafe int StaleSafeReceiveMessage(uint timeout, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
+        unsafe int StaleSafeReceiveMessage(uint timeout, int action, MessagePropertyVariants.MQPROPS properties, NativeOverlapped* overlapped,
                                                                                            SafeNativeMethods.ReceiveCallback receiveCallback, CursorHandle cursorHandle, ITransaction transaction)
         {
             int status = UnsafeNativeMethods.MQReceiveMessage(MQInfo.ReadHandle, timeout, action, properties, overlapped, receiveCallback, cursorHandle, transaction);
@@ -4102,7 +4102,7 @@ namespace Messaging.Msmq
 
 
 
-        private unsafe int StaleSafeReceiveByLookupId(long lookupId, int action, MessagePropertyVariants.MQPROPS properties,
+        unsafe int StaleSafeReceiveByLookupId(long lookupId, int action, MessagePropertyVariants.MQPROPS properties,
             NativeOverlapped* overlapped, SafeNativeMethods.ReceiveCallback receiveCallback, IntPtr transaction)
         {
 
@@ -4128,7 +4128,7 @@ namespace Messaging.Msmq
         }
 
 
-        private unsafe int StaleSafeReceiveByLookupId(long lookupId, int action, MessagePropertyVariants.MQPROPS properties,
+        unsafe int StaleSafeReceiveByLookupId(long lookupId, int action, MessagePropertyVariants.MQPROPS properties,
             NativeOverlapped* overlapped, SafeNativeMethods.ReceiveCallback receiveCallback, ITransaction transaction)
         {
 
@@ -4142,7 +4142,7 @@ namespace Messaging.Msmq
         }
 
 
-        private bool IsCashedInfoInvalidOnReceive(int receiveResult)
+        bool IsCashedInfoInvalidOnReceive(int receiveResult)
         {
             // returns true if return code of ReceiveMessage indicates
             // that cached handle used for receive has become invalid
@@ -4154,21 +4154,21 @@ namespace Messaging.Msmq
 
         internal class CacheTable<Key, Value>
         {
-            private Dictionary<Key, CacheEntry<Value>> table;
-            private readonly ReaderWriterLock rwLock;
+            Dictionary<Key, CacheEntry<Value>> table;
+            readonly ReaderWriterLock rwLock;
 
             // used for debugging
-            private readonly string name;
+            readonly string name;
 
             // when the number of entries in the hashtable gets larger than capacity,
             // the "stale" entries are removed and capacity is reset to twice the number
             // of remaining entries
-            private int capacity;
-            private readonly int originalCapacity;
+            int capacity;
+            readonly int originalCapacity;
 
             // time, in seconds, after which an entry is considerred stale (if the reference
             // count is zero)
-            private readonly TimeSpan staleTime;
+            readonly TimeSpan staleTime;
 
             public CacheTable(string name, int capacity, TimeSpan staleTime)
             {
@@ -4287,7 +4287,7 @@ namespace Messaging.Msmq
                 rwLock.ReleaseWriterLock();
             }
 
-            private class CacheEntry<T>
+            class CacheEntry<T>
             {
                 public T contents;
                 public DateTime timeStamp;
@@ -4297,24 +4297,24 @@ namespace Messaging.Msmq
         internal class MQCacheableInfo
         {
             // Double-checked locking pattern requires volatile for read/write synchronization
-            private volatile MessageQueueHandle readHandle = MessageQueueHandle.InvalidHandle;
+            volatile MessageQueueHandle readHandle = MessageQueueHandle.InvalidHandle;
 
             // Double-checked locking pattern requires volatile for read/write synchronization
-            private volatile MessageQueueHandle writeHandle = MessageQueueHandle.InvalidHandle;
-            private bool isTransactional;
+            volatile MessageQueueHandle writeHandle = MessageQueueHandle.InvalidHandle;
+            bool isTransactional;
 
             // Double-checked locking pattern requires volatile for read/write synchronization
-            private volatile bool isTransactional_valid = false;
+            volatile bool isTransactional_valid = false;
 
             // Double-checked locking pattern requires volatile for read/write synchronization
-            private volatile bool boundToThreadPool;
-            private readonly string formatName;
-            private readonly int shareMode;
-            private readonly QueueAccessModeHolder accessMode;
-            private int refCount;
-            private bool disposed;
+            volatile bool boundToThreadPool;
+            readonly string formatName;
+            readonly int shareMode;
+            readonly QueueAccessModeHolder accessMode;
+            int refCount;
+            bool disposed;
 
-            private readonly object syncRoot = new();
+            readonly object syncRoot = new();
 
             public MQCacheableInfo(string formatName, QueueAccessMode accessMode, int shareMode)
             {
@@ -4572,8 +4572,8 @@ namespace Messaging.Msmq
 
         internal class QueueInfoKeyHolder
         {
-            private readonly string formatName;
-            private readonly QueueAccessMode accessMode;
+            readonly string formatName;
+            readonly QueueAccessMode accessMode;
 
             public QueueInfoKeyHolder(string formatName, QueueAccessMode accessMode)
             {

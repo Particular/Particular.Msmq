@@ -1,6 +1,6 @@
 namespace Messaging.Msmq
 {
-    internal static class ValidationUtility
+    static class ValidationUtility
     {
         public static bool ValidateAccessControlEntryType(AccessControlEntryType value)
         {

@@ -12,7 +12,7 @@ namespace Messaging.Msmq.Interop
     [ComImport(),
     Guid("00000109-0000-0000-C000-000000000046"),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IPersistStream
+    interface IPersistStream
     {
         void GetClassID([Out] out Guid pClassID);
 

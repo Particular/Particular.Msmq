@@ -16,9 +16,9 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class PeekCompletedEventArgs : EventArgs
     {
-        private IAsyncResult result;
-        private Message message;
-        private readonly MessageQueue sender;
+        IAsyncResult result;
+        Message message;
+        readonly MessageQueue sender;
 
         /// <include file='doc\PeekCompletedEventArgs.uex' path='docs/doc[@for="PeekCompletedEventArgs.PeekCompletedEventArgs"]/*' />
         /// <internalonly/>

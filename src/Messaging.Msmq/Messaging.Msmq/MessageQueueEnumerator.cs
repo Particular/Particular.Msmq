@@ -26,11 +26,11 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class MessageQueueEnumerator : MarshalByRefObject, IEnumerator, IDisposable
     {
-        private readonly MessageQueueCriteria criteria;
-        private LocatorHandle locatorHandle = Interop.LocatorHandle.InvalidHandle;
-        private MessageQueue currentMessageQueue;
-        private readonly bool checkSecurity;
-        private bool disposed;
+        readonly MessageQueueCriteria criteria;
+        LocatorHandle locatorHandle = Interop.LocatorHandle.InvalidHandle;
+        MessageQueue currentMessageQueue;
+        readonly bool checkSecurity;
+        bool disposed;
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.MessageQueueEnumerator"]/*' />
         /// <internalonly/>

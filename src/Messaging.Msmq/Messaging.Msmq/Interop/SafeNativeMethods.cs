@@ -12,7 +12,7 @@ namespace Messaging.Msmq.Interop
     using System.Threading;
 
     [System.Runtime.InteropServices.ComVisible(false)]
-    internal static class SafeNativeMethods
+    static class SafeNativeMethods
     {
         public unsafe delegate void ReceiveCallback(int result, IntPtr handle, int timeout, int action, IntPtr propertiesPointer, NativeOverlapped* overlappedPointer, IntPtr cursorHandle);
 
@@ -34,7 +34,7 @@ namespace Messaging.Msmq.Interop
         public static extern int MQCloseQueue(IntPtr handle);
 
         [DllImport(ExternDll.Mqrt, EntryPoint = "MQPathNameToFormatName", CharSet = CharSet.Unicode)]
-        private static extern int IntMQPathNameToFormatName(string pathName, StringBuilder formatName, ref int count);
+        static extern int IntMQPathNameToFormatName(string pathName, StringBuilder formatName, ref int count);
         public static int MQPathNameToFormatName(string pathName, StringBuilder formatName, ref int count)
         {
             try

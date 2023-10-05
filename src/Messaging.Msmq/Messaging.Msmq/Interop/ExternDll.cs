@@ -6,7 +6,7 @@
 
 namespace Messaging.Msmq.Interop
 {
-    internal static class ExternDll
+    static class ExternDll
     {
         public const string Mqrt = "mqrt.dll";
         public const string Ole32 = "ole32.dll";

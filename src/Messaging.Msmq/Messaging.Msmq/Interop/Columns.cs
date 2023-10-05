@@ -10,10 +10,10 @@ namespace Messaging.Msmq.Interop
     using System.Globalization; //for CultureInfo
     using System.Runtime.InteropServices;
 
-    internal class Columns
+    class Columns
     {
-        private readonly int maxCount;
-        private readonly MQCOLUMNSET columnSet = new();
+        readonly int maxCount;
+        readonly MQCOLUMNSET columnSet = new();
 
         public Columns(int maxCount)
         {

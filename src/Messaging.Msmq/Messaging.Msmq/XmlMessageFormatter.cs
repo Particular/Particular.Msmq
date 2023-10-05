@@ -19,11 +19,11 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class XmlMessageFormatter : IMessageFormatter
     {
-        private Type[] targetTypes;
-        private string[] targetTypeNames;
+        Type[] targetTypes;
+        string[] targetTypeNames;
         readonly Hashtable targetSerializerTable = new();
-        private bool typeNamesAdded;
-        private bool typesAdded;
+        bool typeNamesAdded;
+        bool typesAdded;
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.XmlMessageFormatter"]/*' />
         /// <devdoc>
@@ -155,7 +155,7 @@ namespace Messaging.Msmq
         }
 
         /// <internalonly/>
-        private void CreateTargetSerializerTable()
+        void CreateTargetSerializerTable()
         {
             if (!typeNamesAdded)
             {

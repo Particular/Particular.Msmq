@@ -9,7 +9,7 @@ namespace Messaging.Msmq.Interop
     using System;
     using Microsoft.Win32.SafeHandles;
 
-    internal class MessageQueueHandle : SafeHandleZeroOrMinusOneIsInvalid
+    class MessageQueueHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
 
         public static readonly MessageQueueHandle InvalidHandle = new InvalidMessageQueueHandle();
@@ -45,7 +45,7 @@ namespace Messaging.Msmq.Interop
     }
 
 
-    internal class CursorHandle : SafeHandleZeroOrMinusOneIsInvalid
+    class CursorHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
 
         public static readonly CursorHandle NullHandle = new InvalidCursorHandle();
@@ -80,7 +80,7 @@ namespace Messaging.Msmq.Interop
     }
 
 
-    internal class LocatorHandle : SafeHandleZeroOrMinusOneIsInvalid
+    class LocatorHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
 
         public static readonly LocatorHandle InvalidHandle = new InvalidLocatorHandle();
@@ -117,7 +117,7 @@ namespace Messaging.Msmq.Interop
 
 
 
-    internal sealed class SecurityContextHandle : SafeHandleZeroOrMinusOneIsInvalid
+    sealed class SecurityContextHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
 
         internal SecurityContextHandle(IntPtr existingHandle)

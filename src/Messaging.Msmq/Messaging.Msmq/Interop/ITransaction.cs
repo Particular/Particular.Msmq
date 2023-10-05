@@ -11,7 +11,7 @@ namespace Messaging.Msmq.Interop
     using UnmanagedType = System.Runtime.InteropServices.UnmanagedType;
 
     [ComImport, Guid("0FB15084-AF41-11CE-BD2B-204C4F4F5020"), System.Runtime.InteropServices.InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface ITransaction
+    interface ITransaction
     {
 
         [return: MarshalAs(UnmanagedType.I4)]

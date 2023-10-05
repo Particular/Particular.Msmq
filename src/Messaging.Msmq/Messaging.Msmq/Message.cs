@@ -25,14 +25,14 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class Message : Component
     {
-        private const int GenericIdSize = 16;
-        private const int MessageIdSize = 20;
-        private const int DefaultQueueNameSize = 255;
-        private const int DefaultCryptographicProviderNameSize = 255;
-        private const int DefaultDigitalSignatureSize = 255;
-        private const int DefaultSenderCertificateSize = 255;
-        private const int DefaultSenderIdSize = 255;
-        private const int DefaultSymmetricKeySize = 255;
+        const int GenericIdSize = 16;
+        const int MessageIdSize = 20;
+        const int DefaultQueueNameSize = 255;
+        const int DefaultCryptographicProviderNameSize = 255;
+        const int DefaultDigitalSignatureSize = 255;
+        const int DefaultSenderCertificateSize = 255;
+        const int DefaultSenderIdSize = 255;
+        const int DefaultSymmetricKeySize = 255;
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.InfiniteTimeout"]/*' />
         /// <devdoc>
         ///    <para>
@@ -41,16 +41,16 @@ namespace Messaging.Msmq
         /// </devdoc>
         public static readonly TimeSpan InfiniteTimeout = TimeSpan.FromSeconds(UInt32.MaxValue);
 
-        private readonly MessagePropertyFilter filter;
-        private string machineName;
-        private bool receiveCreated;
-        private object cachedBodyObject;
-        private Stream cachedBodyStream;
-        private IMessageFormatter cachedFormatter;
-        private MessageQueue cachedResponseQueue;
-        private MessageQueue cachedTransactionStatusQueue;
-        private MessageQueue cachedAdminQueue;
-        private MessageQueue cachedDestinationQueue;
+        readonly MessagePropertyFilter filter;
+        string machineName;
+        bool receiveCreated;
+        object cachedBodyObject;
+        Stream cachedBodyStream;
+        IMessageFormatter cachedFormatter;
+        MessageQueue cachedResponseQueue;
+        MessageQueue cachedTransactionStatusQueue;
+        MessageQueue cachedAdminQueue;
+        MessageQueue cachedDestinationQueue;
         internal MessagePropertyVariants properties;
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Message"]/*' />
@@ -905,7 +905,7 @@ namespace Messaging.Msmq
         ///    The default body  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
-        private int DefaultBodySize
+        int DefaultBodySize
         {
             get
             {
@@ -918,7 +918,7 @@ namespace Messaging.Msmq
         ///    The default extension  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
-        private int DefaultExtensionSize
+        int DefaultExtensionSize
         {
             get
             {
@@ -931,7 +931,7 @@ namespace Messaging.Msmq
         ///    The default label  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
-        private int DefaultLabelSize
+        int DefaultLabelSize
         {
             get
             {
@@ -2534,7 +2534,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.IdFromByteArray"]/*' />
         /// <internalonly/>
-        private string IdFromByteArray(byte[] bytes)
+        string IdFromByteArray(byte[] bytes)
         {
             StringBuilder result = new();
             byte[] guidBytes = new byte[GenericIdSize];
@@ -2548,7 +2548,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.IdToByteArray"]/*' />
         /// <internalonly/>
-        private byte[] IdToByteArray(string id)
+        byte[] IdToByteArray(string id)
         {
             string[] pieces = id.Split(['\\']);
             if (pieces.Length != 2)

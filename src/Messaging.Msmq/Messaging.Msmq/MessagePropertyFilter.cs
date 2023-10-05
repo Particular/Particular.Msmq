@@ -63,9 +63,9 @@ namespace Messaging.Msmq
 
         internal int data1;
         internal int data2;
-        private const int defaultBodySize = 1024;
-        private const int defaultExtensionSize = 255;
-        private const int defaultLabelSize = 255;
+        const int defaultBodySize = 1024;
+        const int defaultExtensionSize = 255;
+        const int defaultLabelSize = 255;
         internal int bodySize = defaultBodySize;
         internal int extensionSize = defaultExtensionSize;
         internal int labelSize = defaultLabelSize;

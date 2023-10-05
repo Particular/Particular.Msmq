@@ -17,11 +17,11 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class DefaultPropertiesToSend
     {
-        private readonly Message cachedMessage = new();
-        private readonly bool designMode;
-        private MessageQueue cachedAdminQueue;
-        private MessageQueue cachedResponseQueue;
-        private MessageQueue cachedTransactionStatusQueue;
+        readonly Message cachedMessage = new();
+        readonly bool designMode;
+        MessageQueue cachedAdminQueue;
+        MessageQueue cachedResponseQueue;
+        MessageQueue cachedTransactionStatusQueue;
 
 
         /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.DefaultPropertiesToSend"]/*' />
@@ -490,7 +490,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.ShouldSerializeTimeToBeReceived"]/*' />
         /// <internalonly/>
-        private bool ShouldSerializeTimeToBeReceived()
+        bool ShouldSerializeTimeToBeReceived()
         {
             if (TimeToBeReceived == Message.InfiniteTimeout)
             {
@@ -502,7 +502,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.ShouldSerializeTimeToReachQueue"]/*' />
         /// <internalonly/>
-        private bool ShouldSerializeTimeToReachQueue()
+        bool ShouldSerializeTimeToReachQueue()
         {
             if (TimeToReachQueue == Message.InfiniteTimeout)
             {
@@ -514,7 +514,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.ShouldSerializeExtension"]/*' />
         /// <internalonly/>
-        private bool ShouldSerializeExtension()
+        bool ShouldSerializeExtension()
         {
             if (Extension != null && Extension.Length > 0)
             {

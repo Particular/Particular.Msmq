@@ -16,9 +16,9 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class MessageQueueTransaction : IDisposable
     {
-        private ITransaction internalTransaction;
-        private MessageQueueTransactionStatus transactionStatus;
-        private bool disposed;
+        ITransaction internalTransaction;
+        MessageQueueTransactionStatus transactionStatus;
+        bool disposed;
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.MessageQueueTransaction"]/*' />
         /// <devdoc>
@@ -76,7 +76,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.AbortInternalTransaction"]/*' />
         /// <internalonly/>
-        private void AbortInternalTransaction()
+        void AbortInternalTransaction()
         {
             int status = internalTransaction.Abort(0, 0, 0);
             if (MessageQueue.IsFatalError(status))
