@@ -416,7 +416,7 @@ namespace Messaging.Msmq
                         if (computerName == null)
                         {
                             StringBuilder sb = new(256);
-                            SafeNativeMethods.GetComputerName(sb, new int[] { sb.Capacity });
+                            SafeNativeMethods.GetComputerName(sb, [sb.Capacity]);
                             computerName = sb.ToString();
                         }
                     }

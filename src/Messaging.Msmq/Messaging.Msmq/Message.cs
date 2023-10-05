@@ -2273,7 +2273,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private byte[] IdToByteArray(string id)
         {
-            string[] pieces = id.Split(new char[] { '\\' });
+            string[] pieces = id.Split(['\\']);
             if (pieces.Length != 2)
                 throw new InvalidOperationException(Res.GetString(Res.InvalidId));
 
