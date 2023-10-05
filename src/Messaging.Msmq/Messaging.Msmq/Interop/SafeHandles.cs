@@ -1,13 +1,12 @@
 //------------------------------------------------------------------------------
 // <copyright file="IPersistStreamInit.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq.Interop
 {
     using System;
-    using System.Runtime.InteropServices;
     using Microsoft.Win32.SafeHandles;
 
     internal class MessageQueueHandle : SafeHandleZeroOrMinusOneIsInvalid
@@ -31,9 +30,9 @@ namespace Messaging.Msmq.Interop
         }
 
 
-        // A subclass needed to express InvalidHandle. The reason is that CLR notices that 
+        // A subclass needed to express InvalidHandle. The reason is that CLR notices that
         // ReleaseHandle requires a call to MQRT.DLL, and throws in the ctor if MQRT.DLL is not available,
-        // even though CTOR ITSELF DOES NOT REQUIRE MQRT.DLL. 
+        // even though CTOR ITSELF DOES NOT REQUIRE MQRT.DLL.
         // We address this by defining a NOOP ReleaseHandle
         sealed class InvalidMessageQueueHandle : MessageQueueHandle
         {
@@ -66,9 +65,9 @@ namespace Messaging.Msmq.Interop
         }
 
 
-        // A subclass needed to express InvalidHandle. The reason is that CLR notices that 
+        // A subclass needed to express InvalidHandle. The reason is that CLR notices that
         // ReleaseHandle requires a call to MQRT.DLL, and throws in the ctor if MQRT.DLL is not available,
-        // even though CTOR ITSELF DOES NOT REQUIRE MQRT.DLL. 
+        // even though CTOR ITSELF DOES NOT REQUIRE MQRT.DLL.
         // We address this by defining a NOOP ReleaseHandle
         sealed class InvalidCursorHandle : CursorHandle
         {
@@ -101,9 +100,9 @@ namespace Messaging.Msmq.Interop
         }
 
 
-        // A subclass needed to express InvalidHandle. The reason is that CLR notices that 
+        // A subclass needed to express InvalidHandle. The reason is that CLR notices that
         // ReleaseHandle requires a call to MQRT.DLL, and throws in the ctor if MQRT.DLL is not available,
-        // even though CTOR ITSELF DOES NOT REQUIRE MQRT.DLL. 
+        // even though CTOR ITSELF DOES NOT REQUIRE MQRT.DLL.
         // We address this by defining a NOOP ReleaseHandle
         sealed class InvalidLocatorHandle : LocatorHandle
         {

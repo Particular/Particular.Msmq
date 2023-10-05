@@ -1,6 +1,3 @@
-using System;
-using Messaging.Msmq.Interop;
-
 namespace Messaging.Msmq
 {
     /// <include file='doc\MessageQueueAccessControlEntry.uex' path='docs/doc[@for="MessageQueueAccessControlEntry"]/*' />

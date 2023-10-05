@@ -1,13 +1,12 @@
 //------------------------------------------------------------------------------
 // <copyright file="IStream.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq.Interop
 {
     using System;
-    using System.Security;
     using System.Runtime.InteropServices;
 
     [ComImport(),

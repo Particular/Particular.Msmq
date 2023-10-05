@@ -8,9 +8,9 @@ namespace Messaging.Msmq
 {
     using System;
     using System.Globalization;
-    using Messaging.Msmq.Interop;
     using System.Runtime.InteropServices;
     using System.Text;
+    using Messaging.Msmq.Interop;
 
     /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException"]/*' />
     /// <devdoc>

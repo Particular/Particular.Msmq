@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Runtime.InteropServices;
 using System.ComponentModel;
-using System.Text;
-using Messaging.Msmq.Interop;
 
 namespace Messaging.Msmq
 {

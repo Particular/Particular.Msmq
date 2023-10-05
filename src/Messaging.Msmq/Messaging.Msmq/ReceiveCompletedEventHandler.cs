@@ -24,5 +24,4 @@ namespace Messaging.Msmq
     /// <para>Represents the method that will handle the <see cref='System.Messaging.MessageQueue.ReceiveCompleted'/> event of a <see cref='System.Messaging.MessageQueue'/>.</para>
     /// </devdoc>
     public delegate void ReceiveCompletedEventHandler(object sender, ReceiveCompletedEventArgs e);
-
 }

@@ -30,7 +30,6 @@ namespace Messaging.Msmq
 
     }
 
-
     internal class QueueAccessModeHolder
     {
         private QueueAccessMode accessMode;
@@ -62,7 +61,6 @@ namespace Messaging.Msmq
             }
 
         }
-
 
         public bool CanRead()
         {
@@ -97,6 +95,5 @@ namespace Messaging.Msmq
             // We'll let MQReceiveMessage enforce these rules
             throw new MessageQueueException((int)MessageQueueErrorCode.AccessDenied);
         }
-
     }
 }

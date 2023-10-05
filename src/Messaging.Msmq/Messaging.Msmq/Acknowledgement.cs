@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 // <copyright file="Acknowledgement.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq

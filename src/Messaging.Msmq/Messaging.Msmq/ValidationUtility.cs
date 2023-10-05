@@ -1,23 +1,16 @@
 namespace Messaging.Msmq
 {
-
-    using System;
-
     internal static class ValidationUtility
     {
-
-
         public static bool ValidateAccessControlEntryType(AccessControlEntryType value)
         {
             return (value >= AccessControlEntryType.Allow) && (value <= AccessControlEntryType.Revoke);
         }
 
-
         public static bool ValidateCryptographicProviderType(CryptographicProviderType value)
         {
             return (value >= CryptographicProviderType.None) && (value <= CryptographicProviderType.SttIss);
         }
-
 
         public static bool ValidateEncryptionAlgorithm(EncryptionAlgorithm value)
         {
@@ -29,12 +22,10 @@ namespace Messaging.Msmq
                    (value == EncryptionAlgorithm.Rc4);
         }
 
-
         public static bool ValidateEncryptionRequired(EncryptionRequired value)
         {
             return (value >= EncryptionRequired.None) && (value <= EncryptionRequired.Body);
         }
-
 
         public static bool ValidateHashAlgorithm(HashAlgorithm value)
         {
@@ -52,8 +43,6 @@ namespace Messaging.Msmq
                    (value == HashAlgorithm.Mac);
         }
 
-
-
         public static bool ValidateMessageLookupAction(MessageLookupAction value)
         {
             //
@@ -66,13 +55,11 @@ namespace Messaging.Msmq
                    (value == MessageLookupAction.Last);
         }
 
-
         public static bool ValidateMessagePriority(MessagePriority value)
         {
             return (value >= MessagePriority.Lowest) && (value <= MessagePriority.Highest);
 
         }
-
 
         public static bool ValidateMessageQueueTransactionType(MessageQueueTransactionType value)
         {
@@ -83,7 +70,6 @@ namespace Messaging.Msmq
                    (value == MessageQueueTransactionType.Automatic) ||
                    (value == MessageQueueTransactionType.Single);
         }
-
 
         public static bool ValidateQueueAccessMode(QueueAccessMode value)
         {
@@ -98,16 +84,11 @@ namespace Messaging.Msmq
                    (value == QueueAccessMode.SendAndReceive);
         }
 
-
         public static bool ValidateTrusteeType(TrusteeType trustee)
         {
             return (trustee >= TrusteeType.Unknown) && (trustee <= TrusteeType.Computer);
         }
 
-
-
     } //class ValidationUtility
-
-
 }
 

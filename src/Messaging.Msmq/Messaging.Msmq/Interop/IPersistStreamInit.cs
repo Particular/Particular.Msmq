@@ -1,15 +1,14 @@
 //------------------------------------------------------------------------------
 // <copyright file="IPersistStreamInit.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>                                                                
+// </copyright>
 //------------------------------------------------------------------------------
 
 namespace Messaging.Msmq.Interop
 {
     using System;
-    using System.Security;
-    using System.Security.Permissions;
     using System.Runtime.InteropServices;
+    using System.Security;
 
     [ComImport(),
     Guid("7FD52380-4E07-101B-AE2D-08002B2EC713"),

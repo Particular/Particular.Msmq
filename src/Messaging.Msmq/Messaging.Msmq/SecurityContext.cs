@@ -11,7 +11,6 @@ namespace Messaging.Msmq
 
     public sealed class SecurityContext : IDisposable
     {
-
         SecurityContextHandle handle;
         bool disposed;
 
@@ -30,7 +29,6 @@ namespace Messaging.Msmq
                 return handle;
             }
         }
-
 
         public void Dispose()
         {
