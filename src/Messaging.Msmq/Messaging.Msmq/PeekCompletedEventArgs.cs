@@ -16,7 +16,6 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class PeekCompletedEventArgs : EventArgs
     {
-        IAsyncResult result;
         Message message;
         readonly MessageQueue sender;
 
@@ -24,7 +23,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         internal PeekCompletedEventArgs(MessageQueue sender, IAsyncResult result)
         {
-            this.result = result;
+            this.AsyncResult = result;
             this.sender = sender;
         }
 
@@ -33,18 +32,7 @@ namespace Messaging.Msmq
         ///    <para>Contains the result of the asynchronous
         ///       operation requested.</para>
         /// </devdoc>
-        public IAsyncResult AsyncResult
-        {
-            get
-            {
-                return result;
-            }
-
-            set
-            {
-                result = value;
-            }
-        }
+        public IAsyncResult AsyncResult { get; set; }
 
         /// <include file='doc\PeekCompletedEventArgs.uex' path='docs/doc[@for="PeekCompletedEventArgs.Message"]/*' />
         /// <devdoc>
@@ -59,7 +47,7 @@ namespace Messaging.Msmq
                 {
                     try
                     {
-                        message = sender.EndPeek(result);
+                        message = sender.EndPeek(AsyncResult);
                     }
                     catch
                     {

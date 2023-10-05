@@ -17,7 +17,6 @@ namespace Messaging.Msmq
     public class MessageQueueTransaction : IDisposable
     {
         ITransaction internalTransaction;
-        MessageQueueTransactionStatus transactionStatus;
         bool disposed;
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.MessageQueueTransaction"]/*' />
@@ -28,7 +27,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public MessageQueueTransaction()
         {
-            transactionStatus = MessageQueueTransactionStatus.Initialized;
+            Status = MessageQueueTransactionStatus.Initialized;
         }
 
         internal ITransaction InnerTransaction
@@ -45,13 +44,7 @@ namespace Messaging.Msmq
         ///       The status of the transaction that this object represents.
         ///    </para>
         /// </devdoc>
-        public MessageQueueTransactionStatus Status
-        {
-            get
-            {
-                return transactionStatus;
-            }
-        }
+        public MessageQueueTransactionStatus Status { get; private set; }
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Abort"]/*' />
         /// <devdoc>
@@ -85,7 +78,7 @@ namespace Messaging.Msmq
             }
 
             internalTransaction = null;
-            transactionStatus = MessageQueueTransactionStatus.Aborted;
+            Status = MessageQueueTransactionStatus.Aborted;
         }
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Begin"]/*' />
@@ -114,7 +107,7 @@ namespace Messaging.Msmq
                         throw new MessageQueueException(status);
                     }
 
-                    transactionStatus = MessageQueueTransactionStatus.Pending;
+                    Status = MessageQueueTransactionStatus.Pending;
                 }
             }
         }
@@ -153,7 +146,7 @@ namespace Messaging.Msmq
                     }
 
                     internalTransaction = null;
-                    transactionStatus = MessageQueueTransactionStatus.Committed;
+                    Status = MessageQueueTransactionStatus.Committed;
                 }
             }
         }

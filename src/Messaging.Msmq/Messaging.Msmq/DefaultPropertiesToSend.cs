@@ -17,7 +17,6 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class DefaultPropertiesToSend
     {
-        readonly Message cachedMessage = new();
         readonly bool designMode;
         MessageQueue cachedAdminQueue;
         MessageQueue cachedResponseQueue;
@@ -54,12 +53,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.AcknowledgeType;
+                return CachedMessage.AcknowledgeType;
             }
 
             set
             {
-                cachedMessage.AcknowledgeType = value;
+                CachedMessage.AcknowledgeType = value;
             }
         }
 
@@ -86,7 +85,7 @@ namespace Messaging.Msmq
                     return cachedAdminQueue;
                 }
 
-                return cachedMessage.AdministrationQueue;
+                return CachedMessage.AdministrationQueue;
             }
 
             set
@@ -99,7 +98,7 @@ namespace Messaging.Msmq
                 }
                 else
                 {
-                    cachedMessage.AdministrationQueue = value;
+                    CachedMessage.AdministrationQueue = value;
                 }
             }
         }
@@ -115,12 +114,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.AppSpecific;
+                return CachedMessage.AppSpecific;
             }
 
             set
             {
-                cachedMessage.AppSpecific = value;
+                CachedMessage.AppSpecific = value;
             }
         }
 
@@ -136,24 +135,18 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.AttachSenderId;
+                return CachedMessage.AttachSenderId;
             }
 
             set
             {
-                cachedMessage.AttachSenderId = value;
+                CachedMessage.AttachSenderId = value;
             }
         }
 
         /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.CachedMessage"]/*' />
         /// <internalonly/>
-        internal Message CachedMessage
-        {
-            get
-            {
-                return cachedMessage;
-            }
-        }
+        internal Message CachedMessage { get; } = new();
 
         /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.EncryptionAlgorithm"]/*' />
         /// <devdoc>
@@ -167,12 +160,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.EncryptionAlgorithm;
+                return CachedMessage.EncryptionAlgorithm;
             }
 
             set
             {
-                cachedMessage.EncryptionAlgorithm = value;
+                CachedMessage.EncryptionAlgorithm = value;
             }
         }
 
@@ -187,12 +180,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.Extension;
+                return CachedMessage.Extension;
             }
 
             set
             {
-                cachedMessage.Extension = value;
+                CachedMessage.Extension = value;
             }
         }
 
@@ -209,12 +202,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.HashAlgorithm;
+                return CachedMessage.HashAlgorithm;
             }
 
             set
             {
-                cachedMessage.HashAlgorithm = value;
+                CachedMessage.HashAlgorithm = value;
             }
         }
 
@@ -229,12 +222,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.Label;
+                return CachedMessage.Label;
             }
 
             set
             {
-                cachedMessage.Label = value;
+                CachedMessage.Label = value;
             }
         }
 
@@ -248,12 +241,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.Priority;
+                return CachedMessage.Priority;
             }
 
             set
             {
-                cachedMessage.Priority = value;
+                CachedMessage.Priority = value;
             }
         }
 
@@ -270,12 +263,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.Recoverable;
+                return CachedMessage.Recoverable;
             }
 
             set
             {
-                cachedMessage.Recoverable = value;
+                CachedMessage.Recoverable = value;
             }
         }
 
@@ -296,7 +289,7 @@ namespace Messaging.Msmq
                     return cachedResponseQueue;
                 }
 
-                return cachedMessage.ResponseQueue;
+                return CachedMessage.ResponseQueue;
             }
 
             set
@@ -309,7 +302,7 @@ namespace Messaging.Msmq
                 }
                 else
                 {
-                    cachedMessage.ResponseQueue = value;
+                    CachedMessage.ResponseQueue = value;
                 }
             }
         }
@@ -326,12 +319,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.TimeToBeReceived;
+                return CachedMessage.TimeToBeReceived;
             }
 
             set
             {
-                cachedMessage.TimeToBeReceived = value;
+                CachedMessage.TimeToBeReceived = value;
             }
         }
 
@@ -347,12 +340,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.TimeToReachQueue;
+                return CachedMessage.TimeToReachQueue;
             }
 
             set
             {
-                cachedMessage.TimeToReachQueue = value;
+                CachedMessage.TimeToReachQueue = value;
             }
         }
 
@@ -372,7 +365,7 @@ namespace Messaging.Msmq
                     return cachedTransactionStatusQueue;
                 }
 
-                return cachedMessage.TransactionStatusQueue;
+                return CachedMessage.TransactionStatusQueue;
             }
 
             set
@@ -385,7 +378,7 @@ namespace Messaging.Msmq
                 }
                 else
                 {
-                    cachedMessage.TransactionStatusQueue = value;
+                    CachedMessage.TransactionStatusQueue = value;
                 }
             }
         }
@@ -400,12 +393,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.UseAuthentication;
+                return CachedMessage.UseAuthentication;
             }
 
             set
             {
-                cachedMessage.UseAuthentication = value;
+                CachedMessage.UseAuthentication = value;
             }
         }
 
@@ -420,12 +413,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.UseDeadLetterQueue;
+                return CachedMessage.UseDeadLetterQueue;
             }
 
             set
             {
-                cachedMessage.UseDeadLetterQueue = value;
+                CachedMessage.UseDeadLetterQueue = value;
             }
         }
 
@@ -439,12 +432,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.UseEncryption;
+                return CachedMessage.UseEncryption;
             }
 
             set
             {
-                cachedMessage.UseEncryption = value;
+                CachedMessage.UseEncryption = value;
             }
         }
 
@@ -459,12 +452,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.UseJournalQueue;
+                return CachedMessage.UseJournalQueue;
             }
 
             set
             {
-                cachedMessage.UseJournalQueue = value;
+                CachedMessage.UseJournalQueue = value;
             }
         }
 
@@ -479,12 +472,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return cachedMessage.UseTracing;
+                return CachedMessage.UseTracing;
             }
 
             set
             {
-                cachedMessage.UseTracing = value;
+                CachedMessage.UseTracing = value;
             }
         }
 

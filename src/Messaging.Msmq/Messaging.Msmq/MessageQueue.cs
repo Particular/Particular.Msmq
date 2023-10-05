@@ -49,7 +49,6 @@ namespace Messaging.Msmq
 
         DefaultPropertiesToSend defaultProperties;
         MessagePropertyFilter receiveFilter;
-        QueueAccessMode accessMode;
         int sharedMode;
         string formatName;
         string queuePath;
@@ -110,11 +109,6 @@ namespace Messaging.Msmq
         static readonly CacheTable<QueueInfoKeyHolder, MQCacheableInfo> queueInfoCache =
             new("queue info", 4, new TimeSpan(0, 0, 100));        // <formatname, accessMode> -> <readHandle. writeHandle, isTrans>
 
-        // Whidbey Beta 2 SECREVIEW (Dec 2004 eugenesh):
-        // Connection Cache can be a security vulnerability (see bug 422227)
-        // Therefore, disable it by default
-        static bool enableConnectionCache = false;
-
         // Double-checked locking pattern requires volatile for read/write synchronization
         volatile QueueInfoKeyHolder queueInfoKey = null;
 
@@ -140,7 +134,7 @@ namespace Messaging.Msmq
         public MessageQueue()
         {
             path = string.Empty;
-            accessMode = QueueAccessMode.SendAndReceive;
+            AccessMode = QueueAccessMode.SendAndReceive;
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue1"]/*' />
@@ -153,7 +147,7 @@ namespace Messaging.Msmq
         /// </para>
         /// </devdoc>
         public MessageQueue(string path)
-            : this(path, false, enableConnectionCache)
+            : this(path, false, EnableConnectionCache)
         {
         }
 
@@ -166,7 +160,7 @@ namespace Messaging.Msmq
         /// </para>
         /// </devdoc>
         public MessageQueue(string path, QueueAccessMode accessMode)
-            : this(path, false, enableConnectionCache, accessMode)
+            : this(path, false, EnableConnectionCache, accessMode)
         {
         }
 
@@ -181,7 +175,7 @@ namespace Messaging.Msmq
         ///    </para>
         /// </devdoc>
         public MessageQueue(string path, bool sharedModeDenyReceive)
-            : this(path, sharedModeDenyReceive, enableConnectionCache)
+            : this(path, sharedModeDenyReceive, EnableConnectionCache)
         {
         }
 
@@ -201,7 +195,7 @@ namespace Messaging.Msmq
             {
                 sharedMode = NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE;
             }
-            accessMode = QueueAccessMode.SendAndReceive;
+            AccessMode = QueueAccessMode.SendAndReceive;
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue4"]/*' />
@@ -236,7 +230,7 @@ namespace Messaging.Msmq
             PropertyFilter.Id = true;
             this.id = id;
             this.path = path;
-            accessMode = QueueAccessMode.SendAndReceive;
+            AccessMode = QueueAccessMode.SendAndReceive;
 
         }
 
@@ -247,13 +241,7 @@ namespace Messaging.Msmq
         ///       Gets value specifying access mode of the queue
         ///    </para>
         /// </devdoc>
-        public QueueAccessMode AccessMode
-        {
-            get
-            {
-                return accessMode;
-            }
-        }
+        public QueueAccessMode AccessMode { get; private set; }
 
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Authenticate"]/*' />
@@ -521,18 +509,7 @@ namespace Messaging.Msmq
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         [Browsable(false)]
-        public static bool EnableConnectionCache
-        {
-            get
-            {
-                return enableConnectionCache;
-            }
-
-            set
-            {
-                enableConnectionCache = value;
-            }
-        }
+        public static bool EnableConnectionCache { get; set; } = false;
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.EncryptionRequired"]/*' />
         /// <devdoc>
@@ -926,7 +903,7 @@ namespace Messaging.Msmq
                         cachedInfo?.CloseIfNotReferenced();
 
                         // don't use the cache
-                        mqInfo = new MQCacheableInfo(FormatName, accessMode, sharedMode);
+                        mqInfo = new MQCacheableInfo(FormatName, AccessMode, sharedMode);
                         mqInfo.AddRef();
                     }
                     else
@@ -939,7 +916,7 @@ namespace Messaging.Msmq
                         }
                         else
                         {
-                            mqInfo = new MQCacheableInfo(FormatName, accessMode, sharedMode);
+                            mqInfo = new MQCacheableInfo(FormatName, AccessMode, sharedMode);
                             mqInfo.AddRef();
                             queueInfoCache.Put(QueueInfoKey, mqInfo);
                         }
@@ -1376,7 +1353,7 @@ namespace Messaging.Msmq
                     {
                         if (queueInfoKey == null)
                         {
-                            QueueInfoKeyHolder keyHolder = new(FormatName, accessMode);
+                            QueueInfoKeyHolder keyHolder = new(FormatName, AccessMode);
                             Thread.MemoryBarrier();
                             queueInfoKey = keyHolder;
                         }
@@ -3601,7 +3578,7 @@ namespace Messaging.Msmq
                 throw new InvalidEnumArgumentException("accessMode", (int)accessMode, typeof(QueueAccessMode));
             }
 
-            this.accessMode = accessMode;
+            this.AccessMode = accessMode;
         }
 
 
@@ -3663,12 +3640,9 @@ namespace Messaging.Msmq
             readonly SafeNativeMethods.ReceiveCallback onMessageReceived;
             readonly AsyncCallback callback;
             readonly ManualResetEvent resetEvent;
-            readonly object asyncState;
             readonly MessageQueue owner;
-            bool isCompleted = false;
             int status = 0;
             Message message;
-            int action;
             readonly uint timeout;
             readonly CursorHandle cursorHandle;
 
@@ -3682,9 +3656,9 @@ namespace Messaging.Msmq
             internal unsafe AsynchronousRequest(MessageQueue owner, uint timeout, CursorHandle cursorHandle, int action, bool useThreadPool, object asyncState, AsyncCallback callback)
             {
                 this.owner = owner;
-                this.asyncState = asyncState;
+                this.AsyncState = asyncState;
                 this.callback = callback;
-                this.action = action;
+                this.Action = action;
                 this.timeout = timeout;
                 resetEvent = new ManualResetEvent(false);
                 this.cursorHandle = cursorHandle;
@@ -3702,26 +3676,14 @@ namespace Messaging.Msmq
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.Action"]/*' />
             /// <internalonly/>
-            internal int Action
-            {
-                get
-                {
-                    return action;
-                }
-            }
+            internal int Action { get; private set; }
 
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsyncState"]/*' />
             /// <devdoc>
             ///    IAsyncResult implementation
             /// </devdoc>
-            public object AsyncState
-            {
-                get
-                {
-                    return asyncState;
-                }
-            }
+            public object AsyncState { get; }
 
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsyncWaitHandle"]/*' />
@@ -3754,13 +3716,7 @@ namespace Messaging.Msmq
             ///    IAsyncResult implementation
             /// </devdoc>
             /// <internalonly/>
-            public bool IsCompleted
-            {
-                get
-                {
-                    return isCompleted;
-                }
-            }
+            public bool IsCompleted { get; private set; } = false;
 
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.BeginRead"]/*' />
@@ -3785,20 +3741,20 @@ namespace Messaging.Msmq
 
                 try
                 {
-                    localStatus = owner.StaleSafeReceiveMessage(timeout, action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
+                    localStatus = owner.StaleSafeReceiveMessage(timeout, Action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
                     while (IsMemoryError(localStatus))
                     {
                         // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
-                        if (action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
+                        if (Action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
                         {
-                            action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
+                            Action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
                         }
 
                         message.Unlock();
                         message.AdjustMemory();
-                        localStatus = owner.StaleSafeReceiveMessage(timeout, action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
+                        localStatus = owner.StaleSafeReceiveMessage(timeout, Action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
                     }
                 }
                 catch (Exception)
@@ -3909,9 +3865,9 @@ namespace Messaging.Msmq
                         // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
-                        if (action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
+                        if (Action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
                         {
-                            action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
+                            Action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
                         }
 
                         message.Unlock();
@@ -3922,7 +3878,7 @@ namespace Messaging.Msmq
                             // (for example, by closing it), and subsequent MQOpenQueue fails for some reason.
                             // Therefore catch exception (otherwise process will die) and propagate error
                             // EugeneSh Jan 2006 (Whidbey bug 570055)
-                            result = owner.StaleSafeReceiveMessage(timeout, action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
+                            result = owner.StaleSafeReceiveMessage(timeout, Action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
                         }
                         catch (MessageQueueException e)
                         {
@@ -3945,7 +3901,7 @@ namespace Messaging.Msmq
                     try
                     {
                         // For explanation of this try/catch, see comment above
-                        result = owner.StaleSafeReceiveMessage(timeout, action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
+                        result = owner.StaleSafeReceiveMessage(timeout, Action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
                     }
                     catch (MessageQueueException e)
                     {
@@ -3964,7 +3920,7 @@ namespace Messaging.Msmq
                     Overlapped.Free(overlappedPointer);
                 }
 
-                isCompleted = true;
+                IsCompleted = true;
                 resetEvent.Set();
 
                 try
@@ -4311,7 +4267,6 @@ namespace Messaging.Msmq
             readonly string formatName;
             readonly int shareMode;
             readonly QueueAccessModeHolder accessMode;
-            int refCount;
             bool disposed;
 
             readonly object syncRoot = new();
@@ -4393,13 +4348,7 @@ namespace Messaging.Msmq
                 }
             }
 
-            public int RefCount
-            {
-                get
-                {
-                    return refCount;
-                }
-            }
+            public int RefCount { get; private set; }
 
             public MessageQueueHandle ReadHandle
             {
@@ -4488,7 +4437,7 @@ namespace Messaging.Msmq
             {
                 lock (this)
                 {
-                    ++refCount;
+                    ++RefCount;
                 }
             }
 
@@ -4563,7 +4512,7 @@ namespace Messaging.Msmq
             {
                 lock (this)
                 {
-                    --refCount;
+                    --RefCount;
                 }
             }
 

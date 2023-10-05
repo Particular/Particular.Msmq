@@ -10,7 +10,6 @@ namespace Messaging.Msmq
     public class Trustee
     {
         string name;
-        string systemName;
         TrusteeType trusteeType;
 
         /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee.Name"]/*' />
@@ -32,11 +31,7 @@ namespace Messaging.Msmq
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
-        public string SystemName
-        {
-            get { return systemName; }
-            set { systemName = value; }
-        }
+        public string SystemName { get; set; }
 
         /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee.TrusteeType"]/*' />
         /// <devdoc>

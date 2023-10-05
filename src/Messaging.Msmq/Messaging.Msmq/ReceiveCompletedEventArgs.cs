@@ -15,7 +15,6 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class ReceiveCompletedEventArgs : EventArgs
     {
-        IAsyncResult result;
         Message message;
         readonly MessageQueue sender;
 
@@ -23,7 +22,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         internal ReceiveCompletedEventArgs(MessageQueue sender, IAsyncResult result)
         {
-            this.result = result;
+            this.AsyncResult = result;
             this.sender = sender;
         }
 
@@ -32,18 +31,7 @@ namespace Messaging.Msmq
         ///    <para>Contains the result of the asynchronous
         ///       operation requested.</para>
         /// </devdoc>
-        public IAsyncResult AsyncResult
-        {
-            get
-            {
-                return result;
-            }
-
-            set
-            {
-                result = value;
-            }
-        }
+        public IAsyncResult AsyncResult { get; set; }
 
         /// <include file='doc\ReceiveCompletedEventArgs.uex' path='docs/doc[@for="ReceiveCompletedEventArgs.Message"]/*' />
         /// <devdoc>
@@ -58,7 +46,7 @@ namespace Messaging.Msmq
                 {
                     try
                     {
-                        message = sender.EndReceive(result);
+                        message = sender.EndReceive(AsyncResult);
                     }
                     catch
                     {
