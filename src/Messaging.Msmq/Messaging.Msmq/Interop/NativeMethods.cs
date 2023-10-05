@@ -39,9 +39,6 @@ namespace Messaging.Msmq.Interop
         const int ALG_SID_SHA256 = 12; // 0xC
         const int ALG_SID_SHA384 = 13; // 0xD
         const int ALG_SID_SHA512 = 14; // 0xE
-        const int ALG_SID_RIPEMD = 6;
-        const int ALG_SID_RIPEMD160 = 7;
-        const int ALG_SID_SSL3SHAMD5 = 8;
 
         // RC2 sub-ids.
         const int ALG_SID_RC2 = 2;
