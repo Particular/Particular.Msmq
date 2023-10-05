@@ -3919,7 +3919,7 @@ namespace Messaging.Msmq
 
             public Value Get(Key key)
             {
-                Value val = default(Value);    // This keyword might change with C# compiler
+                Value val = default;    // This keyword might change with C# compiler
                 rwLock.AcquireReaderLock(-1);
                 try
                 {
