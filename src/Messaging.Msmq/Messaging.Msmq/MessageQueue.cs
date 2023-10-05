@@ -3430,12 +3430,11 @@ namespace Messaging.Msmq
             GCHandle sdHandle = GCHandle.Alloc(SecurityDescriptor, GCHandleType.Pinned);
             try
             {
-                int lengthNeeded;
                 mqResult = UnsafeNativeMethods.MQGetQueueSecurity(FormatName,
                                                              NativeMethods.DACL_SECURITY_INFORMATION,
                                                              sdHandle.AddrOfPinnedObject(),
                                                              SecurityDescriptor.Length,
-                                                             out lengthNeeded);
+                                                             out int lengthNeeded);
 
                 if (mqResult == NativeMethods.MQ_ERROR_SECURITY_DESCRIPTOR_TOO_SMALL)
                 {
