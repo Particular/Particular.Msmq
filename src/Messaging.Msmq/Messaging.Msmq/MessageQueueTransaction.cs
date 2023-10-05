@@ -64,7 +64,9 @@ namespace Messaging.Msmq
             lock (this)
             {
                 if (this.internalTransaction == null)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.TransactionNotStarted));
+                }
                 else
                 {
                     this.AbortInternalTransaction();
@@ -78,7 +80,9 @@ namespace Messaging.Msmq
         {
             int status = this.internalTransaction.Abort(0, 0, 0);
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
 
             this.internalTransaction = null;
             this.transactionStatus = MessageQueueTransactionStatus.Aborted;
@@ -94,12 +98,16 @@ namespace Messaging.Msmq
         {
             //Won't allow begining a new transaction after the object has been disposed.
             if (this.disposed)
+            {
                 throw new ObjectDisposedException(GetType().Name);
+            }
 
             lock (this)
             {
                 if (internalTransaction != null)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.TransactionStarted));
+                }
                 else
                 {
                     int status = SafeNativeMethods.MQBeginTransaction(out this.internalTransaction);
@@ -136,12 +144,16 @@ namespace Messaging.Msmq
             lock (this)
             {
                 if (this.internalTransaction == null)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.TransactionNotStarted));
+                }
                 else
                 {
                     int status = this.internalTransaction.Commit(0, 0, 0);
                     if (MessageQueue.IsFatalError(status))
+                    {
                         throw new MessageQueueException(status);
+                    }
 
                     this.internalTransaction = null;
                     this.transactionStatus = MessageQueueTransactionStatus.Committed;
@@ -174,7 +186,9 @@ namespace Messaging.Msmq
                 lock (this)
                 {
                     if (internalTransaction != null)
+                    {
                         this.AbortInternalTransaction();
+                    }
                 }
             }
 

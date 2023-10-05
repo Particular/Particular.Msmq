@@ -147,7 +147,9 @@ namespace Messaging.Msmq
                 typeNamesAdded = typeNamesAdded
             };
             foreach (Type targetType in targetSerializerTable.Keys)
+            {
                 formatter.targetSerializerTable[targetType] = new XmlSerializer(targetType);
+            }
 
             return formatter;
         }
@@ -161,7 +163,9 @@ namespace Messaging.Msmq
                 {
                     Type targetType = Type.GetType(this.targetTypeNames[index], true);
                     if (targetType != null)
+                    {
                         this.targetSerializerTable[targetType] = new XmlSerializer(targetType);
+                    }
                 }
 
                 this.typeNamesAdded = true;
@@ -170,13 +174,17 @@ namespace Messaging.Msmq
             if (!this.typesAdded)
             {
                 for (int index = 0; index < this.targetTypes.Length; ++index)
+                {
                     this.targetSerializerTable[this.targetTypes[index]] = new XmlSerializer(this.targetTypes[index]);
+                }
 
                 this.typesAdded = true;
             }
 
             if (this.targetSerializerTable.Count == 0)
+            {
                 throw new InvalidOperationException(Res.GetString(Res.TypeListMissing));
+            }
         }
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.Read"]/*' />
@@ -199,7 +207,9 @@ namespace Messaging.Msmq
             foreach (XmlSerializer serializer in targetSerializerTable.Values)
             {
                 if (serializer.CanDeserialize(reader))
+                {
                     return serializer.Deserialize(reader);
+                }
             }
 
             throw new InvalidOperationException(Res.GetString(Res.InvalidTypeDeserialization));
@@ -220,7 +230,9 @@ namespace Messaging.Msmq
             Type serializedType = obj.GetType();
             XmlSerializer serializer = null;
             if (this.targetSerializerTable.ContainsKey(serializedType))
+            {
                 serializer = (XmlSerializer)this.targetSerializerTable[serializedType];
+            }
             else
             {
                 serializer = new XmlSerializer(serializedType);

@@ -350,7 +350,9 @@ namespace Messaging.Msmq
             set
             {
                 if (value < 0)
+                {
                     throw new ArgumentException(Res.GetString(Res.DefaultSizeError));
+                }
 
                 this.bodySize = value;
             }
@@ -374,7 +376,9 @@ namespace Messaging.Msmq
             set
             {
                 if (value < 0)
+                {
                     throw new ArgumentException(Res.GetString(Res.DefaultSizeError));
+                }
 
                 this.extensionSize = value;
             }
@@ -398,7 +402,9 @@ namespace Messaging.Msmq
             set
             {
                 if (value < 0)
+                {
                     throw new ArgumentException(Res.GetString(Res.DefaultSizeError));
+                }
 
                 this.labelSize = value;
             }
@@ -618,7 +624,9 @@ namespace Messaging.Msmq
             get
             {
                 if (!MessageQueue.Msmq3OrNewer)
+                {
                     throw new PlatformNotSupportedException(Res.GetString(Res.PlatformNotSupported));
+                }
 
                 return ((data1 & LOOKUP_ID) != 0);
             }
@@ -626,7 +634,9 @@ namespace Messaging.Msmq
             set
             {
                 if (!MessageQueue.Msmq3OrNewer)
+                {
                     throw new PlatformNotSupportedException(Res.GetString(Res.PlatformNotSupported));
+                }
 
                 data1 = value ? data1 | LOOKUP_ID : data1 & ~LOOKUP_ID;
             }

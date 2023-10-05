@@ -20,7 +20,9 @@ namespace Messaging.Msmq
         {
             int status = SafeNativeMethods.MQCreateCursor(queue.MQInfo.ReadHandle, out CursorHandle result);
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
 
             this.handle = result;
         }

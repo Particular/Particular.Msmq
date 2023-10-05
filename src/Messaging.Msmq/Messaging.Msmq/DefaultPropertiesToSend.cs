@@ -79,7 +79,9 @@ namespace Messaging.Msmq
                 if (this.designMode)
                 {
                     if (this.cachedAdminQueue != null && this.cachedAdminQueue.Site == null)
+                    {
                         this.cachedAdminQueue = null;
+                    }
 
                     return this.cachedAdminQueue;
                 }
@@ -92,9 +94,13 @@ namespace Messaging.Msmq
                 //The format name of this queue shouldn't be
                 //resolved at desgin time, but it should at runtime.
                 if (this.designMode)
+                {
                     this.cachedAdminQueue = value;
+                }
                 else
+                {
                     this.cachedMessage.AdministrationQueue = value;
+                }
             }
         }
 
@@ -286,7 +292,9 @@ namespace Messaging.Msmq
             get
             {
                 if (this.designMode)
+                {
                     return this.cachedResponseQueue;
+                }
 
                 return this.cachedMessage.ResponseQueue;
             }
@@ -296,9 +304,13 @@ namespace Messaging.Msmq
                 //The format name of this queue shouldn't be
                 //resolved at desgin time, but it should at runtime.
                 if (this.designMode)
+                {
                     this.cachedResponseQueue = value;
+                }
                 else
+                {
                     this.cachedMessage.ResponseQueue = value;
+                }
             }
         }
 
@@ -356,7 +368,9 @@ namespace Messaging.Msmq
             get
             {
                 if (this.designMode)
+                {
                     return this.cachedTransactionStatusQueue;
+                }
 
                 return this.cachedMessage.TransactionStatusQueue;
             }
@@ -366,9 +380,13 @@ namespace Messaging.Msmq
                 //The format name of this queue shouldn't be
                 //resolved at desgin time, but it should at runtime.
                 if (this.designMode)
+                {
                     this.cachedTransactionStatusQueue = value;
+                }
                 else
+                {
                     this.cachedMessage.TransactionStatusQueue = value;
+                }
             }
         }
 
@@ -475,7 +493,9 @@ namespace Messaging.Msmq
         private bool ShouldSerializeTimeToBeReceived()
         {
             if (TimeToBeReceived == Message.InfiniteTimeout)
+            {
                 return false;
+            }
 
             return true;
         }
@@ -485,7 +505,9 @@ namespace Messaging.Msmq
         private bool ShouldSerializeTimeToReachQueue()
         {
             if (TimeToReachQueue == Message.InfiniteTimeout)
+            {
                 return false;
+            }
 
             return true;
         }

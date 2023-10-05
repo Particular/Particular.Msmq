@@ -49,7 +49,9 @@ namespace Messaging.Msmq
             set
             {
                 if (!ValidationUtility.ValidateTrusteeType(value))
+                {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(TrusteeType));
+                }
 
                 trusteeType = value;
             }

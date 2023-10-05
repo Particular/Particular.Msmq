@@ -24,7 +24,9 @@ namespace Messaging.Msmq
             get
             {
                 if (disposed)
+                {
                     throw new ObjectDisposedException(GetType().Name);
+                }
 
                 return handle;
             }

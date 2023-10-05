@@ -44,7 +44,9 @@ namespace Messaging.Msmq
             get
             {
                 if (this.index == 0)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.NoCurrentMessage));
+                }
 
                 return this.owner.ReceiveCurrent(TimeSpan.Zero, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, this.Handle,
                                                               this.owner.MessageReadPropertyFilter, null,
@@ -82,11 +84,15 @@ namespace Messaging.Msmq
                 {
                     //Cannot allocate the a new cursor if the object has been disposed, since finalization has been suppressed.
                     if (this.disposed)
+                    {
                         throw new ObjectDisposedException(GetType().Name);
+                    }
 
                     int status = SafeNativeMethods.MQCreateCursor(this.owner.MQInfo.ReadHandle, out CursorHandle result);
                     if (MessageQueue.IsFatalError(status))
+                    {
                         throw new MessageQueueException(status);
+                    }
 
                     this.handle = result;
                 }
@@ -153,13 +159,17 @@ namespace Messaging.Msmq
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
             if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
+            }
 
             int status = 0;
             int action = NativeMethods.QUEUE_ACTION_PEEK_NEXT;
             //Peek current or next?
             if (this.index == 0)
+            {
                 action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
+            }
 
             status = owner.StaleSafeReceiveMessage((uint)timeoutInMilliseconds, action, null, null, null, this.Handle, (IntPtr)NativeMethods.QUEUE_TRANSACTION_NONE);
             //If the cursor reached the end of the queue.
@@ -177,7 +187,9 @@ namespace Messaging.Msmq
             }
 
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
 
             ++this.index;
             return true;
@@ -213,7 +225,9 @@ namespace Messaging.Msmq
         public Message RemoveCurrent(MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             return RemoveCurrent(TimeSpan.Zero, null, transactionType);
         }
@@ -248,7 +262,9 @@ namespace Messaging.Msmq
         public Message RemoveCurrent(TimeSpan timeout, MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             return RemoveCurrent(timeout, null, transactionType);
         }
@@ -257,15 +273,22 @@ namespace Messaging.Msmq
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
             if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
+            }
 
             if (this.index == 0)
+            {
                 return null;
+            }
 
             Message message = this.owner.ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE,
                                                                                this.Handle, this.owner.MessageReadPropertyFilter, transaction, transactionType);
 
-            if (!useCorrectRemoveCurrent) --this.index;
+            if (!useCorrectRemoveCurrent)
+            {
+                --this.index;
+            }
 
             return message;
         }

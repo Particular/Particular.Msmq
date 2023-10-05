@@ -58,7 +58,9 @@ namespace Messaging.Msmq.Interop
         public virtual void AddString(int propertyId, int op, string value)
         {
             if (value == null)
+            {
                 this.AddItem(propertyId, op, MessagePropertyVariants.VT_NULL, (IntPtr)0);
+            }
             else
             {
                 IntPtr data = Marshal.StringToHGlobalUni(value);

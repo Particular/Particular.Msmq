@@ -56,7 +56,9 @@ namespace Messaging.Msmq
             set
             {
                 if (!ValidationUtility.ValidateAccessControlEntryType(value))
+                {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(AccessControlEntryType));
+                }
 
                 entryType = value;
             }
@@ -92,7 +94,9 @@ namespace Messaging.Msmq
             {
                 // make sure these flags really are genericAccessRights
                 if ((value & genericRightsMask) != value)
+                {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(GenericAccessRights));
+                }
 
                 accessFlags = (accessFlags & (int)(~genericRightsMask)) | (int)value;
             }
@@ -112,7 +116,9 @@ namespace Messaging.Msmq
             {
                 // make sure these flags really are standardAccessRights
                 if ((value & standardRightsMask) != value)
+                {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(StandardAccessRights));
+                }
 
                 accessFlags = (accessFlags & (int)(~standardRightsMask)) | (int)value;
             }

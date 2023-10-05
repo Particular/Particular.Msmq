@@ -77,7 +77,11 @@ namespace Messaging.Msmq
                 while (i > 0)
                 {
                     char ch = sb[i - 1];
-                    if (ch is > (char)32 and not '.') break;
+                    if (ch is > (char)32 and not '.')
+                    {
+                        break;
+                    }
+
                     i--;
                 }
                 errorMsg = sb.ToString(0, i);

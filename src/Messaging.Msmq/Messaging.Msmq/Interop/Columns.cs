@@ -27,7 +27,9 @@ namespace Messaging.Msmq.Interop
             lock (this)
             {
                 if (this.columnSet.columnCount >= this.maxCount)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.TooManyColumns, this.maxCount.ToString(CultureInfo.CurrentCulture)));
+                }
 
                 ++this.columnSet.columnCount;
                 this.columnSet.SetId(columnId, this.columnSet.columnCount - 1);

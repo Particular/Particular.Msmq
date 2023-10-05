@@ -107,10 +107,14 @@ namespace Messaging.Msmq
                 int data = filter.data1;
 
                 if (0 != (data & MessagePropertyFilter.ACKNOWLEDGEMENT))
+                {
                     properties.SetUI2(NativeMethods.MESSAGE_PROPID_CLASS, (short)0);
+                }
 
                 if (0 != (data & MessagePropertyFilter.ACKNOWLEDGE_TYPE))
+                {
                     properties.SetUI1(NativeMethods.MESSAGE_PROPID_ACKNOWLEDGE, (byte)0);
+                }
 
                 if (0 != (data & MessagePropertyFilter.ADMIN_QUEUE))
                 {
@@ -129,13 +133,19 @@ namespace Messaging.Msmq
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_LABEL_LEN, filter.labelSize);
                 }
                 if (0 != (data & MessagePropertyFilter.ID))
+                {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_MSGID, new byte[MessageIdSize]);
+                }
 
                 if (0 != (data & MessagePropertyFilter.LOOKUP_ID))
+                {
                     properties.SetUI8(NativeMethods.MESSAGE_PROPID_LOOKUPID, (long)0);
+                }
 
                 if (0 != (data & MessagePropertyFilter.USE_DEADLETTER_QUEUE))
+                {
                     properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)0);
+                }
 
                 if (0 != (data & MessagePropertyFilter.RESPONSE_QUEUE))
                 {
@@ -144,38 +154,65 @@ namespace Messaging.Msmq
                 }
                 //Acknowledgment and MessageType are overloaded in MQ.
                 if ((0 == (data & MessagePropertyFilter.ACKNOWLEDGEMENT)) && (0 != (data & MessagePropertyFilter.MESSAGE_TYPE)))
+                {
                     properties.SetUI2(NativeMethods.MESSAGE_PROPID_CLASS, (short)0);
+                }
 
                 //Journaling and Deadletter are overloaded in MSMQ
                 if ((0 == (data & MessagePropertyFilter.USE_DEADLETTER_QUEUE)) && (0 != (data & MessagePropertyFilter.USE_JOURNALING)))
+                {
                     properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)0);
+                }
             }
 
             if (filter.data2 != 0)
             {
                 int data = filter.data2;
                 if (0 != (data & MessagePropertyFilter.APP_SPECIFIC))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_APPSPECIFIC, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.ARRIVED_TIME))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_ARRIVEDTIME, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.ATTACH_SENDER_ID))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_TYPE, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.AUTHENTICATED))
+                {
                     properties.SetUI1(NativeMethods.MESSAGE_PROPID_AUTHENTICATED, (byte)0);
+                }
 
                 if (0 != (data & MessagePropertyFilter.CONNECTOR_TYPE))
+                {
                     properties.SetGuid(NativeMethods.MESSAGE_PROPID_CONNECTOR_TYPE, new byte[GenericIdSize]);
+                }
+
                 if (0 != (data & MessagePropertyFilter.CORRELATION_ID))
+                {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_CORRELATIONID, new byte[MessageIdSize]);
+                }
+
                 if (0 != (data & MessagePropertyFilter.CRYPTOGRAPHIC_PROVIDER_NAME))
                 {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_PROV_NAME, new byte[DefaultCryptographicProviderNameSize * 2]);
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_PROV_NAME_LEN, DefaultCryptographicProviderNameSize);
                 }
                 if (0 != (data & MessagePropertyFilter.CRYPTOGRAPHIC_PROVIDER_TYPE))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_PROV_TYPE, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.IS_RECOVERABLE))
+                {
                     properties.SetUI1(NativeMethods.MESSAGE_PROPID_DELIVERY, (byte)0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.DESTINATION_QUEUE))
                 {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_DEST_QUEUE, new byte[DefaultQueueNameSize * 2]);
@@ -187,7 +224,10 @@ namespace Messaging.Msmq
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_SIGNATURE_LEN, DefaultDigitalSignatureSize);
                 }
                 if (0 != (data & MessagePropertyFilter.ENCRYPTION_ALGORITHM))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_ENCRYPTION_ALG, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.EXTENSION))
                 {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_EXTENSION, new byte[filter.extensionSize]);
@@ -199,13 +239,25 @@ namespace Messaging.Msmq
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_XACT_STATUS_QUEUE_LEN, DefaultQueueNameSize);
                 }
                 if (0 != (data & MessagePropertyFilter.HASH_ALGORITHM))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_HASH_ALG, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.IS_FIRST_IN_TRANSACTION))
+                {
                     properties.SetUI1(NativeMethods.MESSAGE_PROPID_FIRST_IN_XACT, (byte)0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.IS_LAST_IN_TRANSACTION))
+                {
                     properties.SetUI1(NativeMethods.MESSAGE_PROPID_LAST_IN_XACT, (byte)0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.PRIORITY))
+                {
                     properties.SetUI1(NativeMethods.MESSAGE_PROPID_PRIORITY, (byte)0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.SENDER_CERTIFICATE))
                 {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_SENDER_CERT, new byte[DefaultSenderCertificateSize]);
@@ -217,28 +269,54 @@ namespace Messaging.Msmq
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_LEN, DefaultSenderIdSize);
                 }
                 if (0 != (data & MessagePropertyFilter.SENT_TIME))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_SENTTIME, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.SOURCE_MACHINE))
+                {
                     properties.SetGuid(NativeMethods.MESSAGE_PROPID_SRC_MACHINE_ID, new byte[GenericIdSize]);
+                }
+
                 if (0 != (data & MessagePropertyFilter.SYMMETRIC_KEY))
                 {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_DEST_SYMM_KEY, new byte[DefaultSymmetricKeySize]);
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_DEST_SYMM_KEY_LEN, DefaultSymmetricKeySize);
                 }
                 if (0 != (data & MessagePropertyFilter.TIME_TO_BE_RECEIVED))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_TIME_TO_BE_RECEIVED, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.TIME_TO_REACH_QUEUE))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_TIME_TO_REACH_QUEUE, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.TRANSACTION_ID))
+                {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_XACTID, new byte[MessageIdSize]);
+                }
+
                 if (0 != (data & MessagePropertyFilter.USE_AUTHENTICATION))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_AUTH_LEVEL, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.USE_ENCRYPTION))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_PRIV_LEVEL, 0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.USE_TRACING))
+                {
                     properties.SetUI1(NativeMethods.MESSAGE_PROPID_TRACE, (byte)0);
+                }
+
                 if (0 != (data & MessagePropertyFilter.VERSION))
+                {
                     properties.SetUI4(NativeMethods.MESSAGE_PROPID_VERSION, 0);
+                }
             }
         }
 
@@ -255,7 +333,9 @@ namespace Messaging.Msmq
                 {
                     //This message cannot be an acknowledgment, because it has not been sent.
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.NotAcknowledgement));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Acknowledgment"));
                 }
@@ -283,7 +363,9 @@ namespace Messaging.Msmq
                 {
                     //Return the default.
                     if (!receiveCreated)
+                    {
                         return AcknowledgeTypes.None;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "AcknowledgeType"));
                 }
@@ -322,7 +404,9 @@ namespace Messaging.Msmq
                 {
                     //This property has not been set, lets return an undefined value.
                     if (!receiveCreated)
+                    {
                         return null;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "AdministrationQueue"));
                 }
@@ -344,7 +428,9 @@ namespace Messaging.Msmq
             set
             {
                 if (value != null)
+                {
                     this.filter.AdministrationQueue = true;
+                }
                 else
                 {
                     //If default
@@ -375,7 +461,9 @@ namespace Messaging.Msmq
                 {
                     //Return the default.
                     if (!receiveCreated)
+                    {
                         return 0;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "AppSpecific"));
                 }
@@ -411,7 +499,9 @@ namespace Messaging.Msmq
                 {
                     //Undefined at this point, throw an exception.
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.ArrivedTimeNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "ArrivedTime"));
                 }
@@ -438,14 +528,18 @@ namespace Messaging.Msmq
                 {
                     //SenderId is attached by default.
                     if (!receiveCreated)
+                    {
                         return true;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "AttachSenderId"));
                 }
 
                 int type = properties.GetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_TYPE);
                 if (type == NativeMethods.MESSAGE_SENDERID_TYPE_NONE)
+                {
                     return false;
+                }
 
                 return true;
             }
@@ -462,9 +556,13 @@ namespace Messaging.Msmq
                 {
                     this.filter.AttachSenderId = true;
                     if (value)
+                    {
                         properties.SetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_TYPE, NativeMethods.MESSAGE_SENDERID_TYPE_SID);
+                    }
                     else
+                    {
                         properties.SetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_TYPE, NativeMethods.MESSAGE_SENDERID_TYPE_NONE);
+                    }
                 }
             }
         }
@@ -484,7 +582,9 @@ namespace Messaging.Msmq
                 {
                     //Authentication is undefined, there is nothing to return here.
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.AuthenticationNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Authenticated"));
                 }
@@ -508,16 +608,22 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return "Microsoft Base Cryptographic Provider, Ver. 1.0";
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "AuthenticationProviderName"));
                 }
 
                 if (this.properties.GetUI4(NativeMethods.MESSAGE_PROPID_PROV_NAME_LEN) != 0)
+                {
                     return StringFromBytes(this.properties.GetString(NativeMethods.MESSAGE_PROPID_PROV_NAME),
                                            properties.GetUI4(NativeMethods.MESSAGE_PROPID_PROV_NAME_LEN));
+                }
                 else
+                {
                     return "";
+                }
             }
 
             set
@@ -554,7 +660,9 @@ namespace Messaging.Msmq
                 if (!this.filter.AuthenticationProviderType)
                 {
                     if (!receiveCreated)
+                    {
                         return CryptographicProviderType.RsaFull;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "AuthenticationProviderType"));
                 }
@@ -565,7 +673,9 @@ namespace Messaging.Msmq
             set
             {
                 if (!ValidationUtility.ValidateCryptographicProviderType(value))
+                {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(CryptographicProviderType));
+                }
 
                 //Should not remove if default, the default value might change in future MQ clients
                 //if (value == CryptographicProviderType.RsaFull) {
@@ -594,7 +704,9 @@ namespace Messaging.Msmq
                 if (!this.filter.Body)
                 {
                     if (!receiveCreated)
+                    {
                         return null;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Body"));
                 }
@@ -602,7 +714,9 @@ namespace Messaging.Msmq
                 if (this.cachedBodyObject == null)
                 {
                     if (this.Formatter == null)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.FormatterMissing));
+                    }
 
                     this.cachedBodyObject = this.Formatter.Read(this);
                 }
@@ -650,7 +764,9 @@ namespace Messaging.Msmq
             set
             {
                 if (value != null)
+                {
                     this.filter.Body = true;
+                }
                 else
                 {
                     this.filter.Body = false;
@@ -678,7 +794,9 @@ namespace Messaging.Msmq
                 {
                     //Return default.
                     if (!receiveCreated)
+                    {
                         return 0;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Body"));
                 }
@@ -712,7 +830,9 @@ namespace Messaging.Msmq
                 {
                     //Return default.
                     if (!receiveCreated)
+                    {
                         return Guid.Empty;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "ConnectorType"));
                 }
@@ -752,7 +872,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return String.Empty;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "CorrelationId"));
                 }
@@ -833,7 +955,9 @@ namespace Messaging.Msmq
                 if (!this.filter.DestinationQueue)
                 {
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.DestinationQueueNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "DestinationQueue"));
                 }
@@ -866,7 +990,9 @@ namespace Messaging.Msmq
                 if (!this.filter.DestinationSymmetricKey)
                 {
                     if (!receiveCreated)
+                    {
                         return Array.Empty<byte>();
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "DestinationSymmetricKey"));
                 }
@@ -911,7 +1037,9 @@ namespace Messaging.Msmq
                 if (!this.filter.DigitalSignature)
                 {
                     if (!receiveCreated)
+                    {
                         return Array.Empty<byte>();
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "DigitalSignature"));
                 }
@@ -957,7 +1085,9 @@ namespace Messaging.Msmq
                 {
                     //Return default.
                     if (!receiveCreated)
+                    {
                         return EncryptionAlgorithm.Rc2;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "EncryptionAlgorithm"));
                 }
@@ -967,7 +1097,9 @@ namespace Messaging.Msmq
             set
             {
                 if (!ValidationUtility.ValidateEncryptionAlgorithm(value))
+                {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(EncryptionAlgorithm));
+                }
 
                 //Should not remove if default, the default value might change in future MQ clients
                 //if (value == EncryptionAlgorithm.Rc2) {
@@ -996,7 +1128,9 @@ namespace Messaging.Msmq
                 {
                     //Return default.
                     if (!receiveCreated)
+                    {
                         return Array.Empty<byte>();
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Extension"));
                 }
@@ -1076,7 +1210,9 @@ namespace Messaging.Msmq
             set
             {
                 if (!ValidationUtility.ValidateHashAlgorithm(value))
+                {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(HashAlgorithm));
+                }
 
                 //Should not remove if default since MQ3.0 changed the default algorithm
                 //if (value == HashAlgorithm.Md5) {
@@ -1105,7 +1241,9 @@ namespace Messaging.Msmq
                 {
                     //The Id is undefined at this point
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.IdNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Id"));
                 }
@@ -1128,7 +1266,9 @@ namespace Messaging.Msmq
                 if (!this.filter.IsFirstInTransaction)
                 {
                     if (!receiveCreated)
+                    {
                         return false;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "IsFirstInTransaction"));
                 }
@@ -1151,7 +1291,9 @@ namespace Messaging.Msmq
                 if (!this.filter.IsLastInTransaction)
                 {
                     if (!receiveCreated)
+                    {
                         return false;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "IsLastInTransaction"));
                 }
@@ -1174,16 +1316,22 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return String.Empty;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Label"));
                 }
 
                 if (properties.GetUI4(NativeMethods.MESSAGE_PROPID_LABEL_LEN) != 0)
+                {
                     return StringFromBytes(this.properties.GetString(NativeMethods.MESSAGE_PROPID_LABEL),
                                            properties.GetUI4(NativeMethods.MESSAGE_PROPID_LABEL_LEN));
+                }
                 else
+                {
                     return "";
+                }
             }
 
             set
@@ -1217,13 +1365,17 @@ namespace Messaging.Msmq
             get
             {
                 if (!MessageQueue.Msmq3OrNewer)
+                {
                     throw new PlatformNotSupportedException(Res.GetString(Res.PlatformNotSupported));
+                }
 
                 if (!this.filter.LookupId)
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.LookupIdNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "LookupId"));
                 }
@@ -1252,17 +1404,23 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.MessageTypeNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "MessageType"));
                 }
 
                 int cls = properties.GetUI2(NativeMethods.MESSAGE_PROPID_CLASS);
                 if (cls == NativeMethods.MESSAGE_CLASS_NORMAL)
+                {
                     return MessageType.Normal;
+                }
 
                 if (cls == NativeMethods.MESSAGE_CLASS_REPORT)
+                {
                     return MessageType.Report;
+                }
 
                 return MessageType.Acknowledgment;
             }
@@ -1285,7 +1443,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return MessagePriority.Normal;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Priority"));
                 }
@@ -1296,7 +1456,9 @@ namespace Messaging.Msmq
             set
             {
                 if (!ValidationUtility.ValidateMessagePriority(value))
+                {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(MessagePriority));
+                }
 
                 //If default
                 if (value == MessagePriority.Normal)
@@ -1328,7 +1490,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return false;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "Recoverable"));
                 }
@@ -1367,7 +1531,9 @@ namespace Messaging.Msmq
                 {
                     //This property has not been set, lets return an undefined value.
                     if (!receiveCreated)
+                    {
                         return null;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "ResponseQueue"));
                 }
@@ -1390,7 +1556,9 @@ namespace Messaging.Msmq
             {
                 //If default
                 if (value != null)
+                {
                     this.filter.ResponseQueue = true;
+                }
                 else
                 {
                     if (this.filter.ResponseQueue)
@@ -1410,7 +1578,9 @@ namespace Messaging.Msmq
             get
             {
                 if (!this.filter.SecurityContext)
+                {
                     return null;
+                }
 
                 IntPtr handle = (IntPtr)(int)properties.GetUI4(NativeMethods.MESSAGE_PROPID_SECURITY_CONTEXT);
                 return new SecurityContext(new SecurityContextHandle(handle));
@@ -1448,7 +1618,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return Array.Empty<byte>();
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "SenderCertificate"));
                 }
@@ -1494,7 +1666,9 @@ namespace Messaging.Msmq
                 if (!this.filter.SenderId)
                 {
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.SenderIdNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "SenderId"));
                 }
@@ -1518,7 +1692,9 @@ namespace Messaging.Msmq
                 if (!this.filter.SenderVersion)
                 {
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.VersionNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "SenderVersion"));
                 }
@@ -1539,7 +1715,9 @@ namespace Messaging.Msmq
                 if (!this.filter.SentTime)
                 {
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.SentTimeNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "SentTime"));
                 }
@@ -1562,7 +1740,9 @@ namespace Messaging.Msmq
                 if (!this.filter.SourceMachine)
                 {
                     if (!receiveCreated)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.SourceMachineNotSet));
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "SourceMachine"));
                 }
@@ -1587,7 +1767,9 @@ namespace Messaging.Msmq
                     }
 
                     if (MessageQueue.IsFatalError(status))
+                    {
                         throw new MessageQueueException(status);
+                    }
                 }
 
                 return this.machineName;
@@ -1610,7 +1792,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return InfiniteTimeout;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "TimeToBeReceived"));
                 }
@@ -1622,10 +1806,14 @@ namespace Messaging.Msmq
             {
                 long timeoutInSeconds = (long)value.TotalSeconds;
                 if (timeoutInSeconds < 0)
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "TimeToBeReceived", value.ToString()));
+                }
 
                 if (timeoutInSeconds > UInt32.MaxValue)
+                {
                     timeoutInSeconds = UInt32.MaxValue;
+                }
 
                 //If default
                 if (timeoutInSeconds == UInt32.MaxValue)
@@ -1656,7 +1844,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return InfiniteTimeout;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "TimeToReachQueue"));
                 }
@@ -1668,10 +1858,14 @@ namespace Messaging.Msmq
             {
                 long timeoutInSeconds = (long)value.TotalSeconds;
                 if (timeoutInSeconds < 0)
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "TimeToReachQueue", value.ToString()));
+                }
 
                 if (timeoutInSeconds > UInt32.MaxValue)
+                {
                     timeoutInSeconds = UInt32.MaxValue;
+                }
 
                 if (timeoutInSeconds == UInt32.MaxValue)
                 {
@@ -1701,7 +1895,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return String.Empty;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "TransactionId"));
                 }
@@ -1725,7 +1921,9 @@ namespace Messaging.Msmq
                 {
                     //This property has not been set, lets return an undefined value.
                     if (!receiveCreated)
+                    {
                         return null;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "TransactionStatusQueue"));
                 }
@@ -1748,7 +1946,9 @@ namespace Messaging.Msmq
             {
                 //If default
                 if (value != null)
+                {
                     this.filter.TransactionStatusQueue = true;
+                }
                 else
                 {
                     if (this.filter.TransactionStatusQueue)
@@ -1828,7 +2028,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return false;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "UseDeadLetterQueue"));
                 }
@@ -1845,17 +2047,25 @@ namespace Messaging.Msmq
                     {
                         this.filter.UseDeadLetterQueue = false;
                         if (!this.filter.UseJournalQueue)
+                        {
                             properties.Remove(NativeMethods.MESSAGE_PROPID_JOURNAL);
+                        }
                         else
+                        {
                             properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)(properties.GetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL) & ~NativeMethods.MESSAGE_JOURNAL_DEADLETTER));
+                        }
                     }
                 }
                 else
                 {
                     if (!this.filter.UseDeadLetterQueue && !this.filter.UseJournalQueue)
+                    {
                         properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)NativeMethods.MESSAGE_JOURNAL_DEADLETTER);
+                    }
                     else
+                    {
                         properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)(properties.GetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL) | NativeMethods.MESSAGE_JOURNAL_DEADLETTER));
+                    }
 
                     this.filter.UseDeadLetterQueue = true;
                 }
@@ -1876,7 +2086,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return false;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "UseEncryption"));
                 }
@@ -1915,7 +2127,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return false;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "UseJournalQueue"));
                 }
@@ -1932,17 +2146,25 @@ namespace Messaging.Msmq
                     {
                         this.filter.UseJournalQueue = false;
                         if (!this.filter.UseDeadLetterQueue)
+                        {
                             properties.Remove(NativeMethods.MESSAGE_PROPID_JOURNAL);
+                        }
                         else
+                        {
                             properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)(properties.GetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL) & ~NativeMethods.MESSAGE_JOURNAL_JOURNAL));
+                        }
                     }
                 }
                 else
                 {
                     if (!this.filter.UseDeadLetterQueue && !this.filter.UseJournalQueue)
+                    {
                         properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)NativeMethods.MESSAGE_JOURNAL_JOURNAL);
+                    }
                     else
+                    {
                         properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)(properties.GetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL) | NativeMethods.MESSAGE_JOURNAL_JOURNAL));
+                    }
 
                     this.filter.UseJournalQueue = true;
                 }
@@ -1965,7 +2187,9 @@ namespace Messaging.Msmq
                 {
                     //Return default
                     if (!receiveCreated)
+                    {
                         return false;
+                    }
 
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "UseTracing"));
                 }
@@ -1986,9 +2210,13 @@ namespace Messaging.Msmq
                     this.filter.UseTracing = true;
 
                     if (!value)
+                    {
                         properties.SetUI1(NativeMethods.MESSAGE_PROPID_TRACE, (byte)NativeMethods.MESSAGE_TRACE_NONE);
+                    }
                     else
+                    {
                         properties.SetUI1(NativeMethods.MESSAGE_PROPID_TRACE, (byte)NativeMethods.MESSAGE_TRACE_SEND_ROUTE_TO_REPORT_QUEUE);
+                    }
                 }
             }
         }
@@ -2001,84 +2229,108 @@ namespace Messaging.Msmq
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_ADMIN_QUEUE_LEN);
                 if (size > Message.DefaultQueueNameSize)
+                {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_ADMIN_QUEUE, new byte[size * 2]);
+                }
             }
 
             if (filter.Body)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_BODY_SIZE);
                 if (size > DefaultBodySize)
+                {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_BODY, new byte[size]);
+                }
             }
 
             if (filter.AuthenticationProviderName)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_PROV_NAME_LEN);
                 if (size > Message.DefaultCryptographicProviderNameSize)
+                {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_PROV_NAME, new byte[size * 2]);
+                }
             }
 
             if (filter.DestinationQueue)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_DEST_QUEUE_LEN);
                 if (size > Message.DefaultQueueNameSize)
+                {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_DEST_QUEUE, new byte[size * 2]);
+                }
             }
 
             if (filter.Extension)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_EXTENSION_LEN);
                 if (size > DefaultExtensionSize)
+                {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_EXTENSION, new byte[size]);
+                }
             }
 
             if (filter.TransactionStatusQueue)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_XACT_STATUS_QUEUE_LEN);
                 if (size > Message.DefaultQueueNameSize)
+                {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_XACT_STATUS_QUEUE, new byte[size * 2]);
+                }
             }
 
             if (filter.Label)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_LABEL_LEN);
                 if (size > DefaultLabelSize)
+                {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_LABEL, new byte[size * 2]);
+                }
             }
 
             if (filter.ResponseQueue)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_RESP_QUEUE_LEN);
                 if (size > Message.DefaultQueueNameSize)
+                {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_RESP_QUEUE, new byte[size * 2]);
+                }
             }
 
             if (filter.SenderCertificate)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_SENDER_CERT_LEN);
                 if (size > Message.DefaultSenderCertificateSize)
+                {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_SENDER_CERT, new byte[size]);
+                }
             }
 
             if (filter.SenderId)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_LEN);
                 if (size > Message.DefaultSenderIdSize)
+                {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_SENDERID, new byte[size]);
+                }
             }
 
             if (filter.DestinationSymmetricKey)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_DEST_SYMM_KEY_LEN);
                 if (size > Message.DefaultSymmetricKeySize)
+                {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_DEST_SYMM_KEY, new byte[size]);
+                }
             }
 
             if (filter.DigitalSignature)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_SIGNATURE_LEN);
                 if (size > Message.DefaultDigitalSignatureSize)
+                {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_SIGNATURE, new byte[size]);
+                }
             }
         }
 
@@ -2168,11 +2420,20 @@ namespace Messaging.Msmq
 
                         //Ghost properties.
                         if (this.filter.Acknowledgment || this.filter.MessageType)
+                        {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_CLASS);
+                        }
+
                         if (this.filter.ArrivedTime)
+                        {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_ARRIVEDTIME);
+                        }
+
                         if (this.filter.Authenticated)
+                        {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_AUTHENTICATED);
+                        }
+
                         if (this.filter.DestinationQueue)
                         {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_DEST_QUEUE);
@@ -2180,22 +2441,39 @@ namespace Messaging.Msmq
                             this.cachedDestinationQueue = null;
                         }
                         if (this.filter.IsFirstInTransaction)
+                        {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_FIRST_IN_XACT);
+                        }
+
                         if (this.filter.IsLastInTransaction)
+                        {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_LAST_IN_XACT);
+                        }
+
                         if (this.filter.SenderId)
                         {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_SENDERID);
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_SENDERID_LEN);
                         }
                         if (this.filter.SentTime)
+                        {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_SENTTIME);
+                        }
+
                         if (this.filter.SourceMachine)
+                        {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_SRC_MACHINE_ID);
+                        }
+
                         if (this.filter.TransactionId)
+                        {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_XACTID);
+                        }
+
                         if (this.filter.SenderVersion)
+                        {
                             this.properties.Ghost(NativeMethods.MESSAGE_PROPID_VERSION);
+                        }
 
                         //Ghost invalid returned properties
 
@@ -2211,7 +2489,9 @@ namespace Messaging.Msmq
                         if (this.filter.EncryptionAlgorithm)
                         {
                             if ((this.filter.UseEncryption && !this.UseEncryption) || !this.filter.UseEncryption)
+                            {
                                 this.properties.Ghost(NativeMethods.MESSAGE_PROPID_ENCRYPTION_ALG);
+                            }
                         }
                         if (this.filter.DigitalSignature)
                         {
@@ -2272,7 +2552,9 @@ namespace Messaging.Msmq
         {
             string[] pieces = id.Split(['\\']);
             if (pieces.Length != 2)
+            {
                 throw new InvalidOperationException(Res.GetString(Res.InvalidId));
+            }
 
             Guid guid;
             try
@@ -2317,7 +2599,9 @@ namespace Messaging.Msmq
         {
             //If the string ends with 0, lets trim it.
             if (len != 0 && bytes[len * 2 - 1] == 0 && bytes[len * 2 - 2] == 0)
+            {
                 --len;
+            }
 
             char[] charBuffer = new char[len];
             Encoding.Unicode.GetChars(bytes, 0, len * 2, charBuffer, 0);

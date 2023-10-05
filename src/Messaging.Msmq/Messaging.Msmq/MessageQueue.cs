@@ -282,9 +282,13 @@ namespace Messaging.Msmq
             set
             {
                 if (value)
+                {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, (byte)NativeMethods.QUEUE_AUTHENTICATE_AUTHENTICATE);
+                }
                 else
+                {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, (byte)NativeMethods.QUEUE_AUTHENTICATE_NONE);
+                }
 
                 SaveQueueProperties();
                 this.authenticate = value;
@@ -465,9 +469,13 @@ namespace Messaging.Msmq
                 if (this.defaultProperties == null)
                 {
                     if (this.DesignMode)
+                    {
                         this.defaultProperties = new DefaultPropertiesToSend(true);
+                    }
                     else
+                    {
                         this.defaultProperties = new DefaultPropertiesToSend();
+                    }
                 }
 
                 return this.defaultProperties;
@@ -551,7 +559,9 @@ namespace Messaging.Msmq
             set
             {
                 if (!ValidationUtility.ValidateEncryptionRequired(value))
+                {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(EncryptionRequired));
+                }
 
                 Properties.SetUI4(NativeMethods.QUEUE_PROPID_PRIV_LEVEL, (int)value);
                 SaveQueueProperties();
@@ -582,7 +592,9 @@ namespace Messaging.Msmq
 
                     // see if we already have this cached
                     if (enableCache)
+                    {
                         this.formatName = MessageQueue.formatNameCache.Get(pathUpper);
+                    }
 
                     // not in the cache?  keep working.
                     if (formatName == null)
@@ -598,7 +610,9 @@ namespace Messaging.Msmq
                             result = NativeMethods.MAX_LABEL_LEN;
                             status = SafeNativeMethods.MQInstanceToFormatName(this.id.ToByteArray(), newFormatName, ref result);
                             if (status != 0)
+                            {
                                 throw new MessageQueueException(status);
+                            }
 
                             this.formatName = newFormatName.ToString();
                             return this.formatName;
@@ -642,7 +656,9 @@ namespace Messaging.Msmq
             get
             {
                 if (this.formatter == null && !DesignMode)
+                {
                     this.formatter = new XmlMessageFormatter();
+                }
 
                 return this.formatter;
             }
@@ -776,7 +792,9 @@ namespace Messaging.Msmq
                 ArgumentNullException.ThrowIfNull(value);
 
                 if (!SyntaxCheck.CheckMachineName(value))
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MachineName", value));
+                }
 
                 StringBuilder newPath = new();
                 if ((this.path == null || this.path.Length == 0) && this.formatName == null)
@@ -820,7 +838,9 @@ namespace Messaging.Msmq
             set
             {
                 if (value > InfiniteQueueSize || value < 0)
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MaximumJournalSize", value));
+                }
 
                 Properties.SetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA, (int)((uint)value));
                 SaveQueueProperties();
@@ -855,7 +875,9 @@ namespace Messaging.Msmq
             set
             {
                 if (value > InfiniteQueueSize || value < 0)
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MaximumQueueSize", value));
+                }
 
                 Properties.SetUI4(NativeMethods.QUEUE_PROPID_QUOTA, (int)((uint)value));
                 SaveQueueProperties();
@@ -942,9 +964,13 @@ namespace Messaging.Msmq
                 { //this feature is unavailable on win2k
                     // don't throw in design mode: this makes component unusable
                     if (DesignMode)
+                    {
                         return String.Empty;
+                    }
                     else
+                    {
                         throw new PlatformNotSupportedException(Res.GetString(Res.PlatformNotSupported));
+                    }
                 }
 
                 if (!PropertyFilter.MulticastAddress)
@@ -972,12 +998,18 @@ namespace Messaging.Msmq
                 ArgumentNullException.ThrowIfNull(value);
 
                 if (!Msmq3OrNewer) //this feature is unavailable on win2k
+                {
                     throw new PlatformNotSupportedException(Res.GetString(Res.PlatformNotSupported));
+                }
 
                 if (value.Length == 0) // used to disassocciate queue from a muliticast address
+                {
                     Properties.SetEmpty(NativeMethods.QUEUE_PROPID_MULTICAST_ADDRESS);
+                }
                 else //Borrow this function from message
+                {
                     Properties.SetString(NativeMethods.QUEUE_PROPID_MULTICAST_ADDRESS, Message.StringToBytes(value));
+                }
 
                 SaveQueueProperties();
                 this.multicastAddress = value;
@@ -1006,10 +1038,14 @@ namespace Messaging.Msmq
                 value ??= String.Empty;
 
                 if (!ValidatePath(value, false))
+                {
                     throw new ArgumentException(Res.GetString(Res.PathSyntax));
+                }
 
                 if (!String.IsNullOrEmpty(this.path))
+                {
                     this.Close();
+                }
 
                 this.path = value;
             }
@@ -1116,7 +1152,9 @@ namespace Messaging.Msmq
                         this.queuePath = description;
                     }
                     else
+                    {
                         this.queuePath = path;
+                    }
                 }
                 return this.queuePath;
             }
@@ -1162,7 +1200,9 @@ namespace Messaging.Msmq
                     {
                         object baseComponent = host.RootComponent;
                         if (baseComponent is not null and ISynchronizeInvoke)
+                        {
                             this.synchronizingObject = (ISynchronizeInvoke)baseComponent;
+                        }
                     }
                 }
 
@@ -1220,9 +1260,13 @@ namespace Messaging.Msmq
             set
             {
                 if (value)
+                {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, (byte)NativeMethods.QUEUE_JOURNAL_JOURNAL);
+                }
                 else
+                {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, (byte)NativeMethods.QUEUE_JOURNAL_NONE);
+                }
 
                 SaveQueueProperties();
                 this.useJournaling = value;
@@ -1404,7 +1448,9 @@ namespace Messaging.Msmq
         public IAsyncResult BeginPeek(TimeSpan timeout, Cursor cursor, PeekAction action, object state, AsyncCallback callback)
         {
             if (action is not PeekAction.Current and not PeekAction.Next)
+            {
                 throw new ArgumentOutOfRangeException(Res.GetString(Res.InvalidParameter, "action", action.ToString()));
+            }
 
             ArgumentNullException.ThrowIfNull(cursor);
 
@@ -1519,7 +1565,9 @@ namespace Messaging.Msmq
                     //No need to check references in this case, the only object
                     //mqInfo is not cached if both conditions are satisified.
                     if (sharedMode == NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE || !enableCache)
+                    {
                         this.mqInfo.Dispose();
+                    }
 
                     this.mqInfo = null;
                 }
@@ -1554,18 +1602,26 @@ namespace Messaging.Msmq
             ArgumentNullException.ThrowIfNull(path);
 
             if (path.Length == 0)
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "path", path));
+            }
 
             if (!IsCanonicalPath(path, true))
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidQueuePathToCreate, path));
+            }
 
             //Create properties.
             QueuePropertyVariants properties = new();
             properties.SetString(NativeMethods.QUEUE_PROPID_PATHNAME, Message.StringToBytes(path));
             if (transactional)
+            {
                 properties.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, (byte)NativeMethods.QUEUE_TRANSACTIONAL_TRANSACTIONAL);
+            }
             else
+            {
                 properties.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, (byte)NativeMethods.QUEUE_TRANSACTIONAL_NONE);
+            }
 
             StringBuilder formatName = new(NativeMethods.MAX_LABEL_LEN);
             int formatNameLen = NativeMethods.MAX_LABEL_LEN;
@@ -1575,7 +1631,9 @@ namespace Messaging.Msmq
             status = UnsafeNativeMethods.MQCreateQueue(IntPtr.Zero, properties.Lock(), formatName, ref formatNameLen);
             properties.Unlock();
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
 
             return new MessageQueue(path);
         }
@@ -1622,17 +1680,23 @@ namespace Messaging.Msmq
             ArgumentNullException.ThrowIfNull(path);
 
             if (path.Length == 0)
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "path", path));
+            }
 
             if (!ValidatePath(path, false))
+            {
                 throw new ArgumentException(Res.GetString(Res.PathSyntax));
+            }
 
             int status = 0;
             MessageQueue queue = new(path);
 
             status = UnsafeNativeMethods.MQDeleteQueue(queue.FormatName);
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
 
             queueInfoCache.Remove(queue.QueueInfoKey);
             formatNameCache.Remove(path.ToUpper(CultureInfo.InvariantCulture));
@@ -1682,7 +1746,9 @@ namespace Messaging.Msmq
             ArgumentNullException.ThrowIfNull(asyncResult);
 
             if (asyncResult is not AsynchronousRequest)
+            {
                 throw new ArgumentException(Res.GetString(Res.AsyncResultInvalid));
+            }
 
             AsynchronousRequest request = (AsynchronousRequest)asyncResult;
 
@@ -1702,26 +1768,38 @@ namespace Messaging.Msmq
             ArgumentNullException.ThrowIfNull(path);
 
             if (!ValidatePath(path, false))
+            {
                 throw new ArgumentException(Res.GetString(Res.PathSyntax));
+            }
 
             string pathUpper = path.ToUpper(CultureInfo.InvariantCulture);
             if (pathUpper.StartsWith(PREFIX_FORMAT_NAME))
+            {
                 throw new InvalidOperationException(Res.GetString(Res.QueueExistsError));
+            }
             else if (pathUpper.StartsWith(PREFIX_LABEL))
             {
                 MessageQueue labeledQueue = ResolveQueueFromLabel(path, false);
                 if (labeledQueue == null)
+                {
                     return false;
+                }
                 else
+                {
                     return true;
+                }
             }
             else
             {
                 string formatName = ResolveFormatNameFromQueuePath(path, false);
                 if (formatName == null)
+                {
                     return false;
+                }
                 else
+                {
                     return true;
+                }
             }
         }
 
@@ -1738,7 +1816,9 @@ namespace Messaging.Msmq
             int status = UnsafeNativeMethods.MQGetQueueProperties(FormatName, Properties.Lock());
             Properties.Unlock();
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetAllMessages"]/*' />
@@ -1779,10 +1859,14 @@ namespace Messaging.Msmq
         public static Guid GetMachineId(string machineName)
         {
             if (!SyntaxCheck.CheckMachineName(machineName))
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
+            }
 
             if (machineName == ".")
+            {
                 machineName = MessageQueue.ComputerName;
+            }
 
             MachinePropertyVariants machineProperties = new();
             byte[] bytes = new byte[16];
@@ -1793,7 +1877,9 @@ namespace Messaging.Msmq
             if (MessageQueue.IsFatalError(status))
             {
                 if (handle != IntPtr.Zero)
+                {
                     SafeNativeMethods.MQFreeMemory(handle);
+                }
 
                 throw new MessageQueueException(status);
             }
@@ -1817,7 +1903,9 @@ namespace Messaging.Msmq
             // SECURITY: Note that this call is not marked with SUCS attribute (i.e., requires FullTrust)
             int status = NativeMethods.MQGetSecurityContextEx(out SecurityContextHandle handle);
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
 
             return new SecurityContext(handle);
         }
@@ -1896,17 +1984,23 @@ namespace Messaging.Msmq
         public static MessageQueue[] GetPrivateQueuesByMachine(string machineName)
         {
             if (!SyntaxCheck.CheckMachineName(machineName))
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
+            }
 
             if (machineName == "." || (String.Compare(machineName, MessageQueue.ComputerName, true, CultureInfo.InvariantCulture) == 0))
+            {
                 machineName = null;
+            }
 
             MessagePropertyVariants properties = new(5, 0);
             properties.SetNull(NativeMethods.MANAGEMENT_PRIVATEQ);
             int status = UnsafeNativeMethods.MQMgmtGetInfo(machineName, "MACHINE", properties.Lock());
             properties.Unlock();
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
 
             uint len = properties.GetStringVectorLength(NativeMethods.MANAGEMENT_PRIVATEQ);
             IntPtr basePointer = properties.GetStringVectorBasePointer(NativeMethods.MANAGEMENT_PRIVATEQ);
@@ -1999,7 +2093,9 @@ namespace Messaging.Msmq
         public static MessageQueue[] GetPublicQueuesByMachine(string machineName)
         {
             if (!SyntaxCheck.CheckMachineName(machineName))
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
+            }
 
             MessageQueueCriteria criteria = new()
             {
@@ -2013,7 +2109,9 @@ namespace Messaging.Msmq
         private static bool IsCanonicalPath(string path, bool checkQueueNameSize)
         {
             if (!ValidatePath(path, checkQueueNameSize))
+            {
                 return false;
+            }
 
             string upperPath = path.ToUpper(CultureInfo.InvariantCulture);
             if (upperPath.StartsWith(PREFIX_LABEL) ||
@@ -2021,7 +2119,9 @@ namespace Messaging.Msmq
                 upperPath.EndsWith(SUFIX_DEADLETTER) ||
                 upperPath.EndsWith(SUFIX_DEADXACT) ||
                 upperPath.EndsWith(SUFIX_JOURNAL))
+            {
                 return false;
+            }
 
             return true;
         }
@@ -2049,7 +2149,9 @@ namespace Messaging.Msmq
                  ((int)MessageQueueErrorCode.SymmetricKeyBufferTooSmall) or
                  ((int)MessageQueueErrorCode.UserBufferTooSmall) or
                  ((int)MessageQueueErrorCode.FormatNameBufferTooSmall))
+            {
                 return true;
+            }
 
             return false;
         }
@@ -2114,7 +2216,9 @@ namespace Messaging.Msmq
         public Message Peek(TimeSpan timeout, Cursor cursor, PeekAction action)
         {
             if (action is not PeekAction.Current and not PeekAction.Next)
+            {
                 throw new ArgumentOutOfRangeException(Res.GetString(Res.InvalidParameter, "action", action.ToString()));
+            }
 
             ArgumentNullException.ThrowIfNull(cursor);
 
@@ -2197,7 +2301,9 @@ namespace Messaging.Msmq
 
             int status = StaleSafePurgeQueue();
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Receive"]/*' />
@@ -2235,7 +2341,9 @@ namespace Messaging.Msmq
         public Message Receive(MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             return ReceiveCurrent(InfiniteTimeout, NativeMethods.QUEUE_ACTION_RECEIVE, CursorHandle.NullHandle, MessageReadPropertyFilter, null, transactionType);
         }
@@ -2286,7 +2394,9 @@ namespace Messaging.Msmq
         public Message Receive(TimeSpan timeout, MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, CursorHandle.NullHandle, MessageReadPropertyFilter, null, transactionType);
         }
@@ -2306,7 +2416,9 @@ namespace Messaging.Msmq
         public Message Receive(TimeSpan timeout, Cursor cursor, MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             ArgumentNullException.ThrowIfNull(cursor);
 
@@ -2319,7 +2431,9 @@ namespace Messaging.Msmq
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
             if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
+            }
 
             if (action == NativeMethods.QUEUE_ACTION_RECEIVE)
             {
@@ -2346,10 +2460,12 @@ namespace Messaging.Msmq
                         // If GetHandleInformation returns false, it means that the
                         // handle created for reading is not a File handle.
                         if (!SafeNativeMethods.GetHandleInformation(handle, out int handleInformation))
+                        {
                             // If not a File handle, need to use MSMQ
                             // APC based async IO.
                             // We will need to store references to pending async requests (bug 88607)
                             this.useThreadPool = false;
+                        }
                         else
                         {
                             // File handle can use IOCompletion ports
@@ -2397,7 +2513,9 @@ namespace Messaging.Msmq
             ArgumentNullException.ThrowIfNull(id);
 
             if (timeout < TimeSpan.Zero || timeout > InfiniteTimeout)
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
+            }
 
             MessagePropertyFilter oldFilter = this.receiveFilter;
 
@@ -2407,9 +2525,13 @@ namespace Messaging.Msmq
                 this.receiveFilter = new MessagePropertyFilter();
                 this.receiveFilter.ClearAll();
                 if (!compareId)
+                {
                     this.receiveFilter.CorrelationId = true;
+                }
                 else
+                {
                     this.receiveFilter.Id = true;
+                }
 
                 //
                 // Use cursor (and not MessageEnumerator) to navigate the queue because enumerator implementation can be incorrect
@@ -2421,7 +2543,9 @@ namespace Messaging.Msmq
                 //
                 int status = SafeNativeMethods.MQCreateCursor(this.MQInfo.ReadHandle, out cursorHandle);
                 if (MessageQueue.IsFatalError(status))
+                {
                     throw new MessageQueueException(status);
+                }
 
                 try
                 {
@@ -2444,15 +2568,21 @@ namespace Messaging.Msmq
                             if (remove)
                             {
                                 if (transaction == null)
+                                {
                                     return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, cursorHandle,
                                                           this.MessageReadPropertyFilter, null, transactionType);
+                                }
                                 else
+                                {
                                     return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, cursorHandle,
                                                           this.MessageReadPropertyFilter, transaction, MessageQueueTransactionType.None);
+                                }
                             }
                             else
+                            {
                                 return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, cursorHandle,
                                                       this.MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
+                            }
                         } //end if
 
                         //
@@ -2477,9 +2607,13 @@ namespace Messaging.Msmq
             }
 
             if (!throwTimeout)
+            {
                 throw new InvalidOperationException(Res.GetString("MessageNotFound"));
+            }
             else
+            {
                 throw new MessageQueueException((int)MessageQueueErrorCode.IOTimeout);
+            }
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveById"]/*' />
@@ -2521,7 +2655,9 @@ namespace Messaging.Msmq
         public Message ReceiveById(string id, MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             return ReceiveBy(id, TimeSpan.Zero, true, true, false, null, transactionType);
         }
@@ -2571,7 +2707,9 @@ namespace Messaging.Msmq
         public Message ReceiveById(string id, TimeSpan timeout, MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             return ReceiveBy(id, timeout, true, true, true, null, transactionType);
         }
@@ -2618,7 +2756,9 @@ namespace Messaging.Msmq
         public Message ReceiveByCorrelationId(string correlationId, MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             return ReceiveBy(correlationId, TimeSpan.Zero, true, false, false, null, transactionType);
         }
@@ -2668,7 +2808,9 @@ namespace Messaging.Msmq
         public Message ReceiveByCorrelationId(string correlationId, TimeSpan timeout, MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             return ReceiveBy(correlationId, timeout, true, false, true, null, transactionType);
         }
@@ -2708,13 +2850,19 @@ namespace Messaging.Msmq
         {
 
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             if (!ValidationUtility.ValidateMessageLookupAction(lookupAction))
+            {
                 throw new InvalidEnumArgumentException("action", (int)lookupAction, typeof(MessageLookupAction));
+            }
 
             if (!Msmq3OrNewer)
+            {
                 throw new PlatformNotSupportedException(Res.GetString(Res.PlatformNotSupported));
+            }
 
             int action;
 
@@ -2751,7 +2899,9 @@ namespace Messaging.Msmq
                 receiveMessage.SetLookupId(lookupId);
 
                 if (this.formatter != null)
+                {
                     receiveMessage.Formatter = (IMessageFormatter)this.formatter.Clone();
+                }
 
                 lockedReceiveMessage = receiveMessage.Lock();
             }
@@ -2759,9 +2909,13 @@ namespace Messaging.Msmq
             try
             {
                 if ((internalTransaction != null) && receive)
+                {
                     status = StaleSafeReceiveByLookupId(lookupId, action, lockedReceiveMessage, null, null, internalTransaction.BeginQueueOperation());
+                }
                 else
+                {
                     status = StaleSafeReceiveByLookupId(lookupId, action, lockedReceiveMessage, null, null, (IntPtr)transactionType);
+                }
 
                 if (receiveMessage != null)
                 {
@@ -2773,9 +2927,13 @@ namespace Messaging.Msmq
                         receiveMessage.AdjustMemory();
                         lockedReceiveMessage = receiveMessage.Lock();
                         if ((internalTransaction != null) && receive)
+                        {
                             status = StaleSafeReceiveByLookupId(lookupId, action, lockedReceiveMessage, null, null, internalTransaction.InnerTransaction);
+                        }
                         else
+                        {
                             status = StaleSafeReceiveByLookupId(lookupId, action, lockedReceiveMessage, null, null, (IntPtr)transactionType);
+                        }
                     }
 
                     receiveMessage.Unlock();
@@ -2784,14 +2942,20 @@ namespace Messaging.Msmq
             finally
             {
                 if ((internalTransaction != null) && receive)
+                {
                     internalTransaction.EndQueueOperation();
+                }
             }
 
             if (status == (int)MessageQueueErrorCode.MessageNotFound)
+            {
                 throw new InvalidOperationException(Res.GetString("MessageNotFound"));
+            }
 
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
 
             return receiveMessage;
         }
@@ -2804,7 +2968,9 @@ namespace Messaging.Msmq
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
             if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
+            {
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
+            }
 
             if (action == NativeMethods.QUEUE_ACTION_RECEIVE)
             {
@@ -2828,7 +2994,9 @@ namespace Messaging.Msmq
             {
                 receiveMessage = new Message((MessagePropertyFilter)filter.Clone());
                 if (this.formatter != null)
+                {
                     receiveMessage.Formatter = (IMessageFormatter)this.formatter.Clone();
+                }
 
                 lockedReceiveMessage = receiveMessage.Lock();
             }
@@ -2836,9 +3004,13 @@ namespace Messaging.Msmq
             try
             {
                 if (internalTransaction != null)
+                {
                     status = StaleSafeReceiveMessage((uint)timeoutInMilliseconds, action, lockedReceiveMessage, null, null, cursor, internalTransaction.BeginQueueOperation());
+                }
                 else
+                {
                     status = StaleSafeReceiveMessage((uint)timeoutInMilliseconds, action, lockedReceiveMessage, null, null, cursor, (IntPtr)transactionType);
+                }
 
                 if (receiveMessage != null)
                 {
@@ -2850,14 +3022,21 @@ namespace Messaging.Msmq
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
                         if (action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
+                        {
                             action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
+                        }
+
                         receiveMessage.Unlock();
                         receiveMessage.AdjustMemory();
                         lockedReceiveMessage = receiveMessage.Lock();
                         if (internalTransaction != null)
+                        {
                             status = StaleSafeReceiveMessage((uint)timeoutInMilliseconds, action, lockedReceiveMessage, null, null, cursor, internalTransaction.InnerTransaction);
+                        }
                         else
+                        {
                             status = StaleSafeReceiveMessage((uint)timeoutInMilliseconds, action, lockedReceiveMessage, null, null, cursor, (IntPtr)transactionType);
+                        }
                     }
 
                 }
@@ -2870,7 +3049,9 @@ namespace Messaging.Msmq
             }
 
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
 
             return receiveMessage;
         }
@@ -2901,7 +3082,9 @@ namespace Messaging.Msmq
             int status = UnsafeNativeMethods.MQSetQueueProperties(FormatName, Properties.Lock());
             Properties.Unlock();
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
+            }
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send"]/*' />
@@ -2943,7 +3126,9 @@ namespace Messaging.Msmq
         public void Send(object obj, MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             SendInternal(obj, null, transactionType);
         }
@@ -2987,7 +3172,9 @@ namespace Messaging.Msmq
         public void Send(object obj, string label, MessageQueueTransactionType transactionType)
         {
             if (!ValidationUtility.ValidateMessageQueueTransactionType(transactionType))
+            {
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
+            }
 
             Send(obj, label, null, transactionType);
         }
@@ -3027,7 +3214,9 @@ namespace Messaging.Msmq
 
             Message message = null;
             if (obj is Message)
+            {
                 message = (Message)obj;
+            }
 
             if (message == null)
             {
@@ -3043,9 +3232,13 @@ namespace Messaging.Msmq
             try
             {
                 if (internalTransaction != null)
+                {
                     status = StaleSafeSendMessage(properties, internalTransaction.BeginQueueOperation());
+                }
                 else
+                {
                     status = StaleSafeSendMessage(properties, (IntPtr)transactionType);
+                }
             }
             finally
             {
@@ -3055,8 +3248,9 @@ namespace Messaging.Msmq
             }
 
             if (MessageQueue.IsFatalError(status))
+            {
                 throw new MessageQueueException(status);
-
+            }
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ResolveQueueFromLabel"]/*' />
@@ -3067,12 +3261,16 @@ namespace Messaging.Msmq
             if (queues.Length == 0)
             {
                 if (throwException)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.InvalidLabel, path[PREFIX_LABEL.Length..]));
+                }
 
                 return null;
             }
             else if (queues.Length > 1)
+            {
                 throw new InvalidOperationException(Res.GetString(Res.AmbiguousLabel, path[PREFIX_LABEL.Length..]));
+            }
 
             return queues[0];
         }
@@ -3091,7 +3289,9 @@ namespace Messaging.Msmq
                 //Need to get the machine Id to construct the format name.
 
                 if (machine.CompareTo(".") == 0)
+                {
                     machine = MessageQueue.ComputerName;
+                }
 
                 //Create a guid to get the right format.
                 Guid machineId = MessageQueue.GetMachineId(machine);
@@ -3103,11 +3303,17 @@ namespace Messaging.Msmq
                 newFormatName.Append("MACHINE=");
                 newFormatName.Append(machineId.ToString());
                 if (String.Compare(name, SUFIX_DEADXACT, true, CultureInfo.InvariantCulture) == 0)
+                {
                     newFormatName.Append(";DEADXACT");
+                }
                 else if (String.Compare(name, SUFIX_DEADLETTER, true, CultureInfo.InvariantCulture) == 0)
+                {
                     newFormatName.Append(";DEADLETTER");
+                }
                 else
+                {
                     newFormatName.Append(";JOURNAL");
+                }
 
                 return newFormatName.ToString();
             }
@@ -3130,15 +3336,21 @@ namespace Messaging.Msmq
                 if (status != 0)
                 {
                     if (throwException)
+                    {
                         throw new MessageQueueException(status);
+                    }
                     else if (status == (int)MessageQueueErrorCode.IllegalQueuePathName)
+                    {
                         throw new MessageQueueException(status);
+                    }
 
                     return null;
                 }
 
                 if (journal)
+                {
                     newFormatName.Append(";JOURNAL");
+                }
 
                 return newFormatName.ToString();
             }
@@ -3157,7 +3369,9 @@ namespace Messaging.Msmq
 
             int result = UnsafeNativeMethods.MQSetQueueSecurity(FormatName, NativeMethods.DACL_SECURITY_INFORMATION, null);
             if (result != NativeMethods.MQ_OK)
+            {
                 throw new MessageQueueException(result);
+            }
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SetPermissions"]/*' />
@@ -3250,7 +3464,9 @@ namespace Messaging.Msmq
                                                                                 out bool daclDefaulted);
 
                 if (!success)
+                {
                     throw new Win32Exception();
+                }
 
                 // At this point we have the DACL for the queue.  Now we need to create
                 // a new security descriptor with an updated DACL.
@@ -3267,14 +3483,18 @@ namespace Messaging.Msmq
                                                                                false);
 
                     if (!success)
+                    {
                         throw new Win32Exception();
+                    }
 
                     int result = UnsafeNativeMethods.MQSetQueueSecurity(FormatName,
                                                                    NativeMethods.DACL_SECURITY_INFORMATION,
                                                                    newSecurityDescriptor);
 
                     if (result != NativeMethods.MQ_OK)
+                    {
                         throw new MessageQueueException(result);
+                    }
                 }
                 finally
                 {
@@ -3290,7 +3510,9 @@ namespace Messaging.Msmq
             finally
             {
                 if (sdHandle.IsAllocated)
+                {
                     sdHandle.Free();
+                }
             }
 
         }
@@ -3300,14 +3522,20 @@ namespace Messaging.Msmq
         internal static bool ValidatePath(string path, bool checkQueueNameSize)
         {
             if (path == null || path.Length == 0)
+            {
                 return true;
+            }
 
             String upperPath = path.ToUpper(CultureInfo.InvariantCulture);
             if (upperPath.StartsWith(PREFIX_LABEL))
+            {
                 return true;
+            }
 
             if (upperPath.StartsWith(PREFIX_FORMAT_NAME))
+            {
                 return true;
+            }
 
             int number = 0;
             int index = -1;
@@ -3315,9 +3543,13 @@ namespace Messaging.Msmq
             {
                 int newIndex = upperPath.IndexOf('\\', index + 1);
                 if (newIndex == -1)
+                {
                     break;
+                }
                 else
+                {
                     index = newIndex;
+                }
 
                 ++number;
             }
@@ -3328,7 +3560,9 @@ namespace Messaging.Msmq
                 {
                     long length = path.Length - (index + 1);
                     if (length > 255)
+                    {
                         throw new ArgumentException(Res.GetString(Res.LongQueueName));
+                    }
                 }
                 return true;
             }
@@ -3336,18 +3570,24 @@ namespace Messaging.Msmq
             if (number == 2)
             {
                 if (upperPath.EndsWith(SUFIX_JOURNAL))
+                {
                     return true;
+                }
 
                 index = upperPath.LastIndexOf(SUFIX_PRIVATE + "\\");
                 if (index != -1)
+                {
                     return true;
+                }
             }
 
             if (number == 3 && upperPath.EndsWith(SUFIX_JOURNAL))
             {
                 index = upperPath.LastIndexOf(SUFIX_PRIVATE + "\\");
                 if (index != -1)
+                {
                     return true;
+                }
             }
 
             return false;
@@ -3362,7 +3602,9 @@ namespace Messaging.Msmq
             // we don't support changing queue access mode after construction time.
             //
             if (!ValidationUtility.ValidateQueueAccessMode(accessMode))
+            {
                 throw new InvalidEnumArgumentException("accessMode", (int)accessMode, typeof(QueueAccessMode));
+            }
 
             this.accessMode = accessMode;
         }
@@ -3453,9 +3695,13 @@ namespace Messaging.Msmq
                 this.cursorHandle = cursorHandle;
 
                 if (!useThreadPool)
+                {
                     this.onMessageReceived = new SafeNativeMethods.ReceiveCallback(this.OnMessageReceived);
+                }
                 else
+                {
                     this.onCompletionStatusChanged = new IOCompletionCallback(this.OnCompletionStatusChanged);
+                }
             }
 
 
@@ -3551,7 +3797,10 @@ namespace Messaging.Msmq
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
                         if (this.action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
+                        {
                             this.action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
+                        }
+
                         this.message.Unlock();
                         this.message.AdjustMemory();
                         localStatus = this.owner.StaleSafeReceiveMessage(this.timeout, this.action, this.message.Lock(), overlappedPointer, this.onMessageReceived, this.cursorHandle, IntPtr.Zero);
@@ -3566,10 +3815,14 @@ namespace Messaging.Msmq
                     this.message.Unlock();
 
                     if (overlappedPointer != null)
+                    {
                         Overlapped.Free(overlappedPointer);
+                    }
 
                     if (!this.owner.useThreadPool)
+                    {
                         this.owner.OutstandingAsyncRequests.Remove(this);
+                    }
 
                     throw;
                 }
@@ -3578,8 +3831,9 @@ namespace Messaging.Msmq
                 // 1) the contract of BeginRead is to throw exception and not to notify event handler.
                 // 2) we dont know what the value pf localStatus will be in case of exception
                 if (MessageQueue.IsFatalError(localStatus))
+                {
                     RaiseCompletionEvent(localStatus, overlappedPointer);
-
+                }
             }
 
 
@@ -3593,10 +3847,14 @@ namespace Messaging.Msmq
             {
                 this.resetEvent.WaitOne();
                 if (MessageQueue.IsFatalError(status))
+                {
                     throw new MessageQueueException(status);
+                }
 
                 if (this.owner.formatter != null)
+                {
                     this.message.Formatter = (IMessageFormatter)this.owner.formatter.Clone();
+                }
 
                 return this.message;
             }
@@ -3657,7 +3915,10 @@ namespace Messaging.Msmq
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
                         if (this.action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
+                        {
                             this.action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
+                        }
+
                         this.message.Unlock();
                         this.message.AdjustMemory();
                         try
@@ -3676,8 +3937,9 @@ namespace Messaging.Msmq
                     }
 
                     if (!MessageQueue.IsFatalError(result))
+                    {
                         return;
-
+                    }
                 }
 
                 this.message.Unlock();
@@ -3696,12 +3958,16 @@ namespace Messaging.Msmq
                     }
 
                     if (!MessageQueue.IsFatalError(result))
+                    {
                         return;
+                    }
                 }
 
                 this.status = result;
                 if (overlappedPointer != null)
+                {
                     Overlapped.Free(overlappedPointer);
+                }
 
                 this.isCompleted = true;
                 this.resetEvent.Set();
@@ -3723,7 +3989,9 @@ namespace Messaging.Msmq
                         this.owner.SynchronizingObject.BeginInvoke(this.callback, new object[] { this });
                     }
                     else
+                    {
                         this.callback(this);
+                    }
                 }
                 catch (Exception)
                 {
@@ -3953,7 +4221,9 @@ namespace Messaging.Msmq
                     {
                         CacheEntry<Value> entry = null;
                         if (table.ContainsKey(key))
+                        {
                             entry = table[key]; //which could be null also
+                        }
 
                         if (entry == null)
                         {
@@ -3980,7 +4250,9 @@ namespace Messaging.Msmq
                 try
                 {
                     if (table.ContainsKey(key))
+                    {
                         table.Remove(key);
+                    }
                 }
                 finally
                 {
@@ -4015,7 +4287,11 @@ namespace Messaging.Msmq
                 rwLock.AcquireWriterLock(-1);
                 table = newTable;
                 capacity = 2 * table.Count;
-                if (capacity < originalCapacity) capacity = originalCapacity;
+                if (capacity < originalCapacity)
+                {
+                    capacity = originalCapacity;
+                }
+
                 rwLock.ReleaseWriterLock();
             }
 
@@ -4065,12 +4341,16 @@ namespace Messaging.Msmq
                 get
                 {
                     if (!accessMode.CanRead())
+                    {
                         return false;
+                    }
 
                     if (readHandle.IsInvalid)
                     {
                         if (this.disposed)
+                        {
                             throw new ObjectDisposedException(GetType().Name);
+                        }
 
                         lock (this.syncRoot)
                         {
@@ -4078,7 +4358,9 @@ namespace Messaging.Msmq
                             {
                                 int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
+                                {
                                     return false;
+                                }
 
                                 readHandle = result;
                             }
@@ -4095,12 +4377,16 @@ namespace Messaging.Msmq
                 get
                 {
                     if (!accessMode.CanWrite())
+                    {
                         return false;
+                    }
 
                     if (writeHandle.IsInvalid)
                     {
                         if (this.disposed)
+                        {
                             throw new ObjectDisposedException(GetType().Name);
+                        }
 
                         lock (this.syncRoot)
                         {
@@ -4108,7 +4394,9 @@ namespace Messaging.Msmq
                             {
                                 int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
+                                {
                                     return false;
+                                }
 
                                 writeHandle = result;
                             }
@@ -4134,7 +4422,9 @@ namespace Messaging.Msmq
                     if (readHandle.IsInvalid)
                     {
                         if (this.disposed)
+                        {
                             throw new ObjectDisposedException(GetType().Name);
+                        }
 
                         lock (this.syncRoot)
                         {
@@ -4142,7 +4432,9 @@ namespace Messaging.Msmq
                             {
                                 int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
+                                {
                                     throw new MessageQueueException(status);
+                                }
 
                                 readHandle = result;
                             }
@@ -4160,7 +4452,9 @@ namespace Messaging.Msmq
                     if (writeHandle.IsInvalid)
                     {
                         if (this.disposed)
+                        {
                             throw new ObjectDisposedException(GetType().Name);
+                        }
 
                         lock (this.syncRoot)
                         {
@@ -4168,7 +4462,9 @@ namespace Messaging.Msmq
                             {
                                 int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
+                                {
                                     throw new MessageQueueException(status);
+                                }
 
                                 writeHandle = result;
                             }
@@ -4194,7 +4490,9 @@ namespace Messaging.Msmq
                                 int status = UnsafeNativeMethods.MQGetQueueProperties(formatName, props.Lock());
                                 props.Unlock();
                                 if (MessageQueue.IsFatalError(status))
+                                {
                                     throw new MessageQueueException(status);
+                                }
 
                                 this.isTransactional = (props.GetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION) != NativeMethods.QUEUE_TRANSACTIONAL_NONE);
                                 isTransactional_valid = true;
@@ -4234,7 +4532,9 @@ namespace Messaging.Msmq
                 lock (this)
                 {
                     if (RefCount == 0)
+                    {
                         Close();
+                    }
                 }
             }
 
@@ -4308,7 +4608,10 @@ namespace Messaging.Msmq
 
             public override bool Equals(object obj)
             {
-                if (obj == null || GetType() != obj.GetType()) return false;
+                if (obj == null || GetType() != obj.GetType())
+                {
+                    return false;
+                }
 
                 QueueInfoKeyHolder qik = (QueueInfoKeyHolder)obj;
                 return this.Equals(qik);
@@ -4316,7 +4619,10 @@ namespace Messaging.Msmq
 
             public bool Equals(QueueInfoKeyHolder qik)
             {
-                if (qik == null) return false;
+                if (qik == null)
+                {
+                    return false;
+                }
 
                 // string.Equals performs case-sensitive and culture-insensitive comparison
                 // we address case sensitivity by normalizing format name in the constructor

@@ -45,7 +45,9 @@ namespace Messaging.Msmq
             get
             {
                 if (!this.filter.CreatedAfter)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
+                }
 
                 return this.createdAfter;
             }
@@ -53,11 +55,15 @@ namespace Messaging.Msmq
             set
             {
                 if (value < MessageQueueCriteria.minDate || value > MessageQueueCriteria.maxDate)
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
+                }
 
                 this.createdAfter = value;
                 if (this.filter.CreatedBefore && this.createdAfter > this.createdBefore)
+                {
                     this.createdBefore = this.createdAfter;
+                }
 
                 this.filter.CreatedAfter = true;
             }
@@ -74,7 +80,9 @@ namespace Messaging.Msmq
             get
             {
                 if (!this.filter.CreatedBefore)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
+                }
 
                 return this.createdBefore;
             }
@@ -82,11 +90,15 @@ namespace Messaging.Msmq
             set
             {
                 if (value < MessageQueueCriteria.minDate || value > MessageQueueCriteria.maxDate)
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
+                }
 
                 this.createdBefore = value;
                 if (this.filter.CreatedAfter && this.createdAfter > this.createdBefore)
+                {
                     this.createdAfter = this.createdBefore;
+                }
 
                 this.filter.CreatedBefore = true;
             }
@@ -110,7 +122,9 @@ namespace Messaging.Msmq
             get
             {
                 if (!this.filter.Label)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
+                }
 
                 return this.label;
             }
@@ -136,7 +150,9 @@ namespace Messaging.Msmq
             get
             {
                 if (!this.filter.MachineName)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
+                }
 
                 return this.machine;
             }
@@ -144,7 +160,9 @@ namespace Messaging.Msmq
             set
             {
                 if (!SyntaxCheck.CheckMachineName(value))
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MachineName", value));
+                }
 
                 this.machineId = MessageQueue.GetMachineId(value);
                 this.machine = value;
@@ -163,7 +181,9 @@ namespace Messaging.Msmq
             get
             {
                 if (!this.filter.ModifiedAfter)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
+                }
 
                 return this.modifiedAfter;
             }
@@ -171,12 +191,16 @@ namespace Messaging.Msmq
             set
             {
                 if (value < MessageQueueCriteria.minDate || value > MessageQueueCriteria.maxDate)
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
+                }
 
                 this.modifiedAfter = value;
 
                 if (this.filter.ModifiedBefore && this.modifiedAfter > this.modifiedBefore)
+                {
                     this.modifiedBefore = this.modifiedAfter;
+                }
 
                 this.filter.ModifiedAfter = true;
             }
@@ -193,7 +217,9 @@ namespace Messaging.Msmq
             get
             {
                 if (!this.filter.ModifiedBefore)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
+                }
 
                 return this.modifiedBefore;
             }
@@ -201,12 +227,16 @@ namespace Messaging.Msmq
             set
             {
                 if (value < MessageQueueCriteria.minDate || value > MessageQueueCriteria.maxDate)
+                {
                     throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
+                }
 
                 this.modifiedBefore = value;
 
                 if (this.filter.ModifiedAfter && this.modifiedAfter > this.modifiedBefore)
+                {
                     this.modifiedAfter = this.modifiedBefore;
+                }
 
                 this.filter.ModifiedBefore = true;
             }
@@ -220,31 +250,65 @@ namespace Messaging.Msmq
             {
                 int size = 0;
                 if (this.filter.CreatedAfter)
+                {
                     ++size;
+                }
+
                 if (this.filter.CreatedBefore)
+                {
                     ++size;
+                }
+
                 if (this.filter.Label)
+                {
                     ++size;
+                }
+
                 if (this.filter.ModifiedAfter)
+                {
                     ++size;
+                }
+
                 if (this.filter.ModifiedBefore)
+                {
                     ++size;
+                }
+
                 if (this.filter.Category)
+                {
                     ++size;
+                }
 
                 restrictions = new Restrictions(size);
                 if (this.filter.CreatedAfter)
+                {
                     restrictions.AddI4(NativeMethods.QUEUE_PROPID_CREATE_TIME, Restrictions.PRGT, ConvertTime(this.createdAfter));
+                }
+
                 if (this.filter.CreatedBefore)
+                {
                     restrictions.AddI4(NativeMethods.QUEUE_PROPID_CREATE_TIME, Restrictions.PRLE, ConvertTime(this.createdBefore));
+                }
+
                 if (this.filter.Label)
+                {
                     restrictions.AddString(NativeMethods.QUEUE_PROPID_LABEL, Restrictions.PREQ, this.label);
+                }
+
                 if (this.filter.ModifiedAfter)
+                {
                     restrictions.AddI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME, Restrictions.PRGT, ConvertTime(this.modifiedAfter));
+                }
+
                 if (this.filter.ModifiedBefore)
+                {
                     restrictions.AddI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME, Restrictions.PRLE, ConvertTime(this.modifiedBefore));
+                }
+
                 if (this.filter.Category)
+                {
                     restrictions.AddGuid(NativeMethods.QUEUE_PROPID_TYPE, Restrictions.PREQ, this.category);
+                }
 
                 return this.restrictions.GetRestrictionsRef();
             }
@@ -260,7 +324,9 @@ namespace Messaging.Msmq
             get
             {
                 if (!this.filter.Category)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
+                }
 
                 return this.category;
             }

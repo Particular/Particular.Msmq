@@ -61,7 +61,9 @@ namespace Messaging.Msmq
             get
             {
                 if (this.currentMessageQueue == null)
+                {
                     throw new InvalidOperationException(Res.GetString(Res.NoCurrentMessageQueue));
+                }
 
                 return this.currentMessageQueue;
             }
@@ -132,7 +134,9 @@ namespace Messaging.Msmq
                 {
                     //Cannot allocate the locatorHandle if the object has been disposed, since finalization has been suppressed.
                     if (this.disposed)
+                    {
                         throw new ObjectDisposedException(GetType().Name);
+                    }
 
                     Columns columns = new(2);
                     LocatorHandle enumHandle;
@@ -142,12 +146,18 @@ namespace Messaging.Msmq
                     columns.AddColumnId(NativeMethods.QUEUE_PROPID_INSTANCE);
                     int status;
                     if (this.criteria != null)
+                    {
                         status = UnsafeNativeMethods.MQLocateBegin(null, this.criteria.Reference, columns.GetColumnsRef(), out enumHandle);
+                    }
                     else
+                    {
                         status = UnsafeNativeMethods.MQLocateBegin(null, null, columns.GetColumnsRef(), out enumHandle);
+                    }
 
                     if (MessageQueue.IsFatalError(status))
+                    {
                         throw new MessageQueueException(status);
+                    }
 
                     this.locatorHandle = enumHandle;
                 }
@@ -174,9 +184,13 @@ namespace Messaging.Msmq
             if (this.criteria != null && this.criteria.FilterMachine)
             {
                 if (this.criteria.MachineName.CompareTo(".") == 0)
+                {
                     machineName = MessageQueue.ComputerName + "\\";
+                }
                 else
+                {
                     machineName = this.criteria.MachineName + "\\";
+                }
             }
 
             do
@@ -185,7 +199,9 @@ namespace Messaging.Msmq
                 int status;
                 status = SafeNativeMethods.MQLocateNext(this.Handle, ref propertyCount, array);
                 if (MessageQueue.IsFatalError(status))
+                {
                     throw new MessageQueueException(status);
+                }
 
                 if (propertyCount != 2)
                 {

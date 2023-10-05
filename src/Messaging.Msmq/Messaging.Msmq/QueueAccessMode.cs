@@ -76,7 +76,9 @@ namespace Messaging.Msmq
         {
             int result = (int)(accessMode & ~QueueAccessMode.Send);
             if (result != 0)
+            {
                 return result;
+            }
             // this is fail-fast path, when we know right away that the operation is incompatible with access mode
             // AccessDenied can also happen in other cases,
             // (for example, when we try to receive on a queue opened only for peek.
@@ -88,7 +90,9 @@ namespace Messaging.Msmq
         {
             int result = (int)(accessMode & QueueAccessMode.Send);
             if (result != 0)
+            {
                 return result;
+            }
             // this is fail-fast path, when we know right away that the operation is incompatible with access mode
             // AccessDenied can also happen in other cases,
             // (for example, when we try to receive on a queue opened only for peek.

@@ -43,12 +43,18 @@ namespace Messaging.Msmq
                             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
                             {
                                 if (Environment.OSVersion.Version.Major >= 5)
+                                {
                                     environment = W2kEnvironment;
+                                }
                                 else
+                                {
                                     environment = NtEnvironment;
+                                }
                             }
                             else
+                            {
                                 environment = NonNtEnvironment;
+                            }
                         }
                     }
                 }
@@ -87,7 +93,9 @@ namespace Messaging.Msmq
         internal static void CheckEnvironment()
         {
             if (CurrentEnvironment == NonNtEnvironment)
+            {
                 throw new PlatformNotSupportedException(Res.GetString(Res.WinNTRequired));
+            }
         }
 
         /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.Contains"]/*' />
@@ -137,27 +145,37 @@ namespace Messaging.Msmq
                     AccessControlEntry ace = (AccessControlEntry)List[i];
 
                     if (ace.Trustee == null)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.InvalidTrustee));
+                    }
 
                     string name = ace.Trustee.Name;
                     if (name == null)
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.InvalidTrusteeName));
+                    }
 
                     if ((ace.Trustee.TrusteeType == TrusteeType.Computer) && !name.EndsWith("$"))
+                    {
                         name += "$";
+                    }
 
                     if (!UnsafeNativeMethods.LookupAccountName(ace.Trustee.SystemName, name, (IntPtr)0, ref sidSize, null, ref domainSize, out int sidtype))
                     {
                         int errval = Marshal.GetLastWin32Error();
                         if (errval != 122)
+                        {
                             throw new InvalidOperationException(Res.GetString(Res.CouldntResolve, ace.Trustee.Name, errval));
+                        }
                     }
 
                     entries[i].data = (IntPtr)Marshal.AllocHGlobal(sidSize);
 
                     StringBuilder domainName = new(domainSize);
                     if (!UnsafeNativeMethods.LookupAccountName(ace.Trustee.SystemName, name, entries[i].data, ref sidSize, domainName, ref domainSize, out sidtype))
+                    {
                         throw new InvalidOperationException(Res.GetString(Res.CouldntResolveName, ace.Trustee.Name));
+                    }
 
                     entries[i].grfAccessPermissions = ace.accessFlags;
                     entries[i].grfAccessMode = (int)ace.EntryType;
@@ -171,16 +189,21 @@ namespace Messaging.Msmq
                 int err = SafeNativeMethods.SetEntriesInAclW(ACECount, (IntPtr)mem.AddrOfPinnedObject(), oldAcl, out newAcl);
 
                 if (err != NativeMethods.ERROR_SUCCESS)
+                {
                     throw new Win32Exception(err);
+                }
             }
             finally
             {
                 mem.Free();
 
                 for (int i = 0; i < ACECount; i++)
+                {
                     if (entries[i].data != (IntPtr)0)
+                    {
                         Marshal.FreeHGlobal(entries[i].data);
-
+                    }
+                }
             }
 
 
