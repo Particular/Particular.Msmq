@@ -4347,10 +4347,7 @@ namespace Messaging.Msmq
 
                     if (readHandle.IsInvalid)
                     {
-                        if (this.disposed)
-                        {
-                            throw new ObjectDisposedException(GetType().Name);
-                        }
+                        ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
                         lock (this.syncRoot)
                         {
@@ -4383,10 +4380,7 @@ namespace Messaging.Msmq
 
                     if (writeHandle.IsInvalid)
                     {
-                        if (this.disposed)
-                        {
-                            throw new ObjectDisposedException(GetType().Name);
-                        }
+                        ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
                         lock (this.syncRoot)
                         {
@@ -4421,10 +4415,7 @@ namespace Messaging.Msmq
                 {
                     if (readHandle.IsInvalid)
                     {
-                        if (this.disposed)
-                        {
-                            throw new ObjectDisposedException(GetType().Name);
-                        }
+                        ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
                         lock (this.syncRoot)
                         {
@@ -4451,10 +4442,7 @@ namespace Messaging.Msmq
                 {
                     if (writeHandle.IsInvalid)
                     {
-                        if (this.disposed)
-                        {
-                            throw new ObjectDisposedException(GetType().Name);
-                        }
+                        ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
                         lock (this.syncRoot)
                         {
