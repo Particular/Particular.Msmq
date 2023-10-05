@@ -1613,25 +1613,17 @@ namespace Messaging.Msmq
             return new MessageQueue(path);
         }
 
-
         public Cursor CreateCursor()
         {
             return new Cursor(this);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CreateMessageQueuesSnapshot"]/*' />
+        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CreateMessageQueuesSnapshot1"]/*' />
         /// <internalonly/>
         static MessageQueue[] CreateMessageQueuesSnapshot(MessageQueueCriteria criteria)
         {
-            return CreateMessageQueuesSnapshot(criteria, true);
-        }
-
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CreateMessageQueuesSnapshot1"]/*' />
-        /// <internalonly/>
-        static MessageQueue[] CreateMessageQueuesSnapshot(MessageQueueCriteria criteria, bool checkSecurity)
-        {
             ArrayList messageQueuesList = [];
-            MessageQueueEnumerator messageQueues = GetMessageQueueEnumerator(criteria, checkSecurity);
+            MessageQueueEnumerator messageQueues = GetMessageQueueEnumerator(criteria);
             while (messageQueues.MoveNext())
             {
                 MessageQueue messageQueue = messageQueues.Current;
@@ -1908,13 +1900,6 @@ namespace Messaging.Msmq
             return new MessageQueueEnumerator(criteria);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetMessageQueueEnumerator"]/*' />
-        /// <internalonly/>
-        internal static MessageQueueEnumerator GetMessageQueueEnumerator(MessageQueueCriteria criteria, bool checkSecurity)
-        {
-            return new MessageQueueEnumerator(criteria, checkSecurity);
-        }
-
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetMessageEnumerator"]/*' />
         /// <devdoc>
         ///    <para>
@@ -2044,18 +2029,11 @@ namespace Messaging.Msmq
         /// </devdoc>
         public static MessageQueue[] GetPublicQueuesByLabel(string label)
         {
-            return GetPublicQueuesByLabel(label, true);
-        }
-
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPublicQueuesByLabel1"]/*' />
-        /// <internalonly/>
-        static MessageQueue[] GetPublicQueuesByLabel(string label, bool checkSecurity)
-        {
             MessageQueueCriteria criteria = new()
             {
                 Label = label
             };
-            return CreateMessageQueuesSnapshot(criteria, checkSecurity);
+            return CreateMessageQueuesSnapshot(criteria);
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPublicQueuesByMachine"]/*' />
@@ -2075,7 +2053,7 @@ namespace Messaging.Msmq
             {
                 MachineName = machineName
             };
-            return CreateMessageQueuesSnapshot(criteria, false);
+            return CreateMessageQueuesSnapshot(criteria);
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.IsCanonicalPath"]/*' />
@@ -3225,7 +3203,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         static MessageQueue ResolveQueueFromLabel(string path, bool throwException)
         {
-            MessageQueue[] queues = GetPublicQueuesByLabel(path[PREFIX_LABEL.Length..], false);
+            MessageQueue[] queues = GetPublicQueuesByLabel(path[PREFIX_LABEL.Length..]);
             if (queues.Length == 0)
             {
                 if (throwException)

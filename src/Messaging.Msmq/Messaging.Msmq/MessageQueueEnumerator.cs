@@ -29,7 +29,6 @@ namespace Messaging.Msmq
         readonly MessageQueueCriteria criteria;
         LocatorHandle locatorHandle = Interop.LocatorHandle.InvalidHandle;
         MessageQueue currentMessageQueue;
-        readonly bool checkSecurity;
         bool disposed;
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.MessageQueueEnumerator"]/*' />
@@ -37,15 +36,6 @@ namespace Messaging.Msmq
         internal MessageQueueEnumerator(MessageQueueCriteria criteria)
         {
             this.criteria = criteria;
-            checkSecurity = true;
-        }
-
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.MessageQueueEnumerator1"]/*' />
-        /// <internalonly/>
-        internal MessageQueueEnumerator(MessageQueueCriteria criteria, bool checkSecurity)
-        {
-            this.criteria = criteria;
-            this.checkSecurity = checkSecurity;
         }
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.Current"]/*' />
@@ -116,7 +106,6 @@ namespace Messaging.Msmq
         /// </devdoc>
         public IntPtr LocatorHandle => Handle.DangerousGetHandle();
 
-
         LocatorHandle Handle
         {
             get
@@ -153,7 +142,6 @@ namespace Messaging.Msmq
                 return locatorHandle;
             }
         }
-
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.MoveNext"]/*' />
         /// <devdoc>
