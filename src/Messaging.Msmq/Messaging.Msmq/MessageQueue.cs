@@ -1921,8 +1921,10 @@ namespace Messaging.Msmq
                 IntPtr stringPointer = Marshal.ReadIntPtr((IntPtr)((long)basePointer + index * IntPtr.Size));
                 //Using Unicode API even on Win9x
                 string path = Marshal.PtrToStringUni(stringPointer);
-                queues[index] = new MessageQueue("FormatName:DIRECT=OS:" + path);
-                queues[index].queuePath = path;
+                queues[index] = new MessageQueue("FormatName:DIRECT=OS:" + path)
+                {
+                    queuePath = path
+                };
                 SafeNativeMethods.MQFreeMemory(stringPointer);
             }
 
@@ -1963,8 +1965,10 @@ namespace Messaging.Msmq
         /// </devdoc>
         public static MessageQueue[] GetPublicQueuesByCategory(Guid category)
         {
-            MessageQueueCriteria criteria = new();
-            criteria.Category = category;
+            MessageQueueCriteria criteria = new()
+            {
+                Category = category
+            };
             return CreateMessageQueuesSnapshot(criteria);
         }
 
@@ -1984,8 +1988,10 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private static MessageQueue[] GetPublicQueuesByLabel(string label, bool checkSecurity)
         {
-            MessageQueueCriteria criteria = new();
-            criteria.Label = label;
+            MessageQueueCriteria criteria = new()
+            {
+                Label = label
+            };
             return CreateMessageQueuesSnapshot(criteria, checkSecurity);
         }
 
@@ -2000,8 +2006,10 @@ namespace Messaging.Msmq
             if (!SyntaxCheck.CheckMachineName(machineName))
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
 
-            MessageQueueCriteria criteria = new();
-            criteria.MachineName = machineName;
+            MessageQueueCriteria criteria = new()
+            {
+                MachineName = machineName
+            };
             return CreateMessageQueuesSnapshot(criteria, false);
         }
 
@@ -3539,8 +3547,10 @@ namespace Messaging.Msmq
                 NativeOverlapped* overlappedPointer = null;
                 if (this.onCompletionStatusChanged != null)
                 {
-                    Overlapped overlapped = new();
-                    overlapped.AsyncResult = this;
+                    Overlapped overlapped = new()
+                    {
+                        AsyncResult = this
+                    };
                     overlappedPointer = overlapped.Pack(this.onCompletionStatusChanged, null);
                 }
 

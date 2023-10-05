@@ -113,9 +113,11 @@ namespace Messaging.Msmq
             this.CreateTargetSerializerTable();
 
             Stream stream = message.BodyStream;
-            XmlTextReader reader = new(stream);
-            reader.WhitespaceHandling = WhitespaceHandling.Significant;
-            reader.DtdProcessing = DtdProcessing.Prohibit;
+            XmlTextReader reader = new(stream)
+            {
+                WhitespaceHandling = WhitespaceHandling.Significant,
+                DtdProcessing = DtdProcessing.Prohibit
+            };
             bool result = false;
             foreach (XmlSerializer serializer in targetSerializerTable.Values)
             {
@@ -137,11 +139,13 @@ namespace Messaging.Msmq
         /// </devdoc>
         public object Clone()
         {
-            XmlMessageFormatter formatter = new();
-            formatter.targetTypes = targetTypes;
-            formatter.targetTypeNames = targetTypeNames;
-            formatter.typesAdded = typesAdded;
-            formatter.typeNamesAdded = typeNamesAdded;
+            XmlMessageFormatter formatter = new()
+            {
+                targetTypes = targetTypes,
+                targetTypeNames = targetTypeNames,
+                typesAdded = typesAdded,
+                typeNamesAdded = typeNamesAdded
+            };
             foreach (Type targetType in targetSerializerTable.Keys)
                 formatter.targetSerializerTable[targetType] = new XmlSerializer(targetType);
 
@@ -187,9 +191,11 @@ namespace Messaging.Msmq
             this.CreateTargetSerializerTable();
 
             Stream stream = message.BodyStream;
-            XmlTextReader reader = new(stream);
-            reader.WhitespaceHandling = WhitespaceHandling.Significant;
-            reader.DtdProcessing = DtdProcessing.Prohibit;
+            XmlTextReader reader = new(stream)
+            {
+                WhitespaceHandling = WhitespaceHandling.Significant,
+                DtdProcessing = DtdProcessing.Prohibit
+            };
             foreach (XmlSerializer serializer in targetSerializerTable.Values)
             {
                 if (serializer.CanDeserialize(reader))
