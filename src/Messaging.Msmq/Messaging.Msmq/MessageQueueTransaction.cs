@@ -97,10 +97,7 @@ namespace Messaging.Msmq
         public void Begin()
         {
             //Won't allow begining a new transaction after the object has been disposed.
-            if (disposed)
-            {
-                throw new ObjectDisposedException(GetType().Name);
-            }
+            ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
             lock (this)
             {

@@ -133,10 +133,7 @@ namespace Messaging.Msmq
                 if (locatorHandle.IsInvalid)
                 {
                     //Cannot allocate the locatorHandle if the object has been disposed, since finalization has been suppressed.
-                    if (disposed)
-                    {
-                        throw new ObjectDisposedException(GetType().Name);
-                    }
+                    ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
                     Columns columns = new(2);
                     LocatorHandle enumHandle;

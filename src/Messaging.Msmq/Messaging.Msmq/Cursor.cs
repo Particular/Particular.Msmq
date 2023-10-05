@@ -32,10 +32,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (disposed)
-                {
-                    throw new ObjectDisposedException(GetType().Name);
-                }
+                ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
                 return handle;
             }

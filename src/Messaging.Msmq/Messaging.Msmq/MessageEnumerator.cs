@@ -83,10 +83,7 @@ namespace Messaging.Msmq
                 if (handle.IsInvalid)
                 {
                     //Cannot allocate the a new cursor if the object has been disposed, since finalization has been suppressed.
-                    if (disposed)
-                    {
-                        throw new ObjectDisposedException(GetType().Name);
-                    }
+                    ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
                     int status = SafeNativeMethods.MQCreateCursor(owner.MQInfo.ReadHandle, out CursorHandle result);
                     if (MessageQueue.IsFatalError(status))
