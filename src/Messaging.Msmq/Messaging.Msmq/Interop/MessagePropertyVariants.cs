@@ -317,15 +317,15 @@ namespace Messaging.Msmq.Interop
                         handles[i] = handle;
                         newVectorProperties[usedProperties].caub.pElems = handle.AddrOfPinnedObject();
                     }
-                    else if (vt == VT_UI1 || vt == VT_I1)
+                    else if (vt is VT_UI1 or VT_I1)
                         newVectorProperties[usedProperties].bVal = (byte)objects[i];
-                    else if (vt == VT_UI2 || vt == VT_I2)
+                    else if (vt is VT_UI2 or VT_I2)
                         newVectorProperties[usedProperties].iVal = (short)objects[i];
-                    else if (vt == VT_UI4 || vt == VT_I4)
+                    else if (vt is VT_UI4 or VT_I4)
                         newVectorProperties[usedProperties].lVal = (int)objects[i];
-                    else if (vt == VT_UI8 || vt == VT_I8)
+                    else if (vt is VT_UI8 or VT_I8)
                         newVectorProperties[usedProperties].hVal = (long)objects[i];
-                    else if (vt == VT_LPWSTR || vt == VT_CLSID)
+                    else if (vt is VT_LPWSTR or VT_CLSID)
                     {
                         GCHandle handle = GCHandle.Alloc(objects[i], GCHandleType.Pinned);
                         handles[i] = handle;
@@ -394,7 +394,7 @@ namespace Messaging.Msmq.Interop
 
                 if (variantTypes[vectorIdentifiers[i] - basePropertyId] == VT_NULL)
                 {
-                    if (vt == (short)(VT_VECTOR | VT_UI1) || vt == VT_NULL)
+                    if (vt is ((short)(VT_VECTOR | VT_UI1)) or VT_NULL)
                         //Support for MSMQ self memory allocation.
                         objects[vectorIdentifiers[i] - basePropertyId] = vectorProperties[i].caub.cElems;
                     else if (vt == (short)(VT_VECTOR | VT_LPWSTR))
@@ -406,18 +406,18 @@ namespace Messaging.Msmq.Interop
                     else
                         objects[vectorIdentifiers[i] - basePropertyId] = vectorProperties[i].ptr;
                 }
-                else if (vt == VT_LPWSTR || vt == VT_CLSID || vt == (short)(VT_VECTOR | VT_UI1))
+                else if (vt is VT_LPWSTR or VT_CLSID or ((short)(VT_VECTOR | VT_UI1)))
                 {
                     ((GCHandle)handles[vectorIdentifiers[i] - basePropertyId]).Free();
                     handles[vectorIdentifiers[i] - basePropertyId] = null;
                 }
-                else if (vt == VT_UI1 || vt == VT_I1)
+                else if (vt is VT_UI1 or VT_I1)
                     objects[vectorIdentifiers[i] - basePropertyId] = (byte)vectorProperties[i].bVal;
-                else if (vt == VT_UI2 || vt == VT_I2)
+                else if (vt is VT_UI2 or VT_I2)
                     objects[vectorIdentifiers[i] - basePropertyId] = (short)vectorProperties[i].iVal;
-                else if (vt == VT_UI4 || vt == VT_I4)
+                else if (vt is VT_UI4 or VT_I4)
                     objects[vectorIdentifiers[i] - basePropertyId] = vectorProperties[i].lVal;
-                else if (vt == VT_UI8 || vt == VT_I8)
+                else if (vt is VT_UI8 or VT_I8)
                     objects[vectorIdentifiers[i] - basePropertyId] = vectorProperties[i].hVal;
 
             }

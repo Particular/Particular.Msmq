@@ -1165,7 +1165,7 @@ namespace Messaging.Msmq
                     if (host != null)
                     {
                         object baseComponent = host.RootComponent;
-                        if (baseComponent != null && baseComponent is ISynchronizeInvoke)
+                        if (baseComponent is not null and ISynchronizeInvoke)
                             this.synchronizingObject = (ISynchronizeInvoke)baseComponent;
                     }
                 }
@@ -1407,7 +1407,7 @@ namespace Messaging.Msmq
 
         public IAsyncResult BeginPeek(TimeSpan timeout, Cursor cursor, PeekAction action, object state, AsyncCallback callback)
         {
-            if ((action != PeekAction.Current) && (action != PeekAction.Next))
+            if (action is not PeekAction.Current and not PeekAction.Next)
                 throw new ArgumentOutOfRangeException(Res.GetString(Res.InvalidParameter, "action", action.ToString()));
 
             ArgumentNullException.ThrowIfNull(cursor);
@@ -1685,7 +1685,7 @@ namespace Messaging.Msmq
         {
             ArgumentNullException.ThrowIfNull(asyncResult);
 
-            if (!(asyncResult is AsynchronousRequest))
+            if (asyncResult is not AsynchronousRequest)
                 throw new ArgumentException(Res.GetString(Res.AsyncResultInvalid));
 
             AsynchronousRequest request = (AsynchronousRequest)asyncResult;
@@ -2036,16 +2036,16 @@ namespace Messaging.Msmq
         /// <internalonly/>
         internal static bool IsMemoryError(int value)
         {
-            if (value == (int)MessageQueueErrorCode.BufferOverflow ||
-                 value == (int)MessageQueueErrorCode.LabelBufferTooSmall ||
-                 value == (int)MessageQueueErrorCode.ProviderNameBufferTooSmall ||
-                 value == (int)MessageQueueErrorCode.SenderCertificateBufferTooSmall ||
-                 value == (int)MessageQueueErrorCode.SenderIdBufferTooSmall ||
-                 value == (int)MessageQueueErrorCode.SecurityDescriptorBufferTooSmall ||
-                 value == (int)MessageQueueErrorCode.SignatureBufferTooSmall ||
-                 value == (int)MessageQueueErrorCode.SymmetricKeyBufferTooSmall ||
-                 value == (int)MessageQueueErrorCode.UserBufferTooSmall ||
-                 value == (int)MessageQueueErrorCode.FormatNameBufferTooSmall)
+            if (value is ((int)MessageQueueErrorCode.BufferOverflow) or
+                 ((int)MessageQueueErrorCode.LabelBufferTooSmall) or
+                 ((int)MessageQueueErrorCode.ProviderNameBufferTooSmall) or
+                 ((int)MessageQueueErrorCode.SenderCertificateBufferTooSmall) or
+                 ((int)MessageQueueErrorCode.SenderIdBufferTooSmall) or
+                 ((int)MessageQueueErrorCode.SecurityDescriptorBufferTooSmall) or
+                 ((int)MessageQueueErrorCode.SignatureBufferTooSmall) or
+                 ((int)MessageQueueErrorCode.SymmetricKeyBufferTooSmall) or
+                 ((int)MessageQueueErrorCode.UserBufferTooSmall) or
+                 ((int)MessageQueueErrorCode.FormatNameBufferTooSmall))
                 return true;
 
             return false;
@@ -2110,7 +2110,7 @@ namespace Messaging.Msmq
 
         public Message Peek(TimeSpan timeout, Cursor cursor, PeekAction action)
         {
-            if ((action != PeekAction.Current) && (action != PeekAction.Next))
+            if (action is not PeekAction.Current and not PeekAction.Next)
                 throw new ArgumentOutOfRangeException(Res.GetString(Res.InvalidParameter, "action", action.ToString()));
 
             ArgumentNullException.ThrowIfNull(cursor);
@@ -2315,7 +2315,7 @@ namespace Messaging.Msmq
         private unsafe IAsyncResult ReceiveAsync(TimeSpan timeout, CursorHandle cursorHandle, int action, AsyncCallback callback, object stateObject)
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
-            if (timeoutInMilliseconds < 0 || timeoutInMilliseconds > UInt32.MaxValue)
+            if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
 
             if (action == NativeMethods.QUEUE_ACTION_RECEIVE)
@@ -2805,7 +2805,7 @@ namespace Messaging.Msmq
         internal unsafe Message ReceiveCurrent(TimeSpan timeout, int action, CursorHandle cursor, MessagePropertyFilter filter, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
-            if (timeoutInMilliseconds < 0 || timeoutInMilliseconds > UInt32.MaxValue)
+            if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
 
             if (action == NativeMethods.QUEUE_ACTION_RECEIVE)
@@ -3000,9 +3000,9 @@ namespace Messaging.Msmq
         {
             ArgumentNullException.ThrowIfNull(label);
 
-            if (obj is Message)
+            if (obj is Message message)
             {
-                ((Message)obj).Label = label;
+                message.Label = label;
                 SendInternal(obj, transaction, transactionType);
             }
             else
@@ -3751,7 +3751,7 @@ namespace Messaging.Msmq
         private int StaleSafePurgeQueue()
         {
             int status = UnsafeNativeMethods.MQPurgeQueue(MQInfo.ReadHandle);
-            if (status == (int)MessageQueueErrorCode.StaleHandle || status == (int)MessageQueueErrorCode.QueueDeleted)
+            if (status is ((int)MessageQueueErrorCode.StaleHandle) or ((int)MessageQueueErrorCode.QueueDeleted))
             {
                 MQInfo.Close();
                 status = UnsafeNativeMethods.MQPurgeQueue(MQInfo.ReadHandle);
@@ -3780,7 +3780,7 @@ namespace Messaging.Msmq
             }
 
             int status = UnsafeNativeMethods.MQSendMessage(MQInfo.WriteHandle, properties, transaction);
-            if (status == (int)MessageQueueErrorCode.StaleHandle || status == (int)MessageQueueErrorCode.QueueDeleted)
+            if (status is ((int)MessageQueueErrorCode.StaleHandle) or ((int)MessageQueueErrorCode.QueueDeleted))
             {
                 MQInfo.Close();
                 status = UnsafeNativeMethods.MQSendMessage(MQInfo.WriteHandle, properties, transaction);
@@ -3792,7 +3792,7 @@ namespace Messaging.Msmq
         private int StaleSafeSendMessage(MessagePropertyVariants.MQPROPS properties, ITransaction transaction)
         {
             int status = UnsafeNativeMethods.MQSendMessage(MQInfo.WriteHandle, properties, transaction);
-            if (status == (int)MessageQueueErrorCode.StaleHandle || status == (int)MessageQueueErrorCode.QueueDeleted)
+            if (status is ((int)MessageQueueErrorCode.StaleHandle) or ((int)MessageQueueErrorCode.QueueDeleted))
             {
                 MQInfo.Close();
                 status = UnsafeNativeMethods.MQSendMessage(MQInfo.WriteHandle, properties, transaction);
@@ -3888,9 +3888,9 @@ namespace Messaging.Msmq
         {
             // returns true if return code of ReceiveMessage indicates
             // that cached handle used for receive has become invalid
-            return (receiveResult == (int)MessageQueueErrorCode.StaleHandle ||      //both qm and ac restarted
-                    receiveResult == (int)MessageQueueErrorCode.InvalidHandle ||    //get this if ac is not restarted
-                    receiveResult == (int)MessageQueueErrorCode.InvalidParameter); // get this on w2k
+            return (receiveResult is ((int)MessageQueueErrorCode.StaleHandle) or      //both qm and ac restarted
+                    ((int)MessageQueueErrorCode.InvalidHandle) or    //get this if ac is not restarted
+                    ((int)MessageQueueErrorCode.InvalidParameter)); // get this on w2k
         }
 
 

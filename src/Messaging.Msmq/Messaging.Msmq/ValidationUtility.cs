@@ -4,12 +4,12 @@ namespace Messaging.Msmq
     {
         public static bool ValidateAccessControlEntryType(AccessControlEntryType value)
         {
-            return (value >= AccessControlEntryType.Allow) && (value <= AccessControlEntryType.Revoke);
+            return value is >= AccessControlEntryType.Allow and <= AccessControlEntryType.Revoke;
         }
 
         public static bool ValidateCryptographicProviderType(CryptographicProviderType value)
         {
-            return (value >= CryptographicProviderType.None) && (value <= CryptographicProviderType.SttIss);
+            return value is >= CryptographicProviderType.None and <= CryptographicProviderType.SttIss;
         }
 
         public static bool ValidateEncryptionAlgorithm(EncryptionAlgorithm value)
@@ -17,14 +17,14 @@ namespace Messaging.Msmq
             //
             // note that EncryptionAlgorithm has disjoined values
             //
-            return (value == EncryptionAlgorithm.None) ||
-                   (value == EncryptionAlgorithm.Rc2) ||
-                   (value == EncryptionAlgorithm.Rc4);
+            return value is EncryptionAlgorithm.None or
+                   EncryptionAlgorithm.Rc2 or
+                   EncryptionAlgorithm.Rc4;
         }
 
         public static bool ValidateEncryptionRequired(EncryptionRequired value)
         {
-            return (value >= EncryptionRequired.None) && (value <= EncryptionRequired.Body);
+            return value is >= EncryptionRequired.None and <= EncryptionRequired.Body;
         }
 
         public static bool ValidateHashAlgorithm(HashAlgorithm value)
@@ -32,15 +32,15 @@ namespace Messaging.Msmq
             //
             // note that HashAlgorithm has disjoined values
             //
-            return (value == HashAlgorithm.None) ||
-                   (value == HashAlgorithm.Md2) ||
-                   (value == HashAlgorithm.Md4) ||
-                   (value == HashAlgorithm.Md5) ||
-                   (value == HashAlgorithm.Sha) ||
-                   (value == HashAlgorithm.Sha256) ||
-                   (value == HashAlgorithm.Sha384) ||
-                   (value == HashAlgorithm.Sha512) ||
-                   (value == HashAlgorithm.Mac);
+            return value is HashAlgorithm.None or
+                   HashAlgorithm.Md2 or
+                   HashAlgorithm.Md4 or
+                   HashAlgorithm.Md5 or
+                   HashAlgorithm.Sha or
+                   HashAlgorithm.Sha256 or
+                   HashAlgorithm.Sha384 or
+                   HashAlgorithm.Sha512 or
+                   HashAlgorithm.Mac;
         }
 
         public static bool ValidateMessageLookupAction(MessageLookupAction value)
@@ -48,16 +48,16 @@ namespace Messaging.Msmq
             //
             // note that MessageLookupAction has disjoined values
             //
-            return (value == MessageLookupAction.Current) ||
-                   (value == MessageLookupAction.Next) ||
-                   (value == MessageLookupAction.Previous) ||
-                   (value == MessageLookupAction.First) ||
-                   (value == MessageLookupAction.Last);
+            return value is MessageLookupAction.Current or
+                   MessageLookupAction.Next or
+                   MessageLookupAction.Previous or
+                   MessageLookupAction.First or
+                   MessageLookupAction.Last;
         }
 
         public static bool ValidateMessagePriority(MessagePriority value)
         {
-            return (value >= MessagePriority.Lowest) && (value <= MessagePriority.Highest);
+            return value is >= MessagePriority.Lowest and <= MessagePriority.Highest;
 
         }
 
@@ -66,9 +66,9 @@ namespace Messaging.Msmq
             //
             // note that MessageQueueTransactionType has disjoined values
             //
-            return (value == MessageQueueTransactionType.None) ||
-                   (value == MessageQueueTransactionType.Automatic) ||
-                   (value == MessageQueueTransactionType.Single);
+            return value is MessageQueueTransactionType.None or
+                   MessageQueueTransactionType.Automatic or
+                   MessageQueueTransactionType.Single;
         }
 
         public static bool ValidateQueueAccessMode(QueueAccessMode value)
@@ -76,17 +76,17 @@ namespace Messaging.Msmq
             //
             // note that QueueAccessMode has disjoined values
             //
-            return (value == QueueAccessMode.Send) ||
-                   (value == QueueAccessMode.Peek) ||
-                   (value == QueueAccessMode.Receive) ||
-                   (value == QueueAccessMode.PeekAndAdmin) ||
-                   (value == QueueAccessMode.ReceiveAndAdmin) ||
-                   (value == QueueAccessMode.SendAndReceive);
+            return value is QueueAccessMode.Send or
+                   QueueAccessMode.Peek or
+                   QueueAccessMode.Receive or
+                   QueueAccessMode.PeekAndAdmin or
+                   QueueAccessMode.ReceiveAndAdmin or
+                   QueueAccessMode.SendAndReceive;
         }
 
         public static bool ValidateTrusteeType(TrusteeType trustee)
         {
-            return (trustee >= TrusteeType.Unknown) && (trustee <= TrusteeType.Computer);
+            return trustee is >= TrusteeType.Unknown and <= TrusteeType.Computer;
         }
 
     } //class ValidationUtility
