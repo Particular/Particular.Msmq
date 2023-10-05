@@ -82,7 +82,6 @@ namespace Messaging.Msmq.Interop
         GCHandle handleVectorStatus;
         readonly MQPROPS reference;
         int[] vectorIdentifiers;
-        int[] vectorStatus;
         MQPROPVARIANTS[] vectorProperties;
         readonly short[] variantTypes;
         readonly object[] objects;
@@ -363,7 +362,6 @@ namespace Messaging.Msmq.Interop
             handleVectorProperties = GCHandle.Alloc(newVectorProperties, GCHandleType.Pinned);
             handleVectorStatus = GCHandle.Alloc(newVectorStatus, GCHandleType.Pinned);
             vectorIdentifiers = newVectorIdentifiers;
-            vectorStatus = newVectorStatus;
             vectorProperties = newVectorProperties;
             reference.propertyCount = propertyCount;
             reference.propertyIdentifiers = handleVectorIdentifiers.AddrOfPinnedObject();
