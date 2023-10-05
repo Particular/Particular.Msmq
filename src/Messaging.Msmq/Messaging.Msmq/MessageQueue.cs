@@ -3186,13 +3186,7 @@ namespace Messaging.Msmq
                 sendGranted = true;
             }
 
-            Message message = null;
-            if (obj is Message)
-            {
-                message = (Message)obj;
-            }
-
-            if (message == null)
+            if (obj is not Message message)
             {
                 message = DefaultPropertiesToSend.CachedMessage;
                 message.Formatter = Formatter;
