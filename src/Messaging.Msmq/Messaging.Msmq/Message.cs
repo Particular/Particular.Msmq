@@ -523,7 +523,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 //Should not remove if default, the default value might change in future MQ clients
                 //if (value.CompareTo("Microsoft Base Cryptographic Provider, Ver. 1.0") == 0) {
@@ -766,7 +766,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 //If default
                 if (value.Length == 0)
@@ -883,7 +883,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 //If default
                 if (value.Length == 0)
@@ -929,7 +929,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 if (value.Length == 0)
                 {
@@ -1015,7 +1015,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 //If default
                 if (value.Length == 0)
@@ -1050,7 +1050,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 this.cachedFormatter = value;
             }
@@ -1197,7 +1197,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 //If default
                 if (value.Length == 0)
@@ -1470,7 +1470,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 //If default
                 if (value.Length == 0)

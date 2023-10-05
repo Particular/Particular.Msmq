@@ -73,7 +73,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 this.typeNamesAdded = false;
                 this.targetTypeNames = value;
@@ -96,7 +96,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 this.typesAdded = false;
                 this.targetTypes = value;
@@ -111,7 +111,7 @@ namespace Messaging.Msmq
         public bool CanRead(Message message)
         {
             if (message == null)
-                throw new ArgumentNullException("message");
+                throw new ArgumentNullException(nameof(message));
 
             this.CreateTargetSerializerTable();
 
@@ -186,7 +186,7 @@ namespace Messaging.Msmq
         public object Read(Message message)
         {
             if (message == null)
-                throw new ArgumentNullException("message");
+                throw new ArgumentNullException(nameof(message));
 
             this.CreateTargetSerializerTable();
 
@@ -211,10 +211,10 @@ namespace Messaging.Msmq
         public void Write(Message message, object obj)
         {
             if (message == null)
-                throw new ArgumentNullException("message");
+                throw new ArgumentNullException(nameof(message));
 
             if (obj == null)
-                throw new ArgumentNullException("obj");
+                throw new ArgumentNullException(nameof(obj));
 
             Stream stream = new MemoryStream();
             Type serializedType = obj.GetType();

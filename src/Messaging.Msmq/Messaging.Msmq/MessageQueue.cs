@@ -716,7 +716,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 //Borrow this function from message
                 Properties.SetString(NativeMethods.QUEUE_PROPID_LABEL, Message.StringToBytes(value));
@@ -775,7 +775,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 if (!SyntaxCheck.CheckMachineName(value))
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MachineName", value));
@@ -890,7 +890,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 this.receiveFilter = value;
             }
@@ -974,7 +974,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 if (!Msmq3OrNewer) //this feature is unavailable on win2k
                     throw new PlatformNotSupportedException(Res.GetString(Res.PlatformNotSupported));
@@ -1069,7 +1069,7 @@ namespace Messaging.Msmq
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 StringBuilder newPath = new StringBuilder();
                 if ((this.path == null || this.path.Length == 0) && this.formatName == null)
@@ -1416,7 +1416,7 @@ namespace Messaging.Msmq
                 throw new ArgumentOutOfRangeException(Res.GetString(Res.InvalidParameter, "action", action.ToString()));
 
             if (cursor == null)
-                throw new ArgumentNullException("cursor");
+                throw new ArgumentNullException(nameof(cursor));
 
             return ReceiveAsync(timeout, cursor.Handle, (int)action, callback, state);
         }
@@ -1479,7 +1479,7 @@ namespace Messaging.Msmq
         public IAsyncResult BeginReceive(TimeSpan timeout, Cursor cursor, object state, AsyncCallback callback)
         {
             if (cursor == null)
-                throw new ArgumentNullException("cursor");
+                throw new ArgumentNullException(nameof(cursor));
 
             return ReceiveAsync(timeout, cursor.Handle, NativeMethods.QUEUE_ACTION_RECEIVE, callback, state);
         }
@@ -1563,7 +1563,7 @@ namespace Messaging.Msmq
         public static MessageQueue Create(string path, bool transactional)
         {
             if (path == null)
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
 
             if (path.Length == 0)
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "path", path));
@@ -1632,7 +1632,7 @@ namespace Messaging.Msmq
         public static void Delete(string path)
         {
             if (path == null)
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
 
             if (path.Length == 0)
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "path", path));
@@ -1693,7 +1693,7 @@ namespace Messaging.Msmq
         private Message EndAsyncOperation(IAsyncResult asyncResult)
         {
             if (asyncResult == null)
-                throw new ArgumentNullException("asyncResult");
+                throw new ArgumentNullException(nameof(asyncResult));
 
             if (!(asyncResult is AsynchronousRequest))
                 throw new ArgumentException(Res.GetString(Res.AsyncResultInvalid));
@@ -1714,7 +1714,7 @@ namespace Messaging.Msmq
         public static bool Exists(string path)
         {
             if (path == null)
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
 
             if (!ValidatePath(path, false))
                 throw new ArgumentException(Res.GetString(Res.PathSyntax));
@@ -2125,7 +2125,7 @@ namespace Messaging.Msmq
                 throw new ArgumentOutOfRangeException(Res.GetString(Res.InvalidParameter, "action", action.ToString()));
 
             if (cursor == null)
-                throw new ArgumentNullException("cursor");
+                throw new ArgumentNullException(nameof(cursor));
 
             return ReceiveCurrent(timeout, (int)action, cursor.Handle, MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
         }
@@ -2233,7 +2233,7 @@ namespace Messaging.Msmq
         public Message Receive(MessageQueueTransaction transaction)
         {
             if (transaction == null)
-                throw new ArgumentNullException("transaction");
+                throw new ArgumentNullException(nameof(transaction));
 
             return ReceiveCurrent(InfiniteTimeout, NativeMethods.QUEUE_ACTION_RECEIVE, CursorHandle.NullHandle, MessageReadPropertyFilter, transaction, MessageQueueTransactionType.None);
         }
@@ -2268,7 +2268,7 @@ namespace Messaging.Msmq
         public Message Receive(TimeSpan timeout, Cursor cursor)
         {
             if (cursor == null)
-                throw new ArgumentNullException("cursor");
+                throw new ArgumentNullException(nameof(cursor));
 
             return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, cursor.Handle, MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
         }
@@ -2285,7 +2285,7 @@ namespace Messaging.Msmq
         public Message Receive(TimeSpan timeout, MessageQueueTransaction transaction)
         {
             if (transaction == null)
-                throw new ArgumentNullException("transaction");
+                throw new ArgumentNullException(nameof(transaction));
 
             return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, CursorHandle.NullHandle, MessageReadPropertyFilter, transaction, MessageQueueTransactionType.None);
         }
@@ -2307,10 +2307,10 @@ namespace Messaging.Msmq
         public Message Receive(TimeSpan timeout, Cursor cursor, MessageQueueTransaction transaction)
         {
             if (transaction == null)
-                throw new ArgumentNullException("transaction");
+                throw new ArgumentNullException(nameof(transaction));
 
             if (cursor == null)
-                throw new ArgumentNullException("cursor");
+                throw new ArgumentNullException(nameof(cursor));
 
             return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, cursor.Handle, MessageReadPropertyFilter, transaction, MessageQueueTransactionType.None);
         }
@@ -2323,7 +2323,7 @@ namespace Messaging.Msmq
                 throw new InvalidEnumArgumentException("transactionType", (int)transactionType, typeof(MessageQueueTransactionType));
 
             if (cursor == null)
-                throw new ArgumentNullException("cursor");
+                throw new ArgumentNullException(nameof(cursor));
 
             return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, cursor.Handle, MessageReadPropertyFilter, null, transactionType);
         }
@@ -2412,7 +2412,7 @@ namespace Messaging.Msmq
         private Message ReceiveBy(string id, TimeSpan timeout, bool remove, bool compareId, bool throwTimeout, MessageQueueTransaction transaction, MessageQueueTransactionType transactionType)
         {
             if (id == null)
-                throw new ArgumentNullException("id");
+                throw new ArgumentNullException(nameof(id));
 
             if (timeout < TimeSpan.Zero || timeout > InfiniteTimeout)
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
@@ -2527,7 +2527,7 @@ namespace Messaging.Msmq
         public Message ReceiveById(string id, MessageQueueTransaction transaction)
         {
             if (transaction == null)
-                throw new ArgumentNullException("transaction");
+                throw new ArgumentNullException(nameof(transaction));
 
             return ReceiveBy(id, TimeSpan.Zero, true, true, false, transaction, MessageQueueTransactionType.None);
         }
@@ -2576,7 +2576,7 @@ namespace Messaging.Msmq
         public Message ReceiveById(string id, TimeSpan timeout, MessageQueueTransaction transaction)
         {
             if (transaction == null)
-                throw new ArgumentNullException("transaction");
+                throw new ArgumentNullException(nameof(transaction));
 
             return ReceiveBy(id, timeout, true, true, true, transaction, MessageQueueTransactionType.None);
         }
@@ -2625,7 +2625,7 @@ namespace Messaging.Msmq
         public Message ReceiveByCorrelationId(string correlationId, MessageQueueTransaction transaction)
         {
             if (transaction == null)
-                throw new ArgumentNullException("transaction");
+                throw new ArgumentNullException(nameof(transaction));
 
             return ReceiveBy(correlationId, TimeSpan.Zero, true, false, false, transaction, MessageQueueTransactionType.None);
         }
@@ -2675,7 +2675,7 @@ namespace Messaging.Msmq
         public Message ReceiveByCorrelationId(string correlationId, TimeSpan timeout, MessageQueueTransaction transaction)
         {
             if (transaction == null)
-                throw new ArgumentNullException("transaction");
+                throw new ArgumentNullException(nameof(transaction));
 
             return ReceiveBy(correlationId, timeout, true, false, true, transaction, MessageQueueTransactionType.None);
         }
@@ -2955,7 +2955,7 @@ namespace Messaging.Msmq
         public void Send(object obj, MessageQueueTransaction transaction)
         {
             if (transaction == null)
-                throw new ArgumentNullException("transaction");
+                throw new ArgumentNullException(nameof(transaction));
 
             SendInternal(obj, transaction, MessageQueueTransactionType.None);
         }
@@ -3000,7 +3000,7 @@ namespace Messaging.Msmq
         public void Send(object obj, string label, MessageQueueTransaction transaction)
         {
             if (transaction == null)
-                throw new ArgumentNullException("transaction");
+                throw new ArgumentNullException(nameof(transaction));
 
             Send(obj, label, transaction, MessageQueueTransactionType.None);
         }
@@ -3024,7 +3024,7 @@ namespace Messaging.Msmq
         private void Send(object obj, string label, MessageQueueTransaction transaction, MessageQueueTransactionType transactionType)
         {
             if (label == null)
-                throw new ArgumentNullException("label");
+                throw new ArgumentNullException(nameof(label));
 
             if (obj is Message)
             {
@@ -3198,7 +3198,7 @@ namespace Messaging.Msmq
         public void SetPermissions(string user, MessageQueueAccessRights rights)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
 
             SetPermissions(user, rights, AccessControlEntryType.Allow);
         }
@@ -3210,7 +3210,7 @@ namespace Messaging.Msmq
         public void SetPermissions(string user, MessageQueueAccessRights rights, AccessControlEntryType entryType)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
 
             Trustee t = new Trustee(user);
             MessageQueueAccessControlEntry ace = new MessageQueueAccessControlEntry(t, rights, entryType);
@@ -3226,7 +3226,7 @@ namespace Messaging.Msmq
         public void SetPermissions(MessageQueueAccessControlEntry ace)
         {
             if (ace == null)
-                throw new ArgumentNullException("ace");
+                throw new ArgumentNullException(nameof(ace));
 
             AccessControlList dacl = new AccessControlList();
             dacl.Add(ace);
@@ -3240,7 +3240,7 @@ namespace Messaging.Msmq
         public void SetPermissions(AccessControlList dacl)
         {
             if (dacl == null)
-                throw new ArgumentNullException("dacl");
+                throw new ArgumentNullException(nameof(dacl));
 
             if (!administerGranted)
             {
