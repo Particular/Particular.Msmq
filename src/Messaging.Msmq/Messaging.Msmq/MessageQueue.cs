@@ -1688,7 +1688,9 @@ namespace Messaging.Msmq
         ///       the <paramref name="asyncResult"/>
         ///       parameter.</para>
         /// </devdoc>
+#pragma warning disable CA1822 // Mark members as static
         public Message EndPeek(IAsyncResult asyncResult)
+#pragma warning restore CA1822 // Mark members as static
         {
             return EndAsyncOperation(asyncResult);
         }
@@ -1701,13 +1703,14 @@ namespace Messaging.Msmq
         ///       by the specified interface.
         ///    </para>
         /// </devdoc>
+#pragma warning disable CA1822 // Mark members as static
         public Message EndReceive(IAsyncResult asyncResult)
+#pragma warning restore CA1822 // Mark members as static
         {
             return EndAsyncOperation(asyncResult);
         }
 
-
-        Message EndAsyncOperation(IAsyncResult asyncResult)
+        static Message EndAsyncOperation(IAsyncResult asyncResult)
         {
             ArgumentNullException.ThrowIfNull(asyncResult);
 
@@ -1720,7 +1723,6 @@ namespace Messaging.Msmq
 
             return request.End();
         }
-
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Exists"]/*' />
         /// <devdoc>
@@ -3855,7 +3857,7 @@ namespace Messaging.Msmq
 
                 message.Unlock();
 
-                if (owner.IsCashedInfoInvalidOnReceive(result))
+                if (IsCashedInfoInvalidOnReceive(result))
                 {
                     owner.MQInfo.Close();
                     try
@@ -4057,8 +4059,7 @@ namespace Messaging.Msmq
             return status;
         }
 
-
-        bool IsCashedInfoInvalidOnReceive(int receiveResult)
+        static bool IsCashedInfoInvalidOnReceive(int receiveResult)
         {
             // returns true if return code of ReceiveMessage indicates
             // that cached handle used for receive has become invalid

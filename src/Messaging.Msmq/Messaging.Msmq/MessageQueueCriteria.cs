@@ -341,7 +341,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.ConvertTime"]/*' />
         /// <internalonly/>
-        int ConvertTime(DateTime time)
+        static int ConvertTime(DateTime time)
         {
             time = time.ToUniversalTime();
             return (int)(time - minDate).TotalSeconds;

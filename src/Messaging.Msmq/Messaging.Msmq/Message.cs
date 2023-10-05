@@ -2516,7 +2516,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.IdFromByteArray"]/*' />
         /// <internalonly/>
-        string IdFromByteArray(byte[] bytes)
+        static string IdFromByteArray(byte[] bytes)
         {
             StringBuilder result = new();
             byte[] guidBytes = new byte[GenericIdSize];
