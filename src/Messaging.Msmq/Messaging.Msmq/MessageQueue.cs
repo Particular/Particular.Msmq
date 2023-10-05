@@ -12,7 +12,6 @@ namespace Messaging.Msmq
     using System.ComponentModel;
     using System.ComponentModel.Design;
     using System.Diagnostics;
-    using System.DirectoryServices;
     using System.Globalization;
     using System.Runtime.InteropServices;
     using System.Text;
@@ -2011,54 +2010,6 @@ namespace Messaging.Msmq
         {
             if (!SyntaxCheck.CheckMachineName(machineName))
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
-
-            try
-            {
-                DirectorySearcher localComputerSearcher = new DirectorySearcher(String.Format(CultureInfo.InvariantCulture, "(&(CN={0})(objectCategory=Computer))", ComputerName));
-                SearchResult localComputer = localComputerSearcher.FindOne();
-                if (localComputer != null)
-                {
-                    DirectorySearcher localComputerMsmqSearcher = new DirectorySearcher(localComputer.GetDirectoryEntry());
-                    localComputerMsmqSearcher.Filter = "(CN=msmq)";
-                    SearchResult localMsmqNode = localComputerMsmqSearcher.FindOne();
-                    SearchResult remoteMsmqNode = null;
-                    if (localMsmqNode != null)
-                    {
-                        if (machineName != "." && String.Compare(machineName, ComputerName, true, CultureInfo.InvariantCulture) != 0)
-                        {
-                            DirectorySearcher remoteComputerSearcher = new DirectorySearcher(String.Format(CultureInfo.InvariantCulture, "(&(CN={0})(objectCategory=Computer))", machineName));
-                            SearchResult remoteComputer = remoteComputerSearcher.FindOne();
-                            if (remoteComputer == null)
-                                return new MessageQueue[0];
-
-                            DirectorySearcher remoteComputerMsmqSearcher = new DirectorySearcher(remoteComputer.GetDirectoryEntry());
-                            remoteComputerMsmqSearcher.Filter = "(CN=msmq)";
-                            remoteMsmqNode = remoteComputerMsmqSearcher.FindOne();
-                            if (remoteMsmqNode == null)
-                                return new MessageQueue[0];
-                        }
-                        else
-                            remoteMsmqNode = localMsmqNode;
-
-                        DirectorySearcher objectsSearcher = new DirectorySearcher(remoteMsmqNode.GetDirectoryEntry());
-                        objectsSearcher.Filter = "(objectClass=mSMQQueue)";
-                        objectsSearcher.PropertiesToLoad.Add("Name");
-                        SearchResultCollection objects = objectsSearcher.FindAll();
-                        MessageQueue[] queues = new MessageQueue[objects.Count];
-                        for (int index = 0; index < queues.Length; ++index)
-                        {
-                            string queueName = (string)objects[index].Properties["Name"][0];
-                            queues[index] = new MessageQueue(String.Format(CultureInfo.InvariantCulture, "{0}\\{1}", machineName, queueName));
-                        }
-
-                        return queues;
-                    }
-                }
-            }
-            catch
-            {
-                //Ignore all exceptions, so we can gracefully downgrade to use MQ locator.
-            }
 
             MessageQueueCriteria criteria = new MessageQueueCriteria();
             criteria.MachineName = machineName;
