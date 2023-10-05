@@ -297,7 +297,7 @@ namespace Messaging.Msmq.Interop
         {
             int[] newVectorIdentifiers = new int[propertyCount];
             int[] newVectorStatus = new int[propertyCount];
-            MQPROPVARIANTS[] newVectorProperties = new MQPROPVARIANTS[propertyCount];
+            var newVectorProperties = new MQPROPVARIANTS[propertyCount];
             int usedProperties = 0;
 
             for (int i = 0; i < MAX_PROPERTIES; ++i)
@@ -320,7 +320,7 @@ namespace Messaging.Msmq.Interop
                             newVectorProperties[usedProperties].caub.cElems = (uint)handles[i];
                         }
 
-                        GCHandle handle = GCHandle.Alloc(objects[i], GCHandleType.Pinned);
+                        var handle = GCHandle.Alloc(objects[i], GCHandleType.Pinned);
                         handles[i] = handle;
                         newVectorProperties[usedProperties].caub.pElems = handle.AddrOfPinnedObject();
                     }
@@ -342,7 +342,7 @@ namespace Messaging.Msmq.Interop
                     }
                     else if (vt is VT_LPWSTR or VT_CLSID)
                     {
-                        GCHandle handle = GCHandle.Alloc(objects[i], GCHandleType.Pinned);
+                        var handle = GCHandle.Alloc(objects[i], GCHandleType.Pinned);
                         handles[i] = handle;
                         newVectorProperties[usedProperties].ptr = handle.AddrOfPinnedObject();
                     }

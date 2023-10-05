@@ -1750,7 +1750,7 @@ namespace Messaging.Msmq
                 if (machineName == null)
                 {
                     byte[] bytes = properties.GetGuid(NativeMethods.MESSAGE_PROPID_SRC_MACHINE_ID);
-                    GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+                    var handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
 
                     MachinePropertyVariants machineProperties = new();
                     machineProperties.SetNull(NativeMethods.MACHINE_PATHNAME);

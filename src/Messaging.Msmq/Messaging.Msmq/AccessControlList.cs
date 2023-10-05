@@ -132,9 +132,9 @@ namespace Messaging.Msmq
             int ACECount = List.Count;
             IntPtr newAcl;
 
-            NativeMethods.ExplicitAccess[] entries = new NativeMethods.ExplicitAccess[ACECount];
+            var entries = new NativeMethods.ExplicitAccess[ACECount];
 
-            GCHandle mem = GCHandle.Alloc(entries, GCHandleType.Pinned);
+            var mem = GCHandle.Alloc(entries, GCHandleType.Pinned);
             try
             {
                 for (int i = 0; i < ACECount; i++)
@@ -142,7 +142,7 @@ namespace Messaging.Msmq
                     int sidSize = 0;
                     int domainSize = 0;
 
-                    AccessControlEntry ace = (AccessControlEntry)List[i];
+                    var ace = (AccessControlEntry)List[i];
 
                     if (ace.Trustee == null)
                     {

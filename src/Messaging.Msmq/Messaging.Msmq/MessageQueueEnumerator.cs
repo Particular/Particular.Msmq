@@ -172,7 +172,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public bool MoveNext()
         {
-            MQPROPVARIANTS[] array = new MQPROPVARIANTS[2];
+            var array = new MQPROPVARIANTS[2];
             int propertyCount;
             string currentItem;
             byte[] currentGuid = new byte[16];

@@ -1194,7 +1194,7 @@ namespace Messaging.Msmq
             {
                 if (synchronizingObject == null && DesignMode)
                 {
-                    IDesignerHost host = (IDesignerHost)GetService(typeof(IDesignerHost));
+                    var host = (IDesignerHost)GetService(typeof(IDesignerHost));
                     if (host != null)
                     {
                         object baseComponent = host.RootComponent;
@@ -1353,7 +1353,7 @@ namespace Messaging.Msmq
                     {
                         if (outstandingAsyncRequests == null)
                         {
-                            Hashtable requests = Hashtable.Synchronized(new Hashtable());
+                            var requests = Hashtable.Synchronized(new Hashtable());
                             Thread.MemoryBarrier();
                             outstandingAsyncRequests = requests;
 
@@ -1661,7 +1661,7 @@ namespace Messaging.Msmq
                 messageQueuesList.Add(messageQueue);
             }
 
-            MessageQueue[] queues = new MessageQueue[messageQueuesList.Count];
+            var queues = new MessageQueue[messageQueuesList.Count];
             messageQueuesList.CopyTo(queues, 0);
             return queues;
         }
@@ -1747,7 +1747,7 @@ namespace Messaging.Msmq
                 throw new ArgumentException(Res.GetString(Res.AsyncResultInvalid));
             }
 
-            AsynchronousRequest request = (AsynchronousRequest)asyncResult;
+            var request = (AsynchronousRequest)asyncResult;
 
             return request.End();
         }
@@ -1834,7 +1834,7 @@ namespace Messaging.Msmq
                 messageList.Add(message);
             }
 
-            Message[] resultMessages = new Message[messageList.Count];
+            var resultMessages = new Message[messageList.Count];
             messageList.CopyTo(resultMessages, 0);
             return resultMessages;
         }
@@ -2001,7 +2001,7 @@ namespace Messaging.Msmq
 
             uint len = properties.GetStringVectorLength(NativeMethods.MANAGEMENT_PRIVATEQ);
             IntPtr basePointer = properties.GetStringVectorBasePointer(NativeMethods.MANAGEMENT_PRIVATEQ);
-            MessageQueue[] queues = new MessageQueue[len];
+            var queues = new MessageQueue[len];
             for (int index = 0; index < len; ++index)
             {
                 IntPtr stringPointer = checked(Marshal.ReadIntPtr((IntPtr)((long)basePointer + index * IntPtr.Size)));
@@ -3427,7 +3427,7 @@ namespace Messaging.Msmq
             byte[] SecurityDescriptor = new byte[100];
             int mqResult;
 
-            GCHandle sdHandle = GCHandle.Alloc(SecurityDescriptor, GCHandleType.Pinned);
+            var sdHandle = GCHandle.Alloc(SecurityDescriptor, GCHandleType.Pinned);
             try
             {
                 mqResult = UnsafeNativeMethods.MQGetQueueSecurity(FormatName,
@@ -4593,7 +4593,7 @@ namespace Messaging.Msmq
                     return false;
                 }
 
-                QueueInfoKeyHolder qik = (QueueInfoKeyHolder)obj;
+                var qik = (QueueInfoKeyHolder)obj;
                 return Equals(qik);
             }
 

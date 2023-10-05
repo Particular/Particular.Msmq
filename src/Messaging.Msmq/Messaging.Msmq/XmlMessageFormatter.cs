@@ -161,7 +161,7 @@ namespace Messaging.Msmq
             {
                 for (int index = 0; index < targetTypeNames.Length; ++index)
                 {
-                    Type targetType = Type.GetType(targetTypeNames[index], true);
+                    var targetType = Type.GetType(targetTypeNames[index], true);
                     if (targetType != null)
                     {
                         targetSerializerTable[targetType] = new XmlSerializer(targetType);
