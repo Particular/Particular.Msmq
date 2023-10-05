@@ -415,7 +415,7 @@ namespace Messaging.Msmq
             {
                 if (computerName == null)
                 {
-                    lock (MessageQueue.staticSyncRoot)
+                    lock (staticSyncRoot)
                     {
                         if (computerName == null)
                         {
@@ -593,7 +593,7 @@ namespace Messaging.Msmq
                     // see if we already have this cached
                     if (enableCache)
                     {
-                        formatName = MessageQueue.formatNameCache.Get(pathUpper);
+                        formatName = formatNameCache.Get(pathUpper);
                     }
 
                     // not in the cache?  keep working.
@@ -634,7 +634,7 @@ namespace Messaging.Msmq
                             formatName = ResolveFormatNameFromQueuePath(queuePath, true);
                         }
 
-                        MessageQueue.formatNameCache.Put(pathUpper, formatName);
+                        formatNameCache.Put(pathUpper, formatName);
                     }
                 }
 
@@ -1586,7 +1586,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public static MessageQueue Create(string path)
         {
-            return MessageQueue.Create(path, false);
+            return Create(path, false);
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Create1"]/*' />
@@ -1630,7 +1630,7 @@ namespace Messaging.Msmq
             //Try to create queue.
             status = UnsafeNativeMethods.MQCreateQueue(IntPtr.Zero, properties.Lock(), formatName, ref formatNameLen);
             properties.Unlock();
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -1693,7 +1693,7 @@ namespace Messaging.Msmq
             MessageQueue queue = new(path);
 
             status = UnsafeNativeMethods.MQDeleteQueue(queue.FormatName);
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -1815,7 +1815,7 @@ namespace Messaging.Msmq
 
             int status = UnsafeNativeMethods.MQGetQueueProperties(FormatName, Properties.Lock());
             Properties.Unlock();
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -1865,7 +1865,7 @@ namespace Messaging.Msmq
 
             if (machineName == ".")
             {
-                machineName = MessageQueue.ComputerName;
+                machineName = ComputerName;
             }
 
             MachinePropertyVariants machineProperties = new();
@@ -1874,7 +1874,7 @@ namespace Messaging.Msmq
             int status = UnsafeNativeMethods.MQGetMachineProperties(machineName, IntPtr.Zero, machineProperties.Lock());
             machineProperties.Unlock();
             IntPtr handle = machineProperties.GetIntPtr(NativeMethods.MACHINE_ID);
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 if (handle != IntPtr.Zero)
                 {
@@ -1902,7 +1902,7 @@ namespace Messaging.Msmq
         {
             // SECURITY: Note that this call is not marked with SUCS attribute (i.e., requires FullTrust)
             int status = NativeMethods.MQGetSecurityContextEx(out SecurityContextHandle handle);
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -1988,7 +1988,7 @@ namespace Messaging.Msmq
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
             }
 
-            if (machineName == "." || (String.Compare(machineName, MessageQueue.ComputerName, true, CultureInfo.InvariantCulture) == 0))
+            if (machineName == "." || (String.Compare(machineName, ComputerName, true, CultureInfo.InvariantCulture) == 0))
             {
                 machineName = null;
             }
@@ -1997,7 +1997,7 @@ namespace Messaging.Msmq
             properties.SetNull(NativeMethods.MANAGEMENT_PRIVATEQ);
             int status = UnsafeNativeMethods.MQMgmtGetInfo(machineName, "MACHINE", properties.Lock());
             properties.Unlock();
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -2300,7 +2300,7 @@ namespace Messaging.Msmq
             }
 
             int status = StaleSafePurgeQueue();
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -2542,7 +2542,7 @@ namespace Messaging.Msmq
                 // Get cursor handle
                 //
                 int status = SafeNativeMethods.MQCreateCursor(MQInfo.ReadHandle, out cursorHandle);
-                if (MessageQueue.IsFatalError(status))
+                if (IsFatalError(status))
                 {
                     throw new MessageQueueException(status);
                 }
@@ -2921,7 +2921,7 @@ namespace Messaging.Msmq
                 {
                     //Need to keep trying until enough space has been allocated.
                     //Concurrent scenarions might not succeed on the second retry.
-                    while (MessageQueue.IsMemoryError(status))
+                    while (IsMemoryError(status))
                     {
                         receiveMessage.Unlock();
                         receiveMessage.AdjustMemory();
@@ -2952,7 +2952,7 @@ namespace Messaging.Msmq
                 throw new InvalidOperationException(Res.GetString("MessageNotFound"));
             }
 
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -3016,7 +3016,7 @@ namespace Messaging.Msmq
                 {
                     //Need to keep trying until enough space has been allocated.
                     //Concurrent scenarios might not succeed on the second retry.
-                    while (MessageQueue.IsMemoryError(status))
+                    while (IsMemoryError(status))
                     {
                         // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
@@ -3048,7 +3048,7 @@ namespace Messaging.Msmq
                 internalTransaction?.EndQueueOperation();
             }
 
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -3081,7 +3081,7 @@ namespace Messaging.Msmq
 
             int status = UnsafeNativeMethods.MQSetQueueProperties(FormatName, Properties.Lock());
             Properties.Unlock();
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -3247,7 +3247,7 @@ namespace Messaging.Msmq
                 internalTransaction?.EndQueueOperation();
             }
 
-            if (MessageQueue.IsFatalError(status))
+            if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
@@ -3290,11 +3290,11 @@ namespace Messaging.Msmq
 
                 if (machine.CompareTo(".") == 0)
                 {
-                    machine = MessageQueue.ComputerName;
+                    machine = ComputerName;
                 }
 
                 //Create a guid to get the right format.
-                Guid machineId = MessageQueue.GetMachineId(machine);
+                Guid machineId = GetMachineId(machine);
                 StringBuilder newFormatName = new();
                 //System format names:
                 //MACHINE=guid;DEADXACT
@@ -3791,7 +3791,7 @@ namespace Messaging.Msmq
                 try
                 {
                     localStatus = owner.StaleSafeReceiveMessage(timeout, action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
-                    while (MessageQueue.IsMemoryError(localStatus))
+                    while (IsMemoryError(localStatus))
                     {
                         // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
@@ -3830,7 +3830,7 @@ namespace Messaging.Msmq
                 // NOTE: RaiseCompletionEvent is not in a finally block by design, for two reasons:
                 // 1) the contract of BeginRead is to throw exception and not to notify event handler.
                 // 2) we dont know what the value pf localStatus will be in case of exception
-                if (MessageQueue.IsFatalError(localStatus))
+                if (IsFatalError(localStatus))
                 {
                     RaiseCompletionEvent(localStatus, overlappedPointer);
                 }
@@ -3846,7 +3846,7 @@ namespace Messaging.Msmq
             internal Message End()
             {
                 resetEvent.WaitOne();
-                if (MessageQueue.IsFatalError(status))
+                if (IsFatalError(status))
                 {
                     throw new MessageQueueException(status);
                 }
@@ -3907,9 +3907,9 @@ namespace Messaging.Msmq
             private unsafe void RaiseCompletionEvent(int result, NativeOverlapped* overlappedPointer)
             {
 
-                if (MessageQueue.IsMemoryError(result))
+                if (IsMemoryError(result))
                 {
-                    while (MessageQueue.IsMemoryError(result))
+                    while (IsMemoryError(result))
                     {
                         // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
@@ -3936,7 +3936,7 @@ namespace Messaging.Msmq
                         }
                     }
 
-                    if (!MessageQueue.IsFatalError(result))
+                    if (!IsFatalError(result))
                     {
                         return;
                     }
@@ -3957,7 +3957,7 @@ namespace Messaging.Msmq
                         result = (int)e.MessageQueueErrorCode;
                     }
 
-                    if (!MessageQueue.IsFatalError(result))
+                    if (!IsFatalError(result))
                     {
                         return;
                     }
@@ -4196,7 +4196,7 @@ namespace Messaging.Msmq
                         CacheEntry<Value> entry = table[key];
                         if (entry != null)
                         {
-                            entry.timeStamp = System.DateTime.UtcNow;
+                            entry.timeStamp = DateTime.UtcNow;
                             val = entry.contents;
                         }
                     }
@@ -4234,7 +4234,7 @@ namespace Messaging.Msmq
                                 ClearStale(staleTime);
                             }
                         }
-                        entry.timeStamp = System.DateTime.UtcNow;
+                        entry.timeStamp = DateTime.UtcNow;
                         entry.contents = val;
                     }
                 }
@@ -4262,7 +4262,7 @@ namespace Messaging.Msmq
 
             public void ClearStale(TimeSpan staleAge)
             {
-                DateTime now = System.DateTime.UtcNow;
+                DateTime now = DateTime.UtcNow;
                 Dictionary<Key, CacheEntry<Value>> newTable = [];
 
                 rwLock.AcquireReaderLock(-1);
@@ -4354,7 +4354,7 @@ namespace Messaging.Msmq
                             if (readHandle.IsInvalid)
                             {
                                 int status = UnsafeNativeMethods.MQOpenQueue(formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
-                                if (MessageQueue.IsFatalError(status))
+                                if (IsFatalError(status))
                                 {
                                     return false;
                                 }
@@ -4387,7 +4387,7 @@ namespace Messaging.Msmq
                             if (writeHandle.IsInvalid)
                             {
                                 int status = UnsafeNativeMethods.MQOpenQueue(formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
-                                if (MessageQueue.IsFatalError(status))
+                                if (IsFatalError(status))
                                 {
                                     return false;
                                 }
@@ -4422,7 +4422,7 @@ namespace Messaging.Msmq
                             if (readHandle.IsInvalid)
                             {
                                 int status = UnsafeNativeMethods.MQOpenQueue(formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
-                                if (MessageQueue.IsFatalError(status))
+                                if (IsFatalError(status))
                                 {
                                     throw new MessageQueueException(status);
                                 }
@@ -4449,7 +4449,7 @@ namespace Messaging.Msmq
                             if (writeHandle.IsInvalid)
                             {
                                 int status = UnsafeNativeMethods.MQOpenQueue(formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
-                                if (MessageQueue.IsFatalError(status))
+                                if (IsFatalError(status))
                                 {
                                     throw new MessageQueueException(status);
                                 }
@@ -4477,7 +4477,7 @@ namespace Messaging.Msmq
                                 props.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, (byte)0);
                                 int status = UnsafeNativeMethods.MQGetQueueProperties(formatName, props.Lock());
                                 props.Unlock();
-                                if (MessageQueue.IsFatalError(status))
+                                if (IsFatalError(status))
                                 {
                                     throw new MessageQueueException(status);
                                 }

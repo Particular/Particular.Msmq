@@ -54,9 +54,9 @@ namespace Messaging.Msmq
 
             set
             {
-                if (value < MessageQueueCriteria.minDate || value > MessageQueueCriteria.maxDate)
+                if (value < minDate || value > maxDate)
                 {
-                    throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
+                    throw new ArgumentException(Res.GetString(Res.InvalidDateValue, minDate.ToString(CultureInfo.CurrentCulture), maxDate.ToString(CultureInfo.CurrentCulture)));
                 }
 
                 createdAfter = value;
@@ -89,9 +89,9 @@ namespace Messaging.Msmq
 
             set
             {
-                if (value < MessageQueueCriteria.minDate || value > MessageQueueCriteria.maxDate)
+                if (value < minDate || value > maxDate)
                 {
-                    throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
+                    throw new ArgumentException(Res.GetString(Res.InvalidDateValue, minDate.ToString(CultureInfo.CurrentCulture), maxDate.ToString(CultureInfo.CurrentCulture)));
                 }
 
                 createdBefore = value;
@@ -190,9 +190,9 @@ namespace Messaging.Msmq
 
             set
             {
-                if (value < MessageQueueCriteria.minDate || value > MessageQueueCriteria.maxDate)
+                if (value < minDate || value > maxDate)
                 {
-                    throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
+                    throw new ArgumentException(Res.GetString(Res.InvalidDateValue, minDate.ToString(CultureInfo.CurrentCulture), maxDate.ToString(CultureInfo.CurrentCulture)));
                 }
 
                 modifiedAfter = value;
@@ -226,9 +226,9 @@ namespace Messaging.Msmq
 
             set
             {
-                if (value < MessageQueueCriteria.minDate || value > MessageQueueCriteria.maxDate)
+                if (value < minDate || value > maxDate)
                 {
-                    throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
+                    throw new ArgumentException(Res.GetString(Res.InvalidDateValue, minDate.ToString(CultureInfo.CurrentCulture), maxDate.ToString(CultureInfo.CurrentCulture)));
                 }
 
                 modifiedBefore = value;
@@ -352,7 +352,7 @@ namespace Messaging.Msmq
         private int ConvertTime(DateTime time)
         {
             time = time.ToUniversalTime();
-            return (int)(time - MessageQueueCriteria.minDate).TotalSeconds;
+            return (int)(time - minDate).TotalSeconds;
         }
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.CriteriaPropertyFilter"]/*' />

@@ -36,7 +36,7 @@ namespace Messaging.Msmq
             {
                 if (environment == UnknownEnvironment)
                 {
-                    lock (AccessControlList.staticLock)
+                    lock (staticLock)
                     {
                         if (environment == UnknownEnvironment)
                         {

@@ -16,7 +16,7 @@ namespace Messaging.Msmq.Interop
     {
         public unsafe delegate void ReceiveCallback(int result, IntPtr handle, int timeout, int action, IntPtr propertiesPointer, NativeOverlapped* overlappedPointer, IntPtr cursorHandle);
 
-        [DllImport(ExternDll.Mqrt, EntryPoint = "MQBeginTransaction", CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, EntryPoint = "MQBeginTransaction", CharSet = CharSet.Unicode)]
         public static extern int IntMQBeginTransaction(out ITransaction refTransaction);
         public static int MQBeginTransaction(out ITransaction refTransaction)
         {
@@ -30,10 +30,10 @@ namespace Messaging.Msmq.Interop
             }
         }
 
-        [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, CharSet = CharSet.Unicode)]
         public static extern int MQCloseQueue(IntPtr handle);
 
-        [DllImport(ExternDll.Mqrt, EntryPoint = "MQPathNameToFormatName", CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, EntryPoint = "MQPathNameToFormatName", CharSet = CharSet.Unicode)]
         private static extern int IntMQPathNameToFormatName(string pathName, StringBuilder formatName, ref int count);
         public static int MQPathNameToFormatName(string pathName, StringBuilder formatName, ref int count)
         {
@@ -47,7 +47,7 @@ namespace Messaging.Msmq.Interop
             }
         }
 
-        [DllImport(ExternDll.Mqrt, EntryPoint = "MQInstanceToFormatName", CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, EntryPoint = "MQInstanceToFormatName", CharSet = CharSet.Unicode)]
         public static extern int IntMQInstanceToFormatName(byte[] id, StringBuilder formatName, ref int count);
         public static int MQInstanceToFormatName(byte[] id, StringBuilder formatName, ref int count)
         {
@@ -61,25 +61,25 @@ namespace Messaging.Msmq.Interop
             }
         }
 
-        [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, CharSet = CharSet.Unicode)]
         public static extern int MQCreateCursor(MessageQueueHandle handle, out CursorHandle cursorHandle);
 
-        [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, CharSet = CharSet.Unicode)]
         public static extern int MQCloseCursor(IntPtr cursorHandle);
 
-        [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, CharSet = CharSet.Unicode)]
         public static extern void MQFreeSecurityContext(IntPtr handle);
 
-        [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, CharSet = CharSet.Unicode)]
         public static extern int MQLocateEnd(IntPtr enumHandle);
 
-        [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, CharSet = CharSet.Unicode)]
         public static extern int MQLocateNext(LocatorHandle enumHandle, ref int propertyCount, [Out] MQPROPVARIANTS[] variantArray);
 
-        [DllImport(ExternDll.Mqrt, CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+        [DllImport(ExternDll.Mqrt, CharSet = CharSet.Unicode)]
         public static extern void MQFreeMemory(IntPtr memory);
 
-        [DllImport(ExternDll.Kernel32, ExactSpelling = true, CharSet = System.Runtime.InteropServices.CharSet.Auto, SetLastError = true)]
+        [DllImport(ExternDll.Kernel32, ExactSpelling = true, CharSet = CharSet.Auto, SetLastError = true)]
         public static extern bool GetHandleInformation(SafeHandle handle, out int handleInformation);
 
         [DllImport(ExternDll.Kernel32)]
@@ -104,7 +104,7 @@ namespace Messaging.Msmq.Interop
             FORMAT_MESSAGE_ARGUMENT_ARRAY = 0x00002000,
             FORMAT_MESSAGE_MAX_WIDTH_MASK = 0x000000FF;
 
-        [DllImport(ExternDll.Kernel32, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+        [DllImport(ExternDll.Kernel32, CharSet = CharSet.Auto)]
         public static extern int FormatMessage(int dwFlags, IntPtr lpSource, int dwMessageId,
                                                 int dwLanguageId, StringBuilder lpBuffer, int nSize, IntPtr arguments);
 

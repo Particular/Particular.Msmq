@@ -2228,7 +2228,7 @@ namespace Messaging.Msmq
             if (filter.AdministrationQueue)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_ADMIN_QUEUE_LEN);
-                if (size > Message.DefaultQueueNameSize)
+                if (size > DefaultQueueNameSize)
                 {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_ADMIN_QUEUE, new byte[size * 2]);
                 }
@@ -2246,7 +2246,7 @@ namespace Messaging.Msmq
             if (filter.AuthenticationProviderName)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_PROV_NAME_LEN);
-                if (size > Message.DefaultCryptographicProviderNameSize)
+                if (size > DefaultCryptographicProviderNameSize)
                 {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_PROV_NAME, new byte[size * 2]);
                 }
@@ -2255,7 +2255,7 @@ namespace Messaging.Msmq
             if (filter.DestinationQueue)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_DEST_QUEUE_LEN);
-                if (size > Message.DefaultQueueNameSize)
+                if (size > DefaultQueueNameSize)
                 {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_DEST_QUEUE, new byte[size * 2]);
                 }
@@ -2273,7 +2273,7 @@ namespace Messaging.Msmq
             if (filter.TransactionStatusQueue)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_XACT_STATUS_QUEUE_LEN);
-                if (size > Message.DefaultQueueNameSize)
+                if (size > DefaultQueueNameSize)
                 {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_XACT_STATUS_QUEUE, new byte[size * 2]);
                 }
@@ -2291,7 +2291,7 @@ namespace Messaging.Msmq
             if (filter.ResponseQueue)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_RESP_QUEUE_LEN);
-                if (size > Message.DefaultQueueNameSize)
+                if (size > DefaultQueueNameSize)
                 {
                     properties.SetString(NativeMethods.MESSAGE_PROPID_RESP_QUEUE, new byte[size * 2]);
                 }
@@ -2300,7 +2300,7 @@ namespace Messaging.Msmq
             if (filter.SenderCertificate)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_SENDER_CERT_LEN);
-                if (size > Message.DefaultSenderCertificateSize)
+                if (size > DefaultSenderCertificateSize)
                 {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_SENDER_CERT, new byte[size]);
                 }
@@ -2309,7 +2309,7 @@ namespace Messaging.Msmq
             if (filter.SenderId)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_LEN);
-                if (size > Message.DefaultSenderIdSize)
+                if (size > DefaultSenderIdSize)
                 {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_SENDERID, new byte[size]);
                 }
@@ -2318,7 +2318,7 @@ namespace Messaging.Msmq
             if (filter.DestinationSymmetricKey)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_DEST_SYMM_KEY_LEN);
-                if (size > Message.DefaultSymmetricKeySize)
+                if (size > DefaultSymmetricKeySize)
                 {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_DEST_SYMM_KEY, new byte[size]);
                 }
@@ -2327,7 +2327,7 @@ namespace Messaging.Msmq
             if (filter.DigitalSignature)
             {
                 int size = properties.GetUI4(NativeMethods.MESSAGE_PROPID_SIGNATURE_LEN);
-                if (size > Message.DefaultDigitalSignatureSize)
+                if (size > DefaultDigitalSignatureSize)
                 {
                     properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_SIGNATURE, new byte[size]);
                 }
