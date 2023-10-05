@@ -902,8 +902,7 @@ namespace Messaging.Msmq
                     MQCacheableInfo cachedInfo = queueInfoCache.Get(QueueInfoKey);
                     if (sharedMode == NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE || !enableCache)
                     {
-                        if (cachedInfo != null)
-                            cachedInfo.CloseIfNotReferenced();
+                        cachedInfo?.CloseIfNotReferenced();
 
                         // don't use the cache
                         mqInfo = new MQCacheableInfo(this.FormatName, accessMode, sharedMode);
@@ -2478,10 +2477,7 @@ namespace Messaging.Msmq
             finally
             {
                 this.receiveFilter = oldFilter;
-                if (cursorHandle != null)
-                {
-                    cursorHandle.Close();
-                }
+                cursorHandle?.Close();
             }
 
             if (!throwTimeout)
@@ -2872,11 +2868,9 @@ namespace Messaging.Msmq
             }
             finally
             {
-                if (receiveMessage != null)
-                    receiveMessage.Unlock();
+                receiveMessage?.Unlock();
 
-                if (internalTransaction != null)
-                    internalTransaction.EndQueueOperation();
+                internalTransaction?.EndQueueOperation();
             }
 
             if (MessageQueue.IsFatalError(status))
@@ -3061,8 +3055,7 @@ namespace Messaging.Msmq
             {
                 message.Unlock();
 
-                if (internalTransaction != null)
-                    internalTransaction.EndQueueOperation();
+                internalTransaction?.EndQueueOperation();
             }
 
             if (MessageQueue.IsFatalError(status))
