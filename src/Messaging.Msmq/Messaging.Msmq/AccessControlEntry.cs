@@ -1,8 +1,8 @@
-using System;
-using System.ComponentModel;
-
 namespace Messaging.Msmq
 {
+    using System;
+    using System.ComponentModel;
+
     /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry"]/*' />
     /// <devdoc>
     ///    <para>[To be supplied.]</para>

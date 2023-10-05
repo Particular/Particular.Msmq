@@ -1,8 +1,7 @@
-using System;
-using System.ComponentModel;
-
 namespace Messaging.Msmq
 {
+    using System;
+    using System.ComponentModel;
 
     /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee"]/*' />
     /// <devdoc>

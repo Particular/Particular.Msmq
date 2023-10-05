@@ -1,7 +1,6 @@
-using System;
-
 namespace Messaging.Msmq
 {
+    using System;
 
     /// <include file='doc\MessageQueueAccessRights.uex' path='docs/doc[@for="MessageQueueAccessRights"]/*' />
     /// <devdoc>

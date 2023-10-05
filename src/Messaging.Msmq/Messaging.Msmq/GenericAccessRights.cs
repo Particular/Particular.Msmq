@@ -1,7 +1,7 @@
-using System;
-
 namespace Messaging.Msmq
 {
+    using System;
+
     /// <include file='doc\GenericAccessRights.uex' path='docs/doc[@for="GenericAccessRights"]/*' />
     /// <devdoc>
     ///    <para>[To be supplied.]</para>

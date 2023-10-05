@@ -1,7 +1,7 @@
-using Messaging.Msmq.Interop;
-
 namespace Messaging.Msmq
 {
+    using Messaging.Msmq.Interop;
+
     /// <include file='doc\AccessControlEntryType.uex' path='docs/doc[@for="AccessControlEntryType"]/*' />
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
