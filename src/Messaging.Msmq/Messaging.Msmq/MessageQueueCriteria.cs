@@ -28,11 +28,11 @@ namespace Messaging.Msmq
         private DateTime modifiedAfter;
         private DateTime modifiedBefore;
         private Guid category;
-        private CriteriaPropertyFilter filter = new CriteriaPropertyFilter();
+        private readonly CriteriaPropertyFilter filter = new CriteriaPropertyFilter();
         private Restrictions restrictions;
         private Guid machineId;
-        private static DateTime minDate = new DateTime(1970, 1, 1);
-        private static DateTime maxDate = new DateTime(2038, 1, 19);
+        private static readonly DateTime minDate = new DateTime(1970, 1, 1);
+        private static readonly DateTime maxDate = new DateTime(2038, 1, 19);
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.CreatedAfter"]/*' />
         /// <devdoc>

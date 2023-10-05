@@ -11,7 +11,7 @@ namespace Messaging.Msmq
 
     public sealed class SecurityContext : IDisposable
     {
-        SecurityContextHandle handle;
+        readonly SecurityContextHandle handle;
         bool disposed;
 
         internal SecurityContext(SecurityContextHandle securityContext)

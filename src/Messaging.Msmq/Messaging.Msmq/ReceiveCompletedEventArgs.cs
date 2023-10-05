@@ -17,7 +17,7 @@ namespace Messaging.Msmq
     {
         private IAsyncResult result;
         private Message message;
-        private MessageQueue sender;
+        private readonly MessageQueue sender;
 
         /// <include file='doc\ReceiveCompletedEventArgs.uex' path='docs/doc[@for="ReceiveCompletedEventArgs.ReceiveCompletedEventArgs"]/*' />
         /// <internalonly/>

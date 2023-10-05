@@ -54,7 +54,7 @@ namespace Messaging.Msmq
         private string formatName;
         private string queuePath;
         private string path;
-        private bool enableCache;
+        private readonly bool enableCache;
         private QueuePropertyVariants properties;
         private IMessageFormatter formatter;
 
@@ -104,10 +104,10 @@ namespace Messaging.Msmq
         private static readonly string PREFIX_FORMAT_NAME = "FORMATNAME:";
 
         //Connection pooling support
-        private static CacheTable<string, string> formatNameCache =
+        private static readonly CacheTable<string, string> formatNameCache =
             new CacheTable<string, string>("formatNameCache", 4, new TimeSpan(0, 0, 100));   // path -> formatname
 
-        private static CacheTable<QueueInfoKeyHolder, MQCacheableInfo> queueInfoCache =
+        private static readonly CacheTable<QueueInfoKeyHolder, MQCacheableInfo> queueInfoCache =
             new CacheTable<QueueInfoKeyHolder, MQCacheableInfo>("queue info", 4, new TimeSpan(0, 0, 100));        // <formatname, accessMode> -> <readHandle. writeHandle, isTrans>
 
         // Whidbey Beta 2 SECREVIEW (Dec 2004 eugenesh):
@@ -125,8 +125,8 @@ namespace Messaging.Msmq
         private bool receiveGranted;
         private bool peekGranted;
 
-        private object syncRoot = new object();
-        private static object staticSyncRoot = new object();
+        private readonly object syncRoot = new object();
+        private static readonly object staticSyncRoot = new object();
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue"]/*' />
         /// <devdoc>
@@ -3431,18 +3431,18 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private class AsynchronousRequest : IAsyncResult
         {
-            private IOCompletionCallback onCompletionStatusChanged;
-            private SafeNativeMethods.ReceiveCallback onMessageReceived;
-            private AsyncCallback callback;
-            private ManualResetEvent resetEvent;
-            private object asyncState;
-            private MessageQueue owner;
+            private readonly IOCompletionCallback onCompletionStatusChanged;
+            private readonly SafeNativeMethods.ReceiveCallback onMessageReceived;
+            private readonly AsyncCallback callback;
+            private readonly ManualResetEvent resetEvent;
+            private readonly object asyncState;
+            private readonly MessageQueue owner;
             private bool isCompleted = false;
             private int status = 0;
             private Message message;
             private int action;
-            private uint timeout;
-            private CursorHandle cursorHandle;
+            private readonly uint timeout;
+            private readonly CursorHandle cursorHandle;
 
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsynchronousRequest"]/*' />
@@ -3899,20 +3899,20 @@ namespace Messaging.Msmq
         internal class CacheTable<Key, Value>
         {
             private Dictionary<Key, CacheEntry<Value>> table;
-            private ReaderWriterLock rwLock;
+            private readonly ReaderWriterLock rwLock;
 
             // used for debugging
-            private string name;
+            private readonly string name;
 
             // when the number of entries in the hashtable gets larger than capacity,
             // the "stale" entries are removed and capacity is reset to twice the number
             // of remaining entries
             private int capacity;
-            private int originalCapacity;
+            private readonly int originalCapacity;
 
             // time, in seconds, after which an entry is considerred stale (if the reference
             // count is zero)
-            private TimeSpan staleTime;
+            private readonly TimeSpan staleTime;
 
             public CacheTable(string name, int capacity, TimeSpan staleTime)
             {
@@ -4047,13 +4047,13 @@ namespace Messaging.Msmq
 
             // Double-checked locking pattern requires volatile for read/write synchronization
             private volatile bool boundToThreadPool;
-            private string formatName;
-            private int shareMode;
-            private QueueAccessModeHolder accessMode;
+            private readonly string formatName;
+            private readonly int shareMode;
+            private readonly QueueAccessModeHolder accessMode;
             private int refCount;
             private bool disposed;
 
-            private object syncRoot = new object();
+            private readonly object syncRoot = new object();
 
             public MQCacheableInfo(string formatName, QueueAccessMode accessMode, int shareMode)
             {
@@ -4303,8 +4303,8 @@ namespace Messaging.Msmq
 
         internal class QueueInfoKeyHolder
         {
-            private string formatName;
-            private QueueAccessMode accessMode;
+            private readonly string formatName;
+            private readonly QueueAccessMode accessMode;
 
             public QueueInfoKeyHolder(string formatName, QueueAccessMode accessMode)
             {

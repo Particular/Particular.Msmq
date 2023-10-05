@@ -41,7 +41,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public static readonly TimeSpan InfiniteTimeout = TimeSpan.FromSeconds(UInt32.MaxValue);
 
-        private MessagePropertyFilter filter;
+        private readonly MessagePropertyFilter filter;
         private string machineName;
         private bool receiveCreated;
         private object cachedBodyObject;

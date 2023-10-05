@@ -11,7 +11,7 @@ namespace Messaging.Msmq.Interop
 
     internal class Restrictions
     {
-        private MQRESTRICTION restrictionStructure;
+        private readonly MQRESTRICTION restrictionStructure;
         public const int PRLT = 0;
         public const int PRLE = 1;
         public const int PRGT = 2;

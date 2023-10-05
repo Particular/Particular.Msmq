@@ -32,9 +32,9 @@ namespace Messaging.Msmq
 
     internal class QueueAccessModeHolder
     {
-        private QueueAccessMode accessMode;
+        private readonly QueueAccessMode accessMode;
 
-        private static Dictionary<QueueAccessMode, QueueAccessModeHolder> holders = new Dictionary<QueueAccessMode, QueueAccessModeHolder>();
+        private static readonly Dictionary<QueueAccessMode, QueueAccessModeHolder> holders = new Dictionary<QueueAccessMode, QueueAccessModeHolder>();
 
         private QueueAccessModeHolder(QueueAccessMode accessMode)
         {

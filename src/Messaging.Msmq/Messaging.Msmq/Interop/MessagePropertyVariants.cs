@@ -74,19 +74,19 @@ namespace Messaging.Msmq.Interop
         public const short VT_UI4 = 19;
         public const short VT_UI8 = 21;
         public const short VT_VECTOR = 0x1000;
-        private int MAX_PROPERTIES = 61;
-        private int basePropertyId = NativeMethods.MESSAGE_PROPID_BASE + 1;
+        private readonly int MAX_PROPERTIES = 61;
+        private readonly int basePropertyId = NativeMethods.MESSAGE_PROPID_BASE + 1;
         private int propertyCount;
         private GCHandle handleVectorProperties;
         private GCHandle handleVectorIdentifiers;
         private GCHandle handleVectorStatus;
-        private MQPROPS reference;
+        private readonly MQPROPS reference;
         private int[] vectorIdentifiers;
         private int[] vectorStatus;
         private MQPROPVARIANTS[] vectorProperties;
-        private short[] variantTypes;
-        private object[] objects;
-        private object[] handles;
+        private readonly short[] variantTypes;
+        private readonly object[] objects;
+        private readonly object[] handles;
 
         internal MessagePropertyVariants(int maxProperties, int baseId)
         {

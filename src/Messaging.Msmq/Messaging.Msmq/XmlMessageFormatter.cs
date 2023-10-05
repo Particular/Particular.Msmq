@@ -21,7 +21,7 @@ namespace Messaging.Msmq
     {
         private Type[] targetTypes;
         private string[] targetTypeNames;
-        Hashtable targetSerializerTable = new Hashtable();
+        readonly Hashtable targetSerializerTable = new Hashtable();
         private bool typeNamesAdded;
         private bool typesAdded;
 

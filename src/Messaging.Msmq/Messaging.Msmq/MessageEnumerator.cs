@@ -22,11 +22,11 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class MessageEnumerator : MarshalByRefObject, IEnumerator, IDisposable
     {
-        private MessageQueue owner;
+        private readonly MessageQueue owner;
         private CursorHandle handle = Interop.CursorHandle.NullHandle;
         private int index = 0;
         private bool disposed = false;
-        private bool useCorrectRemoveCurrent = false; //needed in fix for 88615
+        private readonly bool useCorrectRemoveCurrent = false; //needed in fix for 88615
 
         internal MessageEnumerator(MessageQueue owner, bool useCorrectRemoveCurrent)
         {
