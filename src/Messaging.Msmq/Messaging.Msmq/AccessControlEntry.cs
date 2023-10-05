@@ -130,8 +130,7 @@ namespace Messaging.Msmq
             }
             set
             {
-                if (value == null)
-                    throw new ArgumentNullException(nameof(value));
+                ArgumentNullException.ThrowIfNull(value);
 
                 trustee = value;
             }

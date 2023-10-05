@@ -201,8 +201,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public Message RemoveCurrent(MessageQueueTransaction transaction)
         {
-            if (transaction == null)
-                throw new ArgumentNullException(nameof(transaction));
+            ArgumentNullException.ThrowIfNull(transaction);
 
             return RemoveCurrent(TimeSpan.Zero, transaction, MessageQueueTransactionType.None);
         }
@@ -237,8 +236,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public Message RemoveCurrent(TimeSpan timeout, MessageQueueTransaction transaction)
         {
-            if (transaction == null)
-                throw new ArgumentNullException(nameof(transaction));
+            ArgumentNullException.ThrowIfNull(transaction);
 
             return RemoveCurrent(timeout, transaction, MessageQueueTransactionType.None);
         }
