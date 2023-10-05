@@ -18,27 +18,27 @@ namespace Messaging.Msmq.Interop
         public Columns(int maxCount)
         {
             this.maxCount = maxCount;
-            this.columnSet.columnIdentifiers = Marshal.AllocHGlobal(maxCount * 4);
-            this.columnSet.columnCount = 0;
+            columnSet.columnIdentifiers = Marshal.AllocHGlobal(maxCount * 4);
+            columnSet.columnCount = 0;
         }
 
         public virtual void AddColumnId(int columnId)
         {
             lock (this)
             {
-                if (this.columnSet.columnCount >= this.maxCount)
+                if (columnSet.columnCount >= maxCount)
                 {
-                    throw new InvalidOperationException(Res.GetString(Res.TooManyColumns, this.maxCount.ToString(CultureInfo.CurrentCulture)));
+                    throw new InvalidOperationException(Res.GetString(Res.TooManyColumns, maxCount.ToString(CultureInfo.CurrentCulture)));
                 }
 
-                ++this.columnSet.columnCount;
-                this.columnSet.SetId(columnId, this.columnSet.columnCount - 1);
+                ++columnSet.columnCount;
+                columnSet.SetId(columnId, columnSet.columnCount - 1);
             }
         }
 
         public virtual MQCOLUMNSET GetColumnsRef()
         {
-            return this.columnSet;
+            return columnSet;
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -50,16 +50,16 @@ namespace Messaging.Msmq.Interop
 
             ~MQCOLUMNSET()
             {
-                if (this.columnIdentifiers != (IntPtr)0)
+                if (columnIdentifiers != (IntPtr)0)
                 {
-                    Marshal.FreeHGlobal(this.columnIdentifiers);
-                    this.columnIdentifiers = (IntPtr)0;
+                    Marshal.FreeHGlobal(columnIdentifiers);
+                    columnIdentifiers = (IntPtr)0;
                 }
             }
 
             public virtual void SetId(int columnId, int index)
             {
-                Marshal.WriteInt32((IntPtr)((long)this.columnIdentifiers + (index * 4)), columnId);
+                Marshal.WriteInt32((IntPtr)((long)columnIdentifiers + (index * 4)), columnId);
             }
         }
     }

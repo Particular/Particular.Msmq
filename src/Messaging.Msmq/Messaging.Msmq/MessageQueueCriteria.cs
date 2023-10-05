@@ -44,12 +44,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (!this.filter.CreatedAfter)
+                if (!filter.CreatedAfter)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
                 }
 
-                return this.createdAfter;
+                return createdAfter;
             }
 
             set
@@ -59,13 +59,13 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
                 }
 
-                this.createdAfter = value;
-                if (this.filter.CreatedBefore && this.createdAfter > this.createdBefore)
+                createdAfter = value;
+                if (filter.CreatedBefore && createdAfter > createdBefore)
                 {
-                    this.createdBefore = this.createdAfter;
+                    createdBefore = createdAfter;
                 }
 
-                this.filter.CreatedAfter = true;
+                filter.CreatedAfter = true;
             }
         }
 
@@ -79,12 +79,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (!this.filter.CreatedBefore)
+                if (!filter.CreatedBefore)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
                 }
 
-                return this.createdBefore;
+                return createdBefore;
             }
 
             set
@@ -94,13 +94,13 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
                 }
 
-                this.createdBefore = value;
-                if (this.filter.CreatedAfter && this.createdAfter > this.createdBefore)
+                createdBefore = value;
+                if (filter.CreatedAfter && createdAfter > createdBefore)
                 {
-                    this.createdAfter = this.createdBefore;
+                    createdAfter = createdBefore;
                 }
 
-                this.filter.CreatedBefore = true;
+                filter.CreatedBefore = true;
             }
         }
 
@@ -108,7 +108,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.filter.MachineName;
+                return filter.MachineName;
             }
         }
 
@@ -121,20 +121,20 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (!this.filter.Label)
+                if (!filter.Label)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
                 }
 
-                return this.label;
+                return label;
             }
 
             set
             {
                 ArgumentNullException.ThrowIfNull(value);
 
-                this.label = value;
-                this.filter.Label = true;
+                label = value;
+                filter.Label = true;
             }
         }
 
@@ -149,12 +149,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (!this.filter.MachineName)
+                if (!filter.MachineName)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
                 }
 
-                return this.machine;
+                return machine;
             }
 
             set
@@ -164,9 +164,9 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MachineName", value));
                 }
 
-                this.machineId = MessageQueue.GetMachineId(value);
-                this.machine = value;
-                this.filter.MachineName = true;
+                machineId = MessageQueue.GetMachineId(value);
+                machine = value;
+                filter.MachineName = true;
             }
         }
 
@@ -180,12 +180,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (!this.filter.ModifiedAfter)
+                if (!filter.ModifiedAfter)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
                 }
 
-                return this.modifiedAfter;
+                return modifiedAfter;
             }
 
             set
@@ -195,14 +195,14 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
                 }
 
-                this.modifiedAfter = value;
+                modifiedAfter = value;
 
-                if (this.filter.ModifiedBefore && this.modifiedAfter > this.modifiedBefore)
+                if (filter.ModifiedBefore && modifiedAfter > modifiedBefore)
                 {
-                    this.modifiedBefore = this.modifiedAfter;
+                    modifiedBefore = modifiedAfter;
                 }
 
-                this.filter.ModifiedAfter = true;
+                filter.ModifiedAfter = true;
             }
         }
 
@@ -216,12 +216,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (!this.filter.ModifiedBefore)
+                if (!filter.ModifiedBefore)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
                 }
 
-                return this.modifiedBefore;
+                return modifiedBefore;
             }
 
             set
@@ -231,14 +231,14 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidDateValue, MessageQueueCriteria.minDate.ToString(CultureInfo.CurrentCulture), MessageQueueCriteria.maxDate.ToString(CultureInfo.CurrentCulture)));
                 }
 
-                this.modifiedBefore = value;
+                modifiedBefore = value;
 
-                if (this.filter.ModifiedAfter && this.modifiedAfter > this.modifiedBefore)
+                if (filter.ModifiedAfter && modifiedAfter > modifiedBefore)
                 {
-                    this.modifiedAfter = this.modifiedBefore;
+                    modifiedAfter = modifiedBefore;
                 }
 
-                this.filter.ModifiedBefore = true;
+                filter.ModifiedBefore = true;
             }
         }
 
@@ -249,68 +249,68 @@ namespace Messaging.Msmq
             get
             {
                 int size = 0;
-                if (this.filter.CreatedAfter)
+                if (filter.CreatedAfter)
                 {
                     ++size;
                 }
 
-                if (this.filter.CreatedBefore)
+                if (filter.CreatedBefore)
                 {
                     ++size;
                 }
 
-                if (this.filter.Label)
+                if (filter.Label)
                 {
                     ++size;
                 }
 
-                if (this.filter.ModifiedAfter)
+                if (filter.ModifiedAfter)
                 {
                     ++size;
                 }
 
-                if (this.filter.ModifiedBefore)
+                if (filter.ModifiedBefore)
                 {
                     ++size;
                 }
 
-                if (this.filter.Category)
+                if (filter.Category)
                 {
                     ++size;
                 }
 
                 restrictions = new Restrictions(size);
-                if (this.filter.CreatedAfter)
+                if (filter.CreatedAfter)
                 {
-                    restrictions.AddI4(NativeMethods.QUEUE_PROPID_CREATE_TIME, Restrictions.PRGT, ConvertTime(this.createdAfter));
+                    restrictions.AddI4(NativeMethods.QUEUE_PROPID_CREATE_TIME, Restrictions.PRGT, ConvertTime(createdAfter));
                 }
 
-                if (this.filter.CreatedBefore)
+                if (filter.CreatedBefore)
                 {
-                    restrictions.AddI4(NativeMethods.QUEUE_PROPID_CREATE_TIME, Restrictions.PRLE, ConvertTime(this.createdBefore));
+                    restrictions.AddI4(NativeMethods.QUEUE_PROPID_CREATE_TIME, Restrictions.PRLE, ConvertTime(createdBefore));
                 }
 
-                if (this.filter.Label)
+                if (filter.Label)
                 {
-                    restrictions.AddString(NativeMethods.QUEUE_PROPID_LABEL, Restrictions.PREQ, this.label);
+                    restrictions.AddString(NativeMethods.QUEUE_PROPID_LABEL, Restrictions.PREQ, label);
                 }
 
-                if (this.filter.ModifiedAfter)
+                if (filter.ModifiedAfter)
                 {
-                    restrictions.AddI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME, Restrictions.PRGT, ConvertTime(this.modifiedAfter));
+                    restrictions.AddI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME, Restrictions.PRGT, ConvertTime(modifiedAfter));
                 }
 
-                if (this.filter.ModifiedBefore)
+                if (filter.ModifiedBefore)
                 {
-                    restrictions.AddI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME, Restrictions.PRLE, ConvertTime(this.modifiedBefore));
+                    restrictions.AddI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME, Restrictions.PRLE, ConvertTime(modifiedBefore));
                 }
 
-                if (this.filter.Category)
+                if (filter.Category)
                 {
-                    restrictions.AddGuid(NativeMethods.QUEUE_PROPID_TYPE, Restrictions.PREQ, this.category);
+                    restrictions.AddGuid(NativeMethods.QUEUE_PROPID_TYPE, Restrictions.PREQ, category);
                 }
 
-                return this.restrictions.GetRestrictionsRef();
+                return restrictions.GetRestrictionsRef();
             }
         }
 
@@ -323,18 +323,18 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (!this.filter.Category)
+                if (!filter.Category)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
                 }
 
-                return this.category;
+                return category;
             }
 
             set
             {
-                this.category = value;
-                this.filter.Category = true;
+                category = value;
+                filter.Category = true;
             }
         }
 
@@ -344,7 +344,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public void ClearAll()
         {
-            this.filter.ClearAll();
+            filter.ClearAll();
         }
 
         /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.ConvertTime"]/*' />
@@ -369,13 +369,13 @@ namespace Messaging.Msmq
 
             public void ClearAll()
             {
-                this.CreatedAfter = false;
-                this.CreatedBefore = false;
-                this.Label = false;
-                this.MachineName = false;
-                this.ModifiedAfter = false;
-                this.ModifiedBefore = false;
-                this.Category = false;
+                CreatedAfter = false;
+                CreatedBefore = false;
+                Label = false;
+                MachineName = false;
+                ModifiedAfter = false;
+                ModifiedBefore = false;
+                Category = false;
             }
         }
     }

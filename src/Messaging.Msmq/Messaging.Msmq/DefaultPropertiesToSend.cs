@@ -54,12 +54,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.AcknowledgeType;
+                return cachedMessage.AcknowledgeType;
             }
 
             set
             {
-                this.cachedMessage.AcknowledgeType = value;
+                cachedMessage.AcknowledgeType = value;
             }
         }
 
@@ -76,30 +76,30 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.designMode)
+                if (designMode)
                 {
-                    if (this.cachedAdminQueue != null && this.cachedAdminQueue.Site == null)
+                    if (cachedAdminQueue != null && cachedAdminQueue.Site == null)
                     {
-                        this.cachedAdminQueue = null;
+                        cachedAdminQueue = null;
                     }
 
-                    return this.cachedAdminQueue;
+                    return cachedAdminQueue;
                 }
 
-                return this.cachedMessage.AdministrationQueue;
+                return cachedMessage.AdministrationQueue;
             }
 
             set
             {
                 //The format name of this queue shouldn't be
                 //resolved at desgin time, but it should at runtime.
-                if (this.designMode)
+                if (designMode)
                 {
-                    this.cachedAdminQueue = value;
+                    cachedAdminQueue = value;
                 }
                 else
                 {
-                    this.cachedMessage.AdministrationQueue = value;
+                    cachedMessage.AdministrationQueue = value;
                 }
             }
         }
@@ -115,12 +115,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.AppSpecific;
+                return cachedMessage.AppSpecific;
             }
 
             set
             {
-                this.cachedMessage.AppSpecific = value;
+                cachedMessage.AppSpecific = value;
             }
         }
 
@@ -136,12 +136,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.AttachSenderId;
+                return cachedMessage.AttachSenderId;
             }
 
             set
             {
-                this.cachedMessage.AttachSenderId = value;
+                cachedMessage.AttachSenderId = value;
             }
         }
 
@@ -151,7 +151,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage;
+                return cachedMessage;
             }
         }
 
@@ -167,12 +167,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.EncryptionAlgorithm;
+                return cachedMessage.EncryptionAlgorithm;
             }
 
             set
             {
-                this.cachedMessage.EncryptionAlgorithm = value;
+                cachedMessage.EncryptionAlgorithm = value;
             }
         }
 
@@ -187,12 +187,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.Extension;
+                return cachedMessage.Extension;
             }
 
             set
             {
-                this.cachedMessage.Extension = value;
+                cachedMessage.Extension = value;
             }
         }
 
@@ -209,12 +209,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.HashAlgorithm;
+                return cachedMessage.HashAlgorithm;
             }
 
             set
             {
-                this.cachedMessage.HashAlgorithm = value;
+                cachedMessage.HashAlgorithm = value;
             }
         }
 
@@ -229,12 +229,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.Label;
+                return cachedMessage.Label;
             }
 
             set
             {
-                this.cachedMessage.Label = value;
+                cachedMessage.Label = value;
             }
         }
 
@@ -248,12 +248,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.Priority;
+                return cachedMessage.Priority;
             }
 
             set
             {
-                this.cachedMessage.Priority = value;
+                cachedMessage.Priority = value;
             }
         }
 
@@ -270,12 +270,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.Recoverable;
+                return cachedMessage.Recoverable;
             }
 
             set
             {
-                this.cachedMessage.Recoverable = value;
+                cachedMessage.Recoverable = value;
             }
         }
 
@@ -291,25 +291,25 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.designMode)
+                if (designMode)
                 {
-                    return this.cachedResponseQueue;
+                    return cachedResponseQueue;
                 }
 
-                return this.cachedMessage.ResponseQueue;
+                return cachedMessage.ResponseQueue;
             }
 
             set
             {
                 //The format name of this queue shouldn't be
                 //resolved at desgin time, but it should at runtime.
-                if (this.designMode)
+                if (designMode)
                 {
-                    this.cachedResponseQueue = value;
+                    cachedResponseQueue = value;
                 }
                 else
                 {
-                    this.cachedMessage.ResponseQueue = value;
+                    cachedMessage.ResponseQueue = value;
                 }
             }
         }
@@ -326,12 +326,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.TimeToBeReceived;
+                return cachedMessage.TimeToBeReceived;
             }
 
             set
             {
-                this.cachedMessage.TimeToBeReceived = value;
+                cachedMessage.TimeToBeReceived = value;
             }
         }
 
@@ -347,12 +347,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.TimeToReachQueue;
+                return cachedMessage.TimeToReachQueue;
             }
 
             set
             {
-                this.cachedMessage.TimeToReachQueue = value;
+                cachedMessage.TimeToReachQueue = value;
             }
         }
 
@@ -367,25 +367,25 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.designMode)
+                if (designMode)
                 {
-                    return this.cachedTransactionStatusQueue;
+                    return cachedTransactionStatusQueue;
                 }
 
-                return this.cachedMessage.TransactionStatusQueue;
+                return cachedMessage.TransactionStatusQueue;
             }
 
             set
             {
                 //The format name of this queue shouldn't be
                 //resolved at desgin time, but it should at runtime.
-                if (this.designMode)
+                if (designMode)
                 {
-                    this.cachedTransactionStatusQueue = value;
+                    cachedTransactionStatusQueue = value;
                 }
                 else
                 {
-                    this.cachedMessage.TransactionStatusQueue = value;
+                    cachedMessage.TransactionStatusQueue = value;
                 }
             }
         }
@@ -400,12 +400,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.UseAuthentication;
+                return cachedMessage.UseAuthentication;
             }
 
             set
             {
-                this.cachedMessage.UseAuthentication = value;
+                cachedMessage.UseAuthentication = value;
             }
         }
 
@@ -420,12 +420,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.UseDeadLetterQueue;
+                return cachedMessage.UseDeadLetterQueue;
             }
 
             set
             {
-                this.cachedMessage.UseDeadLetterQueue = value;
+                cachedMessage.UseDeadLetterQueue = value;
             }
         }
 
@@ -439,12 +439,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.UseEncryption;
+                return cachedMessage.UseEncryption;
             }
 
             set
             {
-                this.cachedMessage.UseEncryption = value;
+                cachedMessage.UseEncryption = value;
             }
         }
 
@@ -459,12 +459,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.UseJournalQueue;
+                return cachedMessage.UseJournalQueue;
             }
 
             set
             {
-                this.cachedMessage.UseJournalQueue = value;
+                cachedMessage.UseJournalQueue = value;
             }
         }
 
@@ -479,12 +479,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.cachedMessage.UseTracing;
+                return cachedMessage.UseTracing;
             }
 
             set
             {
-                this.cachedMessage.UseTracing = value;
+                cachedMessage.UseTracing = value;
             }
         }
 

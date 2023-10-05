@@ -37,12 +37,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.result;
+                return result;
             }
 
             set
             {
-                this.result = value;
+                result = value;
             }
         }
 
@@ -55,11 +55,11 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.message == null)
+                if (message == null)
                 {
                     try
                     {
-                        this.message = this.sender.EndPeek(result);
+                        message = sender.EndPeek(result);
                     }
                     catch
                     {
@@ -67,7 +67,7 @@ namespace Messaging.Msmq
                     }
                 }
 
-                return this.message;
+                return message;
             }
         }
     }

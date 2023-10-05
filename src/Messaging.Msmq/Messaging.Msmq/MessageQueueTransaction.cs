@@ -28,14 +28,14 @@ namespace Messaging.Msmq
         /// </devdoc>
         public MessageQueueTransaction()
         {
-            this.transactionStatus = MessageQueueTransactionStatus.Initialized;
+            transactionStatus = MessageQueueTransactionStatus.Initialized;
         }
 
         internal ITransaction InnerTransaction
         {
             get
             {
-                return this.internalTransaction;
+                return internalTransaction;
             }
         }
 
@@ -49,7 +49,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.transactionStatus;
+                return transactionStatus;
             }
         }
 
@@ -63,13 +63,13 @@ namespace Messaging.Msmq
         {
             lock (this)
             {
-                if (this.internalTransaction == null)
+                if (internalTransaction == null)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.TransactionNotStarted));
                 }
                 else
                 {
-                    this.AbortInternalTransaction();
+                    AbortInternalTransaction();
                 }
             }
         }
@@ -78,14 +78,14 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private void AbortInternalTransaction()
         {
-            int status = this.internalTransaction.Abort(0, 0, 0);
+            int status = internalTransaction.Abort(0, 0, 0);
             if (MessageQueue.IsFatalError(status))
             {
                 throw new MessageQueueException(status);
             }
 
-            this.internalTransaction = null;
-            this.transactionStatus = MessageQueueTransactionStatus.Aborted;
+            internalTransaction = null;
+            transactionStatus = MessageQueueTransactionStatus.Aborted;
         }
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Begin"]/*' />
@@ -97,7 +97,7 @@ namespace Messaging.Msmq
         public void Begin()
         {
             //Won't allow begining a new transaction after the object has been disposed.
-            if (this.disposed)
+            if (disposed)
             {
                 throw new ObjectDisposedException(GetType().Name);
             }
@@ -110,14 +110,14 @@ namespace Messaging.Msmq
                 }
                 else
                 {
-                    int status = SafeNativeMethods.MQBeginTransaction(out this.internalTransaction);
+                    int status = SafeNativeMethods.MQBeginTransaction(out internalTransaction);
                     if (MessageQueue.IsFatalError(status))
                     {
-                        this.internalTransaction = null;
+                        internalTransaction = null;
                         throw new MessageQueueException(status);
                     }
 
-                    this.transactionStatus = MessageQueueTransactionStatus.Pending;
+                    transactionStatus = MessageQueueTransactionStatus.Pending;
                 }
             }
         }
@@ -130,7 +130,7 @@ namespace Messaging.Msmq
             //@TODO: This overload of Monitor.Enter is obsolete.  Please change this to use Monitor.Enter(ref bool), and remove the pragmas   -- ericeil
             Monitor.Enter(this);
 #pragma warning restore 0618
-            return this.internalTransaction;
+            return internalTransaction;
         }
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Commit"]/*' />
@@ -143,20 +143,20 @@ namespace Messaging.Msmq
         {
             lock (this)
             {
-                if (this.internalTransaction == null)
+                if (internalTransaction == null)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.TransactionNotStarted));
                 }
                 else
                 {
-                    int status = this.internalTransaction.Commit(0, 0, 0);
+                    int status = internalTransaction.Commit(0, 0, 0);
                     if (MessageQueue.IsFatalError(status))
                     {
                         throw new MessageQueueException(status);
                     }
 
-                    this.internalTransaction = null;
-                    this.transactionStatus = MessageQueueTransactionStatus.Committed;
+                    internalTransaction = null;
+                    transactionStatus = MessageQueueTransactionStatus.Committed;
                 }
             }
         }
@@ -187,12 +187,12 @@ namespace Messaging.Msmq
                 {
                     if (internalTransaction != null)
                     {
-                        this.AbortInternalTransaction();
+                        AbortInternalTransaction();
                     }
                 }
             }
 
-            this.disposed = true;
+            disposed = true;
         }
 
         /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Finalize"]/*' />

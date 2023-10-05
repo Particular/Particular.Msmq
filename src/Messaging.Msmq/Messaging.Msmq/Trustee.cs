@@ -83,9 +83,9 @@ namespace Messaging.Msmq
         /// </devdoc>
         public Trustee(string name, string systemName, TrusteeType trusteeType)
         {
-            this.Name = name;
-            this.SystemName = systemName;
-            this.TrusteeType = trusteeType;
+            Name = name;
+            SystemName = systemName;
+            TrusteeType = trusteeType;
         }
     }
 }

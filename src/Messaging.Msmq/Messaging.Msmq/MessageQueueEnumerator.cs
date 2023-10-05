@@ -37,7 +37,7 @@ namespace Messaging.Msmq
         internal MessageQueueEnumerator(MessageQueueCriteria criteria)
         {
             this.criteria = criteria;
-            this.checkSecurity = true;
+            checkSecurity = true;
         }
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.MessageQueueEnumerator1"]/*' />
@@ -60,12 +60,12 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.currentMessageQueue == null)
+                if (currentMessageQueue == null)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.NoCurrentMessageQueue));
                 }
 
-                return this.currentMessageQueue;
+                return currentMessageQueue;
             }
         }
 
@@ -75,7 +75,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.Current;
+                return Current;
             }
         }
 
@@ -85,10 +85,10 @@ namespace Messaging.Msmq
         /// </devdoc>
         public void Close()
         {
-            if (!this.locatorHandle.IsInvalid)
+            if (!locatorHandle.IsInvalid)
             {
-                this.locatorHandle.Close();
-                this.currentMessageQueue = null;
+                locatorHandle.Close();
+                currentMessageQueue = null;
             }
         }
 
@@ -109,10 +109,10 @@ namespace Messaging.Msmq
         {
             if (disposing)
             {
-                this.Close();
+                Close();
             }
 
-            this.disposed = true;
+            disposed = true;
         }
 
         /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.LocatorHandle"]/*' />
@@ -122,7 +122,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public IntPtr LocatorHandle
         {
-            get { return this.Handle.DangerousGetHandle(); }
+            get { return Handle.DangerousGetHandle(); }
         }
 
 
@@ -130,10 +130,10 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.locatorHandle.IsInvalid)
+                if (locatorHandle.IsInvalid)
                 {
                     //Cannot allocate the locatorHandle if the object has been disposed, since finalization has been suppressed.
-                    if (this.disposed)
+                    if (disposed)
                     {
                         throw new ObjectDisposedException(GetType().Name);
                     }
@@ -145,9 +145,9 @@ namespace Messaging.Msmq
                     //time, the formatName can be resolved by calling MQInstanceToFormatName
                     columns.AddColumnId(NativeMethods.QUEUE_PROPID_INSTANCE);
                     int status;
-                    if (this.criteria != null)
+                    if (criteria != null)
                     {
-                        status = UnsafeNativeMethods.MQLocateBegin(null, this.criteria.Reference, columns.GetColumnsRef(), out enumHandle);
+                        status = UnsafeNativeMethods.MQLocateBegin(null, criteria.Reference, columns.GetColumnsRef(), out enumHandle);
                     }
                     else
                     {
@@ -159,10 +159,10 @@ namespace Messaging.Msmq
                         throw new MessageQueueException(status);
                     }
 
-                    this.locatorHandle = enumHandle;
+                    locatorHandle = enumHandle;
                 }
 
-                return this.locatorHandle;
+                return locatorHandle;
             }
         }
 
@@ -181,15 +181,15 @@ namespace Messaging.Msmq
             byte[] currentGuid = new byte[16];
             string machineName = null;
 
-            if (this.criteria != null && this.criteria.FilterMachine)
+            if (criteria != null && criteria.FilterMachine)
             {
-                if (this.criteria.MachineName.CompareTo(".") == 0)
+                if (criteria.MachineName.CompareTo(".") == 0)
                 {
                     machineName = MessageQueue.ComputerName + "\\";
                 }
                 else
                 {
-                    machineName = this.criteria.MachineName + "\\";
+                    machineName = criteria.MachineName + "\\";
                 }
             }
 
@@ -197,7 +197,7 @@ namespace Messaging.Msmq
             {
                 propertyCount = 2;
                 int status;
-                status = SafeNativeMethods.MQLocateNext(this.Handle, ref propertyCount, array);
+                status = SafeNativeMethods.MQLocateNext(Handle, ref propertyCount, array);
                 if (MessageQueue.IsFatalError(status))
                 {
                     throw new MessageQueueException(status);
@@ -205,7 +205,7 @@ namespace Messaging.Msmq
 
                 if (propertyCount != 2)
                 {
-                    this.currentMessageQueue = null;
+                    currentMessageQueue = null;
                     return false;
                 }
 
@@ -219,7 +219,7 @@ namespace Messaging.Msmq
             while (machineName != null && (machineName.Length >= currentItem.Length ||
                                            String.Compare(machineName, 0, currentItem, 0, machineName.Length, true, CultureInfo.InvariantCulture) != 0));
 
-            this.currentMessageQueue = new MessageQueue(currentItem, new Guid(currentGuid));
+            currentMessageQueue = new MessageQueue(currentItem, new Guid(currentGuid));
             return true;
         }
 
@@ -229,7 +229,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public void Reset()
         {
-            this.Close();
+            Close();
         }
     }
 }

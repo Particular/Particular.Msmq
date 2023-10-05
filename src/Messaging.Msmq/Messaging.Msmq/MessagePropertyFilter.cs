@@ -344,7 +344,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.bodySize;
+                return bodySize;
             }
 
             set
@@ -354,7 +354,7 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.DefaultSizeError));
                 }
 
-                this.bodySize = value;
+                bodySize = value;
             }
         }
 
@@ -370,7 +370,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.extensionSize;
+                return extensionSize;
             }
 
             set
@@ -380,7 +380,7 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.DefaultSizeError));
                 }
 
-                this.extensionSize = value;
+                extensionSize = value;
             }
         }
 
@@ -396,7 +396,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.labelSize;
+                return labelSize;
             }
 
             set
@@ -406,7 +406,7 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.DefaultSizeError));
                 }
 
-                this.labelSize = value;
+                labelSize = value;
             }
         }
 
@@ -1116,7 +1116,7 @@ namespace Messaging.Msmq
 
         public virtual object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Messaging.Msmq
                 throw new MessageQueueException(status);
             }
 
-            this.handle = result;
+            handle = result;
         }
 
 
@@ -54,8 +54,8 @@ namespace Messaging.Msmq
 
         public void Dispose()
         {
-            this.Close();
-            this.disposed = true;
+            Close();
+            disposed = true;
         }
 
     }

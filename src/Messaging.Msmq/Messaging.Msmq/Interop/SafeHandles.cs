@@ -19,7 +19,7 @@ namespace Messaging.Msmq.Interop
 
         protected override bool ReleaseHandle()
         {
-            SafeNativeMethods.MQCloseQueue(this.handle);
+            SafeNativeMethods.MQCloseQueue(handle);
 
             return true;
         }
@@ -54,7 +54,7 @@ namespace Messaging.Msmq.Interop
 
         protected override bool ReleaseHandle()
         {
-            SafeNativeMethods.MQCloseCursor(this.handle);
+            SafeNativeMethods.MQCloseCursor(handle);
 
             return true;
         }
@@ -89,7 +89,7 @@ namespace Messaging.Msmq.Interop
 
         protected override bool ReleaseHandle()
         {
-            SafeNativeMethods.MQLocateEnd(this.handle);
+            SafeNativeMethods.MQLocateEnd(handle);
 
             return true;
         }
@@ -128,7 +128,7 @@ namespace Messaging.Msmq.Interop
 
         protected override bool ReleaseHandle()
         {
-            SafeNativeMethods.MQFreeSecurityContext(this.handle);
+            SafeNativeMethods.MQFreeSecurityContext(handle);
 
             return true;
         }

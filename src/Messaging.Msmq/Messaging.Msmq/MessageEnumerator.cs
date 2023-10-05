@@ -43,13 +43,13 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.index == 0)
+                if (index == 0)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.NoCurrentMessage));
                 }
 
-                return this.owner.ReceiveCurrent(TimeSpan.Zero, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, this.Handle,
-                                                              this.owner.MessageReadPropertyFilter, null,
+                return owner.ReceiveCurrent(TimeSpan.Zero, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, Handle,
+                                                              owner.MessageReadPropertyFilter, null,
                                                               MessageQueueTransactionType.None);
             }
         }
@@ -60,7 +60,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.Current;
+                return Current;
             }
         }
 
@@ -71,7 +71,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public IntPtr CursorHandle
         {
-            get { return this.Handle.DangerousGetHandle(); }
+            get { return Handle.DangerousGetHandle(); }
         }
 
 
@@ -80,23 +80,23 @@ namespace Messaging.Msmq
             get
             {
                 //Cursor handle doesn't demand permissions since GetEnumerator will demand somehow.
-                if (this.handle.IsInvalid)
+                if (handle.IsInvalid)
                 {
                     //Cannot allocate the a new cursor if the object has been disposed, since finalization has been suppressed.
-                    if (this.disposed)
+                    if (disposed)
                     {
                         throw new ObjectDisposedException(GetType().Name);
                     }
 
-                    int status = SafeNativeMethods.MQCreateCursor(this.owner.MQInfo.ReadHandle, out CursorHandle result);
+                    int status = SafeNativeMethods.MQCreateCursor(owner.MQInfo.ReadHandle, out CursorHandle result);
                     if (MessageQueue.IsFatalError(status))
                     {
                         throw new MessageQueueException(status);
                     }
 
-                    this.handle = result;
+                    handle = result;
                 }
-                return this.handle;
+                return handle;
             }
         }
 
@@ -108,10 +108,10 @@ namespace Messaging.Msmq
         /// </devdoc>
         public void Close()
         {
-            this.index = 0;
-            if (!this.handle.IsInvalid)
+            index = 0;
+            if (!handle.IsInvalid)
             {
-                this.handle.Close();
+                handle.Close();
             }
         }
 
@@ -132,10 +132,10 @@ namespace Messaging.Msmq
         {
             if (disposing)
             {
-                this.Close();
+                Close();
             }
 
-            this.disposed = true;
+            disposed = true;
         }
 
         /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.MoveNext"]/*' />
@@ -166,23 +166,23 @@ namespace Messaging.Msmq
             int status = 0;
             int action = NativeMethods.QUEUE_ACTION_PEEK_NEXT;
             //Peek current or next?
-            if (this.index == 0)
+            if (index == 0)
             {
                 action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
             }
 
-            status = owner.StaleSafeReceiveMessage((uint)timeoutInMilliseconds, action, null, null, null, this.Handle, (IntPtr)NativeMethods.QUEUE_TRANSACTION_NONE);
+            status = owner.StaleSafeReceiveMessage((uint)timeoutInMilliseconds, action, null, null, null, Handle, (IntPtr)NativeMethods.QUEUE_TRANSACTION_NONE);
             //If the cursor reached the end of the queue.
             if (status == (int)MessageQueueErrorCode.IOTimeout)
             {
-                this.Close();
+                Close();
                 return false;
             }
             //If all messages were removed.
             else if (status == (int)MessageQueueErrorCode.IllegalCursorAction)
             {
-                this.index = 0;
-                this.Close();
+                index = 0;
+                Close();
                 return false;
             }
 
@@ -191,7 +191,7 @@ namespace Messaging.Msmq
                 throw new MessageQueueException(status);
             }
 
-            ++this.index;
+            ++index;
             return true;
         }
 
@@ -277,17 +277,17 @@ namespace Messaging.Msmq
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
             }
 
-            if (this.index == 0)
+            if (index == 0)
             {
                 return null;
             }
 
-            Message message = this.owner.ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE,
-                                                                               this.Handle, this.owner.MessageReadPropertyFilter, transaction, transactionType);
+            Message message = owner.ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE,
+                                                                               Handle, owner.MessageReadPropertyFilter, transaction, transactionType);
 
             if (!useCorrectRemoveCurrent)
             {
-                --this.index;
+                --index;
             }
 
             return message;
@@ -300,7 +300,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public void Reset()
         {
-            this.Close();
+            Close();
         }
     }
 }

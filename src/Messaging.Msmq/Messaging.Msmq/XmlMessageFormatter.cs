@@ -31,8 +31,8 @@ namespace Messaging.Msmq
         /// </devdoc>
         public XmlMessageFormatter()
         {
-            this.TargetTypes = Array.Empty<Type>();
-            this.TargetTypeNames = Array.Empty<string>();
+            TargetTypes = Array.Empty<Type>();
+            TargetTypeNames = Array.Empty<string>();
         }
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.XmlMessageFormatter1"]/*' />
@@ -42,8 +42,8 @@ namespace Messaging.Msmq
         /// </devdoc>
         public XmlMessageFormatter(string[] targetTypeNames)
         {
-            this.TargetTypeNames = targetTypeNames;
-            this.TargetTypes = Array.Empty<Type>();
+            TargetTypeNames = targetTypeNames;
+            TargetTypes = Array.Empty<Type>();
         }
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.XmlMessageFormatter2"]/*' />
@@ -53,8 +53,8 @@ namespace Messaging.Msmq
         /// </devdoc>
         public XmlMessageFormatter(Type[] targetTypes)
         {
-            this.TargetTypes = targetTypes;
-            this.TargetTypeNames = Array.Empty<string>();
+            TargetTypes = targetTypes;
+            TargetTypeNames = Array.Empty<string>();
         }
 
         /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.TargetTypeNames"]/*' />
@@ -67,15 +67,15 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.targetTypeNames;
+                return targetTypeNames;
             }
 
             set
             {
                 ArgumentNullException.ThrowIfNull(value);
 
-                this.typeNamesAdded = false;
-                this.targetTypeNames = value;
+                typeNamesAdded = false;
+                targetTypeNames = value;
             }
         }
 
@@ -89,15 +89,15 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.targetTypes;
+                return targetTypes;
             }
 
             set
             {
                 ArgumentNullException.ThrowIfNull(value);
 
-                this.typesAdded = false;
-                this.targetTypes = value;
+                typesAdded = false;
+                targetTypes = value;
             }
         }
 
@@ -110,7 +110,7 @@ namespace Messaging.Msmq
         {
             ArgumentNullException.ThrowIfNull(message);
 
-            this.CreateTargetSerializerTable();
+            CreateTargetSerializerTable();
 
             Stream stream = message.BodyStream;
             XmlTextReader reader = new(stream)
@@ -157,31 +157,31 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private void CreateTargetSerializerTable()
         {
-            if (!this.typeNamesAdded)
+            if (!typeNamesAdded)
             {
-                for (int index = 0; index < this.targetTypeNames.Length; ++index)
+                for (int index = 0; index < targetTypeNames.Length; ++index)
                 {
-                    Type targetType = Type.GetType(this.targetTypeNames[index], true);
+                    Type targetType = Type.GetType(targetTypeNames[index], true);
                     if (targetType != null)
                     {
-                        this.targetSerializerTable[targetType] = new XmlSerializer(targetType);
+                        targetSerializerTable[targetType] = new XmlSerializer(targetType);
                     }
                 }
 
-                this.typeNamesAdded = true;
+                typeNamesAdded = true;
             }
 
-            if (!this.typesAdded)
+            if (!typesAdded)
             {
-                for (int index = 0; index < this.targetTypes.Length; ++index)
+                for (int index = 0; index < targetTypes.Length; ++index)
                 {
-                    this.targetSerializerTable[this.targetTypes[index]] = new XmlSerializer(this.targetTypes[index]);
+                    targetSerializerTable[targetTypes[index]] = new XmlSerializer(targetTypes[index]);
                 }
 
-                this.typesAdded = true;
+                typesAdded = true;
             }
 
-            if (this.targetSerializerTable.Count == 0)
+            if (targetSerializerTable.Count == 0)
             {
                 throw new InvalidOperationException(Res.GetString(Res.TypeListMissing));
             }
@@ -196,7 +196,7 @@ namespace Messaging.Msmq
         {
             ArgumentNullException.ThrowIfNull(message);
 
-            this.CreateTargetSerializerTable();
+            CreateTargetSerializerTable();
 
             Stream stream = message.BodyStream;
             XmlTextReader reader = new(stream)
@@ -229,14 +229,14 @@ namespace Messaging.Msmq
             Stream stream = new MemoryStream();
             Type serializedType = obj.GetType();
             XmlSerializer serializer = null;
-            if (this.targetSerializerTable.ContainsKey(serializedType))
+            if (targetSerializerTable.ContainsKey(serializedType))
             {
-                serializer = (XmlSerializer)this.targetSerializerTable[serializedType];
+                serializer = (XmlSerializer)targetSerializerTable[serializedType];
             }
             else
             {
                 serializer = new XmlSerializer(serializedType);
-                this.targetSerializerTable[serializedType] = serializer;
+                targetSerializerTable[serializedType] = serializer;
             }
 
             serializer.Serialize(stream, obj);

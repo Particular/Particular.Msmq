@@ -21,20 +21,20 @@ namespace Messaging.Msmq.Interop
 
         public Restrictions(int maxRestrictions)
         {
-            this.restrictionStructure = new MQRESTRICTION(maxRestrictions);
+            restrictionStructure = new MQRESTRICTION(maxRestrictions);
         }
 
         public virtual void AddGuid(int propertyId, int op, Guid value)
         {
             IntPtr data = Marshal.AllocHGlobal(16);
             Marshal.Copy(value.ToByteArray(), 0, data, 16);
-            this.AddItem(propertyId, op, MessagePropertyVariants.VT_CLSID, data);
+            AddItem(propertyId, op, MessagePropertyVariants.VT_CLSID, data);
         }
 
         public virtual void AddGuid(int propertyId, int op)
         {
             IntPtr data = Marshal.AllocHGlobal(16);
-            this.AddItem(propertyId, op, MessagePropertyVariants.VT_CLSID, data);
+            AddItem(propertyId, op, MessagePropertyVariants.VT_CLSID, data);
         }
 
         private void AddItem(int id, int op, short vt, IntPtr data)
@@ -52,26 +52,26 @@ namespace Messaging.Msmq.Interop
 
         public virtual void AddI4(int propertyId, int op, int value)
         {
-            this.AddItem(propertyId, op, MessagePropertyVariants.VT_I4, (IntPtr)value);
+            AddItem(propertyId, op, MessagePropertyVariants.VT_I4, (IntPtr)value);
         }
 
         public virtual void AddString(int propertyId, int op, string value)
         {
             if (value == null)
             {
-                this.AddItem(propertyId, op, MessagePropertyVariants.VT_NULL, (IntPtr)0);
+                AddItem(propertyId, op, MessagePropertyVariants.VT_NULL, (IntPtr)0);
             }
             else
             {
                 IntPtr data = Marshal.StringToHGlobalUni(value);
-                this.AddItem(propertyId, op, MessagePropertyVariants.VT_LPWSTR, data);
+                AddItem(propertyId, op, MessagePropertyVariants.VT_LPWSTR, data);
             }
 
         }
 
         public virtual MQRESTRICTION GetRestrictionsRef()
         {
-            return this.restrictionStructure;
+            return restrictionStructure;
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -83,26 +83,26 @@ namespace Messaging.Msmq.Interop
 
             public MQRESTRICTION(int maxCount)
             {
-                this.restrinctions = Marshal.AllocHGlobal(maxCount * GetRestrictionSize());
+                restrinctions = Marshal.AllocHGlobal(maxCount * GetRestrictionSize());
             }
 
             ~MQRESTRICTION()
             {
-                if (this.restrinctions != (IntPtr)0)
+                if (restrinctions != (IntPtr)0)
                 {
-                    for (int index = 0; index < this.restrictionCount; ++index)
+                    for (int index = 0; index < restrictionCount; ++index)
                     {
-                        short vt = Marshal.ReadInt16((IntPtr)((long)this.restrinctions + (index * GetRestrictionSize()) + 8));
+                        short vt = Marshal.ReadInt16((IntPtr)((long)restrinctions + (index * GetRestrictionSize()) + 8));
                         if (vt != MessagePropertyVariants.VT_I4)
                         {
-                            IntPtr dataPtr = (IntPtr)((long)this.restrinctions + (index * GetRestrictionSize()) + 16);
+                            IntPtr dataPtr = (IntPtr)((long)restrinctions + (index * GetRestrictionSize()) + 16);
                             IntPtr data = Marshal.ReadIntPtr(dataPtr);
                             Marshal.FreeHGlobal(data);
                         }
                     }
 
-                    Marshal.FreeHGlobal(this.restrinctions);
-                    this.restrinctions = (IntPtr)0;
+                    Marshal.FreeHGlobal(restrinctions);
+                    restrinctions = (IntPtr)0;
                 }
             }
 

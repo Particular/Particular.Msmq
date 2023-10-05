@@ -31,7 +31,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public AccessControlEntry(Trustee trustee)
         {
-            this.Trustee = trustee;
+            Trustee = trustee;
         }
 
         /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.AccessControlEntry2"]/*' />
@@ -40,10 +40,10 @@ namespace Messaging.Msmq
         /// </devdoc>
         public AccessControlEntry(Trustee trustee, GenericAccessRights genericAccessRights, StandardAccessRights standardAccessRights, AccessControlEntryType entryType)
         {
-            this.GenericAccessRights = genericAccessRights;
-            this.StandardAccessRights = standardAccessRights;
-            this.Trustee = trustee;
-            this.EntryType = entryType;
+            GenericAccessRights = genericAccessRights;
+            StandardAccessRights = standardAccessRights;
+            Trustee = trustee;
+            EntryType = entryType;
         }
 
         /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.EntryType"]/*' />

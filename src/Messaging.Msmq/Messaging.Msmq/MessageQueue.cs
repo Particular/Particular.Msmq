@@ -139,8 +139,8 @@ namespace Messaging.Msmq
         //
         public MessageQueue()
         {
-            this.path = String.Empty;
-            this.accessMode = QueueAccessMode.SendAndReceive;
+            path = String.Empty;
+            accessMode = QueueAccessMode.SendAndReceive;
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue1"]/*' />
@@ -199,9 +199,9 @@ namespace Messaging.Msmq
             this.enableCache = enableCache;
             if (sharedModeDenyReceive)
             {
-                this.sharedMode = NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE;
+                sharedMode = NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE;
             }
-            this.accessMode = QueueAccessMode.SendAndReceive;
+            accessMode = QueueAccessMode.SendAndReceive;
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue4"]/*' />
@@ -220,7 +220,7 @@ namespace Messaging.Msmq
             this.enableCache = enableCache;
             if (sharedModeDenyReceive)
             {
-                this.sharedMode = NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE;
+                sharedMode = NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE;
             }
             SetAccessMode(accessMode);
         }
@@ -236,7 +236,7 @@ namespace Messaging.Msmq
             PropertyFilter.Id = true;
             this.id = id;
             this.path = path;
-            this.accessMode = QueueAccessMode.SendAndReceive;
+            accessMode = QueueAccessMode.SendAndReceive;
 
         }
 
@@ -251,7 +251,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.accessMode;
+                return accessMode;
             }
         }
 
@@ -271,12 +271,12 @@ namespace Messaging.Msmq
                 {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, (byte)0);
                     GenerateQueueProperties();
-                    this.authenticate = (Properties.GetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE) != NativeMethods.QUEUE_AUTHENTICATE_NONE);
+                    authenticate = (Properties.GetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE) != NativeMethods.QUEUE_AUTHENTICATE_NONE);
                     PropertyFilter.Authenticate = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_AUTHENTICATE);
                 }
 
-                return this.authenticate;
+                return authenticate;
             }
 
             set
@@ -291,7 +291,7 @@ namespace Messaging.Msmq
                 }
 
                 SaveQueueProperties();
-                this.authenticate = value;
+                authenticate = value;
                 PropertyFilter.Authenticate = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_AUTHENTICATE);
             }
@@ -310,12 +310,12 @@ namespace Messaging.Msmq
                 {
                     Properties.SetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY, (short)0);
                     GenerateQueueProperties();
-                    this.basePriority = properties.GetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY);
+                    basePriority = properties.GetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY);
                     PropertyFilter.BasePriority = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_BASEPRIORITY);
                 }
 
-                return this.basePriority;
+                return basePriority;
 
             }
 
@@ -323,7 +323,7 @@ namespace Messaging.Msmq
             {
                 Properties.SetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY, value);
                 SaveQueueProperties();
-                this.basePriority = value;
+                basePriority = value;
                 PropertyFilter.BasePriority = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_BASEPRIORITY);
             }
@@ -390,18 +390,18 @@ namespace Messaging.Msmq
                         SafeNativeMethods.MQFreeMemory(handle);
                     }
 
-                    this.queueType = new Guid(bytes);
+                    queueType = new Guid(bytes);
                     PropertyFilter.Category = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_TYPE);
                 }
-                return this.queueType;
+                return queueType;
             }
 
             set
             {
                 Properties.SetGuid(NativeMethods.QUEUE_PROPID_TYPE, value.ToByteArray());
                 SaveQueueProperties();
-                this.queueType = value;
+                queueType = value;
                 PropertyFilter.Category = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_TYPE);
             }
@@ -445,12 +445,12 @@ namespace Messaging.Msmq
                     DateTime time = new(1970, 1, 1);
                     Properties.SetI4(NativeMethods.QUEUE_PROPID_CREATE_TIME, 0);
                     GenerateQueueProperties();
-                    this.createTime = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_CREATE_TIME)).ToLocalTime();
+                    createTime = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_CREATE_TIME)).ToLocalTime();
                     PropertyFilter.CreateTime = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_CREATE_TIME);
                 }
 
-                return this.createTime;
+                return createTime;
             }
         }
 
@@ -466,24 +466,24 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.defaultProperties == null)
+                if (defaultProperties == null)
                 {
-                    if (this.DesignMode)
+                    if (DesignMode)
                     {
-                        this.defaultProperties = new DefaultPropertiesToSend(true);
+                        defaultProperties = new DefaultPropertiesToSend(true);
                     }
                     else
                     {
-                        this.defaultProperties = new DefaultPropertiesToSend();
+                        defaultProperties = new DefaultPropertiesToSend();
                     }
                 }
 
-                return this.defaultProperties;
+                return defaultProperties;
             }
 
             set
             {
-                this.defaultProperties = value;
+                defaultProperties = value;
             }
         }
 
@@ -499,19 +499,19 @@ namespace Messaging.Msmq
         {
             get
             {
-                return (this.sharedMode == NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE);
+                return (sharedMode == NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE);
             }
             set
             {
-                if (value && (this.sharedMode != NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE))
+                if (value && (sharedMode != NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE))
                 {
-                    this.Close();
-                    this.sharedMode = NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE;
+                    Close();
+                    sharedMode = NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE;
                 }
-                else if (!value && (this.sharedMode == NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE))
+                else if (!value && (sharedMode == NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE))
                 {
-                    this.Close();
-                    this.sharedMode = NativeMethods.QUEUE_SHARED_MODE_DENY_NONE;
+                    Close();
+                    sharedMode = NativeMethods.QUEUE_SHARED_MODE_DENY_NONE;
                 }
             }
         }
@@ -549,11 +549,11 @@ namespace Messaging.Msmq
                 {
                     Properties.SetUI4(NativeMethods.QUEUE_PROPID_PRIV_LEVEL, 0);
                     GenerateQueueProperties();
-                    this.encryptionLevel = Properties.GetUI4(NativeMethods.QUEUE_PROPID_PRIV_LEVEL);
+                    encryptionLevel = Properties.GetUI4(NativeMethods.QUEUE_PROPID_PRIV_LEVEL);
                     PropertyFilter.EncryptionLevel = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_PRIV_LEVEL);
                 }
-                return (EncryptionRequired)this.encryptionLevel;
+                return (EncryptionRequired)encryptionLevel;
             }
 
             set
@@ -565,7 +565,7 @@ namespace Messaging.Msmq
 
                 Properties.SetUI4(NativeMethods.QUEUE_PROPID_PRIV_LEVEL, (int)value);
                 SaveQueueProperties();
-                this.encryptionLevel = properties.GetUI4(NativeMethods.QUEUE_PROPID_PRIV_LEVEL);
+                encryptionLevel = properties.GetUI4(NativeMethods.QUEUE_PROPID_PRIV_LEVEL);
                 PropertyFilter.EncryptionLevel = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_PRIV_LEVEL);
             }
@@ -581,19 +581,19 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.formatName == null)
+                if (formatName == null)
                 {
-                    if (this.path == null || path.Length == 0)
+                    if (path == null || path.Length == 0)
                     {
                         return string.Empty;
                     }
 
-                    string pathUpper = this.path.ToUpper(CultureInfo.InvariantCulture);
+                    string pathUpper = path.ToUpper(CultureInfo.InvariantCulture);
 
                     // see if we already have this cached
                     if (enableCache)
                     {
-                        this.formatName = MessageQueue.formatNameCache.Get(pathUpper);
+                        formatName = MessageQueue.formatNameCache.Get(pathUpper);
                     }
 
                     // not in the cache?  keep working.
@@ -608,37 +608,37 @@ namespace Messaging.Msmq
                             int status = 0;
                             StringBuilder newFormatName = new(NativeMethods.MAX_LABEL_LEN);
                             result = NativeMethods.MAX_LABEL_LEN;
-                            status = SafeNativeMethods.MQInstanceToFormatName(this.id.ToByteArray(), newFormatName, ref result);
+                            status = SafeNativeMethods.MQInstanceToFormatName(id.ToByteArray(), newFormatName, ref result);
                             if (status != 0)
                             {
                                 throw new MessageQueueException(status);
                             }
 
-                            this.formatName = newFormatName.ToString();
-                            return this.formatName;
+                            formatName = newFormatName.ToString();
+                            return formatName;
                         }
 
                         if (pathUpper.StartsWith(PREFIX_FORMAT_NAME))
                         {
-                            this.formatName = this.path[PREFIX_FORMAT_NAME.Length..];
+                            formatName = path[PREFIX_FORMAT_NAME.Length..];
                         }
                         else if (pathUpper.StartsWith(PREFIX_LABEL))
                         {
-                            MessageQueue labeledQueue = ResolveQueueFromLabel(this.path, true);
-                            this.formatName = labeledQueue.FormatName;
-                            this.queuePath = labeledQueue.QueuePath;
+                            MessageQueue labeledQueue = ResolveQueueFromLabel(path, true);
+                            formatName = labeledQueue.FormatName;
+                            queuePath = labeledQueue.QueuePath;
                         }
                         else
                         {
-                            this.queuePath = this.path;
-                            this.formatName = ResolveFormatNameFromQueuePath(this.queuePath, true);
+                            queuePath = path;
+                            formatName = ResolveFormatNameFromQueuePath(queuePath, true);
                         }
 
                         MessageQueue.formatNameCache.Put(pathUpper, formatName);
                     }
                 }
 
-                return this.formatName;
+                return formatName;
             }
         }
 
@@ -655,17 +655,17 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.formatter == null && !DesignMode)
+                if (formatter == null && !DesignMode)
                 {
-                    this.formatter = new XmlMessageFormatter();
+                    formatter = new XmlMessageFormatter();
                 }
 
-                return this.formatter;
+                return formatter;
             }
 
             set
             {
-                this.formatter = value;
+                formatter = value;
             }
         }
 
@@ -691,11 +691,11 @@ namespace Messaging.Msmq
                         //MSMQ allocated memory for this operation, needs to be freed
                         SafeNativeMethods.MQFreeMemory(handle);
                     }
-                    this.id = new Guid(bytes);
+                    id = new Guid(bytes);
                     PropertyFilter.Id = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_INSTANCE);
                 }
-                return this.id;
+                return id;
             }
         }
 
@@ -721,12 +721,12 @@ namespace Messaging.Msmq
                         SafeNativeMethods.MQFreeMemory(handle);
                     }
 
-                    this.label = description;
+                    label = description;
                     PropertyFilter.Label = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_LABEL);
                 }
 
-                return this.label;
+                return label;
             }
 
             set
@@ -736,7 +736,7 @@ namespace Messaging.Msmq
                 //Borrow this function from message
                 Properties.SetString(NativeMethods.QUEUE_PROPID_LABEL, Message.StringToBytes(value));
                 SaveQueueProperties();
-                this.label = value;
+                label = value;
                 PropertyFilter.Label = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_LABEL);
             }
@@ -758,12 +758,12 @@ namespace Messaging.Msmq
                     DateTime time = new(1970, 1, 1);
                     Properties.SetI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME, 0);
                     GenerateQueueProperties();
-                    this.lastModifyTime = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME)).ToLocalTime();
+                    lastModifyTime = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME)).ToLocalTime();
                     PropertyFilter.LastModifyTime = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_MODIFY_TIME);
                 }
 
-                return this.lastModifyTime;
+                return lastModifyTime;
             }
         }
 
@@ -797,7 +797,7 @@ namespace Messaging.Msmq
                 }
 
                 StringBuilder newPath = new();
-                if ((this.path == null || this.path.Length == 0) && this.formatName == null)
+                if ((path == null || path.Length == 0) && formatName == null)
                 {
                     //Need to default to an existing queue, for instance Journal.
                     newPath.Append(value);
@@ -827,12 +827,12 @@ namespace Messaging.Msmq
                 {
                     Properties.SetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA, 0);
                     GenerateQueueProperties();
-                    this.journalSize = (long)((uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA));
+                    journalSize = (long)((uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA));
                     PropertyFilter.MaximumJournalSize = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA);
                 }
 
-                return this.journalSize;
+                return journalSize;
             }
 
             set
@@ -844,7 +844,7 @@ namespace Messaging.Msmq
 
                 Properties.SetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA, (int)((uint)value));
                 SaveQueueProperties();
-                this.journalSize = value;
+                journalSize = value;
                 PropertyFilter.MaximumJournalSize = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA);
             }
@@ -864,12 +864,12 @@ namespace Messaging.Msmq
                 {
                     Properties.SetUI4(NativeMethods.QUEUE_PROPID_QUOTA, 0);
                     GenerateQueueProperties();
-                    this.queueSize = (long)((uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_QUOTA));
+                    queueSize = (long)((uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_QUOTA));
                     PropertyFilter.MaximumQueueSize = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_QUOTA);
                 }
 
-                return this.queueSize;
+                return queueSize;
             }
 
             set
@@ -881,7 +881,7 @@ namespace Messaging.Msmq
 
                 Properties.SetUI4(NativeMethods.QUEUE_PROPID_QUOTA, (int)((uint)value));
                 SaveQueueProperties();
-                this.queueSize = value;
+                queueSize = value;
                 PropertyFilter.MaximumQueueSize = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_QUOTA);
             }
@@ -898,20 +898,20 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.receiveFilter == null)
+                if (receiveFilter == null)
                 {
-                    this.receiveFilter = new MessagePropertyFilter();
-                    this.receiveFilter.SetDefaults();
+                    receiveFilter = new MessagePropertyFilter();
+                    receiveFilter.SetDefaults();
                 }
 
-                return this.receiveFilter;
+                return receiveFilter;
             }
 
             set
             {
                 ArgumentNullException.ThrowIfNull(value);
 
-                this.receiveFilter = value;
+                receiveFilter = value;
             }
         }
 
@@ -927,7 +927,7 @@ namespace Messaging.Msmq
                         cachedInfo?.CloseIfNotReferenced();
 
                         // don't use the cache
-                        mqInfo = new MQCacheableInfo(this.FormatName, accessMode, sharedMode);
+                        mqInfo = new MQCacheableInfo(FormatName, accessMode, sharedMode);
                         mqInfo.AddRef();
                     }
                     else
@@ -940,7 +940,7 @@ namespace Messaging.Msmq
                         }
                         else
                         {
-                            mqInfo = new MQCacheableInfo(this.FormatName, accessMode, sharedMode);
+                            mqInfo = new MQCacheableInfo(FormatName, accessMode, sharedMode);
                             mqInfo.AddRef();
                             queueInfoCache.Put(QueueInfoKey, mqInfo);
                         }
@@ -986,12 +986,12 @@ namespace Messaging.Msmq
                         SafeNativeMethods.MQFreeMemory(handle);
                     }
 
-                    this.multicastAddress = address;
+                    multicastAddress = address;
                     PropertyFilter.MulticastAddress = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_MULTICAST_ADDRESS);
                 }
 
-                return this.multicastAddress;
+                return multicastAddress;
             }
             set
             {
@@ -1012,7 +1012,7 @@ namespace Messaging.Msmq
                 }
 
                 SaveQueueProperties();
-                this.multicastAddress = value;
+                multicastAddress = value;
                 PropertyFilter.MulticastAddress = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_MULTICAST_ADDRESS);
             }
@@ -1030,7 +1030,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                return this.path;
+                return path;
             }
 
             set
@@ -1042,12 +1042,12 @@ namespace Messaging.Msmq
                     throw new ArgumentException(Res.GetString(Res.PathSyntax));
                 }
 
-                if (!String.IsNullOrEmpty(this.path))
+                if (!String.IsNullOrEmpty(path))
                 {
-                    this.Close();
+                    Close();
                 }
 
-                this.path = value;
+                path = value;
             }
         }
 
@@ -1057,9 +1057,9 @@ namespace Messaging.Msmq
         {
             get
             {
-                this.properties ??= new QueuePropertyVariants();
+                properties ??= new QueuePropertyVariants();
 
-                return this.properties;
+                return properties;
             }
         }
 
@@ -1069,9 +1069,9 @@ namespace Messaging.Msmq
         {
             get
             {
-                this.filter ??= new QueuePropertyFilter();
+                filter ??= new QueuePropertyFilter();
 
-                return this.filter;
+                return filter;
             }
         }
 
@@ -1099,7 +1099,7 @@ namespace Messaging.Msmq
                 ArgumentNullException.ThrowIfNull(value);
 
                 StringBuilder newPath = new();
-                if ((this.path == null || this.path.Length == 0) && this.formatName == null)
+                if ((path == null || path.Length == 0) && formatName == null)
                 {
                     newPath.Append(".\\");
                     newPath.Append(value);
@@ -1121,19 +1121,19 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.queuePath == null)
+                if (queuePath == null)
                 {
-                    if (this.path == null || this.path.Length == 0)
+                    if (path == null || path.Length == 0)
                     {
                         return string.Empty;
                     }
 
-                    string pathUpper = this.path.ToUpper(CultureInfo.InvariantCulture);
+                    string pathUpper = path.ToUpper(CultureInfo.InvariantCulture);
                     if (pathUpper.StartsWith(PREFIX_LABEL))
                     {
-                        MessageQueue labeledQueue = ResolveQueueFromLabel(this.path, true);
-                        this.formatName = labeledQueue.FormatName;
-                        this.queuePath = labeledQueue.QueuePath;
+                        MessageQueue labeledQueue = ResolveQueueFromLabel(path, true);
+                        formatName = labeledQueue.FormatName;
+                        queuePath = labeledQueue.QueuePath;
                     }
                     else if (pathUpper.StartsWith(PREFIX_FORMAT_NAME))
                     {
@@ -1149,14 +1149,14 @@ namespace Messaging.Msmq
                             SafeNativeMethods.MQFreeMemory(handle);
                         }
                         Properties.Remove(NativeMethods.QUEUE_PROPID_PATHNAME);
-                        this.queuePath = description;
+                        queuePath = description;
                     }
                     else
                     {
-                        this.queuePath = path;
+                        queuePath = path;
                     }
                 }
-                return this.queuePath;
+                return queuePath;
             }
         }
 
@@ -1193,7 +1193,7 @@ namespace Messaging.Msmq
         {
             get
             {
-                if (this.synchronizingObject == null && DesignMode)
+                if (synchronizingObject == null && DesignMode)
                 {
                     IDesignerHost host = (IDesignerHost)GetService(typeof(IDesignerHost));
                     if (host != null)
@@ -1201,17 +1201,17 @@ namespace Messaging.Msmq
                         object baseComponent = host.RootComponent;
                         if (baseComponent is not null and ISynchronizeInvoke)
                         {
-                            this.synchronizingObject = (ISynchronizeInvoke)baseComponent;
+                            synchronizingObject = (ISynchronizeInvoke)baseComponent;
                         }
                     }
                 }
 
-                return this.synchronizingObject;
+                return synchronizingObject;
             }
 
             set
             {
-                this.synchronizingObject = value;
+                synchronizingObject = value;
             }
         }
 
@@ -1250,11 +1250,11 @@ namespace Messaging.Msmq
                 {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, (byte)0);
                     GenerateQueueProperties();
-                    this.useJournaling = (Properties.GetUI1(NativeMethods.QUEUE_PROPID_JOURNAL) != NativeMethods.QUEUE_JOURNAL_NONE);
+                    useJournaling = (Properties.GetUI1(NativeMethods.QUEUE_PROPID_JOURNAL) != NativeMethods.QUEUE_JOURNAL_NONE);
                     PropertyFilter.UseJournalQueue = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL);
                 }
-                return this.useJournaling;
+                return useJournaling;
             }
 
             set
@@ -1269,7 +1269,7 @@ namespace Messaging.Msmq
                 }
 
                 SaveQueueProperties();
-                this.useJournaling = value;
+                useJournaling = value;
                 PropertyFilter.UseJournalQueue = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL);
             }
@@ -1350,7 +1350,7 @@ namespace Messaging.Msmq
             {
                 if (outstandingAsyncRequests == null)
                 {
-                    lock (this.syncRoot)
+                    lock (syncRoot)
                     {
                         if (outstandingAsyncRequests == null)
                         {
@@ -1373,7 +1373,7 @@ namespace Messaging.Msmq
             {
                 if (queueInfoKey == null)
                 {
-                    lock (this.syncRoot)
+                    lock (syncRoot)
                     {
                         if (queueInfoKey == null)
                         {
@@ -1384,7 +1384,7 @@ namespace Messaging.Msmq
                     }
                 }
 
-                return this.queueInfoKey;
+                return queueInfoKey;
             }
         }
 
@@ -1547,29 +1547,29 @@ namespace Messaging.Msmq
 
             //This is generated from the path.
             //It needs to be cleared.
-            this.formatName = null;
-            this.queuePath = null;
-            this.attached = false;
-            this.administerGranted = false;
-            this.browseGranted = false;
-            this.sendGranted = false;
-            this.receiveGranted = false;
-            this.peekGranted = false;
+            formatName = null;
+            queuePath = null;
+            attached = false;
+            administerGranted = false;
+            browseGranted = false;
+            sendGranted = false;
+            receiveGranted = false;
+            peekGranted = false;
 
             if (disposing)
             {
-                if (this.mqInfo != null)
+                if (mqInfo != null)
                 {
-                    this.mqInfo.Release();
+                    mqInfo.Release();
 
                     //No need to check references in this case, the only object
                     //mqInfo is not cached if both conditions are satisified.
                     if (sharedMode == NativeMethods.QUEUE_SHARED_MODE_DENY_RECEIVE || !enableCache)
                     {
-                        this.mqInfo.Dispose();
+                        mqInfo.Dispose();
                     }
 
-                    this.mqInfo = null;
+                    mqInfo = null;
                 }
             }
 
@@ -2165,18 +2165,18 @@ namespace Messaging.Msmq
         {
             if (((AsynchronousRequest)asyncResult).Action == NativeMethods.QUEUE_ACTION_PEEK_CURRENT)
             {
-                if (this.onPeekCompleted != null)
+                if (onPeekCompleted != null)
                 {
                     PeekCompletedEventArgs eventArgs = new(this, asyncResult);
-                    this.onPeekCompleted(this, eventArgs);
+                    onPeekCompleted(this, eventArgs);
                 }
             }
             else
             {
-                if (this.onReceiveCompleted != null)
+                if (onReceiveCompleted != null)
                 {
                     ReceiveCompletedEventArgs eventArgs = new(this, asyncResult);
-                    this.onReceiveCompleted(this, eventArgs);
+                    onReceiveCompleted(this, eventArgs);
                 }
             }
         }
@@ -2464,14 +2464,14 @@ namespace Messaging.Msmq
                             // If not a File handle, need to use MSMQ
                             // APC based async IO.
                             // We will need to store references to pending async requests (bug 88607)
-                            this.useThreadPool = false;
+                            useThreadPool = false;
                         }
                         else
                         {
                             // File handle can use IOCompletion ports
                             // since it only happens for NT
                             MQInfo.BindToThreadPool();
-                            this.useThreadPool = true;
+                            useThreadPool = true;
                         }
                         attached = true;
                     }
@@ -2480,12 +2480,12 @@ namespace Messaging.Msmq
 
             if (callback == null)
             {
-                this.onRequestCompleted ??= new AsyncCallback(this.OnRequestCompleted);
+                onRequestCompleted ??= new AsyncCallback(OnRequestCompleted);
 
-                callback = this.onRequestCompleted;
+                callback = onRequestCompleted;
             }
 
-            AsynchronousRequest request = new(this, (uint)timeoutInMilliseconds, cursorHandle, action, this.useThreadPool, stateObject, callback);
+            AsynchronousRequest request = new(this, (uint)timeoutInMilliseconds, cursorHandle, action, useThreadPool, stateObject, callback);
 
             //
             // Bug 88607 - keep a reference to outstanding asyncresult so its' not GCed
@@ -2496,7 +2496,7 @@ namespace Messaging.Msmq
             // Need to add reference before calling BeginRead because request can complete by the time
             // reference is added, and it will be leaked if added to table after completion
             //
-            if (!this.useThreadPool)
+            if (!useThreadPool)
             {
                 OutstandingAsyncRequests[request] = request;
             }
@@ -2517,20 +2517,20 @@ namespace Messaging.Msmq
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "timeout", timeout.ToString()));
             }
 
-            MessagePropertyFilter oldFilter = this.receiveFilter;
+            MessagePropertyFilter oldFilter = receiveFilter;
 
             CursorHandle cursorHandle = null;
             try
             {
-                this.receiveFilter = new MessagePropertyFilter();
-                this.receiveFilter.ClearAll();
+                receiveFilter = new MessagePropertyFilter();
+                receiveFilter.ClearAll();
                 if (!compareId)
                 {
-                    this.receiveFilter.CorrelationId = true;
+                    receiveFilter.CorrelationId = true;
                 }
                 else
                 {
-                    this.receiveFilter.Id = true;
+                    receiveFilter.Id = true;
                 }
 
                 //
@@ -2541,7 +2541,7 @@ namespace Messaging.Msmq
                 //
                 // Get cursor handle
                 //
-                int status = SafeNativeMethods.MQCreateCursor(this.MQInfo.ReadHandle, out cursorHandle);
+                int status = SafeNativeMethods.MQCreateCursor(MQInfo.ReadHandle, out cursorHandle);
                 if (MessageQueue.IsFatalError(status))
                 {
                     throw new MessageQueueException(status);
@@ -2552,7 +2552,7 @@ namespace Messaging.Msmq
                     //
                     // peek first message in the queue
                     //
-                    Message message = this.ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, cursorHandle,
+                    Message message = ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, cursorHandle,
                                                         MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
 
                     while (message != null)
@@ -2563,32 +2563,32 @@ namespace Messaging.Msmq
                             //
                             // Found matching message, receive it and return
                             //
-                            this.receiveFilter = oldFilter;
+                            receiveFilter = oldFilter;
 
                             if (remove)
                             {
                                 if (transaction == null)
                                 {
                                     return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, cursorHandle,
-                                                          this.MessageReadPropertyFilter, null, transactionType);
+                                                          MessageReadPropertyFilter, null, transactionType);
                                 }
                                 else
                                 {
                                     return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, cursorHandle,
-                                                          this.MessageReadPropertyFilter, transaction, MessageQueueTransactionType.None);
+                                                          MessageReadPropertyFilter, transaction, MessageQueueTransactionType.None);
                                 }
                             }
                             else
                             {
                                 return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, cursorHandle,
-                                                      this.MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
+                                                      MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
                             }
                         } //end if
 
                         //
                         // Continue search, peek next message
                         //
-                        message = this.ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_PEEK_NEXT, cursorHandle,
+                        message = ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_PEEK_NEXT, cursorHandle,
                                                         MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
 
 
@@ -2602,7 +2602,7 @@ namespace Messaging.Msmq
             }
             finally
             {
-                this.receiveFilter = oldFilter;
+                receiveFilter = oldFilter;
                 cursorHandle?.Close();
             }
 
@@ -2898,9 +2898,9 @@ namespace Messaging.Msmq
                 receiveMessage = new Message((MessagePropertyFilter)filter.Clone());
                 receiveMessage.SetLookupId(lookupId);
 
-                if (this.formatter != null)
+                if (formatter != null)
                 {
-                    receiveMessage.Formatter = (IMessageFormatter)this.formatter.Clone();
+                    receiveMessage.Formatter = (IMessageFormatter)formatter.Clone();
                 }
 
                 lockedReceiveMessage = receiveMessage.Lock();
@@ -2993,9 +2993,9 @@ namespace Messaging.Msmq
             if (filter != null)
             {
                 receiveMessage = new Message((MessagePropertyFilter)filter.Clone());
-                if (this.formatter != null)
+                if (formatter != null)
                 {
-                    receiveMessage.Formatter = (IMessageFormatter)this.formatter.Clone();
+                    receiveMessage.Formatter = (IMessageFormatter)formatter.Clone();
                 }
 
                 lockedReceiveMessage = receiveMessage.Lock();
@@ -3067,7 +3067,7 @@ namespace Messaging.Msmq
         //
         public void Refresh()
         {
-            this.PropertyFilter.ClearAll();
+            PropertyFilter.ClearAll();
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SaveQueueProperties"]/*' />
@@ -3190,15 +3190,15 @@ namespace Messaging.Msmq
             }
             else
             {
-                string oldLabel = this.DefaultPropertiesToSend.Label;
+                string oldLabel = DefaultPropertiesToSend.Label;
                 try
                 {
-                    this.DefaultPropertiesToSend.Label = label;
+                    DefaultPropertiesToSend.Label = label;
                     SendInternal(obj, transaction, transactionType);
                 }
                 finally
                 {
-                    this.DefaultPropertiesToSend.Label = oldLabel;
+                    DefaultPropertiesToSend.Label = oldLabel;
                 }
             }
         }
@@ -3220,8 +3220,8 @@ namespace Messaging.Msmq
 
             if (message == null)
             {
-                message = this.DefaultPropertiesToSend.CachedMessage;
-                message.Formatter = this.Formatter;
+                message = DefaultPropertiesToSend.CachedMessage;
+                message.Formatter = Formatter;
                 message.Body = obj;
             }
 
@@ -3691,16 +3691,16 @@ namespace Messaging.Msmq
                 this.callback = callback;
                 this.action = action;
                 this.timeout = timeout;
-                this.resetEvent = new ManualResetEvent(false);
+                resetEvent = new ManualResetEvent(false);
                 this.cursorHandle = cursorHandle;
 
                 if (!useThreadPool)
                 {
-                    this.onMessageReceived = new SafeNativeMethods.ReceiveCallback(this.OnMessageReceived);
+                    onMessageReceived = new SafeNativeMethods.ReceiveCallback(OnMessageReceived);
                 }
                 else
                 {
-                    this.onCompletionStatusChanged = new IOCompletionCallback(this.OnCompletionStatusChanged);
+                    onCompletionStatusChanged = new IOCompletionCallback(OnCompletionStatusChanged);
                 }
             }
 
@@ -3711,7 +3711,7 @@ namespace Messaging.Msmq
             {
                 get
                 {
-                    return this.action;
+                    return action;
                 }
             }
 
@@ -3724,7 +3724,7 @@ namespace Messaging.Msmq
             {
                 get
                 {
-                    return this.asyncState;
+                    return asyncState;
                 }
             }
 
@@ -3737,7 +3737,7 @@ namespace Messaging.Msmq
             {
                 get
                 {
-                    return this.resetEvent;
+                    return resetEvent;
                 }
             }
 
@@ -3763,7 +3763,7 @@ namespace Messaging.Msmq
             {
                 get
                 {
-                    return this.isCompleted;
+                    return isCompleted;
                 }
             }
 
@@ -3776,34 +3776,34 @@ namespace Messaging.Msmq
             internal unsafe void BeginRead()
             {
                 NativeOverlapped* overlappedPointer = null;
-                if (this.onCompletionStatusChanged != null)
+                if (onCompletionStatusChanged != null)
                 {
                     Overlapped overlapped = new()
                     {
                         AsyncResult = this
                     };
-                    overlappedPointer = overlapped.Pack(this.onCompletionStatusChanged, null);
+                    overlappedPointer = overlapped.Pack(onCompletionStatusChanged, null);
                 }
 
                 int localStatus = 0;
-                this.message = new Message(owner.MessageReadPropertyFilter);
+                message = new Message(owner.MessageReadPropertyFilter);
 
                 try
                 {
-                    localStatus = this.owner.StaleSafeReceiveMessage(this.timeout, this.action, this.message.Lock(), overlappedPointer, this.onMessageReceived, this.cursorHandle, IntPtr.Zero);
+                    localStatus = owner.StaleSafeReceiveMessage(timeout, action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
                     while (MessageQueue.IsMemoryError(localStatus))
                     {
                         // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
-                        if (this.action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
+                        if (action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
                         {
-                            this.action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
+                            action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
                         }
 
-                        this.message.Unlock();
-                        this.message.AdjustMemory();
-                        localStatus = this.owner.StaleSafeReceiveMessage(this.timeout, this.action, this.message.Lock(), overlappedPointer, this.onMessageReceived, this.cursorHandle, IntPtr.Zero);
+                        message.Unlock();
+                        message.AdjustMemory();
+                        localStatus = owner.StaleSafeReceiveMessage(timeout, action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
                     }
                 }
                 catch (Exception)
@@ -3812,16 +3812,16 @@ namespace Messaging.Msmq
                     // but without raising completion event.
                     // This is to preserve pre-Whidbey Beta 2 behavior, when exception thrown from this method
                     // would prevent RaiseCompletionEvent from being called (and also leak resources)
-                    this.message.Unlock();
+                    message.Unlock();
 
                     if (overlappedPointer != null)
                     {
                         Overlapped.Free(overlappedPointer);
                     }
 
-                    if (!this.owner.useThreadPool)
+                    if (!owner.useThreadPool)
                     {
-                        this.owner.OutstandingAsyncRequests.Remove(this);
+                        owner.OutstandingAsyncRequests.Remove(this);
                     }
 
                     throw;
@@ -3845,18 +3845,18 @@ namespace Messaging.Msmq
             /// <internalonly/>
             internal Message End()
             {
-                this.resetEvent.WaitOne();
+                resetEvent.WaitOne();
                 if (MessageQueue.IsFatalError(status))
                 {
                     throw new MessageQueueException(status);
                 }
 
-                if (this.owner.formatter != null)
+                if (owner.formatter != null)
                 {
-                    this.message.Formatter = (IMessageFormatter)this.owner.formatter.Clone();
+                    message.Formatter = (IMessageFormatter)owner.formatter.Clone();
                 }
 
-                return this.message;
+                return message;
             }
 
             /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.OnCompletionStatusChanged"]/*' />
@@ -3914,20 +3914,20 @@ namespace Messaging.Msmq
                         // Need to special-case retrying PeekNext after a buffer overflow
                         // by using PeekCurrent on retries since otherwise MSMQ will
                         // advance the cursor, skipping messages
-                        if (this.action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
+                        if (action == NativeMethods.QUEUE_ACTION_PEEK_NEXT)
                         {
-                            this.action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
+                            action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
                         }
 
-                        this.message.Unlock();
-                        this.message.AdjustMemory();
+                        message.Unlock();
+                        message.AdjustMemory();
                         try
                         {
                             // ReadHandle called from StaleSafeReceiveMessage can throw if the handle has been invalidated
                             // (for example, by closing it), and subsequent MQOpenQueue fails for some reason.
                             // Therefore catch exception (otherwise process will die) and propagate error
                             // EugeneSh Jan 2006 (Whidbey bug 570055)
-                            result = this.owner.StaleSafeReceiveMessage(this.timeout, this.action, this.message.Lock(), overlappedPointer, this.onMessageReceived, this.cursorHandle, IntPtr.Zero);
+                            result = owner.StaleSafeReceiveMessage(timeout, action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
                         }
                         catch (MessageQueueException e)
                         {
@@ -3942,15 +3942,15 @@ namespace Messaging.Msmq
                     }
                 }
 
-                this.message.Unlock();
+                message.Unlock();
 
-                if (this.owner.IsCashedInfoInvalidOnReceive(result))
+                if (owner.IsCashedInfoInvalidOnReceive(result))
                 {
-                    this.owner.MQInfo.Close();
+                    owner.MQInfo.Close();
                     try
                     {
                         // For explanation of this try/catch, see comment above
-                        result = this.owner.StaleSafeReceiveMessage(this.timeout, this.action, this.message.Lock(), overlappedPointer, this.onMessageReceived, this.cursorHandle, IntPtr.Zero);
+                        result = owner.StaleSafeReceiveMessage(timeout, action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
                     }
                     catch (MessageQueueException e)
                     {
@@ -3963,14 +3963,14 @@ namespace Messaging.Msmq
                     }
                 }
 
-                this.status = result;
+                status = result;
                 if (overlappedPointer != null)
                 {
                     Overlapped.Free(overlappedPointer);
                 }
 
-                this.isCompleted = true;
-                this.resetEvent.Set();
+                isCompleted = true;
+                resetEvent.Set();
 
                 try
                 {
@@ -3983,14 +3983,14 @@ namespace Messaging.Msmq
                     // As only one customer complained about 367076, we decided to revert to
                     // Everett behavior
                     //
-                    if (this.owner.SynchronizingObject != null &&
-                        this.owner.SynchronizingObject.InvokeRequired)
+                    if (owner.SynchronizingObject != null &&
+                        owner.SynchronizingObject.InvokeRequired)
                     {
-                        this.owner.SynchronizingObject.BeginInvoke(this.callback, new object[] { this });
+                        owner.SynchronizingObject.BeginInvoke(callback, new object[] { this });
                     }
                     else
                     {
-                        this.callback(this);
+                        callback(this);
                     }
                 }
                 catch (Exception)
@@ -4002,10 +4002,10 @@ namespace Messaging.Msmq
                 }
                 finally
                 {
-                    if (!this.owner.useThreadPool)
+                    if (!owner.useThreadPool)
                     {
-                        Debug.Assert(this.owner.OutstandingAsyncRequests.Contains(this));
-                        this.owner.OutstandingAsyncRequests.Remove(this);
+                        Debug.Assert(owner.OutstandingAsyncRequests.Contains(this));
+                        owner.OutstandingAsyncRequests.Remove(this);
                     }
                 }
             }
@@ -4177,12 +4177,12 @@ namespace Messaging.Msmq
 
             public CacheTable(string name, int capacity, TimeSpan staleTime)
             {
-                this.originalCapacity = capacity;
+                originalCapacity = capacity;
                 this.capacity = capacity;
                 this.staleTime = staleTime;
                 this.name = name;
-                this.rwLock = new System.Threading.ReaderWriterLock();
-                this.table = [];
+                rwLock = new System.Threading.ReaderWriterLock();
+                table = [];
             }
 
             public Value Get(Key key)
@@ -4349,11 +4349,11 @@ namespace Messaging.Msmq
                     {
                         ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
-                        lock (this.syncRoot)
+                        lock (syncRoot)
                         {
                             if (readHandle.IsInvalid)
                             {
-                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
+                                int status = UnsafeNativeMethods.MQOpenQueue(formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
                                 {
                                     return false;
@@ -4382,11 +4382,11 @@ namespace Messaging.Msmq
                     {
                         ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
-                        lock (this.syncRoot)
+                        lock (syncRoot)
                         {
                             if (writeHandle.IsInvalid)
                             {
-                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
+                                int status = UnsafeNativeMethods.MQOpenQueue(formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
                                 {
                                     return false;
@@ -4405,7 +4405,7 @@ namespace Messaging.Msmq
             {
                 get
                 {
-                    return this.refCount;
+                    return refCount;
                 }
             }
 
@@ -4417,11 +4417,11 @@ namespace Messaging.Msmq
                     {
                         ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
-                        lock (this.syncRoot)
+                        lock (syncRoot)
                         {
                             if (readHandle.IsInvalid)
                             {
-                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
+                                int status = UnsafeNativeMethods.MQOpenQueue(formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
                                 {
                                     throw new MessageQueueException(status);
@@ -4444,11 +4444,11 @@ namespace Messaging.Msmq
                     {
                         ObjectDisposedException.ThrowIf(disposed, GetType().Name);
 
-                        lock (this.syncRoot)
+                        lock (syncRoot)
                         {
                             if (writeHandle.IsInvalid)
                             {
-                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
+                                int status = UnsafeNativeMethods.MQOpenQueue(formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
                                 {
                                     throw new MessageQueueException(status);
@@ -4469,7 +4469,7 @@ namespace Messaging.Msmq
                 {
                     if (!isTransactional_valid)
                     {
-                        lock (this.syncRoot)
+                        lock (syncRoot)
                         {
                             if (!isTransactional_valid)
                             {
@@ -4482,7 +4482,7 @@ namespace Messaging.Msmq
                                     throw new MessageQueueException(status);
                                 }
 
-                                this.isTransactional = (props.GetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION) != NativeMethods.QUEUE_TRANSACTIONAL_NONE);
+                                isTransactional = (props.GetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION) != NativeMethods.QUEUE_TRANSACTIONAL_NONE);
                                 isTransactional_valid = true;
                             }
                         }
@@ -4502,14 +4502,14 @@ namespace Messaging.Msmq
 
             public void BindToThreadPool()
             {
-                if (!this.boundToThreadPool)
+                if (!boundToThreadPool)
                 {
                     lock (this)
                     {
-                        if (!this.boundToThreadPool)
+                        if (!boundToThreadPool)
                         {
                             ThreadPool.BindHandle(ReadHandle);
-                            this.boundToThreadPool = true;
+                            boundToThreadPool = true;
                         }
                     }
                 }
@@ -4528,24 +4528,24 @@ namespace Messaging.Msmq
 
             public void Close()
             {
-                this.boundToThreadPool = false;
-                if (!this.writeHandle.IsInvalid)
+                boundToThreadPool = false;
+                if (!writeHandle.IsInvalid)
                 {
-                    lock (this.syncRoot)
+                    lock (syncRoot)
                     {
-                        if (!this.writeHandle.IsInvalid)
+                        if (!writeHandle.IsInvalid)
                         {
-                            this.writeHandle.Close();
+                            writeHandle.Close();
                         }
                     }
                 }
-                if (!this.readHandle.IsInvalid)
+                if (!readHandle.IsInvalid)
                 {
-                    lock (this.syncRoot)
+                    lock (syncRoot)
                     {
-                        if (!this.readHandle.IsInvalid)
+                        if (!readHandle.IsInvalid)
                         {
-                            this.readHandle.Close();
+                            readHandle.Close();
                         }
                     }
                 }
@@ -4561,10 +4561,10 @@ namespace Messaging.Msmq
             {
                 if (disposing)
                 {
-                    this.Close();
+                    Close();
                 }
 
-                this.disposed = true;
+                disposed = true;
             }
 
             public void Release()
@@ -4602,7 +4602,7 @@ namespace Messaging.Msmq
                 }
 
                 QueueInfoKeyHolder qik = (QueueInfoKeyHolder)obj;
-                return this.Equals(qik);
+                return Equals(qik);
             }
 
             public bool Equals(QueueInfoKeyHolder qik)
@@ -4614,7 +4614,7 @@ namespace Messaging.Msmq
 
                 // string.Equals performs case-sensitive and culture-insensitive comparison
                 // we address case sensitivity by normalizing format name in the constructor
-                return ((this.accessMode == qik.accessMode) && this.formatName.Equals(qik.formatName));
+                return ((accessMode == qik.accessMode) && formatName.Equals(qik.formatName));
             }
         }
 
