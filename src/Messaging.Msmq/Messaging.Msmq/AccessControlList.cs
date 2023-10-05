@@ -155,7 +155,7 @@ namespace Messaging.Msmq
                         throw new InvalidOperationException(Res.GetString(Res.InvalidTrusteeName));
                     }
 
-                    if ((ace.Trustee.TrusteeType == TrusteeType.Computer) && !name.EndsWith("$"))
+                    if ((ace.Trustee.TrusteeType == TrusteeType.Computer) && !name.EndsWith('$'))
                     {
                         name += "$";
                     }
