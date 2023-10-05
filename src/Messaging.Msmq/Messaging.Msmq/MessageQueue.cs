@@ -1818,9 +1818,8 @@ namespace Messaging.Msmq
         /// </devdoc>
         public static SecurityContext GetSecurityContext()
         {
-            SecurityContextHandle handle;
             // SECURITY: Note that this call is not marked with SUCS attribute (i.e., requires FullTrust)
-            int status = NativeMethods.MQGetSecurityContextEx(out handle);
+            int status = NativeMethods.MQGetSecurityContextEx(out SecurityContextHandle handle);
             if (MessageQueue.IsFatalError(status))
                 throw new MessageQueueException(status);
 
@@ -2348,10 +2347,9 @@ namespace Messaging.Msmq
                     if (!attached)
                     {
                         MessageQueueHandle handle = MQInfo.ReadHandle;
-                        int handleInformation;
                         // If GetHandleInformation returns false, it means that the
                         // handle created for reading is not a File handle.
-                        if (!SafeNativeMethods.GetHandleInformation(handle, out handleInformation))
+                        if (!SafeNativeMethods.GetHandleInformation(handle, out int handleInformation))
                             // If not a File handle, need to use MSMQ
                             // APC based async IO.
                             // We will need to store references to pending async requests (bug 88607)
@@ -3257,12 +3255,10 @@ namespace Messaging.Msmq
                     throw new MessageQueueException(mqResult);
                 }
 
-                bool daclPresent, daclDefaulted;
-                IntPtr pDacl;
                 bool success = UnsafeNativeMethods.GetSecurityDescriptorDacl(sdHandle.AddrOfPinnedObject(),
-                                                                                out daclPresent,
-                                                                                out pDacl,
-                                                                                out daclDefaulted);
+                                                                                out bool daclPresent,
+                                                                                out nint pDacl,
+                                                                                out bool daclDefaulted);
 
                 if (!success)
                     throw new Win32Exception();
@@ -4091,8 +4087,7 @@ namespace Messaging.Msmq
                         {
                             if (readHandle.IsInvalid)
                             {
-                                MessageQueueHandle result;
-                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetReadAccessMode(), shareMode, out result);
+                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
                                     return false;
 
@@ -4122,8 +4117,7 @@ namespace Messaging.Msmq
                         {
                             if (writeHandle.IsInvalid)
                             {
-                                MessageQueueHandle result;
-                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetWriteAccessMode(), 0, out result);
+                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
                                     return false;
 
@@ -4157,8 +4151,7 @@ namespace Messaging.Msmq
                         {
                             if (readHandle.IsInvalid)
                             {
-                                MessageQueueHandle result;
-                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetReadAccessMode(), shareMode, out result);
+                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetReadAccessMode(), shareMode, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
                                     throw new MessageQueueException(status);
 
@@ -4184,8 +4177,7 @@ namespace Messaging.Msmq
                         {
                             if (writeHandle.IsInvalid)
                             {
-                                MessageQueueHandle result;
-                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetWriteAccessMode(), 0, out result);
+                                int status = UnsafeNativeMethods.MQOpenQueue(this.formatName, accessMode.GetWriteAccessMode(), 0, out MessageQueueHandle result);
                                 if (MessageQueue.IsFatalError(status))
                                     throw new MessageQueueException(status);
 

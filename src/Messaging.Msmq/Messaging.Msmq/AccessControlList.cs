@@ -132,7 +132,6 @@ namespace Messaging.Msmq
                 for (int i = 0; i < ACECount; i++)
                 {
                     int sidSize = 0;
-                    int sidtype;
                     int domainSize = 0;
 
                     AccessControlEntry ace = (AccessControlEntry)List[i];
@@ -147,7 +146,7 @@ namespace Messaging.Msmq
                     if ((ace.Trustee.TrusteeType == TrusteeType.Computer) && !name.EndsWith("$"))
                         name += "$";
 
-                    if (!UnsafeNativeMethods.LookupAccountName(ace.Trustee.SystemName, name, (IntPtr)0, ref sidSize, null, ref domainSize, out sidtype))
+                    if (!UnsafeNativeMethods.LookupAccountName(ace.Trustee.SystemName, name, (IntPtr)0, ref sidSize, null, ref domainSize, out int sidtype))
                     {
                         int errval = Marshal.GetLastWin32Error();
                         if (errval != 122)

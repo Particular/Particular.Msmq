@@ -84,8 +84,7 @@ namespace Messaging.Msmq
                     if (this.disposed)
                         throw new ObjectDisposedException(GetType().Name);
 
-                    CursorHandle result;
-                    int status = SafeNativeMethods.MQCreateCursor(this.owner.MQInfo.ReadHandle, out result);
+                    int status = SafeNativeMethods.MQCreateCursor(this.owner.MQInfo.ReadHandle, out CursorHandle result);
                     if (MessageQueue.IsFatalError(status))
                         throw new MessageQueueException(status);
 
