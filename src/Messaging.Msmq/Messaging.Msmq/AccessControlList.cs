@@ -160,7 +160,7 @@ namespace Messaging.Msmq
                         name += "$";
                     }
 
-                    if (!UnsafeNativeMethods.LookupAccountName(ace.Trustee.SystemName, name, (IntPtr)0, ref sidSize, null, ref domainSize, out int sidtype))
+                    if (!UnsafeNativeMethods.LookupAccountName(ace.Trustee.SystemName, name, 0, ref sidSize, null, ref domainSize, out int sidtype))
                     {
                         int errval = Marshal.GetLastWin32Error();
                         if (errval != 122)
@@ -169,7 +169,7 @@ namespace Messaging.Msmq
                         }
                     }
 
-                    entries[i].data = (IntPtr)Marshal.AllocHGlobal(sidSize);
+                    entries[i].data = Marshal.AllocHGlobal(sidSize);
 
                     StringBuilder domainName = new(domainSize);
                     if (!UnsafeNativeMethods.LookupAccountName(ace.Trustee.SystemName, name, entries[i].data, ref sidSize, domainName, ref domainSize, out sidtype))
@@ -180,13 +180,13 @@ namespace Messaging.Msmq
                     entries[i].grfAccessPermissions = ace.accessFlags;
                     entries[i].grfAccessMode = (int)ace.EntryType;
                     entries[i].grfInheritance = 0;
-                    entries[i].pMultipleTrustees = (IntPtr)0;
+                    entries[i].pMultipleTrustees = 0;
                     entries[i].MultipleTrusteeOperation = NativeMethods.NO_MULTIPLE_TRUSTEE;
                     entries[i].TrusteeForm = NativeMethods.TRUSTEE_IS_SID;
                     entries[i].TrusteeType = (int)ace.Trustee.TrusteeType;
                 }
 
-                int err = SafeNativeMethods.SetEntriesInAclW(ACECount, (IntPtr)mem.AddrOfPinnedObject(), oldAcl, out newAcl);
+                int err = SafeNativeMethods.SetEntriesInAclW(ACECount, mem.AddrOfPinnedObject(), oldAcl, out newAcl);
 
                 if (err != NativeMethods.ERROR_SUCCESS)
                 {
@@ -199,7 +199,7 @@ namespace Messaging.Msmq
 
                 for (int i = 0; i < ACECount; i++)
                 {
-                    if (entries[i].data != (IntPtr)0)
+                    if (entries[i].data != 0)
                     {
                         Marshal.FreeHGlobal(entries[i].data);
                     }

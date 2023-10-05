@@ -340,13 +340,13 @@ namespace Messaging.Msmq.Interop
             public byte size = 0;
             public short control = 0;
 
-            public IntPtr owner = (IntPtr)0;
+            public IntPtr owner = 0;
 
-            public IntPtr Group = (IntPtr)0;
+            public IntPtr Group = 0;
 
-            public IntPtr Sacl = (IntPtr)0;
+            public IntPtr Sacl = 0;
 
-            public IntPtr Dacl = (IntPtr)0;
+            public IntPtr Dacl = 0;
         }
 
         [StructLayout(LayoutKind.Sequential)]

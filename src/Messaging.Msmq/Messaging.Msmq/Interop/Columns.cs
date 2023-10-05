@@ -50,10 +50,10 @@ namespace Messaging.Msmq.Interop
 
             ~MQCOLUMNSET()
             {
-                if (columnIdentifiers != (IntPtr)0)
+                if (columnIdentifiers != 0)
                 {
                     Marshal.FreeHGlobal(columnIdentifiers);
-                    columnIdentifiers = (IntPtr)0;
+                    columnIdentifiers = 0;
                 }
             }
 

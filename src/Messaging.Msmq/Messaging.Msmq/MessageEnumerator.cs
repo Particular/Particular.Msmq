@@ -171,7 +171,7 @@ namespace Messaging.Msmq
                 action = NativeMethods.QUEUE_ACTION_PEEK_CURRENT;
             }
 
-            status = owner.StaleSafeReceiveMessage((uint)timeoutInMilliseconds, action, null, null, null, Handle, (IntPtr)NativeMethods.QUEUE_TRANSACTION_NONE);
+            status = owner.StaleSafeReceiveMessage((uint)timeoutInMilliseconds, action, null, null, null, Handle, NativeMethods.QUEUE_TRANSACTION_NONE);
             //If the cursor reached the end of the queue.
             if (status == (int)MessageQueueErrorCode.IOTimeout)
             {

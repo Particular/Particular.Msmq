@@ -42,24 +42,24 @@ namespace Messaging.Msmq.Interop
             Marshal.WriteInt32(restrictionStructure.GetNextValidPtr(0), op);
             Marshal.WriteInt32(restrictionStructure.GetNextValidPtr(4), id);
             Marshal.WriteInt16(restrictionStructure.GetNextValidPtr(8), vt);
-            Marshal.WriteInt16(restrictionStructure.GetNextValidPtr(10), (short)0);
-            Marshal.WriteInt16(restrictionStructure.GetNextValidPtr(12), (short)0);
-            Marshal.WriteInt16(restrictionStructure.GetNextValidPtr(14), (short)0);
+            Marshal.WriteInt16(restrictionStructure.GetNextValidPtr(10), 0);
+            Marshal.WriteInt16(restrictionStructure.GetNextValidPtr(12), 0);
+            Marshal.WriteInt16(restrictionStructure.GetNextValidPtr(14), 0);
             Marshal.WriteIntPtr(restrictionStructure.GetNextValidPtr(16), data);
-            Marshal.WriteIntPtr(restrictionStructure.GetNextValidPtr(16 + IntPtr.Size), (IntPtr)0);
+            Marshal.WriteIntPtr(restrictionStructure.GetNextValidPtr(16 + IntPtr.Size), 0);
             ++restrictionStructure.restrictionCount;
         }
 
         public virtual void AddI4(int propertyId, int op, int value)
         {
-            AddItem(propertyId, op, MessagePropertyVariants.VT_I4, (IntPtr)value);
+            AddItem(propertyId, op, MessagePropertyVariants.VT_I4, value);
         }
 
         public virtual void AddString(int propertyId, int op, string value)
         {
             if (value == null)
             {
-                AddItem(propertyId, op, MessagePropertyVariants.VT_NULL, (IntPtr)0);
+                AddItem(propertyId, op, MessagePropertyVariants.VT_NULL, 0);
             }
             else
             {
@@ -88,7 +88,7 @@ namespace Messaging.Msmq.Interop
 
             ~MQRESTRICTION()
             {
-                if (restrinctions != (IntPtr)0)
+                if (restrinctions != 0)
                 {
                     for (int index = 0; index < restrictionCount; ++index)
                     {
@@ -102,7 +102,7 @@ namespace Messaging.Msmq.Interop
                     }
 
                     Marshal.FreeHGlobal(restrinctions);
-                    restrinctions = (IntPtr)0;
+                    restrinctions = 0;
                 }
             }
 

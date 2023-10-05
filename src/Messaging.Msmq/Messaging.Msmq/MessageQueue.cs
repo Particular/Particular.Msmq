@@ -269,7 +269,7 @@ namespace Messaging.Msmq
             {
                 if (!PropertyFilter.Authenticate)
                 {
-                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, (byte)0);
+                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, 0);
                     GenerateQueueProperties();
                     authenticate = (Properties.GetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE) != NativeMethods.QUEUE_AUTHENTICATE_NONE);
                     PropertyFilter.Authenticate = true;
@@ -283,11 +283,11 @@ namespace Messaging.Msmq
             {
                 if (value)
                 {
-                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, (byte)NativeMethods.QUEUE_AUTHENTICATE_AUTHENTICATE);
+                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, NativeMethods.QUEUE_AUTHENTICATE_AUTHENTICATE);
                 }
                 else
                 {
-                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, (byte)NativeMethods.QUEUE_AUTHENTICATE_NONE);
+                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, NativeMethods.QUEUE_AUTHENTICATE_NONE);
                 }
 
                 SaveQueueProperties();
@@ -308,7 +308,7 @@ namespace Messaging.Msmq
             {
                 if (!PropertyFilter.BasePriority)
                 {
-                    Properties.SetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY, (short)0);
+                    Properties.SetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY, 0);
                     GenerateQueueProperties();
                     basePriority = properties.GetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY);
                     PropertyFilter.BasePriority = true;
@@ -827,7 +827,7 @@ namespace Messaging.Msmq
                 {
                     Properties.SetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA, 0);
                     GenerateQueueProperties();
-                    journalSize = (long)((uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA));
+                    journalSize = (uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA);
                     PropertyFilter.MaximumJournalSize = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA);
                 }
@@ -864,7 +864,7 @@ namespace Messaging.Msmq
                 {
                     Properties.SetUI4(NativeMethods.QUEUE_PROPID_QUOTA, 0);
                     GenerateQueueProperties();
-                    queueSize = (long)((uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_QUOTA));
+                    queueSize = (uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_QUOTA);
                     PropertyFilter.MaximumQueueSize = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_QUOTA);
                 }
@@ -1248,7 +1248,7 @@ namespace Messaging.Msmq
             {
                 if (!PropertyFilter.UseJournalQueue)
                 {
-                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, (byte)0);
+                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, 0);
                     GenerateQueueProperties();
                     useJournaling = (Properties.GetUI1(NativeMethods.QUEUE_PROPID_JOURNAL) != NativeMethods.QUEUE_JOURNAL_NONE);
                     PropertyFilter.UseJournalQueue = true;
@@ -1261,11 +1261,11 @@ namespace Messaging.Msmq
             {
                 if (value)
                 {
-                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, (byte)NativeMethods.QUEUE_JOURNAL_JOURNAL);
+                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, NativeMethods.QUEUE_JOURNAL_JOURNAL);
                 }
                 else
                 {
-                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, (byte)NativeMethods.QUEUE_JOURNAL_NONE);
+                    Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, NativeMethods.QUEUE_JOURNAL_NONE);
                 }
 
                 SaveQueueProperties();
@@ -1616,11 +1616,11 @@ namespace Messaging.Msmq
             properties.SetString(NativeMethods.QUEUE_PROPID_PATHNAME, Message.StringToBytes(path));
             if (transactional)
             {
-                properties.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, (byte)NativeMethods.QUEUE_TRANSACTIONAL_TRANSACTIONAL);
+                properties.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, NativeMethods.QUEUE_TRANSACTIONAL_TRANSACTIONAL);
             }
             else
             {
-                properties.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, (byte)NativeMethods.QUEUE_TRANSACTIONAL_NONE);
+                properties.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, NativeMethods.QUEUE_TRANSACTIONAL_NONE);
             }
 
             StringBuilder formatName = new(NativeMethods.MAX_LABEL_LEN);
@@ -1659,7 +1659,7 @@ namespace Messaging.Msmq
             MessageQueueEnumerator messageQueues = GetMessageQueueEnumerator(criteria, checkSecurity);
             while (messageQueues.MoveNext())
             {
-                MessageQueue messageQueue = (MessageQueue)messageQueues.Current;
+                MessageQueue messageQueue = messageQueues.Current;
                 messageQueuesList.Add(messageQueue);
             }
 
@@ -1833,7 +1833,7 @@ namespace Messaging.Msmq
             MessageEnumerator messages = GetMessageEnumerator2();
             while (messages.MoveNext())
             {
-                Message message = (Message)messages.Current;
+                Message message = messages.Current;
                 messageList.Add(message);
             }
 
@@ -3879,7 +3879,7 @@ namespace Messaging.Msmq
                     // However, IntPtr (int) operator ALWAYS runs in checked context on 64 bit platforms.
                     // Therefore, we first cast to long to avoid OverflowException, and then cast to int
                     // in unchecked context
-                    long msmqError = (long)overlappedPointer->InternalLow;
+                    long msmqError = overlappedPointer->InternalLow;
                     unchecked
                     {
                         result = (int)msmqError;
@@ -4474,7 +4474,7 @@ namespace Messaging.Msmq
                             if (!isTransactional_valid)
                             {
                                 QueuePropertyVariants props = new();
-                                props.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, (byte)0);
+                                props.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, 0);
                                 int status = UnsafeNativeMethods.MQGetQueueProperties(formatName, props.Lock());
                                 props.Unlock();
                                 if (IsFatalError(status))

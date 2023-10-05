@@ -205,7 +205,7 @@ namespace Messaging.Msmq.Interop
         {
             if (variantTypes[propertyId - basePropertyId] == VT_UNDEFINED)
             {
-                variantTypes[propertyId - basePropertyId] = (short)(VT_VECTOR | VT_UI1);
+                variantTypes[propertyId - basePropertyId] = VT_VECTOR | VT_UI1;
                 ++propertyCount;
             }
 
@@ -309,7 +309,7 @@ namespace Messaging.Msmq.Interop
                     newVectorIdentifiers[usedProperties] = i + basePropertyId;
                     //Set VariantType
                     newVectorProperties[usedProperties].vt = vt;
-                    if (vt == (short)(VT_VECTOR | VT_UI1))
+                    if (vt == (VT_VECTOR | VT_UI1))
                     {
                         if (handles[i] == null)
                         {
@@ -409,16 +409,16 @@ namespace Messaging.Msmq.Interop
         {
             for (int i = 0; i < vectorIdentifiers.Length; ++i)
             {
-                short vt = (short)vectorProperties[i].vt;
+                short vt = vectorProperties[i].vt;
 
                 if (variantTypes[vectorIdentifiers[i] - basePropertyId] == VT_NULL)
                 {
-                    if (vt is ((short)(VT_VECTOR | VT_UI1)) or VT_NULL)
+                    if (vt is (VT_VECTOR | VT_UI1) or VT_NULL)
                     {
                         //Support for MSMQ self memory allocation.
                         objects[vectorIdentifiers[i] - basePropertyId] = vectorProperties[i].caub.cElems;
                     }
-                    else if (vt == (short)(VT_VECTOR | VT_LPWSTR))
+                    else if (vt == (VT_VECTOR | VT_LPWSTR))
                     {
                         //Support for MSMQ management apis.
                         objects[vectorIdentifiers[i] - basePropertyId] = vectorProperties[i * 4].caub.cElems;
@@ -429,18 +429,18 @@ namespace Messaging.Msmq.Interop
                         objects[vectorIdentifiers[i] - basePropertyId] = vectorProperties[i].ptr;
                     }
                 }
-                else if (vt is VT_LPWSTR or VT_CLSID or ((short)(VT_VECTOR | VT_UI1)))
+                else if (vt is VT_LPWSTR or VT_CLSID or (VT_VECTOR | VT_UI1))
                 {
                     ((GCHandle)handles[vectorIdentifiers[i] - basePropertyId]).Free();
                     handles[vectorIdentifiers[i] - basePropertyId] = null;
                 }
                 else if (vt is VT_UI1 or VT_I1)
                 {
-                    objects[vectorIdentifiers[i] - basePropertyId] = (byte)vectorProperties[i].bVal;
+                    objects[vectorIdentifiers[i] - basePropertyId] = vectorProperties[i].bVal;
                 }
                 else if (vt is VT_UI2 or VT_I2)
                 {
-                    objects[vectorIdentifiers[i] - basePropertyId] = (short)vectorProperties[i].iVal;
+                    objects[vectorIdentifiers[i] - basePropertyId] = vectorProperties[i].iVal;
                 }
                 else if (vt is VT_UI4 or VT_I4)
                 {

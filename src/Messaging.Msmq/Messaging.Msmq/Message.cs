@@ -108,12 +108,12 @@ namespace Messaging.Msmq
 
                 if (0 != (data & MessagePropertyFilter.ACKNOWLEDGEMENT))
                 {
-                    properties.SetUI2(NativeMethods.MESSAGE_PROPID_CLASS, (short)0);
+                    properties.SetUI2(NativeMethods.MESSAGE_PROPID_CLASS, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.ACKNOWLEDGE_TYPE))
                 {
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_ACKNOWLEDGE, (byte)0);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_ACKNOWLEDGE, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.ADMIN_QUEUE))
@@ -139,12 +139,12 @@ namespace Messaging.Msmq
 
                 if (0 != (data & MessagePropertyFilter.LOOKUP_ID))
                 {
-                    properties.SetUI8(NativeMethods.MESSAGE_PROPID_LOOKUPID, (long)0);
+                    properties.SetUI8(NativeMethods.MESSAGE_PROPID_LOOKUPID, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.USE_DEADLETTER_QUEUE))
                 {
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)0);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.RESPONSE_QUEUE))
@@ -155,13 +155,13 @@ namespace Messaging.Msmq
                 //Acknowledgment and MessageType are overloaded in MQ.
                 if ((0 == (data & MessagePropertyFilter.ACKNOWLEDGEMENT)) && (0 != (data & MessagePropertyFilter.MESSAGE_TYPE)))
                 {
-                    properties.SetUI2(NativeMethods.MESSAGE_PROPID_CLASS, (short)0);
+                    properties.SetUI2(NativeMethods.MESSAGE_PROPID_CLASS, 0);
                 }
 
                 //Journaling and Deadletter are overloaded in MSMQ
                 if ((0 == (data & MessagePropertyFilter.USE_DEADLETTER_QUEUE)) && (0 != (data & MessagePropertyFilter.USE_JOURNALING)))
                 {
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)0);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, 0);
                 }
             }
 
@@ -185,7 +185,7 @@ namespace Messaging.Msmq
 
                 if (0 != (data & MessagePropertyFilter.AUTHENTICATED))
                 {
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_AUTHENTICATED, (byte)0);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_AUTHENTICATED, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.CONNECTOR_TYPE))
@@ -210,7 +210,7 @@ namespace Messaging.Msmq
 
                 if (0 != (data & MessagePropertyFilter.IS_RECOVERABLE))
                 {
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_DELIVERY, (byte)0);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_DELIVERY, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.DESTINATION_QUEUE))
@@ -245,17 +245,17 @@ namespace Messaging.Msmq
 
                 if (0 != (data & MessagePropertyFilter.IS_FIRST_IN_TRANSACTION))
                 {
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_FIRST_IN_XACT, (byte)0);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_FIRST_IN_XACT, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.IS_LAST_IN_TRANSACTION))
                 {
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_LAST_IN_XACT, (byte)0);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_LAST_IN_XACT, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.PRIORITY))
                 {
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_PRIORITY, (byte)0);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_PRIORITY, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.SENDER_CERTIFICATE))
@@ -310,7 +310,7 @@ namespace Messaging.Msmq
 
                 if (0 != (data & MessagePropertyFilter.USE_TRACING))
                 {
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_TRACE, (byte)0);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_TRACE, 0);
                 }
 
                 if (0 != (data & MessagePropertyFilter.VERSION))
@@ -341,7 +341,7 @@ namespace Messaging.Msmq
                 }
 
                 //Casting unsigned short to int, mask off sign extension.
-                int res = ((int)properties.GetUI2(NativeMethods.MESSAGE_PROPID_CLASS)) & 0x0000FFFF;
+                int res = properties.GetUI2(NativeMethods.MESSAGE_PROPID_CLASS) & 0x0000FFFF;
                 return (Acknowledgment)res;
             }
         }
@@ -851,7 +851,7 @@ namespace Messaging.Msmq
                 else
                 {
                     filter.ConnectorType = true;
-                    properties.SetGuid(NativeMethods.MESSAGE_PROPID_CONNECTOR_TYPE, ((Guid)value).ToByteArray());
+                    properties.SetGuid(NativeMethods.MESSAGE_PROPID_CONNECTOR_TYPE, value.ToByteArray());
                 }
             }
         }
@@ -1511,7 +1511,7 @@ namespace Messaging.Msmq
                 else
                 {
                     filter.Recoverable = true;
-                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_DELIVERY, (byte)NativeMethods.MESSAGE_DELIVERY_RECOVERABLE);
+                    properties.SetUI1(NativeMethods.MESSAGE_PROPID_DELIVERY, NativeMethods.MESSAGE_DELIVERY_RECOVERABLE);
                 }
             }
         }
@@ -1582,7 +1582,7 @@ namespace Messaging.Msmq
                     return null;
                 }
 
-                IntPtr handle = (IntPtr)(int)properties.GetUI4(NativeMethods.MESSAGE_PROPID_SECURITY_CONTEXT);
+                IntPtr handle = properties.GetUI4(NativeMethods.MESSAGE_PROPID_SECURITY_CONTEXT);
                 return new SecurityContext(new SecurityContextHandle(handle));
             }
 
@@ -1699,7 +1699,7 @@ namespace Messaging.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "SenderVersion"));
                 }
 
-                return (long)((uint)properties.GetUI4(NativeMethods.MESSAGE_PROPID_VERSION));
+                return (uint)properties.GetUI4(NativeMethods.MESSAGE_PROPID_VERSION);
             }
         }
 
@@ -1759,7 +1759,7 @@ namespace Messaging.Msmq
                     handle.Free();
 
                     IntPtr memoryHandle = machineProperties.GetIntPtr(NativeMethods.MACHINE_PATHNAME);
-                    if (memoryHandle != (IntPtr)0)
+                    if (memoryHandle != 0)
                     {
                         //Using Unicode API even on Win9x
                         machineName = Marshal.PtrToStringUni(memoryHandle);
@@ -2060,7 +2060,7 @@ namespace Messaging.Msmq
                 {
                     if (!filter.UseDeadLetterQueue && !filter.UseJournalQueue)
                     {
-                        properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)NativeMethods.MESSAGE_JOURNAL_DEADLETTER);
+                        properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, NativeMethods.MESSAGE_JOURNAL_DEADLETTER);
                     }
                     else
                     {
@@ -2159,7 +2159,7 @@ namespace Messaging.Msmq
                 {
                     if (!filter.UseDeadLetterQueue && !filter.UseJournalQueue)
                     {
-                        properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, (byte)NativeMethods.MESSAGE_JOURNAL_JOURNAL);
+                        properties.SetUI1(NativeMethods.MESSAGE_PROPID_JOURNAL, NativeMethods.MESSAGE_JOURNAL_JOURNAL);
                     }
                     else
                     {
@@ -2211,11 +2211,11 @@ namespace Messaging.Msmq
 
                     if (!value)
                     {
-                        properties.SetUI1(NativeMethods.MESSAGE_PROPID_TRACE, (byte)NativeMethods.MESSAGE_TRACE_NONE);
+                        properties.SetUI1(NativeMethods.MESSAGE_PROPID_TRACE, NativeMethods.MESSAGE_TRACE_NONE);
                     }
                     else
                     {
-                        properties.SetUI1(NativeMethods.MESSAGE_PROPID_TRACE, (byte)NativeMethods.MESSAGE_TRACE_SEND_ROUTE_TO_REPORT_QUEUE);
+                        properties.SetUI1(NativeMethods.MESSAGE_PROPID_TRACE, NativeMethods.MESSAGE_TRACE_SEND_ROUTE_TO_REPORT_QUEUE);
                     }
                 }
             }
