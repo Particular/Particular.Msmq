@@ -1656,7 +1656,7 @@ namespace Messaging.Msmq
         private static MessageQueue[] CreateMessageQueuesSnapshot(MessageQueueCriteria criteria, bool checkSecurity)
         {
             ArrayList messageQueuesList = [];
-            IEnumerator messageQueues = GetMessageQueueEnumerator(criteria, checkSecurity);
+            MessageQueueEnumerator messageQueues = GetMessageQueueEnumerator(criteria, checkSecurity);
             while (messageQueues.MoveNext())
             {
                 MessageQueue messageQueue = (MessageQueue)messageQueues.Current;
@@ -2427,7 +2427,7 @@ namespace Messaging.Msmq
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveAsync"]/*' />
         /// <internalonly/>
-        private unsafe IAsyncResult ReceiveAsync(TimeSpan timeout, CursorHandle cursorHandle, int action, AsyncCallback callback, object stateObject)
+        private unsafe AsynchronousRequest ReceiveAsync(TimeSpan timeout, CursorHandle cursorHandle, int action, AsyncCallback callback, object stateObject)
         {
             long timeoutInMilliseconds = (long)timeout.TotalMilliseconds;
             if (timeoutInMilliseconds is < 0 or > UInt32.MaxValue)
@@ -2503,7 +2503,7 @@ namespace Messaging.Msmq
 
             request.BeginRead();
 
-            return (IAsyncResult)request;
+            return request;
         }
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveBy"]/*' />
