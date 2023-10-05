@@ -1,0 +1,12 @@
+<Project>
+
+  <PropertyGroup>
+    <AnalysisLevel>8.0-minimum</AnalysisLevel>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MinVerMinimumMajorMinor>1.0</MinVerMinimumMajorMinor>
+    <MinVerAutoIncrement>minor</MinVerAutoIncrement>
+  </PropertyGroup>
+
+</Project>
