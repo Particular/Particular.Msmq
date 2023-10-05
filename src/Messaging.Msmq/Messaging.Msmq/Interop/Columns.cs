@@ -13,7 +13,7 @@ namespace Messaging.Msmq.Interop
     internal class Columns
     {
         private readonly int maxCount;
-        private readonly MQCOLUMNSET columnSet = new MQCOLUMNSET();
+        private readonly MQCOLUMNSET columnSet = new();
 
         public Columns(int maxCount)
         {

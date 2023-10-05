@@ -417,7 +417,7 @@ namespace Messaging.Msmq
                 }
 
                 //Number of seconds ellapsed since 1/1/1970
-                DateTime time = new DateTime(1970, 1, 1);
+                DateTime time = new(1970, 1, 1);
                 time = time.AddSeconds(properties.GetUI4(NativeMethods.MESSAGE_PROPID_ARRIVEDTIME)).ToLocalTime();
                 return time;
             }
@@ -1547,7 +1547,7 @@ namespace Messaging.Msmq
                 }
 
                 //Number of seconds ellapsed since 1/1/1970
-                DateTime time = new DateTime(1970, 1, 1);
+                DateTime time = new(1970, 1, 1);
                 time = time.AddSeconds(properties.GetUI4(NativeMethods.MESSAGE_PROPID_SENTTIME)).ToLocalTime();
                 return time;
             }
@@ -1574,7 +1574,7 @@ namespace Messaging.Msmq
                     byte[] bytes = this.properties.GetGuid(NativeMethods.MESSAGE_PROPID_SRC_MACHINE_ID);
                     GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
 
-                    MachinePropertyVariants machineProperties = new MachinePropertyVariants();
+                    MachinePropertyVariants machineProperties = new();
                     machineProperties.SetNull(NativeMethods.MACHINE_PATHNAME);
                     int status = UnsafeNativeMethods.MQGetMachineProperties(null, handle.AddrOfPinnedObject(), machineProperties.Lock());
                     machineProperties.Unlock();
@@ -2259,7 +2259,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private string IdFromByteArray(byte[] bytes)
         {
-            StringBuilder result = new StringBuilder();
+            StringBuilder result = new();
             byte[] guidBytes = new byte[GenericIdSize];
             Array.Copy(bytes, guidBytes, GenericIdSize);
             int id = BitConverter.ToInt32(bytes, GenericIdSize);

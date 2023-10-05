@@ -21,7 +21,7 @@ namespace Messaging.Msmq
     {
         private Type[] targetTypes;
         private string[] targetTypeNames;
-        readonly Hashtable targetSerializerTable = new Hashtable();
+        readonly Hashtable targetSerializerTable = new();
         private bool typeNamesAdded;
         private bool typesAdded;
 
@@ -113,7 +113,7 @@ namespace Messaging.Msmq
             this.CreateTargetSerializerTable();
 
             Stream stream = message.BodyStream;
-            XmlTextReader reader = new XmlTextReader(stream);
+            XmlTextReader reader = new(stream);
             reader.WhitespaceHandling = WhitespaceHandling.Significant;
             reader.DtdProcessing = DtdProcessing.Prohibit;
             bool result = false;
@@ -137,7 +137,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public object Clone()
         {
-            XmlMessageFormatter formatter = new XmlMessageFormatter();
+            XmlMessageFormatter formatter = new();
             formatter.targetTypes = targetTypes;
             formatter.targetTypeNames = targetTypeNames;
             formatter.typesAdded = typesAdded;
@@ -187,7 +187,7 @@ namespace Messaging.Msmq
             this.CreateTargetSerializerTable();
 
             Stream stream = message.BodyStream;
-            XmlTextReader reader = new XmlTextReader(stream);
+            XmlTextReader reader = new(stream);
             reader.WhitespaceHandling = WhitespaceHandling.Significant;
             reader.DtdProcessing = DtdProcessing.Prohibit;
             foreach (XmlSerializer serializer in targetSerializerTable.Values)

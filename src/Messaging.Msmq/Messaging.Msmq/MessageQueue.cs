@@ -62,7 +62,7 @@ namespace Messaging.Msmq
         private static volatile string computerName;
 
         internal static readonly Version OSVersion = Environment.OSVersion.Version;
-        internal static readonly Version WinXP = new Version(5, 1);
+        internal static readonly Version WinXP = new(5, 1);
         internal static readonly bool Msmq3OrNewer = OSVersion >= WinXP;
 
         //Cached properties
@@ -105,10 +105,10 @@ namespace Messaging.Msmq
 
         //Connection pooling support
         private static readonly CacheTable<string, string> formatNameCache =
-            new CacheTable<string, string>("formatNameCache", 4, new TimeSpan(0, 0, 100));   // path -> formatname
+            new("formatNameCache", 4, new TimeSpan(0, 0, 100));   // path -> formatname
 
         private static readonly CacheTable<QueueInfoKeyHolder, MQCacheableInfo> queueInfoCache =
-            new CacheTable<QueueInfoKeyHolder, MQCacheableInfo>("queue info", 4, new TimeSpan(0, 0, 100));        // <formatname, accessMode> -> <readHandle. writeHandle, isTrans>
+            new("queue info", 4, new TimeSpan(0, 0, 100));        // <formatname, accessMode> -> <readHandle. writeHandle, isTrans>
 
         // Whidbey Beta 2 SECREVIEW (Dec 2004 eugenesh):
         // Connection Cache can be a security vulnerability (see bug 422227)
@@ -125,8 +125,8 @@ namespace Messaging.Msmq
         private bool receiveGranted;
         private bool peekGranted;
 
-        private readonly object syncRoot = new object();
-        private static readonly object staticSyncRoot = new object();
+        private readonly object syncRoot = new();
+        private static readonly object staticSyncRoot = new();
 
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue"]/*' />
         /// <devdoc>
@@ -415,7 +415,7 @@ namespace Messaging.Msmq
                     {
                         if (computerName == null)
                         {
-                            StringBuilder sb = new StringBuilder(256);
+                            StringBuilder sb = new(256);
                             SafeNativeMethods.GetComputerName(sb, new int[] { sb.Capacity });
                             computerName = sb.ToString();
                         }
@@ -438,7 +438,7 @@ namespace Messaging.Msmq
             {
                 if (!PropertyFilter.CreateTime)
                 {
-                    DateTime time = new DateTime(1970, 1, 1);
+                    DateTime time = new(1970, 1, 1);
                     Properties.SetI4(NativeMethods.QUEUE_PROPID_CREATE_TIME, 0);
                     GenerateQueueProperties();
                     this.createTime = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_CREATE_TIME)).ToLocalTime();
@@ -594,7 +594,7 @@ namespace Messaging.Msmq
                             //a queue returned by MessageQueueEnumerator.
                             int result;
                             int status = 0;
-                            StringBuilder newFormatName = new StringBuilder(NativeMethods.MAX_LABEL_LEN);
+                            StringBuilder newFormatName = new(NativeMethods.MAX_LABEL_LEN);
                             result = NativeMethods.MAX_LABEL_LEN;
                             status = SafeNativeMethods.MQInstanceToFormatName(this.id.ToByteArray(), newFormatName, ref result);
                             if (status != 0)
@@ -739,7 +739,7 @@ namespace Messaging.Msmq
             {
                 if (!PropertyFilter.LastModifyTime)
                 {
-                    DateTime time = new DateTime(1970, 1, 1);
+                    DateTime time = new(1970, 1, 1);
                     Properties.SetI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME, 0);
                     GenerateQueueProperties();
                     this.lastModifyTime = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME)).ToLocalTime();
@@ -778,7 +778,7 @@ namespace Messaging.Msmq
                 if (!SyntaxCheck.CheckMachineName(value))
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MachineName", value));
 
-                StringBuilder newPath = new StringBuilder();
+                StringBuilder newPath = new();
                 if ((this.path == null || this.path.Length == 0) && this.formatName == null)
                 {
                     //Need to default to an existing queue, for instance Journal.
@@ -1066,7 +1066,7 @@ namespace Messaging.Msmq
             {
                 ArgumentNullException.ThrowIfNull(value);
 
-                StringBuilder newPath = new StringBuilder();
+                StringBuilder newPath = new();
                 if ((this.path == null || this.path.Length == 0) && this.formatName == null)
                 {
                     newPath.Append(".\\");
@@ -1337,7 +1337,7 @@ namespace Messaging.Msmq
                     {
                         if (queueInfoKey == null)
                         {
-                            QueueInfoKeyHolder keyHolder = new QueueInfoKeyHolder(FormatName, accessMode);
+                            QueueInfoKeyHolder keyHolder = new(FormatName, accessMode);
                             Thread.MemoryBarrier();
                             queueInfoKey = keyHolder;
                         }
@@ -1564,14 +1564,14 @@ namespace Messaging.Msmq
                 throw new ArgumentException(Res.GetString(Res.InvalidQueuePathToCreate, path));
 
             //Create properties.
-            QueuePropertyVariants properties = new QueuePropertyVariants();
+            QueuePropertyVariants properties = new();
             properties.SetString(NativeMethods.QUEUE_PROPID_PATHNAME, Message.StringToBytes(path));
             if (transactional)
                 properties.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, (byte)NativeMethods.QUEUE_TRANSACTIONAL_TRANSACTIONAL);
             else
                 properties.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, (byte)NativeMethods.QUEUE_TRANSACTIONAL_NONE);
 
-            StringBuilder formatName = new StringBuilder(NativeMethods.MAX_LABEL_LEN);
+            StringBuilder formatName = new(NativeMethods.MAX_LABEL_LEN);
             int formatNameLen = NativeMethods.MAX_LABEL_LEN;
             int status = 0;
 
@@ -1601,7 +1601,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private static MessageQueue[] CreateMessageQueuesSnapshot(MessageQueueCriteria criteria, bool checkSecurity)
         {
-            ArrayList messageQueuesList = new ArrayList();
+            ArrayList messageQueuesList = [];
             IEnumerator messageQueues = GetMessageQueueEnumerator(criteria, checkSecurity);
             while (messageQueues.MoveNext())
             {
@@ -1632,7 +1632,7 @@ namespace Messaging.Msmq
                 throw new ArgumentException(Res.GetString(Res.PathSyntax));
 
             int status = 0;
-            MessageQueue queue = new MessageQueue(path);
+            MessageQueue queue = new(path);
 
             status = UnsafeNativeMethods.MQDeleteQueue(queue.FormatName);
             if (MessageQueue.IsFatalError(status))
@@ -1753,7 +1753,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public Message[] GetAllMessages()
         {
-            ArrayList messageList = new ArrayList();
+            ArrayList messageList = [];
             MessageEnumerator messages = GetMessageEnumerator2();
             while (messages.MoveNext())
             {
@@ -1788,7 +1788,7 @@ namespace Messaging.Msmq
             if (machineName == ".")
                 machineName = MessageQueue.ComputerName;
 
-            MachinePropertyVariants machineProperties = new MachinePropertyVariants();
+            MachinePropertyVariants machineProperties = new();
             byte[] bytes = new byte[16];
             machineProperties.SetNull(NativeMethods.MACHINE_ID);
             int status = UnsafeNativeMethods.MQGetMachineProperties(machineName, IntPtr.Zero, machineProperties.Lock());
@@ -1906,7 +1906,7 @@ namespace Messaging.Msmq
             if (machineName == "." || (String.Compare(machineName, MessageQueue.ComputerName, true, CultureInfo.InvariantCulture) == 0))
                 machineName = null;
 
-            MessagePropertyVariants properties = new MessagePropertyVariants(5, 0);
+            MessagePropertyVariants properties = new(5, 0);
             properties.SetNull(NativeMethods.MANAGEMENT_PRIVATEQ);
             int status = UnsafeNativeMethods.MQMgmtGetInfo(machineName, "MACHINE", properties.Lock());
             properties.Unlock();
@@ -1963,7 +1963,7 @@ namespace Messaging.Msmq
         /// </devdoc>
         public static MessageQueue[] GetPublicQueuesByCategory(Guid category)
         {
-            MessageQueueCriteria criteria = new MessageQueueCriteria();
+            MessageQueueCriteria criteria = new();
             criteria.Category = category;
             return CreateMessageQueuesSnapshot(criteria);
         }
@@ -1984,7 +1984,7 @@ namespace Messaging.Msmq
         /// <internalonly/>
         private static MessageQueue[] GetPublicQueuesByLabel(string label, bool checkSecurity)
         {
-            MessageQueueCriteria criteria = new MessageQueueCriteria();
+            MessageQueueCriteria criteria = new();
             criteria.Label = label;
             return CreateMessageQueuesSnapshot(criteria, checkSecurity);
         }
@@ -2000,7 +2000,7 @@ namespace Messaging.Msmq
             if (!SyntaxCheck.CheckMachineName(machineName))
                 throw new ArgumentException(Res.GetString(Res.InvalidParameter, "MachineName", machineName));
 
-            MessageQueueCriteria criteria = new MessageQueueCriteria();
+            MessageQueueCriteria criteria = new();
             criteria.MachineName = machineName;
             return CreateMessageQueuesSnapshot(criteria, false);
         }
@@ -2062,7 +2062,7 @@ namespace Messaging.Msmq
             {
                 if (this.onPeekCompleted != null)
                 {
-                    PeekCompletedEventArgs eventArgs = new PeekCompletedEventArgs(this, asyncResult);
+                    PeekCompletedEventArgs eventArgs = new(this, asyncResult);
                     this.onPeekCompleted(this, eventArgs);
                 }
             }
@@ -2070,7 +2070,7 @@ namespace Messaging.Msmq
             {
                 if (this.onReceiveCompleted != null)
                 {
-                    ReceiveCompletedEventArgs eventArgs = new ReceiveCompletedEventArgs(this, asyncResult);
+                    ReceiveCompletedEventArgs eventArgs = new(this, asyncResult);
                     this.onReceiveCompleted(this, eventArgs);
                 }
             }
@@ -2368,7 +2368,7 @@ namespace Messaging.Msmq
                 callback = this.onRequestCompleted;
             }
 
-            AsynchronousRequest request = new AsynchronousRequest(this, (uint)timeoutInMilliseconds, cursorHandle, action, this.useThreadPool, stateObject, callback);
+            AsynchronousRequest request = new(this, (uint)timeoutInMilliseconds, cursorHandle, action, this.useThreadPool, stateObject, callback);
 
             //
             // Bug 88607 - keep a reference to outstanding asyncresult so its' not GCed
@@ -3100,7 +3100,7 @@ namespace Messaging.Msmq
 
                 //Create a guid to get the right format.
                 Guid machineId = MessageQueue.GetMachineId(machine);
-                StringBuilder newFormatName = new StringBuilder();
+                StringBuilder newFormatName = new();
                 //System format names:
                 //MACHINE=guid;DEADXACT
                 //MACHINE=guid;DEADLETTER
@@ -3129,7 +3129,7 @@ namespace Messaging.Msmq
 
                 int result;
                 int status = 0;
-                StringBuilder newFormatName = new StringBuilder(NativeMethods.MAX_LABEL_LEN);
+                StringBuilder newFormatName = new(NativeMethods.MAX_LABEL_LEN);
                 result = NativeMethods.MAX_LABEL_LEN;
                 status = SafeNativeMethods.MQPathNameToFormatName(realPath, newFormatName, ref result);
                 if (status != 0)
@@ -3184,10 +3184,9 @@ namespace Messaging.Msmq
         {
             ArgumentNullException.ThrowIfNull(user);
 
-            Trustee t = new Trustee(user);
-            MessageQueueAccessControlEntry ace = new MessageQueueAccessControlEntry(t, rights, entryType);
-            AccessControlList dacl = new AccessControlList();
-            dacl.Add(ace);
+            Trustee t = new(user);
+            MessageQueueAccessControlEntry ace = new(t, rights, entryType);
+            AccessControlList dacl = [ace];
             SetPermissions(dacl);
         }
 
@@ -3199,8 +3198,7 @@ namespace Messaging.Msmq
         {
             ArgumentNullException.ThrowIfNull(ace);
 
-            AccessControlList dacl = new AccessControlList();
-            dacl.Add(ace);
+            AccessControlList dacl = [ace];
             SetPermissions(dacl);
         }
 
@@ -3264,7 +3262,7 @@ namespace Messaging.Msmq
                 // At this point we have the DACL for the queue.  Now we need to create
                 // a new security descriptor with an updated DACL.
 
-                NativeMethods.SECURITY_DESCRIPTOR newSecurityDescriptor = new NativeMethods.SECURITY_DESCRIPTOR();
+                NativeMethods.SECURITY_DESCRIPTOR newSecurityDescriptor = new();
                 UnsafeNativeMethods.InitializeSecurityDescriptor(newSecurityDescriptor,
                                                                     NativeMethods.SECURITY_DESCRIPTOR_REVISION);
                 IntPtr newDacl = dacl.MakeAcl(pDacl);
@@ -3541,7 +3539,7 @@ namespace Messaging.Msmq
                 NativeOverlapped* overlappedPointer = null;
                 if (this.onCompletionStatusChanged != null)
                 {
-                    Overlapped overlapped = new Overlapped();
+                    Overlapped overlapped = new();
                     overlapped.AsyncResult = this;
                     overlappedPointer = overlapped.Pack(this.onCompletionStatusChanged, null);
                 }
@@ -3921,7 +3919,7 @@ namespace Messaging.Msmq
                 this.staleTime = staleTime;
                 this.name = name;
                 this.rwLock = new System.Threading.ReaderWriterLock();
-                this.table = new Dictionary<Key, CacheEntry<Value>>();
+                this.table = [];
             }
 
             public Value Get(Key key)
@@ -3998,7 +3996,7 @@ namespace Messaging.Msmq
             public void ClearStale(TimeSpan staleAge)
             {
                 DateTime now = System.DateTime.UtcNow;
-                Dictionary<Key, CacheEntry<Value>> newTable = new Dictionary<Key, CacheEntry<Value>>();
+                Dictionary<Key, CacheEntry<Value>> newTable = [];
 
                 rwLock.AcquireReaderLock(-1);
                 try
@@ -4053,7 +4051,7 @@ namespace Messaging.Msmq
             private int refCount;
             private bool disposed;
 
-            private readonly object syncRoot = new object();
+            private readonly object syncRoot = new();
 
             public MQCacheableInfo(string formatName, QueueAccessMode accessMode, int shareMode)
             {
@@ -4200,7 +4198,7 @@ namespace Messaging.Msmq
                         {
                             if (!isTransactional_valid)
                             {
-                                QueuePropertyVariants props = new QueuePropertyVariants();
+                                QueuePropertyVariants props = new();
                                 props.SetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION, (byte)0);
                                 int status = UnsafeNativeMethods.MQGetQueueProperties(formatName, props.Lock());
                                 props.Unlock();

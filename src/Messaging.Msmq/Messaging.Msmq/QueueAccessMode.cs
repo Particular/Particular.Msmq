@@ -34,7 +34,7 @@ namespace Messaging.Msmq
     {
         private readonly QueueAccessMode accessMode;
 
-        private static readonly Dictionary<QueueAccessMode, QueueAccessModeHolder> holders = new Dictionary<QueueAccessMode, QueueAccessModeHolder>();
+        private static readonly Dictionary<QueueAccessMode, QueueAccessModeHolder> holders = new();
 
         private QueueAccessModeHolder(QueueAccessMode accessMode)
         {
@@ -55,7 +55,7 @@ namespace Messaging.Msmq
 
             lock (holders)
             {
-                QueueAccessModeHolder newHolder = new QueueAccessModeHolder(accessMode);
+                QueueAccessModeHolder newHolder = new(accessMode);
                 holders[accessMode] = newHolder;
                 return newHolder;
             }

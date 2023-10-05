@@ -17,7 +17,7 @@ namespace Messaging.Msmq
     /// </devdoc>
     public class DefaultPropertiesToSend
     {
-        private readonly Message cachedMessage = new Message();
+        private readonly Message cachedMessage = new();
         private readonly bool designMode;
         private MessageQueue cachedAdminQueue;
         private MessageQueue cachedResponseQueue;

@@ -134,7 +134,7 @@ namespace Messaging.Msmq
                     if (this.disposed)
                         throw new ObjectDisposedException(GetType().Name);
 
-                    Columns columns = new Columns(2);
+                    Columns columns = new(2);
                     LocatorHandle enumHandle;
                     columns.AddColumnId(NativeMethods.QUEUE_PROPID_PATHNAME);
                     //Adding the instance property avoids accessing the DS a second

@@ -23,7 +23,7 @@ namespace Messaging.Msmq
         // Double-checked locking pattern requires volatile for read/write synchronization
         private static volatile int environment = UnknownEnvironment;
 
-        private static readonly object staticLock = new object();
+        private static readonly object staticLock = new();
 
         /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.AccessControlList"]/*' />
         public AccessControlList()
@@ -156,7 +156,7 @@ namespace Messaging.Msmq
 
                     entries[i].data = (IntPtr)Marshal.AllocHGlobal(sidSize);
 
-                    StringBuilder domainName = new StringBuilder(domainSize);
+                    StringBuilder domainName = new(domainSize);
                     if (!UnsafeNativeMethods.LookupAccountName(ace.Trustee.SystemName, name, entries[i].data, ref sidSize, domainName, ref domainSize, out sidtype))
                         throw new InvalidOperationException(Res.GetString(Res.CouldntResolveName, ace.Trustee.Name));
 
