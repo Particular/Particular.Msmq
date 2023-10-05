@@ -17,7 +17,12 @@ namespace Messaging.Msmq.Interop
 
         protected override bool ReleaseHandle()
         {
-            SafeNativeMethods.MQCloseQueue(handle);
+            var result = SafeNativeMethods.MQCloseQueue(handle);
+
+            if (result != NativeMethods.MQ_OK)
+            {
+                throw new MessageQueueException(result);
+            }
 
             return true;
         }
@@ -45,7 +50,12 @@ namespace Messaging.Msmq.Interop
 
         protected override bool ReleaseHandle()
         {
-            SafeNativeMethods.MQCloseCursor(handle);
+            var result = SafeNativeMethods.MQCloseCursor(handle);
+
+            if (result != NativeMethods.MQ_OK)
+            {
+                throw new MessageQueueException(result);
+            }
 
             return true;
         }
@@ -73,7 +83,12 @@ namespace Messaging.Msmq.Interop
 
         protected override bool ReleaseHandle()
         {
-            SafeNativeMethods.MQLocateEnd(handle);
+            var result = SafeNativeMethods.MQLocateEnd(handle);
+
+            if (result != NativeMethods.MQ_OK)
+            {
+                throw new MessageQueueException(result);
+            }
 
             return true;
         }
