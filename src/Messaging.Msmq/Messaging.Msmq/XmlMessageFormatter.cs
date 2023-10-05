@@ -228,7 +228,7 @@ namespace Messaging.Msmq
 
             Stream stream = new MemoryStream();
             Type serializedType = obj.GetType();
-            XmlSerializer serializer = null;
+            XmlSerializer serializer;
             if (targetSerializerTable.ContainsKey(serializedType))
             {
                 serializer = (XmlSerializer)targetSerializerTable[serializedType];

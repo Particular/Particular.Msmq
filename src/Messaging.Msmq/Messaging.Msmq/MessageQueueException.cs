@@ -63,14 +63,13 @@ namespace Messaging.Msmq
 
         private static string GetUnknownErrorMessage(int error)
         {
-            //get the system error message...
-            string errorMsg = "";
-
             StringBuilder sb = new(256);
             int result = SafeNativeMethods.FormatMessage(SafeNativeMethods.FORMAT_MESSAGE_IGNORE_INSERTS |
                                        SafeNativeMethods.FORMAT_MESSAGE_FROM_SYSTEM |
                                        SafeNativeMethods.FORMAT_MESSAGE_ARGUMENT_ARRAY,
                                        IntPtr.Zero, error, 0, sb, sb.Capacity + 1, IntPtr.Zero);
+            //get the system error message...
+            string errorMsg;
             if (result != 0)
             {
                 int i = sb.Length;

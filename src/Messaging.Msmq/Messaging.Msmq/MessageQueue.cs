@@ -605,10 +605,9 @@ namespace Messaging.Msmq
                             //This codepath will only be executed when accessing
                             //a queue returned by MessageQueueEnumerator.
                             int result;
-                            int status = 0;
                             StringBuilder newFormatName = new(NativeMethods.MAX_LABEL_LEN);
                             result = NativeMethods.MAX_LABEL_LEN;
-                            status = SafeNativeMethods.MQInstanceToFormatName(id.ToByteArray(), newFormatName, ref result);
+                            int status = SafeNativeMethods.MQInstanceToFormatName(id.ToByteArray(), newFormatName, ref result);
                             if (status != 0)
                             {
                                 throw new MessageQueueException(status);
@@ -1625,10 +1624,9 @@ namespace Messaging.Msmq
 
             StringBuilder formatName = new(NativeMethods.MAX_LABEL_LEN);
             int formatNameLen = NativeMethods.MAX_LABEL_LEN;
-            int status = 0;
 
             //Try to create queue.
-            status = UnsafeNativeMethods.MQCreateQueue(IntPtr.Zero, properties.Lock(), formatName, ref formatNameLen);
+            int status = UnsafeNativeMethods.MQCreateQueue(nint.Zero, properties.Lock(), formatName, ref formatNameLen);
             properties.Unlock();
             if (IsFatalError(status))
             {
@@ -1689,10 +1687,9 @@ namespace Messaging.Msmq
                 throw new ArgumentException(Res.GetString(Res.PathSyntax));
             }
 
-            int status = 0;
             MessageQueue queue = new(path);
 
-            status = UnsafeNativeMethods.MQDeleteQueue(queue.FormatName);
+            int status = UnsafeNativeMethods.MQDeleteQueue(queue.FormatName);
             if (IsFatalError(status))
             {
                 throw new MessageQueueException(status);
@@ -3329,10 +3326,9 @@ namespace Messaging.Msmq
                 }
 
                 int result;
-                int status = 0;
                 StringBuilder newFormatName = new(NativeMethods.MAX_LABEL_LEN);
                 result = NativeMethods.MAX_LABEL_LEN;
-                status = SafeNativeMethods.MQPathNameToFormatName(realPath, newFormatName, ref result);
+                int status = SafeNativeMethods.MQPathNameToFormatName(realPath, newFormatName, ref result);
                 if (status != 0)
                 {
                     if (throwException)
@@ -3429,12 +3425,12 @@ namespace Messaging.Msmq
             AccessControlList.CheckEnvironment();
 
             byte[] SecurityDescriptor = new byte[100];
-            int lengthNeeded = 0;
             int mqResult;
 
             GCHandle sdHandle = GCHandle.Alloc(SecurityDescriptor, GCHandleType.Pinned);
             try
             {
+                int lengthNeeded;
                 mqResult = UnsafeNativeMethods.MQGetQueueSecurity(FormatName,
                                                              NativeMethods.DACL_SECURITY_INFORMATION,
                                                              sdHandle.AddrOfPinnedObject(),
