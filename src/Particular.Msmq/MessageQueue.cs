@@ -1231,7 +1231,7 @@ namespace Particular.Msmq
 
         /// <devdoc>
         ///    <para>Occurs when a message is read without being removed
-        ///       from the queue. This is a result of the asynchronous operation, <see cref='MessageQueue.BeginPeek'/>
+        ///       from the queue. This is a result of the asynchronous operation, <see cref='BeginPeek()'/>
         ///       .</para>
         /// </devdoc>
         public event PeekCompletedEventHandler PeekCompleted
@@ -1254,7 +1254,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Occurs when a message has been taken out of the queue.
-        ///       This is a result of the asynchronous operation <see cref='MessageQueue.BeginReceive'/>
+        ///       This is a result of the asynchronous operation <see cref='BeginReceive()'/>
         ///       .
         ///    </para>
         /// </devdoc>

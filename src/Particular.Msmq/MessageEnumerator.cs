@@ -130,7 +130,7 @@ namespace Particular.Msmq
 
         /// <devdoc>
         ///    <para>Advances the enumerator to the next message in the
-        ///       queue. If the enumerator is positioned at the end of the queue, <see cref='MessageEnumerator.MoveNext'/> waits until a message is available or the
+        ///       queue. If the enumerator is positioned at the end of the queue, <see cref='MoveNext(TimeSpan)'/> waits until a message is available or the
         ///       given <paramref name="timeout"/>
         ///       expires.</para>
         /// </devdoc>
