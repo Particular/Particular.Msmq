@@ -6,10 +6,18 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <IncludeSourceFilesInPackage>true</IncludeSourceFilesInPackage>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);AddFilesToPackage</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Particular.Packaging" Version="3.0.0" PrivateAssets="All" />
   </ItemGroup>
+
+  <Target Name="AddFilesToPackage">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="Particular.Msmq.props" PackagePath="build/$(TargetFramework)" />
+      <TfmSpecificPackageFile Include="_._" PackagePath="lib/$(TargetFramework)" />
+    </ItemGroup>
+  </Target>
 
 </Project>
