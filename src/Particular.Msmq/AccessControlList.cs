@@ -7,7 +7,6 @@ namespace Particular.Msmq
     using System.Text;
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList"]/*' />
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
@@ -24,7 +23,6 @@ namespace Particular.Msmq
 
         static readonly object staticLock = new();
 
-        /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.AccessControlList"]/*' />
         public AccessControlList()
         {
         }
@@ -62,7 +60,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.Add"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -71,7 +68,6 @@ namespace Particular.Msmq
             return List.Add(entry);
         }
 
-        /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.Insert"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -80,7 +76,6 @@ namespace Particular.Msmq
             List.Insert(index, entry);
         }
 
-        /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.IndexOf"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -97,7 +92,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.Contains"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -106,7 +100,6 @@ namespace Particular.Msmq
             return List.Contains(entry);
         }
 
-        /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.Remove"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -115,7 +108,6 @@ namespace Particular.Msmq
             List.Remove(entry);
         }
 
-        /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList.CopyTo"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>

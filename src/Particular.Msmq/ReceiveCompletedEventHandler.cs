@@ -19,7 +19,6 @@ namespace Particular.Msmq
     // </param>
     // </doc>
     //
-    /// <include file='doc\ReceiveCompletedEventHandler.uex' path='docs/doc[@for="ReceiveCompletedEventHandler"]/*' />
     /// <devdoc>
     /// <para>Represents the method that will handle the <see cref='MessageQueue.ReceiveCompleted'/> event of a <see cref='MessageQueue'/>.</para>
     /// </devdoc>

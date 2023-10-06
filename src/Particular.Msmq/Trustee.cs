@@ -3,7 +3,6 @@ namespace Particular.Msmq
     using System;
     using System.ComponentModel;
 
-    /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee"]/*' />
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
@@ -12,7 +11,6 @@ namespace Particular.Msmq
         string name;
         TrusteeType trusteeType;
 
-        /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee.Name"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -27,13 +25,11 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee.SystemName"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         public string SystemName { get; set; }
 
-        /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee.TrusteeType"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -51,7 +47,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee.Trustee"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -59,19 +54,16 @@ namespace Particular.Msmq
         {
         }
 
-        /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee.Trustee1"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         public Trustee(string name) : this(name, null) { }
 
-        /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee.Trustee2"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         public Trustee(string name, string systemName) : this(name, systemName, TrusteeType.Unknown) { }
 
-        /// <include file='doc\Trustee.uex' path='docs/doc[@for="Trustee.Trustee3"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>

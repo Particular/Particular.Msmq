@@ -9,7 +9,6 @@ namespace Particular.Msmq
     using System.Collections.Generic;
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\QueueAccessMode.uex' path='docs/doc[@for="QueueAccessMode"]/*' />
     /// <devdoc>
     ///    <para>
     ///       Specifies what operations can be performed on the queue.

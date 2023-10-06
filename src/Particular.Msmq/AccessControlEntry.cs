@@ -3,7 +3,6 @@ namespace Particular.Msmq
     using System;
     using System.ComponentModel;
 
-    /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry"]/*' />
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
@@ -17,7 +16,6 @@ namespace Particular.Msmq
         Trustee trustee = null;
         AccessControlEntryType entryType = AccessControlEntryType.Allow;
 
-        /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.AccessControlEntry"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -25,7 +23,6 @@ namespace Particular.Msmq
         {
         }
 
-        /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.AccessControlEntry1"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -34,7 +31,6 @@ namespace Particular.Msmq
             Trustee = trustee;
         }
 
-        /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.AccessControlEntry2"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -46,7 +42,6 @@ namespace Particular.Msmq
             EntryType = entryType;
         }
 
-        /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.EntryType"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -64,7 +59,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.CustomAccessRights"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -80,7 +74,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.GenericAccessRights"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -102,7 +95,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.StandardAccessRights"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -124,7 +116,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\AccessControlEntry.uex' path='docs/doc[@for="AccessControlEntry.Trustee"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>

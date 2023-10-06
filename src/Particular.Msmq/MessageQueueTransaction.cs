@@ -10,7 +10,6 @@ namespace Particular.Msmq
     using System.Threading;
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction"]/*' />
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
@@ -19,7 +18,6 @@ namespace Particular.Msmq
         ITransaction internalTransaction;
         bool disposed;
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.MessageQueueTransaction"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Creates a new Message Queuing internal transaction context.
@@ -32,7 +30,6 @@ namespace Particular.Msmq
 
         internal ITransaction InnerTransaction => internalTransaction;
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Status"]/*' />
         /// <devdoc>
         ///    <para>
         ///       The status of the transaction that this object represents.
@@ -40,7 +37,6 @@ namespace Particular.Msmq
         /// </devdoc>
         public MessageQueueTransactionStatus Status { get; private set; }
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Abort"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Rolls back the pending internal transaction.
@@ -61,7 +57,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.AbortInternalTransaction"]/*' />
         /// <internalonly/>
         void AbortInternalTransaction()
         {
@@ -75,7 +70,6 @@ namespace Particular.Msmq
             Status = MessageQueueTransactionStatus.Aborted;
         }
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Begin"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Begins a new Message Queuing internal transaction context.
@@ -106,7 +100,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.BeginQueueOperation"]/*' />
         /// <internalonly/>
         internal ITransaction BeginQueueOperation()
         {
@@ -115,7 +108,6 @@ namespace Particular.Msmq
             return internalTransaction;
         }
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Commit"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Commits a pending internal transaction.
@@ -143,7 +135,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Dispose"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Disposes this transaction instance, if it is in a
@@ -156,7 +147,6 @@ namespace Particular.Msmq
             GC.SuppressFinalize(this);
         }
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Dispose1"]/*' />
         /// <devdoc>
         ///    <para>
         ///    </para>
@@ -177,14 +167,12 @@ namespace Particular.Msmq
             disposed = true;
         }
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.Finalize"]/*' />
         /// <internalonly/>
         ~MessageQueueTransaction()
         {
             Dispose(false);
         }
 
-        /// <include file='doc\MessageQueueTransaction.uex' path='docs/doc[@for="MessageQueueTransaction.EndQueueOperation"]/*' />
         /// <internalonly/>
         internal void EndQueueOperation()
         {

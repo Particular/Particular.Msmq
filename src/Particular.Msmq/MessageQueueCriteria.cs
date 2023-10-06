@@ -11,7 +11,6 @@ namespace Particular.Msmq
     using System.Globalization; //for CultureInfo
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria"]/*' />
     /// <devdoc>
     ///    <para>
     ///       This class
@@ -33,7 +32,6 @@ namespace Particular.Msmq
         static readonly DateTime minDate = new(1970, 1, 1);
         static readonly DateTime maxDate = new(2038, 1, 19);
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.CreatedAfter"]/*' />
         /// <devdoc>
         ///    Specifies the lower bound of the interval
         ///    that will be used as  the queue creation time
@@ -68,7 +66,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.CreatedBefore"]/*' />
         /// <devdoc>
         ///    Specifies the upper bound of the interval
         ///    that will be used as  the queue creation time
@@ -105,7 +102,6 @@ namespace Particular.Msmq
 
         internal bool FilterMachine => filter.MachineName;
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.Label"]/*' />
         /// <devdoc>
         ///    Specifies the label that that will be used as
         ///    the criteria to search queues in the network.
@@ -131,7 +127,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.MachineName"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Specifies the machine name that will be used
@@ -162,7 +157,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.ModifiedAfter"]/*' />
         /// <devdoc>
         ///    Specifies the lower bound of the interval
         ///    that will be used as  the queue modified time
@@ -198,7 +192,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.ModifiedBefore"]/*' />
         /// <devdoc>
         ///    Specifies the upper bound of the interval
         ///    that will be used as  the queue modified time
@@ -234,7 +227,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.Reference"]/*' />
         /// <internalonly/>
         internal Restrictions.MQRESTRICTION Reference
         {
@@ -306,7 +298,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.Category"]/*' />
         /// <devdoc>
         ///    Specifies the Category that will be used
         ///    as the criteria to search queues in the network.
@@ -330,7 +321,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.ClearAll"]/*' />
         /// <devdoc>
         ///    Resets all the current instance settings.
         /// </devdoc>
@@ -339,7 +329,6 @@ namespace Particular.Msmq
             filter.ClearAll();
         }
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.ConvertTime"]/*' />
         /// <internalonly/>
         static int ConvertTime(DateTime time)
         {
@@ -347,7 +336,6 @@ namespace Particular.Msmq
             return (int)(time - minDate).TotalSeconds;
         }
 
-        /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria.CriteriaPropertyFilter"]/*' />
         /// <internalonly/>
         class CriteriaPropertyFilter
         {

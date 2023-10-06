@@ -12,7 +12,6 @@ namespace Particular.Msmq
     using System.Runtime.InteropServices;
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator"]/*' />
     /// <devdoc>
     ///    <para>Provides (forward-only) cursor semantics to enumerate the queues on a
     ///       computer.</para>
@@ -31,14 +30,12 @@ namespace Particular.Msmq
         MessageQueue currentMessageQueue;
         bool disposed;
 
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.MessageQueueEnumerator"]/*' />
         /// <internalonly/>
         internal MessageQueueEnumerator(MessageQueueCriteria criteria)
         {
             this.criteria = criteria;
         }
 
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.Current"]/*' />
         /// <devdoc>
         ///     Returns the current MessageQueue of the  enumeration.
         ///     Before the first call to MoveNext and following a call to MoveNext that
@@ -59,11 +56,9 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.IEnumerator.Current"]/*' />
         /// <internalonly/>
         object IEnumerator.Current => Current;
 
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.Close"]/*' />
         /// <devdoc>
         ///    <para>Frees the managed resources associated with the enumerator.</para>
         /// </devdoc>
@@ -76,7 +71,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.Dispose"]/*' />
         /// <devdoc>
         /// </devdoc>
         public void Dispose()
@@ -85,7 +79,6 @@ namespace Particular.Msmq
             GC.SuppressFinalize(this);
         }
 
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.Dispose1"]/*' />
         /// <devdoc>
         ///    <para>
         ///    </para>
@@ -100,7 +93,6 @@ namespace Particular.Msmq
             disposed = true;
         }
 
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.LocatorHandle"]/*' />
         /// <devdoc>
         ///    <para>Indicates the native Message Queuing handle used to locate queues in a network. This
         ///       property is read-only.</para>
@@ -144,7 +136,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.MoveNext"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Advances the enumerator to the next queue of the enumeration, if one
@@ -200,7 +191,6 @@ namespace Particular.Msmq
             return true;
         }
 
-        /// <include file='doc\MessageQueueEnumerator.uex' path='docs/doc[@for="MessageQueueEnumerator.Reset"]/*' />
         /// <devdoc>
         ///    <para>Resets the cursor, so it points to the head of the list..</para>
         /// </devdoc>

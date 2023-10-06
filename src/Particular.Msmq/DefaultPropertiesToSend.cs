@@ -8,7 +8,6 @@ namespace Particular.Msmq
 {
     using System;
 
-    /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend"]/*' />
     /// <devdoc>
     ///    <para>
     ///       Specifies the default property values that will be used when
@@ -23,7 +22,6 @@ namespace Particular.Msmq
         MessageQueue cachedTransactionStatusQueue;
 
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.DefaultPropertiesToSend"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Initializes a new instance of the <see cref='DefaultPropertiesToSend'/>
@@ -34,14 +32,12 @@ namespace Particular.Msmq
         {
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.DefaultPropertiesToSend1"]/*' />
         /// <internalonly/>
         internal DefaultPropertiesToSend(bool designMode)
         {
             this.designMode = designMode;
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.AcknowledgeTypes"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets
@@ -62,7 +58,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.AdministrationQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the queue used for acknowledgement messages
@@ -103,7 +98,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.AppSpecific"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets application-generated information.
@@ -123,7 +117,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.AttachSenderId"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating if the sender ID is to be attached to the
@@ -144,11 +137,9 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.CachedMessage"]/*' />
         /// <internalonly/>
         internal Message CachedMessage { get; } = new();
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.EncryptionAlgorithm"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the encryption algorithm used to encrypt the body of a
@@ -169,7 +160,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.Extension"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets additional information associated with the message.
@@ -189,7 +179,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.HashAlgorithm"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the hashing algorithm used when
@@ -211,7 +200,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.Label"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the message label.
@@ -231,7 +219,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.Priority"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the message priority.
@@ -250,7 +237,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.Recoverable"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether the message is
@@ -272,7 +258,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.ResponseQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the queue which receives application-generated response
@@ -307,7 +292,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.TimeToBeReceived"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the time limit for the message to be
@@ -328,7 +312,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.TimeToReachQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the time limit for the message to
@@ -349,7 +332,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.TransactionStatusQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets the transaction status queue on the source computer.
@@ -383,7 +365,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.UseAuthentication"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether the message must be authenticated.
@@ -402,7 +383,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.UseDeadLetterQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether a copy of the message that could not
@@ -422,7 +402,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.UseEncryption"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether to encrypt private messages.
@@ -441,7 +420,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.UseJournalQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether a copy of the message should be kept
@@ -461,7 +439,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.UseTracing"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether to trace a message as it moves toward
@@ -481,7 +458,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.ShouldSerializeTimeToBeReceived"]/*' />
         /// <internalonly/>
         bool ShouldSerializeTimeToBeReceived()
         {
@@ -493,7 +469,6 @@ namespace Particular.Msmq
             return true;
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.ShouldSerializeTimeToReachQueue"]/*' />
         /// <internalonly/>
         bool ShouldSerializeTimeToReachQueue()
         {
@@ -505,7 +480,6 @@ namespace Particular.Msmq
             return true;
         }
 
-        /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.ShouldSerializeExtension"]/*' />
         /// <internalonly/>
         bool ShouldSerializeExtension()
         {

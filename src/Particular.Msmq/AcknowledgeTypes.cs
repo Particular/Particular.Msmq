@@ -9,7 +9,6 @@ namespace Particular.Msmq
     using System;
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes"]/*' />
     /// <devdoc>
     ///    <para>
     ///       Specifies what kind of acknowledgment to get after sending a message.
@@ -19,7 +18,6 @@ namespace Particular.Msmq
     enum AcknowledgeTypes
     {
 
-        /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.PositiveArrival"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Use this value to request a positive acknowledgment when the message
@@ -28,7 +26,6 @@ namespace Particular.Msmq
         /// </devdoc>
         PositiveArrival = NativeMethods.ACKNOWLEDGE_POSITIVE_ARRIVAL,
 
-        /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.PositiveReceive"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Use this value to request a positive acknowledgment when the message
@@ -37,7 +34,6 @@ namespace Particular.Msmq
         /// </devdoc>
         PositiveReceive = NativeMethods.ACKNOWLEDGE_POSITIVE_RECEIVE,
 
-        /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.NegativeReceive"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Use this value to request a negative acknowledgment when the message fails
@@ -46,7 +42,6 @@ namespace Particular.Msmq
         /// </devdoc>
         NegativeReceive = NativeMethods.ACKNOWLEDGE_NEGATIVE_RECEIVE,
 
-        /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.None"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Use this value to request no acknowledgment messages (positive or negative) to be posted.
@@ -54,7 +49,6 @@ namespace Particular.Msmq
         /// </devdoc>
         None = NativeMethods.ACKNOWLEDGE_NONE,
 
-        /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.NotAcknowledgeReachQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Use this value to request a negative acknowledgment when the message cannot
@@ -64,7 +58,6 @@ namespace Particular.Msmq
         /// </devdoc>
         NotAcknowledgeReachQueue = NativeMethods.ACKNOWLEDGE_NEGATIVE_ARRIVAL,
 
-        /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.NotAcknowledgeReceive"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Use this value to request a negative acknowledgment when an error occurs and
@@ -75,7 +68,6 @@ namespace Particular.Msmq
         NotAcknowledgeReceive = NegativeReceive |
                                                        NativeMethods.ACKNOWLEDGE_NEGATIVE_ARRIVAL,
 
-        /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.FullReachQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Use this value
@@ -88,7 +80,6 @@ namespace Particular.Msmq
         FullReachQueue = NotAcknowledgeReachQueue |
                                         PositiveArrival,
 
-        /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.FullReceive"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Use this value to request full acknowledgment (positive or negative) depending

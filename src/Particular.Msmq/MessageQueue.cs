@@ -18,7 +18,6 @@ namespace Particular.Msmq
     using System.Threading;
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue"]/*' />
     /// <devdoc>
     ///    <para>
     ///       Provides
@@ -28,7 +27,6 @@ namespace Particular.Msmq
     class MessageQueue : Component, IEnumerable
     {
         //Public constants
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.InfiniteTimeout"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Specifies that
@@ -37,7 +35,6 @@ namespace Particular.Msmq
         ///    </para>
         /// </devdoc>
         public static readonly TimeSpan InfiniteTimeout = TimeSpan.FromMilliseconds(uint.MaxValue);
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.InfiniteQueueSize"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -122,7 +119,6 @@ namespace Particular.Msmq
         readonly object syncRoot = new();
         static readonly object staticSyncRoot = new();
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Initializes a new instance of the <see cref='MessageQueue'/> class. To use the object instantiated by the default
@@ -137,7 +133,6 @@ namespace Particular.Msmq
             AccessMode = QueueAccessMode.SendAndReceive;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Initializes a new instance of the <see cref='MessageQueue'/>
@@ -151,7 +146,6 @@ namespace Particular.Msmq
         {
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue5"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Initializes a new instance of the <see cref='MessageQueue'/>
@@ -166,7 +160,6 @@ namespace Particular.Msmq
 
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue2"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Initializes a new instance of the <see cref='MessageQueue'/> class that references the
@@ -179,7 +172,6 @@ namespace Particular.Msmq
         {
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue3"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Initializes a new instance of the <see cref='MessageQueue'/> class that references the
@@ -198,7 +190,6 @@ namespace Particular.Msmq
             AccessMode = QueueAccessMode.SendAndReceive;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue4"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Initializes a new instance of the <see cref='MessageQueue'/> class that references the
@@ -223,7 +214,6 @@ namespace Particular.Msmq
 
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue3"]/*' />
         /// <internalonly/>
         internal MessageQueue(string path, Guid id)
         {
@@ -235,7 +225,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AccessMode"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets value specifying access mode of the queue
@@ -244,7 +233,6 @@ namespace Particular.Msmq
         public QueueAccessMode AccessMode { get; private set; }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Authenticate"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value specifying whether the queue only accepts authenticated
@@ -285,7 +273,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BasePriority"]/*' />
         /// <devdoc>
         ///    <para>Gets or sets a value indicating the base
         ///       priority used to route a public queue's messages over the network.</para>
@@ -317,7 +304,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CanRead"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets a value indicating whether the <see cref='MessageQueue'/>
@@ -337,7 +323,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CanWrite"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets a value indicating whether the <see cref='MessageQueue'/>
@@ -357,7 +342,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Category"]/*' />
         /// <devdoc>
         ///    <para>Gets or sets the queue type.</para>
         /// </devdoc>
@@ -395,7 +379,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ComputerName"]/*' />
         /// <internalonly/>
         internal static string ComputerName
         {
@@ -418,7 +401,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CreateTime"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets the time and date of the queue's creation.
@@ -442,7 +424,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.DefaultPropertiesToSend"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the properties to be used by
@@ -475,7 +456,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.DenySharedReceive"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Specifies the shared mode for the queue that this object
@@ -504,14 +484,12 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.EnableConnectionCache"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         [Browsable(false)]
         public static bool EnableConnectionCache { get; set; } = false;
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.EncryptionRequired"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether the queue only accepts non-private
@@ -548,7 +526,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.FormatName"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets the unique name that was generated for the queue when the queue was created.
@@ -618,7 +595,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Formatter"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or
@@ -645,7 +621,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Id"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets the Message Queuing unique identifier for the queue.
@@ -675,7 +650,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Label"]/*' />
         /// <devdoc>
         ///    <para>Gets or sets the queue description.</para>
         /// </devdoc>
@@ -719,7 +693,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.LastModifyTime"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Indicates the last time the properties of a queue were modified.
@@ -743,7 +716,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MachineName"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the name of the computer where
@@ -789,7 +761,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MaximumJournalSize"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the maximum size of the journal queue.
@@ -826,7 +797,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MaximumQueueSize"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the maximum size of the queue.
@@ -863,7 +833,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageReadPropertyFilter"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the property filter for
@@ -928,7 +897,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MulticastAddress"]/*' />
         /// <devdoc>
         ///    <para>Gets or sets the IP multicast address associated with the queue.</para>
         /// </devdoc>
@@ -995,7 +963,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Path"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the queue's path. When setting the <see cref='Path'/>, this points the <see cref='MessageQueue'/>
@@ -1027,7 +994,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Properties"]/*' />
         /// <internalonly/>
         QueuePropertyVariants Properties
         {
@@ -1039,7 +1005,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.PropertyFilter"]/*' />
         /// <internalonly/>
         QueuePropertyFilter PropertyFilter
         {
@@ -1051,7 +1016,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.QueueName"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the friendly
@@ -1091,7 +1055,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.QueuePath"]/*' />
         /// <internalonly/>
         internal string QueuePath
         {
@@ -1136,7 +1099,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReadHandle"]/*' />
         /// <devdoc>
         ///    <para>
         ///       The native handle used to receive messages from the message queue
@@ -1156,7 +1118,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SynchronizingObject"]/*' />
         /// <devdoc>
         ///   Represents the object used to marshal the event handler
         ///   calls issued as a result of a BeginReceive or BeginPeek
@@ -1191,7 +1152,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Transactional"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets
@@ -1211,7 +1171,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.UseJournalQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether retrieved messages are copied to the
@@ -1252,7 +1211,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.WriteHandle"]/*' />
         /// <devdoc>
         ///    <para>
         ///       The native handle used to send messages to the message queue
@@ -1271,7 +1229,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.PeekCompleted"]/*' />
         /// <devdoc>
         ///    <para>Occurs when a message is read without being removed
         ///       from the queue. This is a result of the asynchronous operation, <see cref='MessageQueue.BeginPeek'/>
@@ -1294,7 +1251,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveCompleted"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Occurs when a message has been taken out of the queue.
@@ -1365,7 +1321,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginPeek"]/*' />
         /// <devdoc>
         ///    <para>Initiates an asynchronous peek operation with no timeout. The method
         ///       returns immediately, but the asynchronous operation is not completed until
@@ -1378,7 +1333,6 @@ namespace Particular.Msmq
             return ReceiveAsync(InfiniteTimeout, CursorHandle.NullHandle, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, null, null);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginPeek1"]/*' />
         /// <devdoc>
         ///    <para> Initiates an asynchronous peek operation with the timeout specified.
         ///       The method returns immediately, but the asynchronous operation is not completed until
@@ -1391,7 +1345,6 @@ namespace Particular.Msmq
             return ReceiveAsync(timeout, CursorHandle.NullHandle, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, null, null);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginPeek2"]/*' />
         /// <devdoc>
         ///    <para> Initiates an asynchronous peek operation with a state object that associates
         ///       information with the operation throughout the operation's
@@ -1406,7 +1359,6 @@ namespace Particular.Msmq
             return ReceiveAsync(timeout, CursorHandle.NullHandle, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, null, stateObject);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginPeek3"]/*' />
         /// <devdoc>
         ///    <para> Initiates an asynchronous peek operation that receives
         ///       notification through a callback which identifies the event handling method for the
@@ -1433,7 +1385,6 @@ namespace Particular.Msmq
             return ReceiveAsync(timeout, cursor.Handle, (int)action, callback, state);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginReceive"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
@@ -1446,7 +1397,6 @@ namespace Particular.Msmq
             return ReceiveAsync(InfiniteTimeout, CursorHandle.NullHandle, NativeMethods.QUEUE_ACTION_RECEIVE, null, null);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginReceive1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
@@ -1460,7 +1410,6 @@ namespace Particular.Msmq
             return ReceiveAsync(timeout, CursorHandle.NullHandle, NativeMethods.QUEUE_ACTION_RECEIVE, null, null);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginReceive2"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
@@ -1474,7 +1423,6 @@ namespace Particular.Msmq
             return ReceiveAsync(timeout, CursorHandle.NullHandle, NativeMethods.QUEUE_ACTION_RECEIVE, null, stateObject);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginReceive3"]/*' />
         /// <devdoc>
         ///    <para>Receives the first message available in the queue
         ///       referenced by the <see cref='MessageQueue'/> . Waits
@@ -1495,7 +1443,6 @@ namespace Particular.Msmq
             return ReceiveAsync(timeout, cursor.Handle, NativeMethods.QUEUE_ACTION_RECEIVE, callback, state);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ClearConnectionCache"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -1505,7 +1452,6 @@ namespace Particular.Msmq
             queueInfoCache.ClearStale(new TimeSpan(0));
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Close"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Frees all resources allocated by the <see cref='MessageQueue'/>
@@ -1552,7 +1498,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Create"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Creates
@@ -1565,7 +1510,6 @@ namespace Particular.Msmq
             return Create(path, false);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Create1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Creates
@@ -1618,7 +1562,6 @@ namespace Particular.Msmq
             return new Cursor(this);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CreateMessageQueuesSnapshot1"]/*' />
         /// <internalonly/>
         static MessageQueue[] CreateMessageQueuesSnapshot(MessageQueueCriteria criteria)
         {
@@ -1635,7 +1578,6 @@ namespace Particular.Msmq
             return queues;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Delete"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Deletes a queue backend resource identified by
@@ -1669,7 +1611,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Dispose"]/*' />
         /// <devdoc>
         ///    <para>
         ///    </para>
@@ -1682,7 +1623,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.EndPeek"]/*' />
         /// <devdoc>
         ///    <para>Completes an asynchronous peek operation associated with
         ///       the <paramref name="asyncResult"/>
@@ -1696,7 +1636,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.EndReceive"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Terminates a receive asynchronous operation identified
@@ -1724,7 +1663,6 @@ namespace Particular.Msmq
             return request.End();
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Exists"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Determines whether a queue with the specified path
@@ -1772,7 +1710,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GenerateQueueProperties"]/*' />
         /// <internalonly/>
         void GenerateQueueProperties()
         {
@@ -1789,7 +1726,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetAllMessages"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Returns all the messages available in the queue.
@@ -1810,7 +1746,6 @@ namespace Particular.Msmq
             return resultMessages;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetEnumerator"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -1819,7 +1754,6 @@ namespace Particular.Msmq
             return GetMessageEnumerator();
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetMachineId"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -1877,7 +1811,6 @@ namespace Particular.Msmq
             return new SecurityContext(handle);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetMessageQueueEnumerator"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Creates an enumerator object for the message queues
@@ -1889,7 +1822,6 @@ namespace Particular.Msmq
             return new MessageQueueEnumerator(null);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetMessageQueueEnumerator1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Creates an enumerator object for the message queues
@@ -1901,7 +1833,6 @@ namespace Particular.Msmq
             return new MessageQueueEnumerator(criteria);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetMessageEnumerator"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Creates an enumerator object for the messages in the queue.
@@ -1917,7 +1848,6 @@ namespace Particular.Msmq
             return new MessageEnumerator(this, true);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPrivateQueuesByMachine"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Retrieves all the private queues on
@@ -1964,7 +1894,6 @@ namespace Particular.Msmq
             return queues;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPublicQueues"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Retrieves all public queues on the network.
@@ -1976,7 +1905,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPublicQueues1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Retrieves a
@@ -1988,7 +1916,6 @@ namespace Particular.Msmq
             return CreateMessageQueuesSnapshot(criteria);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPublicQueuesByCategory"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Retrieves a
@@ -2004,7 +1931,6 @@ namespace Particular.Msmq
             return CreateMessageQueuesSnapshot(criteria);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPublicQueuesByLabel"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Retrieves a
@@ -2020,7 +1946,6 @@ namespace Particular.Msmq
             return CreateMessageQueuesSnapshot(criteria);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetPublicQueuesByMachine"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Retrieves all public queues on the specified computer.
@@ -2040,7 +1965,6 @@ namespace Particular.Msmq
             return CreateMessageQueuesSnapshot(criteria);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.IsCanonicalPath"]/*' />
         /// <internalonly/>
         static bool IsCanonicalPath(string path, bool checkQueueNameSize)
         {
@@ -2062,7 +1986,6 @@ namespace Particular.Msmq
             return true;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.IsFatalError"]/*' />
         /// <internalonly/>
         internal static bool IsFatalError(int value)
         {
@@ -2071,7 +1994,6 @@ namespace Particular.Msmq
             return !isInformation && !isSuccessful;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.IsMemoryError"]/*' />
         /// <internalonly/>
         internal static bool IsMemoryError(int value)
         {
@@ -2092,7 +2014,6 @@ namespace Particular.Msmq
             return false;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.OnRequestCompleted"]/*' />
         /// <devdoc>
         ///    Used for component model event support.
         /// </devdoc>
@@ -2117,7 +2038,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Peek"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Returns without removing (peeks) the first message
@@ -2133,7 +2053,6 @@ namespace Particular.Msmq
             return ReceiveCurrent(InfiniteTimeout, NativeMethods.QUEUE_ACTION_PEEK_CURRENT, CursorHandle.NullHandle, MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Peek1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Returns without removing (peeks) the first message
@@ -2162,7 +2081,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.PeekById"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Peeks the message that matches the given ID.
@@ -2176,7 +2094,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.PeekById1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Peeks the message that matches the
@@ -2192,7 +2109,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.PeekByCorrelationId"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Peeks the message that matches the
@@ -2207,7 +2123,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.PeekByCorrelationId1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Peeks the message that matches the
@@ -2222,7 +2137,6 @@ namespace Particular.Msmq
             return ReceiveBy(correlationId, timeout, false, false, true, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Purge"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Deletes all the messages contained in the queue.
@@ -2242,7 +2156,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Receive"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue referenced by the <see cref='MessageQueue'/> . This
@@ -2255,7 +2168,6 @@ namespace Particular.Msmq
             return ReceiveCurrent(InfiniteTimeout, NativeMethods.QUEUE_ACTION_RECEIVE, CursorHandle.NullHandle, MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Receive1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue referenced by the <see cref='MessageQueue'/> . This
@@ -2270,7 +2182,6 @@ namespace Particular.Msmq
             return ReceiveCurrent(InfiniteTimeout, NativeMethods.QUEUE_ACTION_RECEIVE, CursorHandle.NullHandle, MessageReadPropertyFilter, transaction, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Receive5"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -2284,7 +2195,6 @@ namespace Particular.Msmq
             return ReceiveCurrent(InfiniteTimeout, NativeMethods.QUEUE_ACTION_RECEIVE, CursorHandle.NullHandle, MessageReadPropertyFilter, null, transactionType);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Receive2"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
@@ -2306,7 +2216,6 @@ namespace Particular.Msmq
             return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, cursor.Handle, MessageReadPropertyFilter, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Receive3"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
@@ -2323,7 +2232,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Receive4"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -2361,7 +2269,6 @@ namespace Particular.Msmq
             return ReceiveCurrent(timeout, NativeMethods.QUEUE_ACTION_RECEIVE, cursor.Handle, MessageReadPropertyFilter, null, transactionType);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveAsync"]/*' />
         /// <internalonly/>
         unsafe AsynchronousRequest ReceiveAsync(TimeSpan timeout, CursorHandle cursorHandle, int action, AsyncCallback callback, object stateObject)
         {
@@ -2442,7 +2349,6 @@ namespace Particular.Msmq
             return request;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveBy"]/*' />
         /// <internalonly/>
         Message ReceiveBy(string id, TimeSpan timeout, bool remove, bool compareId, bool throwTimeout, MessageQueueTransaction transaction, MessageQueueTransactionType transactionType)
         {
@@ -2552,7 +2458,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveById"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the message that matches the given
@@ -2565,7 +2470,6 @@ namespace Particular.Msmq
             return ReceiveBy(id, TimeSpan.Zero, true, true, false, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveById1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the message that matches the given
@@ -2580,7 +2484,6 @@ namespace Particular.Msmq
             return ReceiveBy(id, TimeSpan.Zero, true, true, false, transaction, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveById5"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the message that matches the given
@@ -2598,7 +2501,6 @@ namespace Particular.Msmq
             return ReceiveBy(id, TimeSpan.Zero, true, true, false, null, transactionType);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveById2"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the message that matches the given
@@ -2613,7 +2515,6 @@ namespace Particular.Msmq
             return ReceiveBy(id, timeout, true, true, true, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveById3"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the message that matches the given
@@ -2630,7 +2531,6 @@ namespace Particular.Msmq
             return ReceiveBy(id, timeout, true, true, true, transaction, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveById4"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the message that matches the given
@@ -2650,7 +2550,6 @@ namespace Particular.Msmq
             return ReceiveBy(id, timeout, true, true, true, null, transactionType);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveByCorrelationId"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receivess the message that matches the
@@ -2664,7 +2563,6 @@ namespace Particular.Msmq
             return ReceiveBy(correlationId, TimeSpan.Zero, true, false, false, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveByCorrelationId1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receivess the message that matches the
@@ -2680,7 +2578,6 @@ namespace Particular.Msmq
             return ReceiveBy(correlationId, TimeSpan.Zero, true, false, false, transaction, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveByCorrelationId5"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receivess the message that matches the
@@ -2699,7 +2596,6 @@ namespace Particular.Msmq
             return ReceiveBy(correlationId, TimeSpan.Zero, true, false, false, null, transactionType);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveByCorrelationId2"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the message that matches
@@ -2714,7 +2610,6 @@ namespace Particular.Msmq
             return ReceiveBy(correlationId, timeout, true, false, true, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveByCorrelationId3"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the message that matches
@@ -2731,7 +2626,6 @@ namespace Particular.Msmq
             return ReceiveBy(correlationId, timeout, true, false, true, transaction, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveByCorrelationId4"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Receives the message that matches
@@ -2779,7 +2673,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.InternalReceiveByLookupId"]/*' />
         /// <internalonly/>
         internal unsafe Message InternalReceiveByLookupId(bool receive, MessageLookupAction lookupAction, long lookupId,
             MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
@@ -2898,7 +2791,6 @@ namespace Particular.Msmq
 
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ReceiveCurrent"]/*' />
         /// <internalonly/>
         internal unsafe Message ReceiveCurrent(TimeSpan timeout, int action, CursorHandle cursor, MessagePropertyFilter filter, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
         {
@@ -2992,7 +2884,6 @@ namespace Particular.Msmq
             return receiveMessage;
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Refresh"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Refreshes the properties presented by the <see cref='MessageQueue'/>
@@ -3006,7 +2897,6 @@ namespace Particular.Msmq
             PropertyFilter.ClearAll();
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SaveQueueProperties"]/*' />
         /// <internalonly/>
         void SaveQueueProperties()
         {
@@ -3023,7 +2913,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>
@@ -3036,7 +2925,6 @@ namespace Particular.Msmq
             SendInternal(obj, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>
@@ -3051,7 +2939,6 @@ namespace Particular.Msmq
             SendInternal(obj, transaction, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send5"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>
@@ -3069,7 +2956,6 @@ namespace Particular.Msmq
             SendInternal(obj, null, transactionType);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send2"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>.
@@ -3082,7 +2968,6 @@ namespace Particular.Msmq
             Send(obj, label, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send3"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>.
@@ -3097,7 +2982,6 @@ namespace Particular.Msmq
             Send(obj, label, transaction, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send4"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>.
@@ -3139,7 +3023,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SendInternal"]/*' />
         /// <internalonly/>
         void SendInternal(object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
         {
@@ -3183,7 +3066,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ResolveQueueFromLabel"]/*' />
         /// <internalonly/>
         static MessageQueue ResolveQueueFromLabel(string path, bool throwException)
         {
@@ -3285,7 +3167,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ResetPermissions"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -3303,7 +3184,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SetPermissions"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -3314,7 +3194,6 @@ namespace Particular.Msmq
             SetPermissions(user, rights, AccessControlEntryType.Allow);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SetPermissions1"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -3328,7 +3207,6 @@ namespace Particular.Msmq
             SetPermissions(dacl);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SetPermissions2"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -3340,7 +3218,6 @@ namespace Particular.Msmq
             SetPermissions(dacl);
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.SetPermissions3"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -3445,7 +3322,6 @@ namespace Particular.Msmq
 
         }
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.ValidatePath"]/*' />
         /// <internalonly/>
         internal static bool ValidatePath(string path, bool checkQueueNameSize)
         {
@@ -3538,7 +3414,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.QueuePropertyFilter"]/*' />
         /// <internalonly/>
         class QueuePropertyFilter
         {
@@ -3577,7 +3452,6 @@ namespace Particular.Msmq
         }
 
 
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest"]/*' />
         /// <devdoc>
         ///    This class is used in asynchronous operations,
         ///    it keeps the context under which the asynchronous
@@ -3597,7 +3471,6 @@ namespace Particular.Msmq
             readonly CursorHandle cursorHandle;
 
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsynchronousRequest"]/*' />
             /// <devdoc>
             ///    Creates a new asynchronous request that
             ///    represents a pending asynchronous operation.
@@ -3624,32 +3497,27 @@ namespace Particular.Msmq
             }
 
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.Action"]/*' />
             /// <internalonly/>
             internal int Action { get; private set; }
 
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsyncState"]/*' />
             /// <devdoc>
             ///    IAsyncResult implementation
             /// </devdoc>
             public object AsyncState { get; }
 
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.AsyncWaitHandle"]/*' />
             /// <devdoc>
             ///    IAsyncResult implementation
             /// </devdoc>
             public WaitHandle AsyncWaitHandle => resetEvent;
 
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.CompletedSynchronously"]/*' />
             /// <devdoc>
             ///    IAsyncResult implementation
             /// </devdoc>
             public bool CompletedSynchronously => false;
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.IsCompleted"]/*' />
             /// <devdoc>
             ///    IAsyncResult implementation
             /// </devdoc>
@@ -3657,7 +3525,6 @@ namespace Particular.Msmq
             public bool IsCompleted { get; private set; } = false;
 
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.BeginRead"]/*' />
             /// <devdoc>
             ///   Does the actual asynchronous receive posting.
             /// </devdoc>
@@ -3727,7 +3594,6 @@ namespace Particular.Msmq
 
 
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.End"]/*' />
             /// <devdoc>
             ///   Waits until the request has been completed.
             /// </devdoc>
@@ -3748,7 +3614,6 @@ namespace Particular.Msmq
                 return message;
             }
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.OnCompletionStatusChanged"]/*' />
             /// <devdoc>
             ///   Thread pool IOCompletionPort bound callback.
             /// </devdoc>
@@ -3779,7 +3644,6 @@ namespace Particular.Msmq
             }
 
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.OnMessageReceived"]/*' />
             /// <devdoc>
             ///   MSMQ APC based callback.
             /// </devdoc>
@@ -3790,7 +3654,6 @@ namespace Particular.Msmq
             }
 
 
-            /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.AsynchronousRequest.RaiseCompletionEvent"]/*' />
             /// <internalonly/>
             // See comment explaining this SuppressMessage below
             unsafe void RaiseCompletionEvent(int result, NativeOverlapped* overlappedPointer)

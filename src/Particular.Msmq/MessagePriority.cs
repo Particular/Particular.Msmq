@@ -6,7 +6,6 @@
 
 namespace Particular.Msmq
 {
-    /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority"]/*' />
     /// <devdoc>
     ///    Message priority effects how MSMQ handles the message while it is in route,
     ///    as well as where the message is placed in the queue. Higher priority messages
@@ -16,42 +15,34 @@ namespace Particular.Msmq
     /// </devdoc>
     enum MessagePriority
     {
-        /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority.Lowest"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         Lowest = 0,
-        /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority.VeryLow"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         VeryLow = 1,
-        /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority.Low"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         Low = 2,
-        /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority.Normal"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         Normal = 3,
-        /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority.AboveNormal"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         AboveNormal = 4,
-        /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority.High"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         High = 5,
-        /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority.VeryHigh"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         VeryHigh = 6,
-        /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority.Highest"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>

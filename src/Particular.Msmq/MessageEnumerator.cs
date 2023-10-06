@@ -11,7 +11,6 @@ namespace Particular.Msmq
     using System.ComponentModel;
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator"]/*' />
     /// <devdoc>
     ///    <para>Provides (forward-only)
     ///       cursor semantics to enumerate the messages contained in
@@ -34,7 +33,6 @@ namespace Particular.Msmq
             this.useCorrectRemoveCurrent = useCorrectRemoveCurrent;
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.Current"]/*' />
         /// <devdoc>
         /// <para>Gets the current <see cref='Message'/> pointed to
         ///    by this enumerator.</para>
@@ -54,11 +52,9 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.IEnumerator.Current"]/*' />
         /// <internalonly/>
         object IEnumerator.Current => Current;
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.CursorHandle"]/*' />
         /// <devdoc>
         ///    <para>Gets the native Message Queuing cursor handle used to browse messages
         ///       in the queue.</para>
@@ -87,7 +83,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.Close"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Frees the resources associated with the enumerator.
@@ -102,7 +97,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.Dispose"]/*' />
         /// <devdoc>
         /// </devdoc>
         public void Dispose()
@@ -111,7 +105,6 @@ namespace Particular.Msmq
             GC.SuppressFinalize(this);
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.Dispose1"]/*' />
         /// <devdoc>
         ///    <para>
         ///    </para>
@@ -126,7 +119,6 @@ namespace Particular.Msmq
             disposed = true;
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.MoveNext"]/*' />
         /// <devdoc>
         ///    <para>Advances the enumerator to the next message in the queue, if one
         ///       is currently available.</para>
@@ -136,7 +128,6 @@ namespace Particular.Msmq
             return MoveNext(TimeSpan.Zero);
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.MoveNext1"]/*' />
         /// <devdoc>
         ///    <para>Advances the enumerator to the next message in the
         ///       queue. If the enumerator is positioned at the end of the queue, <see cref='MessageEnumerator.MoveNext'/> waits until a message is available or the
@@ -183,7 +174,6 @@ namespace Particular.Msmq
             return true;
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.RemoveCurrent"]/*' />
         /// <devdoc>
         ///    <para> Removes the current message from
         ///       the queue and returns the message to the calling application.</para>
@@ -193,7 +183,6 @@ namespace Particular.Msmq
             return RemoveCurrent(TimeSpan.Zero, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.RemoveCurrent1"]/*' />
         /// <devdoc>
         ///    <para> Removes the current message from
         ///       the queue and returns the message to the calling application.</para>
@@ -205,7 +194,6 @@ namespace Particular.Msmq
             return RemoveCurrent(TimeSpan.Zero, transaction, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.RemoveCurrent5"]/*' />
         /// <devdoc>
         ///    <para> Removes the current message from
         ///       the queue and returns the message to the calling application.</para>
@@ -220,7 +208,6 @@ namespace Particular.Msmq
             return RemoveCurrent(TimeSpan.Zero, null, transactionType);
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.RemoveCurrent2"]/*' />
         /// <devdoc>
         ///    <para> Removes the current message from
         ///       the queue and returns the message to the calling application within the timeout specified.</para>
@@ -230,7 +217,6 @@ namespace Particular.Msmq
             return RemoveCurrent(timeout, null, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.RemoveCurrent3"]/*' />
         /// <devdoc>
         ///    <para> Removes the current message from
         ///       the queue and returns the message to the calling application within the timeout specified.</para>
@@ -242,7 +228,6 @@ namespace Particular.Msmq
             return RemoveCurrent(timeout, transaction, MessageQueueTransactionType.None);
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.RemoveCurrent4"]/*' />
         /// <devdoc>
         ///    <para> Removes the current message from
         ///       the queue and returns the message to the calling application within the timeout specified.</para>
@@ -281,7 +266,6 @@ namespace Particular.Msmq
             return message;
         }
 
-        /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.Reset"]/*' />
         /// <devdoc>
         ///    <para> Resets the current enumerator, so it points to
         ///       the head of the queue.</para>

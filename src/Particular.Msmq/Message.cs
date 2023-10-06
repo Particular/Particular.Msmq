@@ -16,7 +16,6 @@ namespace Particular.Msmq
     using System.Text;
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\Message.uex' path='docs/doc[@for="Message"]/*' />
     /// <devdoc>
     ///    <para>
     ///       Provides access to the properties needed to define a
@@ -33,7 +32,6 @@ namespace Particular.Msmq
         const int DefaultSenderCertificateSize = 255;
         const int DefaultSenderIdSize = 255;
         const int DefaultSymmetricKeySize = 255;
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.InfiniteTimeout"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Specifies that there is no timeout.
@@ -53,7 +51,6 @@ namespace Particular.Msmq
         MessageQueue cachedDestinationQueue;
         internal MessagePropertyVariants properties;
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Message"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Initializes a new instance of the <see cref='Message'/> class with an empty body.
@@ -70,7 +67,6 @@ namespace Particular.Msmq
             filter.Id = true;
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Message1"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Initializes a new instance of the <see cref='Message'/>
@@ -84,7 +80,6 @@ namespace Particular.Msmq
             Body = body;
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Message2"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
@@ -95,7 +90,6 @@ namespace Particular.Msmq
             Body = body;
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Message3"]/*' />
         /// <internalonly/>
         internal Message(MessagePropertyFilter filter)
         {
@@ -320,7 +314,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Acknowledgment"]/*' />
         /// <devdoc>
         ///    <para>Gets the classification
         ///       of acknowledgment messages that Message Queuing posts.</para>
@@ -346,7 +339,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AcknowledgeType"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the type of acknowledgment
@@ -389,7 +381,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AdministrationQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the queue used for acknowledgment
@@ -446,7 +437,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AppSpecific"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets
@@ -487,7 +477,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.ArrivedTime"]/*' />
         /// <devdoc>
         ///    Indicates when the message arrived at the queue.
         /// </devdoc>
@@ -513,7 +502,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AttachSenderId"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether the sender ID is to be attached
@@ -567,7 +555,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Authenticated"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets a value indicating whether the message was
@@ -593,7 +580,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AuthenticationProviderName"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the name of the cryptographic
@@ -644,7 +630,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AuthenticationProviderType"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the type of cryptographic provider used to
@@ -689,7 +674,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Body"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets
@@ -731,7 +715,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.BodyStream"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the information in the body of
@@ -779,7 +762,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.BodyType"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets
@@ -810,7 +792,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.ConnectorType"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Is required whenever an application sets a message property that is
@@ -856,7 +837,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.CorrelationId"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the message identifier used by
@@ -900,28 +880,24 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DefaultBodySize"]/*' />
         /// <devdoc>
         ///    The default body  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
         int DefaultBodySize => filter.DefaultBodySize;
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DefaultExtensionSize"]/*' />
         /// <devdoc>
         ///    The default extension  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
         int DefaultExtensionSize => filter.DefaultExtensionSize;
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DefaultLabelSize"]/*' />
         /// <devdoc>
         ///    The default label  buffer size to create,
         ///    when the message is received.
         /// </devdoc>
         int DefaultLabelSize => filter.DefaultLabelSize;
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DestinationQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Identifies the original destination queue for a message. It is typically
@@ -958,7 +934,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DestinationSymmetricKey"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets
@@ -1004,7 +979,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.DigitalSignature"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or
@@ -1052,7 +1026,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.EncryptionAlgorithm"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the encryption algorithm used to encrypt the
@@ -1095,7 +1068,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Extension"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets
@@ -1141,7 +1113,6 @@ namespace Particular.Msmq
                 }
             }
         }
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Formatter"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets
@@ -1164,7 +1135,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.HashAlgorithm"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the hashing
@@ -1208,7 +1178,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Id"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets
@@ -1234,7 +1203,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.IsFirstInTransaction"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets a value indicating
@@ -1259,7 +1227,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.IsLastInTransaction"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets a value indicating whether the message was
@@ -1284,7 +1251,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Label"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the message label.
@@ -1336,7 +1302,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.LookupId"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets the Message Queue-generated lookup identifier of the message.
@@ -1372,7 +1337,6 @@ namespace Particular.Msmq
             properties.SetUI8(NativeMethods.MESSAGE_PROPID_LOOKUPID, value);
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.MessageType"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets the type of the message (normal, acknowledgment, or report).
@@ -1408,7 +1372,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Priority"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the message priority, used to determine
@@ -1456,7 +1419,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Recoverable"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value
@@ -1498,7 +1460,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.ResponseQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the queue which receives application-generated
@@ -1586,7 +1547,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.SenderCertificate"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Specifies the security certificate used to authenticate messages.
@@ -1632,7 +1592,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.SenderId"]/*' />
         /// <devdoc>
         ///    <para>
         ///       This property is set by MSMQ, and is used primarily by the
@@ -1661,7 +1620,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.SenderVersion"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets the version of Message Queuing used to send the message.
@@ -1685,7 +1643,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.SentTime"]/*' />
         /// <devdoc>
         ///    Indicates the date and time that the message was sent by
         ///    the source Queue Manager.
@@ -1711,7 +1668,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.SourceMachine"]/*' />
         /// <devdoc>
         ///    Specifies the computer where the message originated.
         /// </devdoc>
@@ -1758,7 +1714,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.TimeToBeReceived"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or
@@ -1811,7 +1766,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.TimeToReachQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the time limit for the message to reach
@@ -1862,7 +1816,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.TransactionId"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets the
@@ -1888,7 +1841,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.TransactionStatusQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets the
@@ -1945,7 +1897,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.UseAuthentication"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets
@@ -1995,7 +1946,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.UseDeadLetterQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether
@@ -2054,7 +2004,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.UseEncryption"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether to encrypt messages.
@@ -2094,7 +2043,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.UseJournalQueue"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether a copy of the message should be kept in a machine
@@ -2153,7 +2101,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.UseTracing"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Gets or
@@ -2203,7 +2150,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AdjustMemory"]/*' />
         /// <internalonly/>
         internal void AdjustMemory()
         {
@@ -2316,7 +2262,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.AdjustToSend"]/*' />
         /// <internalonly/>
         internal void AdjustToSend()
         {
@@ -2514,7 +2459,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.IdFromByteArray"]/*' />
         /// <internalonly/>
         static string IdFromByteArray(byte[] bytes)
         {
@@ -2528,7 +2472,6 @@ namespace Particular.Msmq
             return result.ToString();
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.IdToByteArray"]/*' />
         /// <internalonly/>
         byte[] IdToByteArray(string id)
         {
@@ -2568,14 +2511,12 @@ namespace Particular.Msmq
             return bytes;
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Lock"]/*' />
         /// <internalonly/>
         internal MessagePropertyVariants.MQPROPS Lock()
         {
             return properties.Lock();
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.StringFromBytes"]/*' />
         /// <internalonly/>
         internal static string StringFromBytes(byte[] bytes, int len)
         {
@@ -2590,7 +2531,6 @@ namespace Particular.Msmq
             return new string(charBuffer, 0, len);
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.StringToBytes"]/*' />
         /// <internalonly/>
         internal static byte[] StringToBytes(string value)
         {
@@ -2601,7 +2541,6 @@ namespace Particular.Msmq
             return byteBuffer;
         }
 
-        /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Unlock"]/*' />
         /// <internalonly/>
         internal void Unlock()
         {

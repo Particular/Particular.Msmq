@@ -8,7 +8,6 @@ namespace Particular.Msmq
 {
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\EncryptionRequired.uex' path='docs/doc[@for="EncryptionRequired"]/*' />
     /// <devdoc>
     ///    <para>
     ///       Specifies the privacy level of messages received by the queue.
@@ -17,7 +16,6 @@ namespace Particular.Msmq
     /// </devdoc>
     enum EncryptionRequired
     {
-        /// <include file='doc\EncryptionRequired.uex' path='docs/doc[@for="EncryptionRequired.None"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Accepts
@@ -28,7 +26,6 @@ namespace Particular.Msmq
         /// </devdoc>
         None = NativeMethods.QUEUE_PRIVACY_LEVEL_NONE,
 
-        /// <include file='doc\EncryptionRequired.uex' path='docs/doc[@for="EncryptionRequired.Optional"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Does not force privacy. Accepts private (encrypted) messages and non-private (non-encrypted) messages.
@@ -37,7 +34,6 @@ namespace Particular.Msmq
         /// </devdoc>
         Optional = NativeMethods.QUEUE_PRIVACY_LEVEL_OPTIONAL,
 
-        /// <include file='doc\EncryptionRequired.uex' path='docs/doc[@for="EncryptionRequired.Body"]/*' />
         /// <devdoc>
         ///    <para>
         ///       Accepts only private (encrypted) messages.

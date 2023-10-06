@@ -8,7 +8,6 @@ namespace Particular.Msmq
 {
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm"]/*' />
     /// <devdoc>
     ///    <para>
     ///       Specifies the hash algorithm used by Message
@@ -19,7 +18,6 @@ namespace Particular.Msmq
     enum HashAlgorithm
     {
 
-        /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.None"]/*' />
         /// <devdoc>
         ///    <para>
         ///       No hashing
@@ -29,7 +27,6 @@ namespace Particular.Msmq
         /// </devdoc>
         None = 0,
 
-        /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Md2"]/*' />
         /// <devdoc>
         ///    <para>
         ///       MD2 hashing algorithm.
@@ -37,7 +34,6 @@ namespace Particular.Msmq
         /// </devdoc>
         Md2 = NativeMethods.CALG_MD2,
 
-        /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Md4"]/*' />
         /// <devdoc>
         ///    <para>
         ///       MD4 hashing algorithm.
@@ -46,7 +42,6 @@ namespace Particular.Msmq
         /// </devdoc>
         Md4 = NativeMethods.CALG_MD4,
 
-        /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Md5"]/*' />
         /// <devdoc>
         ///    <para>
         ///       MD5 hashing algorithm.
@@ -54,7 +49,6 @@ namespace Particular.Msmq
         /// </devdoc>
         Md5 = NativeMethods.CALG_MD5,
 
-        /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Sha"]/*' />
         /// <devdoc>
         ///    <para>
         ///       SHA hashing algorithm.
@@ -62,7 +56,6 @@ namespace Particular.Msmq
         /// </devdoc>
         Sha = NativeMethods.CALG_SHA,
 
-        /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Mac"]/*' />
         /// <devdoc>
         ///    <para>
         ///       MAC keyed hashing algorithm.
@@ -70,7 +63,6 @@ namespace Particular.Msmq
         /// </devdoc>
         Mac = NativeMethods.CALG_MAC,
 
-        /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Sha256"]/*' />
         /// <devdoc>
         ///    <para>
         ///       SHA256 hashing algorithm.
@@ -78,7 +70,6 @@ namespace Particular.Msmq
         /// </devdoc>
         Sha256 = NativeMethods.CALG_SHA256,
 
-        /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Sha384"]/*' />
         /// <devdoc>
         ///    <para>
         ///       SHA384 hashing algorithm.
@@ -86,7 +77,6 @@ namespace Particular.Msmq
         /// </devdoc>
         Sha384 = NativeMethods.CALG_SHA384,
 
-        /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.Sha512"]/*' />
         /// <devdoc>
         ///    <para>
         ///       SHA512 hashing algorithm.

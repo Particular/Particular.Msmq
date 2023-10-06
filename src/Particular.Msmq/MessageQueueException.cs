@@ -12,7 +12,6 @@ namespace Particular.Msmq
     using System.Text;
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException"]/*' />
     /// <devdoc>
     ///    <para>
     ///       Is thrown if a Microsoft Message
@@ -23,20 +22,17 @@ namespace Particular.Msmq
     {
         readonly int nativeErrorCode;
 
-        /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException.MessageQueueException"]/*' />
         /// <internalonly/>
         internal MessageQueueException(int error)
         {
             nativeErrorCode = error;
         }
 
-        /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException.MessageQueueErrorCode"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         public MessageQueueErrorCode MessageQueueErrorCode => (MessageQueueErrorCode)nativeErrorCode;
 
-        /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException.Message"]/*' />
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>

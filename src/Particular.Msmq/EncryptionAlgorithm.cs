@@ -8,7 +8,6 @@ namespace Particular.Msmq
 {
     using Particular.Msmq.Interop;
 
-    /// <include file='doc\EncryptionAlgorithm.uex' path='docs/doc[@for="EncryptionAlgorithm"]/*' />
     /// <devdoc>
     ///    <para>
     ///       Specifies the encryption algorithm used to encrypt the message body of a
@@ -19,7 +18,6 @@ namespace Particular.Msmq
     enum EncryptionAlgorithm
     {
 
-        /// <include file='doc\EncryptionAlgorithm.uex' path='docs/doc[@for="EncryptionAlgorithm.None"]/*' />
         /// <devdoc>
         ///    <para>
         ///       No encryption.
@@ -27,7 +25,6 @@ namespace Particular.Msmq
         /// </devdoc>
         None = 0,
 
-        /// <include file='doc\EncryptionAlgorithm.uex' path='docs/doc[@for="EncryptionAlgorithm.Rc2"]/*' />
         /// <devdoc>
         ///    <para>
         ///       The value MQMSG_CALG_RC2. This is the default value for
@@ -41,7 +38,6 @@ namespace Particular.Msmq
         /// </devdoc>
         Rc2 = NativeMethods.CALG_RC2,
 
-        /// <include file='doc\EncryptionAlgorithm.uex' path='docs/doc[@for="EncryptionAlgorithm.Rc4"]/*' />
         /// <devdoc>
         ///    <para>
         ///       The value MQMSG_CALG_RC4. This corresponds to the less

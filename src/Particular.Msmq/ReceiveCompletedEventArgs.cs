@@ -8,7 +8,6 @@ namespace Particular.Msmq
 {
     using System;
 
-    /// <include file='doc\ReceiveCompletedEventArgs.uex' path='docs/doc[@for="ReceiveCompletedEventArgs"]/*' />
     /// <devdoc>
     /// <para>Provides data for the <see cref='MessageQueue.ReceiveCompleted'/>
     /// event.</para>
@@ -18,7 +17,6 @@ namespace Particular.Msmq
         Message message;
         readonly MessageQueue sender;
 
-        /// <include file='doc\ReceiveCompletedEventArgs.uex' path='docs/doc[@for="ReceiveCompletedEventArgs.ReceiveCompletedEventArgs"]/*' />
         /// <internalonly/>
         internal ReceiveCompletedEventArgs(MessageQueue sender, IAsyncResult result)
         {
@@ -26,14 +24,12 @@ namespace Particular.Msmq
             this.sender = sender;
         }
 
-        /// <include file='doc\ReceiveCompletedEventArgs.uex' path='docs/doc[@for="ReceiveCompletedEventArgs.AsyncResult"]/*' />
         /// <devdoc>
         ///    <para>Contains the result of the asynchronous
         ///       operation requested.</para>
         /// </devdoc>
         public IAsyncResult AsyncResult { get; set; }
 
-        /// <include file='doc\ReceiveCompletedEventArgs.uex' path='docs/doc[@for="ReceiveCompletedEventArgs.Message"]/*' />
         /// <devdoc>
         ///    <para>The end result of the posted asynchronous receive
         ///       operation.</para>

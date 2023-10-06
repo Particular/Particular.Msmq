@@ -8,7 +8,6 @@ namespace Particular.Msmq
 {
     using System;
 
-    /// <include file='doc\PeekCompletedEventArgs.uex' path='docs/doc[@for="PeekCompletedEventArgs"]/*' />
     /// <devdoc>
     /// <para>Provides data for the <see cref='MessageQueue.PeekCompleted'/> event. When your asynchronous
     ///    operation calls an event handler, an instance of this class is passed to the
@@ -19,7 +18,6 @@ namespace Particular.Msmq
         Message message;
         readonly MessageQueue sender;
 
-        /// <include file='doc\PeekCompletedEventArgs.uex' path='docs/doc[@for="PeekCompletedEventArgs.PeekCompletedEventArgs"]/*' />
         /// <internalonly/>
         internal PeekCompletedEventArgs(MessageQueue sender, IAsyncResult result)
         {
@@ -27,14 +25,12 @@ namespace Particular.Msmq
             this.sender = sender;
         }
 
-        /// <include file='doc\PeekCompletedEventArgs.uex' path='docs/doc[@for="PeekCompletedEventArgs.AsyncResult"]/*' />
         /// <devdoc>
         ///    <para>Contains the result of the asynchronous
         ///       operation requested.</para>
         /// </devdoc>
         public IAsyncResult AsyncResult { get; set; }
 
-        /// <include file='doc\PeekCompletedEventArgs.uex' path='docs/doc[@for="PeekCompletedEventArgs.Message"]/*' />
         /// <devdoc>
         ///    <para>The end result of the posted asynchronous peek
         ///       operation.</para>

@@ -12,7 +12,6 @@ namespace Particular.Msmq
     using System.Xml;
     using System.Xml.Serialization;
 
-    /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter"]/*' />
     /// <devdoc>
     ///    Formatter class that serializes and deserializes objects into
     ///    and from  MessageQueue messages using Xml.
@@ -25,7 +24,6 @@ namespace Particular.Msmq
         bool typeNamesAdded;
         bool typesAdded;
 
-        /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.XmlMessageFormatter"]/*' />
         /// <devdoc>
         ///    Creates a new Xml message formatter object.
         /// </devdoc>
@@ -35,7 +33,6 @@ namespace Particular.Msmq
             TargetTypeNames = [];
         }
 
-        /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.XmlMessageFormatter1"]/*' />
         /// <devdoc>
         ///    Creates a new Xml message formatter object,
         ///    using the given properties.
@@ -46,7 +43,6 @@ namespace Particular.Msmq
             TargetTypes = [];
         }
 
-        /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.XmlMessageFormatter2"]/*' />
         /// <devdoc>
         ///    Creates a new Xml message formatter object,
         ///    using the given properties.
@@ -57,7 +53,6 @@ namespace Particular.Msmq
             TargetTypeNames = [];
         }
 
-        /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.TargetTypeNames"]/*' />
         /// <devdoc>
         ///    Specifies the set of possible types that will
         ///    be deserialized by the formatter from the
@@ -79,7 +74,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.TargetTypes"]/*' />
         /// <devdoc>
         ///    Specifies the set of possible types that will
         ///    be deserialized by the formatter from the
@@ -101,7 +95,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.CanRead"]/*' />
         /// <devdoc>
         ///    When this method is called, the formatter will attempt to determine
         ///    if the contents of the message are something the formatter can deal with.
@@ -132,7 +125,6 @@ namespace Particular.Msmq
             return result;
         }
 
-        /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.Clone"]/*' />
         /// <devdoc>
         ///    This method is needed to improve scalability on Receive and ReceiveAsync scenarios.  Not requiring
         ///     thread safety on read and write.
@@ -187,7 +179,6 @@ namespace Particular.Msmq
             }
         }
 
-        /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.Read"]/*' />
         /// <devdoc>
         ///    This method is used to read the contents from the given message
         ///     and create an object.
@@ -215,7 +206,6 @@ namespace Particular.Msmq
             throw new InvalidOperationException(Res.GetString(Res.InvalidTypeDeserialization));
         }
 
-        /// <include file='doc\XmlMessageFormatter.uex' path='docs/doc[@for="XmlMessageFormatter.Write"]/*' />
         /// <devdoc>
         ///    This method is used to write the given object into the given message.
         ///     If the formatter cannot understand the given object, an exception is thrown.
