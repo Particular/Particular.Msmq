@@ -1798,7 +1798,7 @@ namespace Particular.Msmq
         public Message[] GetAllMessages()
         {
             ArrayList messageList = [];
-            MessageEnumerator messages = GetMessageEnumerator2();
+            MessageEnumerator messages = GetMessageEnumerator();
             while (messages.MoveNext())
             {
                 Message message = messages.Current;
@@ -1814,7 +1814,6 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
-        [Obsolete("This method returns a MessageEnumerator that implements RemoveCurrent family of methods incorrectly. Please use GetMessageEnumerator2 instead.")]
         public IEnumerator GetEnumerator()
         {
             return GetMessageEnumerator();
@@ -1905,27 +1904,10 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetMessageEnumerator"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Creates an enumerator object for the messages in the queue. Superceded by GetMessageEnumerator2.
-        ///    </para>
-        /// </devdoc>
-        [Obsolete("This method returns a MessageEnumerator that implements RemoveCurrent family of methods incorrectly. Please use GetMessageEnumerator2 instead.")]
-        public MessageEnumerator GetMessageEnumerator()
-        {
-            if (!peekGranted)
-            {
-                peekGranted = true;
-            }
-
-            return new MessageEnumerator(this, false);
-        }
-
-        /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.GetMessageEnumerator2"]/*' />
-        /// <devdoc>
-        ///    <para>
         ///       Creates an enumerator object for the messages in the queue.
         ///    </para>
         /// </devdoc>
-        public MessageEnumerator GetMessageEnumerator2()
+        public MessageEnumerator GetMessageEnumerator()
         {
             if (!peekGranted)
             {
