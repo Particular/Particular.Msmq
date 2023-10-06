@@ -10,7 +10,7 @@ namespace Particular.Msmq
 
     /// <include file='doc\ReceiveCompletedEventArgs.uex' path='docs/doc[@for="ReceiveCompletedEventArgs"]/*' />
     /// <devdoc>
-    /// <para>Provides data for the <see cref='System.Messaging.MessageQueue.ReceiveCompleted'/>
+    /// <para>Provides data for the <see cref='MessageQueue.ReceiveCompleted'/>
     /// event.</para>
     /// </devdoc>
     public class ReceiveCompletedEventArgs : EventArgs

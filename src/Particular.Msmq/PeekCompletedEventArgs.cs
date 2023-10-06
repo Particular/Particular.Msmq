@@ -10,7 +10,7 @@ namespace Particular.Msmq
 
     /// <include file='doc\PeekCompletedEventArgs.uex' path='docs/doc[@for="PeekCompletedEventArgs"]/*' />
     /// <devdoc>
-    /// <para>Provides data for the <see cref='System.Messaging.MessageQueue.PeekCompleted'/> event. When your asynchronous
+    /// <para>Provides data for the <see cref='MessageQueue.PeekCompleted'/> event. When your asynchronous
     ///    operation calls an event handler, an instance of this class is passed to the
     ///    handler.</para>
     /// </devdoc>

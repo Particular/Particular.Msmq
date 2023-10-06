@@ -74,7 +74,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.MessagePropertyFilter"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.MessagePropertyFilter'/>
+        ///       Initializes a new instance of the <see cref='MessagePropertyFilter'/>
         ///       class
         ///       and
         ///       sets
@@ -95,7 +95,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether to retrieve
-        ///    <see cref='System.Messaging.Message.Acknowledgment' qualify='true'/> property information when receiving or peeking
+        ///    <see cref='Message.Acknowledgment' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -115,7 +115,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.AcknowledgeType"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.AcknowledgeType' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.AcknowledgeType' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -135,7 +135,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.AdministrationQueue"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.AdministrationQueue' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.AdministrationQueue' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -155,7 +155,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.AppSpecific"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.AppSpecific' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.AppSpecific' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -175,7 +175,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.ArrivedTime"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.ArrivedTime' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.ArrivedTime' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -195,7 +195,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.AttachSenderId"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.AttachSenderId' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.AttachSenderId' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -215,7 +215,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.Authenticated"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.Authenticated' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.Authenticated' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -235,7 +235,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.AuthenticationProviderName"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.AuthenticationProviderName' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.AuthenticationProviderName' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -255,7 +255,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.AuthenticationProviderType"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.AuthenticationProviderType' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.AuthenticationProviderType' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -275,7 +275,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.Body"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.Body' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.Body' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -295,7 +295,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.ConnectorType"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.ConnectorType' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.ConnectorType' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -315,7 +315,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.CorrelationId"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.CorrelationId' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.CorrelationId' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -413,7 +413,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.DestinationQueue"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.DestinationQueue' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.DestinationQueue' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -434,7 +434,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Gets or sets a value indicating whether to retrieve
-        ///    <see cref='System.Messaging.Message.DestinationSymmetricKey' qualify='true'/> property information when receiving or peeking
+        ///    <see cref='Message.DestinationSymmetricKey' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -454,7 +454,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.DigitalSignature"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.DigitalSignature' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.DigitalSignature' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -474,7 +474,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.EncryptionAlgorithm"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.EncryptionAlgorithm' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.EncryptionAlgorithm' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -494,7 +494,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.Extension"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.Extension' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.Extension' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -514,7 +514,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.HashAlgorithm"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.HashAlgorithm' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.HashAlgorithm' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -534,7 +534,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.Id"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.Id' qualify='true'/>
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.Id' qualify='true'/>
         ///       property information when receiving or peeking a message.
         ///    </para>
         /// </devdoc>
@@ -554,7 +554,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.IsFirstInTransaction"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.IsFirstInTransaction' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.IsFirstInTransaction' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -574,7 +574,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.IsLastInTransaction"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.IsLastInTransaction' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.IsLastInTransaction' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -594,7 +594,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.Label"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.Label' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.Label' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -615,7 +615,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.LookupId"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.LookupId' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.LookupId' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -645,7 +645,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.MessageType"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.MessageType' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.MessageType' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -665,7 +665,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.Priority"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.Priority' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.Priority' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -685,7 +685,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.Recoverable"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.Recoverable' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.Recoverable' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -705,7 +705,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.ResponseQueue"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.ResponseQueue' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.ResponseQueue' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -741,7 +741,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.SenderCertificate"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.SenderCertificate' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.SenderCertificate' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -761,7 +761,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.SenderId"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.SenderId' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.SenderId' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -781,7 +781,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.SenderVersion"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.SenderVersion' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.SenderVersion' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -801,7 +801,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.SentTime"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.SentTime' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.SentTime' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -821,7 +821,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.SourceMachine"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.SourceMachine' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.SourceMachine' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -841,7 +841,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.TimeToBeReceived"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.TimeToBeReceived' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.TimeToBeReceived' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -861,7 +861,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.TimeToReachQueue"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.TimeToReachQueue' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.TimeToReachQueue' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -881,7 +881,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.TransactionId"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.TransactionId' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.TransactionId' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -901,7 +901,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.TransactionStatusQueue"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.TransactionStatusQueue' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.TransactionStatusQueue' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -921,7 +921,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.UseAuthentication"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.UseAuthentication' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.UseAuthentication' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -941,7 +941,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.UseDeadLetterQueue"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.UseDeadLetterQueue' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.UseDeadLetterQueue' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -961,7 +961,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.UseEncryption"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.UseEncryption' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.UseEncryption' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -981,7 +981,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.UseJournalQueue"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.UseJournalQueue' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.UseJournalQueue' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>
@@ -1001,7 +1001,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessagePropertyFilter.uex' path='docs/doc[@for="MessagePropertyFilter.UseTracing"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets a value indicating whether to retrieve <see cref='System.Messaging.Message.UseTracing' qualify='true'/> property information when receiving or peeking
+        ///       Gets or sets a value indicating whether to retrieve <see cref='Message.UseTracing' qualify='true'/> property information when receiving or peeking
         ///       a message.
         ///    </para>
         /// </devdoc>

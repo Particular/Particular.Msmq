@@ -26,7 +26,7 @@ namespace Particular.Msmq
         /// <include file='doc\DefaultPropertiesToSend.uex' path='docs/doc[@for="DefaultPropertiesToSend.DefaultPropertiesToSend"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.DefaultPropertiesToSend'/>
+        ///       Initializes a new instance of the <see cref='DefaultPropertiesToSend'/>
         ///       class.
         ///    </para>
         /// </devdoc>

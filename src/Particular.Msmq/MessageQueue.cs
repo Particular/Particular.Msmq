@@ -125,8 +125,8 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.MessageQueue'/> class. To use the object instantiated by the default
-        ///       constructor, the <see cref='System.Messaging.MessageQueue.Path'/>
+        ///       Initializes a new instance of the <see cref='MessageQueue'/> class. To use the object instantiated by the default
+        ///       constructor, the <see cref='Path'/>
         ///       property must be set.
         ///    </para>
         /// </devdoc>
@@ -140,7 +140,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue1"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.MessageQueue'/>
+        ///       Initializes a new instance of the <see cref='MessageQueue'/>
         ///       class that references the Message Queuing application resource specified by the
         ///    <paramref name="path"/>
         ///    parameter.
@@ -154,7 +154,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue5"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.MessageQueue'/>
+        ///       Initializes a new instance of the <see cref='MessageQueue'/>
         ///       class that references the Message Queuing application resource specified by the
         ///    <paramref name="path"/> parameter and having the specifed access mode.
         /// </para>
@@ -169,7 +169,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue2"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.MessageQueue'/> class that references the
+        ///       Initializes a new instance of the <see cref='MessageQueue'/> class that references the
         ///       Message Queuing application resource specified by the <paramref name="path"/> parameter,
         ///       and has the specified queue read access restriction.
         ///    </para>
@@ -182,7 +182,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue3"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.MessageQueue'/> class that references the
+        ///       Initializes a new instance of the <see cref='MessageQueue'/> class that references the
         ///       Message Queuing application resource specified by the <paramref name="path"/> parameter,
         ///       has the specified queue read access restriction and whether to cache handles
         ///    </para>
@@ -201,7 +201,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.MessageQueue4"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.MessageQueue'/> class that references the
+        ///       Initializes a new instance of the <see cref='MessageQueue'/> class that references the
         ///       Message Queuing application resource specified by the <paramref name="path"/> parameter,
         ///       has the specified queue read access restriction, whether to cache handles,
         ///       and specified access mode.
@@ -320,7 +320,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CanRead"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets a value indicating whether the <see cref='System.Messaging.MessageQueue'/>
+        ///       Gets a value indicating whether the <see cref='MessageQueue'/>
         ///       has read permission.
         ///    </para>
         /// </devdoc>
@@ -340,7 +340,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.CanWrite"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets a value indicating whether the <see cref='System.Messaging.MessageQueue'/>
+        ///       Gets a value indicating whether the <see cref='MessageQueue'/>
         ///       has write permission.
         ///    </para>
         /// </devdoc>
@@ -446,7 +446,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the properties to be used by
-        ///       default when sending messages to the queue referenced by this <see cref='System.Messaging.MessageQueue'/>
+        ///       default when sending messages to the queue referenced by this <see cref='MessageQueue'/>
         ///       .
         ///    </para>
         /// </devdoc>
@@ -747,7 +747,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Gets or sets the name of the computer where
-        ///       the queue referenced by this <see cref='System.Messaging.MessageQueue'/>
+        ///       the queue referenced by this <see cref='MessageQueue'/>
         ///       is located.
         ///    </para>
         /// </devdoc>
@@ -998,7 +998,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Path"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Gets or sets the queue's path. When setting the <see cref='System.Messaging.MessageQueue.Path'/>, this points the <see cref='System.Messaging.MessageQueue'/>
+        ///       Gets or sets the queue's path. When setting the <see cref='Path'/>, this points the <see cref='MessageQueue'/>
         ///       to a new queue.
         ///    </para>
         /// </devdoc>
@@ -1274,7 +1274,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.PeekCompleted"]/*' />
         /// <devdoc>
         ///    <para>Occurs when a message is read without being removed
-        ///       from the queue. This is a result of the asynchronous operation, <see cref='System.Messaging.MessageQueue.BeginPeek'/>
+        ///       from the queue. This is a result of the asynchronous operation, <see cref='MessageQueue.BeginPeek'/>
         ///       .</para>
         /// </devdoc>
         public event PeekCompletedEventHandler PeekCompleted
@@ -1298,7 +1298,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Occurs when a message has been taken out of the queue.
-        ///       This is a result of the asynchronous operation <see cref='System.Messaging.MessageQueue.BeginReceive'/>
+        ///       This is a result of the asynchronous operation <see cref='MessageQueue.BeginReceive'/>
         ///       .
         ///    </para>
         /// </devdoc>
@@ -1437,7 +1437,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
-        ///       referenced by the <see cref='System.Messaging.MessageQueue'/>
+        ///       referenced by the <see cref='MessageQueue'/>
         ///       .
         ///    </para>
         /// </devdoc>
@@ -1450,7 +1450,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
-        ///       referenced by the <see cref='System.Messaging.MessageQueue'/> . Waits the specified interval for
+        ///       referenced by the <see cref='MessageQueue'/> . Waits the specified interval for
         ///       the message to be
         ///       removed.
         ///    </para>
@@ -1464,7 +1464,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
-        ///       referenced by the <see cref='System.Messaging.MessageQueue'/> . Waits the specified interval
+        ///       referenced by the <see cref='MessageQueue'/> . Waits the specified interval
         ///       for a new message to be removed and uses the specified object to retrieve
         ///       the result.
         ///    </para>
@@ -1477,7 +1477,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.BeginReceive3"]/*' />
         /// <devdoc>
         ///    <para>Receives the first message available in the queue
-        ///       referenced by the <see cref='System.Messaging.MessageQueue'/> . Waits
+        ///       referenced by the <see cref='MessageQueue'/> . Waits
         ///       the specified interval for a new message to be removed, uses the specified
         ///       object to retrieve the result, and receives notification through a
         ///       callback.</para>
@@ -1508,7 +1508,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Close"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Frees all resources allocated by the <see cref='System.Messaging.MessageQueue'/>
+        ///       Frees all resources allocated by the <see cref='MessageQueue'/>
         ///       .
         ///    </para>
         /// </devdoc>
@@ -2139,7 +2139,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Returns without removing (peeks) the first message
-        ///       available in the queue referenced by the <see cref='System.Messaging.MessageQueue'/> . This call
+        ///       available in the queue referenced by the <see cref='MessageQueue'/> . This call
         ///       is synchronous. It
         ///       blocks the current
         ///       thread of execution until a message is
@@ -2155,7 +2155,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Returns without removing (peeks) the first message
-        ///       available in the queue referenced by the <see cref='System.Messaging.MessageQueue'/>
+        ///       available in the queue referenced by the <see cref='MessageQueue'/>
         ///       . Waits
         ///       the specified interval for a message to become
         ///       available.
@@ -2263,7 +2263,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Receive"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Receives the first message available in the queue referenced by the <see cref='System.Messaging.MessageQueue'/> . This
+        ///       Receives the first message available in the queue referenced by the <see cref='MessageQueue'/> . This
         ///       call is synchronous. It blocks the current thread of execution until a message is
         ///       available.
         ///    </para>
@@ -2276,7 +2276,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Receive1"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Receives the first message available in the queue referenced by the <see cref='System.Messaging.MessageQueue'/> . This
+        ///       Receives the first message available in the queue referenced by the <see cref='MessageQueue'/> . This
         ///       call is synchronous. It blocks the current thread of execution until a message is
         ///       available.
         ///    </para>
@@ -2306,7 +2306,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
-        ///       referenced by the <see cref='System.Messaging.MessageQueue'/>
+        ///       referenced by the <see cref='MessageQueue'/>
         ///       . Waits the specified interval for a message to become
         ///       available.
         ///    </para>
@@ -2328,7 +2328,7 @@ namespace Particular.Msmq
         /// <devdoc>
         ///    <para>
         ///       Receives the first message available in the queue
-        ///       referenced by the <see cref='System.Messaging.MessageQueue'/>
+        ///       referenced by the <see cref='MessageQueue'/>
         ///       . Waits the specified interval for a message to become
         ///       available.
         ///    </para>
@@ -3013,7 +3013,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Refresh"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Refreshes the properties presented by the <see cref='System.Messaging.MessageQueue'/>
+        ///       Refreshes the properties presented by the <see cref='MessageQueue'/>
         ///       to reflect the current state of the
         ///       resource.
         ///    </para>
@@ -3044,7 +3044,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Sends an object to the queue referenced by this <see cref='System.Messaging.MessageQueue'/>
+        ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>
         ///       . The object is serialized
         ///       using the formatter provided.
         ///    </para>
@@ -3057,7 +3057,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send1"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Sends an object to the queue referenced by this <see cref='System.Messaging.MessageQueue'/>
+        ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>
         ///       . The object is serialized
         ///       using the formatter provided.
         ///    </para>
@@ -3072,7 +3072,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send5"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Sends an object to the queue referenced by this <see cref='System.Messaging.MessageQueue'/>
+        ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>
         ///       . The object is serialized
         ///       using the formatter provided.
         ///    </para>
@@ -3090,7 +3090,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send2"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Sends an object to the queue referenced by this <see cref='System.Messaging.MessageQueue'/>.
+        ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>.
         ///       The object will be serialized
         ///       using the formatter provided.
         ///    </para>
@@ -3103,7 +3103,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send3"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Sends an object to the queue referenced by this <see cref='System.Messaging.MessageQueue'/>.
+        ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>.
         ///       The object will be serialized
         ///       using the formatter provided.
         ///    </para>
@@ -3118,7 +3118,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.Send4"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Sends an object to the queue referenced by this <see cref='System.Messaging.MessageQueue'/>.
+        ///       Sends an object to the queue referenced by this <see cref='MessageQueue'/>.
         ///       The object will be serialized
         ///       using the formatter provided.
         ///    </para>
@@ -3941,7 +3941,7 @@ namespace Particular.Msmq
             // TransactionType.Automatic uses current System.Transactions transaction, if one is available;
             // otherwise, it passes Automatic to MSMQ to support COM+ transactions
             // NOTE: Need careful qualification of class names,
-            // since ITransaction is defined by System.Messaging.Interop, System.Transactions and System.EnterpriseServices
+            // since ITransaction is defined by Particular.Msmq.Interop, System.Transactions and System.EnterpriseServices
             //
             if ((MessageQueueTransactionType)transaction == MessageQueueTransactionType.Automatic)
             {
@@ -3983,7 +3983,7 @@ namespace Particular.Msmq
             // TransactionType.Automatic uses current System.Transactions transaction, if one is available;
             // otherwise, it passes Automatic to MSMQ to support COM+ transactions
             // NOTE: Need careful qualification of class names,
-            // since ITransaction is defined by System.Messaging.Interop, System.Transactions and System.EnterpriseServices
+            // since ITransaction is defined by Particular.Msmq.Interop, System.Transactions and System.EnterpriseServices
             //
             if ((MessageQueueTransactionType)transaction == MessageQueueTransactionType.Automatic)
             {

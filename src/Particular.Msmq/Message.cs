@@ -56,7 +56,7 @@ namespace Particular.Msmq
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Message"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.Message'/> class with an empty body.
+        ///       Initializes a new instance of the <see cref='Message'/> class with an empty body.
         ///    </para>
         /// </devdoc>
         public Message()
@@ -73,7 +73,7 @@ namespace Particular.Msmq
         /// <include file='doc\Message.uex' path='docs/doc[@for="Message.Message1"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       Initializes a new instance of the <see cref='System.Messaging.Message'/>
+        ///       Initializes a new instance of the <see cref='Message'/>
         ///       class, serializing the object passed as
         ///       an argument.
         ///    </para>
@@ -1965,7 +1965,7 @@ namespace Particular.Msmq
                         // Actually, we dont know what default is:
                         // Algorithm to determine whether or not messages
                         // should be authenticated by default is non-trivial
-                        // and should not be reproduced in System.Messaging.
+                        // and should not be reproduced in Particular.Msmq.
                         //
                         // One idea is to add a new native API,
                         // MQGetDefaultPropertyValue, to retrieve default values.

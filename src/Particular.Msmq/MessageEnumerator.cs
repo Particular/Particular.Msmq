@@ -36,7 +36,7 @@ namespace Particular.Msmq
 
         /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.Current"]/*' />
         /// <devdoc>
-        /// <para>Gets the current <see cref='System.Messaging.Message'/> pointed to
+        /// <para>Gets the current <see cref='Message'/> pointed to
         ///    by this enumerator.</para>
         /// </devdoc>
         public Message Current
@@ -139,7 +139,7 @@ namespace Particular.Msmq
         /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator.MoveNext1"]/*' />
         /// <devdoc>
         ///    <para>Advances the enumerator to the next message in the
-        ///       queue. If the enumerator is positioned at the end of the queue, <see cref='System.Messaging.MessageEnumerator.MoveNext'/> waits until a message is available or the
+        ///       queue. If the enumerator is positioned at the end of the queue, <see cref='MessageEnumerator.MoveNext'/> waits until a message is available or the
         ///       given <paramref name="timeout"/>
         ///       expires.</para>
         /// </devdoc>

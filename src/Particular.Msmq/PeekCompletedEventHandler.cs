@@ -21,7 +21,7 @@ namespace Particular.Msmq
     //
     /// <include file='doc\PeekCompletedEventHandler.uex' path='docs/doc[@for="PeekCompletedEventHandler"]/*' />
     /// <devdoc>
-    /// <para>Represents the method that will handle the <see cref='System.Messaging.MessageQueue.PeekCompleted'/> event of a <see cref='System.Messaging.MessageQueue'/>.</para>
+    /// <para>Represents the method that will handle the <see cref='MessageQueue.PeekCompleted'/> event of a <see cref='MessageQueue'/>.</para>
     /// </devdoc>
     public delegate void PeekCompletedEventHandler(object sender, PeekCompletedEventArgs e);
 }

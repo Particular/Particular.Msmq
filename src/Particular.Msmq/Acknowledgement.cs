@@ -21,7 +21,7 @@ namespace Particular.Msmq
         /// <include file='doc\Acknowledgement.uex' path='docs/doc[@for="Acknowledgment.None"]/*' />
         /// <devdoc>
         ///    <para>
-        ///       The default value of the <see cref='System.Messaging.Acknowledgment'/>
+        ///       The default value of the <see cref='Acknowledgment'/>
         ///       property. This means the message is
         ///       not an acknowledgment message.
         ///    </para>
