@@ -3565,19 +3565,13 @@ namespace Particular.Msmq
             public bool CreateTime;
             public bool EncryptionLevel;
             public bool Id;
-            // disable csharp compiler warning #0414: field assigned unused value
-#pragma warning disable 0414
             public bool Transactional;
-#pragma warning restore 0414
             public bool Label;
             public bool LastModifyTime;
             public bool MaximumJournalSize;
             public bool MaximumQueueSize;
             public bool MulticastAddress;
-            // disable csharp compiler warning #0414: field assigned unused value
-#pragma warning disable 0414
             public bool Path;
-#pragma warning restore 0414
             public bool Category;
             public bool UseJournalQueue;
 

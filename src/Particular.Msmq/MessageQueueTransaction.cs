@@ -110,10 +110,8 @@ namespace Particular.Msmq
         /// <internalonly/>
         internal ITransaction BeginQueueOperation()
         {
-#pragma warning disable 0618
             //@TODO: This overload of Monitor.Enter is obsolete.  Please change this to use Monitor.Enter(ref bool), and remove the pragmas   -- ericeil
             Monitor.Enter(this);
-#pragma warning restore 0618
             return internalTransaction;
         }
 
