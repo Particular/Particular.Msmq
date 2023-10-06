@@ -1,4 +1,4 @@
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     using System;
     using System.ComponentModel;

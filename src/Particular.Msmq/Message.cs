@@ -5,7 +5,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     using System;
     using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace Messaging.Msmq
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Text;
-    using Messaging.Msmq.Interop;
+    using Particular.Msmq.Interop;
 
     /// <include file='doc\Message.uex' path='docs/doc[@for="Message"]/*' />
     /// <devdoc>

@@ -1,4 +1,4 @@
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     /// <include file='doc\MessageQueueAccessControlEntry.uex' path='docs/doc[@for="MessageQueueAccessControlEntry"]/*' />
     /// <devdoc>

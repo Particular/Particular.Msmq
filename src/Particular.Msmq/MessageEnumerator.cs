@@ -4,12 +4,12 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     using System;
     using System.Collections;
     using System.ComponentModel;
-    using Messaging.Msmq.Interop;
+    using Particular.Msmq.Interop;
 
     /// <include file='doc\MessageEnumerator.uex' path='docs/doc[@for="MessageEnumerator"]/*' />
     /// <devdoc>

@@ -4,10 +4,10 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     using System.Collections.Generic;
-    using Messaging.Msmq.Interop;
+    using Particular.Msmq.Interop;
 
     /// <include file='doc\QueueAccessMode.uex' path='docs/doc[@for="QueueAccessMode"]/*' />
     /// <devdoc>

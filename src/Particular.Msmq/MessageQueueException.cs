@@ -4,13 +4,13 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     using System;
     using System.Globalization;
     using System.Runtime.InteropServices;
     using System.Text;
-    using Messaging.Msmq.Interop;
+    using Particular.Msmq.Interop;
 
     /// <include file='doc\MessageQueueException.uex' path='docs/doc[@for="MessageQueueException"]/*' />
     /// <devdoc>

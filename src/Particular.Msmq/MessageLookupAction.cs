@@ -4,7 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     public enum MessageLookupAction
     {

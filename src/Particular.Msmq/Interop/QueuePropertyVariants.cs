@@ -4,7 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Messaging.Msmq.Interop
+namespace Particular.Msmq.Interop
 {
     class QueuePropertyVariants : MessagePropertyVariants
     {

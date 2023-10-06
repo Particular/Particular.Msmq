@@ -1,17 +1,17 @@
 [assembly: System.Runtime.Versioning.SupportedOSPlatform("Windows7.0")]
 [assembly: System.Runtime.Versioning.TargetPlatform("Windows7.0")]
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     public class AccessControlEntry
     {
         public AccessControlEntry() { }
-        public AccessControlEntry(Messaging.Msmq.Trustee trustee) { }
-        public AccessControlEntry(Messaging.Msmq.Trustee trustee, Messaging.Msmq.GenericAccessRights genericAccessRights, Messaging.Msmq.StandardAccessRights standardAccessRights, Messaging.Msmq.AccessControlEntryType entryType) { }
+        public AccessControlEntry(Particular.Msmq.Trustee trustee) { }
+        public AccessControlEntry(Particular.Msmq.Trustee trustee, Particular.Msmq.GenericAccessRights genericAccessRights, Particular.Msmq.StandardAccessRights standardAccessRights, Particular.Msmq.AccessControlEntryType entryType) { }
         protected int CustomAccessRights { get; set; }
-        public Messaging.Msmq.AccessControlEntryType EntryType { get; set; }
-        public Messaging.Msmq.GenericAccessRights GenericAccessRights { get; set; }
-        public Messaging.Msmq.StandardAccessRights StandardAccessRights { get; set; }
-        public Messaging.Msmq.Trustee Trustee { get; set; }
+        public Particular.Msmq.AccessControlEntryType EntryType { get; set; }
+        public Particular.Msmq.GenericAccessRights GenericAccessRights { get; set; }
+        public Particular.Msmq.StandardAccessRights StandardAccessRights { get; set; }
+        public Particular.Msmq.Trustee Trustee { get; set; }
     }
     public enum AccessControlEntryType
     {
@@ -23,12 +23,12 @@ namespace Messaging.Msmq
     public class AccessControlList : System.Collections.CollectionBase
     {
         public AccessControlList() { }
-        public int Add(Messaging.Msmq.AccessControlEntry entry) { }
-        public bool Contains(Messaging.Msmq.AccessControlEntry entry) { }
-        public void CopyTo(Messaging.Msmq.AccessControlEntry[] array, int index) { }
-        public int IndexOf(Messaging.Msmq.AccessControlEntry entry) { }
-        public void Insert(int index, Messaging.Msmq.AccessControlEntry entry) { }
-        public void Remove(Messaging.Msmq.AccessControlEntry entry) { }
+        public int Add(Particular.Msmq.AccessControlEntry entry) { }
+        public bool Contains(Particular.Msmq.AccessControlEntry entry) { }
+        public void CopyTo(Particular.Msmq.AccessControlEntry[] array, int index) { }
+        public int IndexOf(Particular.Msmq.AccessControlEntry entry) { }
+        public void Insert(int index, Particular.Msmq.AccessControlEntry entry) { }
+        public void Remove(Particular.Msmq.AccessControlEntry entry) { }
     }
     [System.Flags]
     public enum AcknowledgeTypes
@@ -85,20 +85,20 @@ namespace Messaging.Msmq
     public class DefaultPropertiesToSend
     {
         public DefaultPropertiesToSend() { }
-        public Messaging.Msmq.AcknowledgeTypes AcknowledgeType { get; set; }
-        public Messaging.Msmq.MessageQueue AdministrationQueue { get; set; }
+        public Particular.Msmq.AcknowledgeTypes AcknowledgeType { get; set; }
+        public Particular.Msmq.MessageQueue AdministrationQueue { get; set; }
         public int AppSpecific { get; set; }
         public bool AttachSenderId { get; set; }
-        public Messaging.Msmq.EncryptionAlgorithm EncryptionAlgorithm { get; set; }
+        public Particular.Msmq.EncryptionAlgorithm EncryptionAlgorithm { get; set; }
         public byte[] Extension { get; set; }
-        public Messaging.Msmq.HashAlgorithm HashAlgorithm { get; set; }
+        public Particular.Msmq.HashAlgorithm HashAlgorithm { get; set; }
         public string Label { get; set; }
-        public Messaging.Msmq.MessagePriority Priority { get; set; }
+        public Particular.Msmq.MessagePriority Priority { get; set; }
         public bool Recoverable { get; set; }
-        public Messaging.Msmq.MessageQueue ResponseQueue { get; set; }
+        public Particular.Msmq.MessageQueue ResponseQueue { get; set; }
         public System.TimeSpan TimeToBeReceived { get; set; }
         public System.TimeSpan TimeToReachQueue { get; set; }
-        public Messaging.Msmq.MessageQueue TransactionStatusQueue { get; set; }
+        public Particular.Msmq.MessageQueue TransactionStatusQueue { get; set; }
         public bool UseAuthentication { get; set; }
         public bool UseDeadLetterQueue { get; set; }
         public bool UseEncryption { get; set; }
@@ -140,47 +140,47 @@ namespace Messaging.Msmq
     }
     public interface IMessageFormatter : System.ICloneable
     {
-        bool CanRead(Messaging.Msmq.Message message);
-        object Read(Messaging.Msmq.Message message);
-        void Write(Messaging.Msmq.Message message, object obj);
+        bool CanRead(Particular.Msmq.Message message);
+        object Read(Particular.Msmq.Message message);
+        void Write(Particular.Msmq.Message message, object obj);
     }
     public class Message : System.ComponentModel.Component
     {
         public static readonly System.TimeSpan InfiniteTimeout;
         public Message() { }
         public Message(object body) { }
-        public Message(object body, Messaging.Msmq.IMessageFormatter formatter) { }
-        public Messaging.Msmq.AcknowledgeTypes AcknowledgeType { get; set; }
-        public Messaging.Msmq.Acknowledgment Acknowledgment { get; }
-        public Messaging.Msmq.MessageQueue AdministrationQueue { get; set; }
+        public Message(object body, Particular.Msmq.IMessageFormatter formatter) { }
+        public Particular.Msmq.AcknowledgeTypes AcknowledgeType { get; set; }
+        public Particular.Msmq.Acknowledgment Acknowledgment { get; }
+        public Particular.Msmq.MessageQueue AdministrationQueue { get; set; }
         public int AppSpecific { get; set; }
         public System.DateTime ArrivedTime { get; }
         public bool AttachSenderId { get; set; }
         public bool Authenticated { get; }
         public string AuthenticationProviderName { get; set; }
-        public Messaging.Msmq.CryptographicProviderType AuthenticationProviderType { get; set; }
+        public Particular.Msmq.CryptographicProviderType AuthenticationProviderType { get; set; }
         public object Body { get; set; }
         public System.IO.Stream BodyStream { get; set; }
         public int BodyType { get; set; }
         public System.Guid ConnectorType { get; set; }
         public string CorrelationId { get; set; }
-        public Messaging.Msmq.MessageQueue DestinationQueue { get; }
+        public Particular.Msmq.MessageQueue DestinationQueue { get; }
         public byte[] DestinationSymmetricKey { get; set; }
         public byte[] DigitalSignature { get; set; }
-        public Messaging.Msmq.EncryptionAlgorithm EncryptionAlgorithm { get; set; }
+        public Particular.Msmq.EncryptionAlgorithm EncryptionAlgorithm { get; set; }
         public byte[] Extension { get; set; }
-        public Messaging.Msmq.IMessageFormatter Formatter { get; set; }
-        public Messaging.Msmq.HashAlgorithm HashAlgorithm { get; set; }
+        public Particular.Msmq.IMessageFormatter Formatter { get; set; }
+        public Particular.Msmq.HashAlgorithm HashAlgorithm { get; set; }
         public string Id { get; }
         public bool IsFirstInTransaction { get; }
         public bool IsLastInTransaction { get; }
         public string Label { get; set; }
         public long LookupId { get; }
-        public Messaging.Msmq.MessageType MessageType { get; }
-        public Messaging.Msmq.MessagePriority Priority { get; set; }
+        public Particular.Msmq.MessageType MessageType { get; }
+        public Particular.Msmq.MessagePriority Priority { get; set; }
         public bool Recoverable { get; set; }
-        public Messaging.Msmq.MessageQueue ResponseQueue { get; set; }
-        public Messaging.Msmq.SecurityContext SecurityContext { get; set; }
+        public Particular.Msmq.MessageQueue ResponseQueue { get; set; }
+        public Particular.Msmq.SecurityContext SecurityContext { get; set; }
         public byte[] SenderCertificate { get; set; }
         public byte[] SenderId { get; }
         public long SenderVersion { get; }
@@ -189,7 +189,7 @@ namespace Messaging.Msmq
         public System.TimeSpan TimeToBeReceived { get; set; }
         public System.TimeSpan TimeToReachQueue { get; set; }
         public string TransactionId { get; }
-        public Messaging.Msmq.MessageQueue TransactionStatusQueue { get; set; }
+        public Particular.Msmq.MessageQueue TransactionStatusQueue { get; set; }
         public bool UseAuthentication { get; set; }
         public bool UseDeadLetterQueue { get; set; }
         public bool UseEncryption { get; set; }
@@ -198,19 +198,19 @@ namespace Messaging.Msmq
     }
     public class MessageEnumerator : System.MarshalByRefObject, System.Collections.IEnumerator, System.IDisposable
     {
-        public Messaging.Msmq.Message Current { get; }
+        public Particular.Msmq.Message Current { get; }
         public System.IntPtr CursorHandle { get; }
         public void Close() { }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
         public bool MoveNext() { }
         public bool MoveNext(System.TimeSpan timeout) { }
-        public Messaging.Msmq.Message RemoveCurrent() { }
-        public Messaging.Msmq.Message RemoveCurrent(Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message RemoveCurrent(Messaging.Msmq.MessageQueueTransactionType transactionType) { }
-        public Messaging.Msmq.Message RemoveCurrent(System.TimeSpan timeout) { }
-        public Messaging.Msmq.Message RemoveCurrent(System.TimeSpan timeout, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message RemoveCurrent(System.TimeSpan timeout, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message RemoveCurrent() { }
+        public Particular.Msmq.Message RemoveCurrent(Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message RemoveCurrent(Particular.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message RemoveCurrent(System.TimeSpan timeout) { }
+        public Particular.Msmq.Message RemoveCurrent(System.TimeSpan timeout, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message RemoveCurrent(System.TimeSpan timeout, Particular.Msmq.MessageQueueTransactionType transactionType) { }
         public void Reset() { }
     }
     public enum MessageLookupAction
@@ -290,29 +290,29 @@ namespace Messaging.Msmq
         public static readonly System.TimeSpan InfiniteTimeout;
         public MessageQueue() { }
         public MessageQueue(string path) { }
-        public MessageQueue(string path, Messaging.Msmq.QueueAccessMode accessMode) { }
+        public MessageQueue(string path, Particular.Msmq.QueueAccessMode accessMode) { }
         public MessageQueue(string path, bool sharedModeDenyReceive) { }
         public MessageQueue(string path, bool sharedModeDenyReceive, bool enableCache) { }
-        public MessageQueue(string path, bool sharedModeDenyReceive, bool enableCache, Messaging.Msmq.QueueAccessMode accessMode) { }
-        public Messaging.Msmq.QueueAccessMode AccessMode { get; }
+        public MessageQueue(string path, bool sharedModeDenyReceive, bool enableCache, Particular.Msmq.QueueAccessMode accessMode) { }
+        public Particular.Msmq.QueueAccessMode AccessMode { get; }
         public bool Authenticate { get; set; }
         public short BasePriority { get; set; }
         public bool CanRead { get; }
         public bool CanWrite { get; }
         public System.Guid Category { get; set; }
         public System.DateTime CreateTime { get; }
-        public Messaging.Msmq.DefaultPropertiesToSend DefaultPropertiesToSend { get; set; }
+        public Particular.Msmq.DefaultPropertiesToSend DefaultPropertiesToSend { get; set; }
         public bool DenySharedReceive { get; set; }
-        public Messaging.Msmq.EncryptionRequired EncryptionRequired { get; set; }
+        public Particular.Msmq.EncryptionRequired EncryptionRequired { get; set; }
         public string FormatName { get; }
-        public Messaging.Msmq.IMessageFormatter Formatter { get; set; }
+        public Particular.Msmq.IMessageFormatter Formatter { get; set; }
         public System.Guid Id { get; }
         public string Label { get; set; }
         public System.DateTime LastModifyTime { get; }
         public string MachineName { get; set; }
         public long MaximumJournalSize { get; set; }
         public long MaximumQueueSize { get; set; }
-        public Messaging.Msmq.MessagePropertyFilter MessageReadPropertyFilter { get; set; }
+        public Particular.Msmq.MessagePropertyFilter MessageReadPropertyFilter { get; set; }
         public string MulticastAddress { get; set; }
         public string Path { get; set; }
         public string QueueName { get; set; }
@@ -323,98 +323,98 @@ namespace Messaging.Msmq
         public System.IntPtr WriteHandle { get; }
         [System.ComponentModel.Browsable(false)]
         public static bool EnableConnectionCache { get; set; }
-        public event Messaging.Msmq.PeekCompletedEventHandler PeekCompleted;
-        public event Messaging.Msmq.ReceiveCompletedEventHandler ReceiveCompleted;
+        public event Particular.Msmq.PeekCompletedEventHandler PeekCompleted;
+        public event Particular.Msmq.ReceiveCompletedEventHandler ReceiveCompleted;
         public System.IAsyncResult BeginPeek() { }
         public System.IAsyncResult BeginPeek(System.TimeSpan timeout) { }
         public System.IAsyncResult BeginPeek(System.TimeSpan timeout, object stateObject) { }
         public System.IAsyncResult BeginPeek(System.TimeSpan timeout, object stateObject, System.AsyncCallback callback) { }
-        public System.IAsyncResult BeginPeek(System.TimeSpan timeout, Messaging.Msmq.Cursor cursor, Messaging.Msmq.PeekAction action, object state, System.AsyncCallback callback) { }
+        public System.IAsyncResult BeginPeek(System.TimeSpan timeout, Particular.Msmq.Cursor cursor, Particular.Msmq.PeekAction action, object state, System.AsyncCallback callback) { }
         public System.IAsyncResult BeginReceive() { }
         public System.IAsyncResult BeginReceive(System.TimeSpan timeout) { }
         public System.IAsyncResult BeginReceive(System.TimeSpan timeout, object stateObject) { }
         public System.IAsyncResult BeginReceive(System.TimeSpan timeout, object stateObject, System.AsyncCallback callback) { }
-        public System.IAsyncResult BeginReceive(System.TimeSpan timeout, Messaging.Msmq.Cursor cursor, object state, System.AsyncCallback callback) { }
+        public System.IAsyncResult BeginReceive(System.TimeSpan timeout, Particular.Msmq.Cursor cursor, object state, System.AsyncCallback callback) { }
         public void Close() { }
-        public Messaging.Msmq.Cursor CreateCursor() { }
+        public Particular.Msmq.Cursor CreateCursor() { }
         protected override void Dispose(bool disposing) { }
-        public Messaging.Msmq.Message EndPeek(System.IAsyncResult asyncResult) { }
-        public Messaging.Msmq.Message EndReceive(System.IAsyncResult asyncResult) { }
-        public Messaging.Msmq.Message[] GetAllMessages() { }
+        public Particular.Msmq.Message EndPeek(System.IAsyncResult asyncResult) { }
+        public Particular.Msmq.Message EndReceive(System.IAsyncResult asyncResult) { }
+        public Particular.Msmq.Message[] GetAllMessages() { }
         [System.Obsolete("This method returns a MessageEnumerator that implements RemoveCurrent family of m" +
             "ethods incorrectly. Please use GetMessageEnumerator2 instead.")]
         public System.Collections.IEnumerator GetEnumerator() { }
         [System.Obsolete("This method returns a MessageEnumerator that implements RemoveCurrent family of m" +
             "ethods incorrectly. Please use GetMessageEnumerator2 instead.")]
-        public Messaging.Msmq.MessageEnumerator GetMessageEnumerator() { }
-        public Messaging.Msmq.MessageEnumerator GetMessageEnumerator2() { }
-        public Messaging.Msmq.Message Peek() { }
-        public Messaging.Msmq.Message Peek(System.TimeSpan timeout) { }
-        public Messaging.Msmq.Message Peek(System.TimeSpan timeout, Messaging.Msmq.Cursor cursor, Messaging.Msmq.PeekAction action) { }
-        public Messaging.Msmq.Message PeekByCorrelationId(string correlationId) { }
-        public Messaging.Msmq.Message PeekByCorrelationId(string correlationId, System.TimeSpan timeout) { }
-        public Messaging.Msmq.Message PeekById(string id) { }
-        public Messaging.Msmq.Message PeekById(string id, System.TimeSpan timeout) { }
-        public Messaging.Msmq.Message PeekByLookupId(long lookupId) { }
-        public Messaging.Msmq.Message PeekByLookupId(Messaging.Msmq.MessageLookupAction action, long lookupId) { }
+        public Particular.Msmq.MessageEnumerator GetMessageEnumerator() { }
+        public Particular.Msmq.MessageEnumerator GetMessageEnumerator2() { }
+        public Particular.Msmq.Message Peek() { }
+        public Particular.Msmq.Message Peek(System.TimeSpan timeout) { }
+        public Particular.Msmq.Message Peek(System.TimeSpan timeout, Particular.Msmq.Cursor cursor, Particular.Msmq.PeekAction action) { }
+        public Particular.Msmq.Message PeekByCorrelationId(string correlationId) { }
+        public Particular.Msmq.Message PeekByCorrelationId(string correlationId, System.TimeSpan timeout) { }
+        public Particular.Msmq.Message PeekById(string id) { }
+        public Particular.Msmq.Message PeekById(string id, System.TimeSpan timeout) { }
+        public Particular.Msmq.Message PeekByLookupId(long lookupId) { }
+        public Particular.Msmq.Message PeekByLookupId(Particular.Msmq.MessageLookupAction action, long lookupId) { }
         public void Purge() { }
-        public Messaging.Msmq.Message Receive() { }
-        public Messaging.Msmq.Message Receive(Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message Receive(Messaging.Msmq.MessageQueueTransactionType transactionType) { }
-        public Messaging.Msmq.Message Receive(System.TimeSpan timeout) { }
-        public Messaging.Msmq.Message Receive(System.TimeSpan timeout, Messaging.Msmq.Cursor cursor) { }
-        public Messaging.Msmq.Message Receive(System.TimeSpan timeout, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message Receive(System.TimeSpan timeout, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
-        public Messaging.Msmq.Message Receive(System.TimeSpan timeout, Messaging.Msmq.Cursor cursor, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message Receive(System.TimeSpan timeout, Messaging.Msmq.Cursor cursor, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
-        public Messaging.Msmq.Message ReceiveByCorrelationId(string correlationId) { }
-        public Messaging.Msmq.Message ReceiveByCorrelationId(string correlationId, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message ReceiveByCorrelationId(string correlationId, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
-        public Messaging.Msmq.Message ReceiveByCorrelationId(string correlationId, System.TimeSpan timeout) { }
-        public Messaging.Msmq.Message ReceiveByCorrelationId(string correlationId, System.TimeSpan timeout, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message ReceiveByCorrelationId(string correlationId, System.TimeSpan timeout, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
-        public Messaging.Msmq.Message ReceiveById(string id) { }
-        public Messaging.Msmq.Message ReceiveById(string id, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message ReceiveById(string id, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
-        public Messaging.Msmq.Message ReceiveById(string id, System.TimeSpan timeout) { }
-        public Messaging.Msmq.Message ReceiveById(string id, System.TimeSpan timeout, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message ReceiveById(string id, System.TimeSpan timeout, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
-        public Messaging.Msmq.Message ReceiveByLookupId(long lookupId) { }
-        public Messaging.Msmq.Message ReceiveByLookupId(Messaging.Msmq.MessageLookupAction action, long lookupId, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public Messaging.Msmq.Message ReceiveByLookupId(Messaging.Msmq.MessageLookupAction action, long lookupId, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message Receive() { }
+        public Particular.Msmq.Message Receive(Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message Receive(Particular.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message Receive(System.TimeSpan timeout) { }
+        public Particular.Msmq.Message Receive(System.TimeSpan timeout, Particular.Msmq.Cursor cursor) { }
+        public Particular.Msmq.Message Receive(System.TimeSpan timeout, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message Receive(System.TimeSpan timeout, Particular.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message Receive(System.TimeSpan timeout, Particular.Msmq.Cursor cursor, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message Receive(System.TimeSpan timeout, Particular.Msmq.Cursor cursor, Particular.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message ReceiveByCorrelationId(string correlationId) { }
+        public Particular.Msmq.Message ReceiveByCorrelationId(string correlationId, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message ReceiveByCorrelationId(string correlationId, Particular.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message ReceiveByCorrelationId(string correlationId, System.TimeSpan timeout) { }
+        public Particular.Msmq.Message ReceiveByCorrelationId(string correlationId, System.TimeSpan timeout, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message ReceiveByCorrelationId(string correlationId, System.TimeSpan timeout, Particular.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message ReceiveById(string id) { }
+        public Particular.Msmq.Message ReceiveById(string id, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message ReceiveById(string id, Particular.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message ReceiveById(string id, System.TimeSpan timeout) { }
+        public Particular.Msmq.Message ReceiveById(string id, System.TimeSpan timeout, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message ReceiveById(string id, System.TimeSpan timeout, Particular.Msmq.MessageQueueTransactionType transactionType) { }
+        public Particular.Msmq.Message ReceiveByLookupId(long lookupId) { }
+        public Particular.Msmq.Message ReceiveByLookupId(Particular.Msmq.MessageLookupAction action, long lookupId, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public Particular.Msmq.Message ReceiveByLookupId(Particular.Msmq.MessageLookupAction action, long lookupId, Particular.Msmq.MessageQueueTransactionType transactionType) { }
         public void Refresh() { }
         public void ResetPermissions() { }
         public void Send(object obj) { }
-        public void Send(object obj, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public void Send(object obj, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
+        public void Send(object obj, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public void Send(object obj, Particular.Msmq.MessageQueueTransactionType transactionType) { }
         public void Send(object obj, string label) { }
-        public void Send(object obj, string label, Messaging.Msmq.MessageQueueTransaction transaction) { }
-        public void Send(object obj, string label, Messaging.Msmq.MessageQueueTransactionType transactionType) { }
-        public void SetPermissions(Messaging.Msmq.AccessControlList dacl) { }
-        public void SetPermissions(Messaging.Msmq.MessageQueueAccessControlEntry ace) { }
-        public void SetPermissions(string user, Messaging.Msmq.MessageQueueAccessRights rights) { }
-        public void SetPermissions(string user, Messaging.Msmq.MessageQueueAccessRights rights, Messaging.Msmq.AccessControlEntryType entryType) { }
+        public void Send(object obj, string label, Particular.Msmq.MessageQueueTransaction transaction) { }
+        public void Send(object obj, string label, Particular.Msmq.MessageQueueTransactionType transactionType) { }
+        public void SetPermissions(Particular.Msmq.AccessControlList dacl) { }
+        public void SetPermissions(Particular.Msmq.MessageQueueAccessControlEntry ace) { }
+        public void SetPermissions(string user, Particular.Msmq.MessageQueueAccessRights rights) { }
+        public void SetPermissions(string user, Particular.Msmq.MessageQueueAccessRights rights, Particular.Msmq.AccessControlEntryType entryType) { }
         public static void ClearConnectionCache() { }
-        public static Messaging.Msmq.MessageQueue Create(string path) { }
-        public static Messaging.Msmq.MessageQueue Create(string path, bool transactional) { }
+        public static Particular.Msmq.MessageQueue Create(string path) { }
+        public static Particular.Msmq.MessageQueue Create(string path, bool transactional) { }
         public static void Delete(string path) { }
         public static bool Exists(string path) { }
         public static System.Guid GetMachineId(string machineName) { }
-        public static Messaging.Msmq.MessageQueueEnumerator GetMessageQueueEnumerator() { }
-        public static Messaging.Msmq.MessageQueueEnumerator GetMessageQueueEnumerator(Messaging.Msmq.MessageQueueCriteria criteria) { }
-        public static Messaging.Msmq.MessageQueue[] GetPrivateQueuesByMachine(string machineName) { }
-        public static Messaging.Msmq.MessageQueue[] GetPublicQueues() { }
-        public static Messaging.Msmq.MessageQueue[] GetPublicQueues(Messaging.Msmq.MessageQueueCriteria criteria) { }
-        public static Messaging.Msmq.MessageQueue[] GetPublicQueuesByCategory(System.Guid category) { }
-        public static Messaging.Msmq.MessageQueue[] GetPublicQueuesByLabel(string label) { }
-        public static Messaging.Msmq.MessageQueue[] GetPublicQueuesByMachine(string machineName) { }
-        public static Messaging.Msmq.SecurityContext GetSecurityContext() { }
+        public static Particular.Msmq.MessageQueueEnumerator GetMessageQueueEnumerator() { }
+        public static Particular.Msmq.MessageQueueEnumerator GetMessageQueueEnumerator(Particular.Msmq.MessageQueueCriteria criteria) { }
+        public static Particular.Msmq.MessageQueue[] GetPrivateQueuesByMachine(string machineName) { }
+        public static Particular.Msmq.MessageQueue[] GetPublicQueues() { }
+        public static Particular.Msmq.MessageQueue[] GetPublicQueues(Particular.Msmq.MessageQueueCriteria criteria) { }
+        public static Particular.Msmq.MessageQueue[] GetPublicQueuesByCategory(System.Guid category) { }
+        public static Particular.Msmq.MessageQueue[] GetPublicQueuesByLabel(string label) { }
+        public static Particular.Msmq.MessageQueue[] GetPublicQueuesByMachine(string machineName) { }
+        public static Particular.Msmq.SecurityContext GetSecurityContext() { }
     }
-    public class MessageQueueAccessControlEntry : Messaging.Msmq.AccessControlEntry
+    public class MessageQueueAccessControlEntry : Particular.Msmq.AccessControlEntry
     {
-        public MessageQueueAccessControlEntry(Messaging.Msmq.Trustee trustee, Messaging.Msmq.MessageQueueAccessRights rights) { }
-        public MessageQueueAccessControlEntry(Messaging.Msmq.Trustee trustee, Messaging.Msmq.MessageQueueAccessRights rights, Messaging.Msmq.AccessControlEntryType entryType) { }
-        public Messaging.Msmq.MessageQueueAccessRights MessageQueueAccessRights { get; set; }
+        public MessageQueueAccessControlEntry(Particular.Msmq.Trustee trustee, Particular.Msmq.MessageQueueAccessRights rights) { }
+        public MessageQueueAccessControlEntry(Particular.Msmq.Trustee trustee, Particular.Msmq.MessageQueueAccessRights rights, Particular.Msmq.AccessControlEntryType entryType) { }
+        public Particular.Msmq.MessageQueueAccessRights MessageQueueAccessRights { get; set; }
     }
     [System.Flags]
     public enum MessageQueueAccessRights
@@ -449,7 +449,7 @@ namespace Messaging.Msmq
     }
     public class MessageQueueEnumerator : System.MarshalByRefObject, System.Collections.IEnumerator, System.IDisposable
     {
-        public Messaging.Msmq.MessageQueue Current { get; }
+        public Particular.Msmq.MessageQueue Current { get; }
         public System.IntPtr LocatorHandle { get; }
         public void Close() { }
         public void Dispose() { }
@@ -573,12 +573,12 @@ namespace Messaging.Msmq
     public class MessageQueueException : System.Runtime.InteropServices.ExternalException
     {
         public override string Message { get; }
-        public Messaging.Msmq.MessageQueueErrorCode MessageQueueErrorCode { get; }
+        public Particular.Msmq.MessageQueueErrorCode MessageQueueErrorCode { get; }
     }
     public class MessageQueueTransaction : System.IDisposable
     {
         public MessageQueueTransaction() { }
-        public Messaging.Msmq.MessageQueueTransactionStatus Status { get; }
+        public Particular.Msmq.MessageQueueTransactionStatus Status { get; }
         public void Abort() { }
         public void Begin() { }
         public void Commit() { }
@@ -613,9 +613,9 @@ namespace Messaging.Msmq
     public class PeekCompletedEventArgs : System.EventArgs
     {
         public System.IAsyncResult AsyncResult { get; set; }
-        public Messaging.Msmq.Message Message { get; }
+        public Particular.Msmq.Message Message { get; }
     }
-    public delegate void PeekCompletedEventHandler(object sender, Messaging.Msmq.PeekCompletedEventArgs e);
+    public delegate void PeekCompletedEventHandler(object sender, Particular.Msmq.PeekCompletedEventArgs e);
     public enum QueueAccessMode
     {
         Send = 2,
@@ -628,9 +628,9 @@ namespace Messaging.Msmq
     public class ReceiveCompletedEventArgs : System.EventArgs
     {
         public System.IAsyncResult AsyncResult { get; set; }
-        public Messaging.Msmq.Message Message { get; }
+        public Particular.Msmq.Message Message { get; }
     }
-    public delegate void ReceiveCompletedEventHandler(object sender, Messaging.Msmq.ReceiveCompletedEventArgs e);
+    public delegate void ReceiveCompletedEventHandler(object sender, Particular.Msmq.ReceiveCompletedEventArgs e);
     public sealed class SecurityContext : System.IDisposable
     {
         public void Dispose() { }
@@ -655,10 +655,10 @@ namespace Messaging.Msmq
         public Trustee() { }
         public Trustee(string name) { }
         public Trustee(string name, string systemName) { }
-        public Trustee(string name, string systemName, Messaging.Msmq.TrusteeType trusteeType) { }
+        public Trustee(string name, string systemName, Particular.Msmq.TrusteeType trusteeType) { }
         public string Name { get; set; }
         public string SystemName { get; set; }
-        public Messaging.Msmq.TrusteeType TrusteeType { get; set; }
+        public Particular.Msmq.TrusteeType TrusteeType { get; set; }
     }
     public enum TrusteeType
     {
@@ -669,16 +669,16 @@ namespace Messaging.Msmq
         Alias = 4,
         Computer = 5,
     }
-    public class XmlMessageFormatter : Messaging.Msmq.IMessageFormatter, System.ICloneable
+    public class XmlMessageFormatter : Particular.Msmq.IMessageFormatter, System.ICloneable
     {
         public XmlMessageFormatter() { }
         public XmlMessageFormatter(string[] targetTypeNames) { }
         public XmlMessageFormatter(System.Type[] targetTypes) { }
         public string[] TargetTypeNames { get; set; }
         public System.Type[] TargetTypes { get; set; }
-        public bool CanRead(Messaging.Msmq.Message message) { }
+        public bool CanRead(Particular.Msmq.Message message) { }
         public object Clone() { }
-        public object Read(Messaging.Msmq.Message message) { }
-        public void Write(Messaging.Msmq.Message message, object obj) { }
+        public object Read(Particular.Msmq.Message message) { }
+        public void Write(Particular.Msmq.Message message, object obj) { }
     }
 }

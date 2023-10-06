@@ -1,11 +1,11 @@
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     using System;
     using System.Collections;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
     using System.Text;
-    using Messaging.Msmq.Interop;
+    using Particular.Msmq.Interop;
 
     /// <include file='doc\AccessControlList.uex' path='docs/doc[@for="AccessControlList"]/*' />
     /// <devdoc>

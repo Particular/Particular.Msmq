@@ -4,7 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     /// <include file='doc\MessageType.uex' path='docs/doc[@for="MessageType"]/*' />
     /// <devdoc>

@@ -4,9 +4,9 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
-    using Messaging.Msmq.Interop;
+    using Particular.Msmq.Interop;
 
     /// <include file='doc\Acknowledgement.uex' path='docs/doc[@for="Acknowledgment"]/*' />
     /// <devdoc>

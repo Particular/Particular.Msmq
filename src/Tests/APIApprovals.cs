@@ -1,8 +1,8 @@
 ﻿namespace Tests
 {
-    using Messaging.Msmq;
     using NUnit.Framework;
     using Particular.Approvals;
+    using Particular.Msmq;
     using PublicApiGenerator;
 
     [TestFixture]

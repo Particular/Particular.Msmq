@@ -4,12 +4,12 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Messaging.Msmq
+namespace Particular.Msmq
 {
     using System;
     using System.ComponentModel;
     using System.Globalization; //for CultureInfo
-    using Messaging.Msmq.Interop;
+    using Particular.Msmq.Interop;
 
     /// <include file='doc\MessageQueueCriteria.uex' path='docs/doc[@for="MessageQueueCriteria"]/*' />
     /// <devdoc>
