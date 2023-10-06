@@ -24,7 +24,7 @@ namespace Particular.Msmq
     ///       understand the concept of a cursor?
     ///    </note>
     /// </devdoc>
-    public class MessageQueueEnumerator : MarshalByRefObject, IEnumerator, IDisposable
+    class MessageQueueEnumerator : MarshalByRefObject, IEnumerator, IDisposable
     {
         readonly MessageQueueCriteria criteria;
         LocatorHandle locatorHandle = Interop.LocatorHandle.InvalidHandle;

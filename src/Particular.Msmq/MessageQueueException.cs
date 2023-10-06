@@ -19,7 +19,7 @@ namespace Particular.Msmq
     ///       Queue Server (MSMQ) internal error occurs.
     ///    </para>
     /// </devdoc>
-    public class MessageQueueException : ExternalException
+    class MessageQueueException : ExternalException
     {
         readonly int nativeErrorCode;
 

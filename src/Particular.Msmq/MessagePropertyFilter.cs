@@ -15,7 +15,7 @@ namespace Particular.Msmq
     ///       properties retrieved when receiving messages from a queue.
     ///    </para>
     /// </devdoc>
-    public class MessagePropertyFilter : ICloneable
+    class MessagePropertyFilter : ICloneable
     {
         internal const int ACKNOWLEDGEMENT = 1;
         internal const int ACKNOWLEDGE_TYPE = 1 << 2;

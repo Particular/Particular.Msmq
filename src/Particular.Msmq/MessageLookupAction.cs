@@ -6,7 +6,7 @@
 
 namespace Particular.Msmq
 {
-    public enum MessageLookupAction
+    enum MessageLookupAction
     {
 
         Current = 0x0,

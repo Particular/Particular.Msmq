@@ -16,7 +16,7 @@ namespace Particular.Msmq
     ///       message.
     ///    </para>
     /// </devdoc>
-    public enum Acknowledgment
+    enum Acknowledgment
     {
         /// <include file='doc\Acknowledgement.uex' path='docs/doc[@for="Acknowledgment.None"]/*' />
         /// <devdoc>

@@ -9,7 +9,7 @@ namespace Particular.Msmq
     using System;
     using Particular.Msmq.Interop;
 
-    public sealed class Cursor : IDisposable
+    sealed class Cursor : IDisposable
     {
 
         CursorHandle handle;

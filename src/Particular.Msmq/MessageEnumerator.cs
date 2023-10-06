@@ -20,7 +20,7 @@ namespace Particular.Msmq
     ///       Translate into English?
     ///    </note>
     /// </devdoc>
-    public class MessageEnumerator : MarshalByRefObject, IEnumerator, IDisposable
+    class MessageEnumerator : MarshalByRefObject, IEnumerator, IDisposable
     {
         readonly MessageQueue owner;
         CursorHandle handle = Interop.CursorHandle.NullHandle;

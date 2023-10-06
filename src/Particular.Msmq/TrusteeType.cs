@@ -4,7 +4,7 @@ namespace Particular.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    public enum TrusteeType
+    enum TrusteeType
     {
         /// <include file='doc\TrusteeType.uex' path='docs/doc[@for="TrusteeType.Unknown"]/*' />
         /// <devdoc>

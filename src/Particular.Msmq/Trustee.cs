@@ -7,7 +7,7 @@ namespace Particular.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    public class Trustee
+    class Trustee
     {
         string name;
         TrusteeType trusteeType;

@@ -23,5 +23,5 @@ namespace Particular.Msmq
     /// <devdoc>
     /// <para>Represents the method that will handle the <see cref='MessageQueue.PeekCompleted'/> event of a <see cref='MessageQueue'/>.</para>
     /// </devdoc>
-    public delegate void PeekCompletedEventHandler(object sender, PeekCompletedEventArgs e);
+    delegate void PeekCompletedEventHandler(object sender, PeekCompletedEventArgs e);
 }

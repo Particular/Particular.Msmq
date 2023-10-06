@@ -14,7 +14,7 @@ namespace Particular.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    public class MessageQueueTransaction : IDisposable
+    class MessageQueueTransaction : IDisposable
     {
         ITransaction internalTransaction;
         bool disposed;

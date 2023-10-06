@@ -11,7 +11,7 @@ namespace Particular.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    public enum MessageQueueErrorCode
+    enum MessageQueueErrorCode
     {
         /// <include file='doc\MessageQueueErrorCode.uex' path='docs/doc[@for="MessageQueueErrorCode.Base"]/*' />
         /// <internalonly/>

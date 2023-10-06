@@ -10,7 +10,7 @@ namespace Particular.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    public enum MessageQueueTransactionStatus
+    enum MessageQueueTransactionStatus
     {
         /// <include file='doc\MessageQueueTransactionStatus.uex' path='docs/doc[@for="MessageQueueTransactionStatus.Aborted"]/*' />
         /// <devdoc>

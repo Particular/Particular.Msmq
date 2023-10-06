@@ -14,7 +14,7 @@ namespace Particular.Msmq
     ///    provider is required to validate the digital signature of a message sent to a foreign queue
     ///    or messages passed to MSMQ from a foreign queue.
     /// </devdoc>
-    public enum CryptographicProviderType
+    enum CryptographicProviderType
     {
         /// <include file='doc\CryptographicProviderType.uex' path='docs/doc[@for="CryptographicProviderType.None"]/*' />
         /// <devdoc>

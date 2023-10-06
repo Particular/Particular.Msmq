@@ -12,7 +12,7 @@ namespace Particular.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    public enum MessageQueueTransactionType
+    enum MessageQueueTransactionType
     {
         /// <include file='doc\MessageQueueTransactionType.uex' path='docs/doc[@for="MessageQueueTransactionType.None"]/*' />
         /// <devdoc>

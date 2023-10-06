@@ -16,7 +16,7 @@ namespace Particular.Msmq
     ///    </para>
     /// </devdoc>
     [Flags]
-    public enum AcknowledgeTypes
+    enum AcknowledgeTypes
     {
 
         /// <include file='doc\AcknowledgeTypes.uex' path='docs/doc[@for="AcknowledgeTypes.PositiveArrival"]/*' />

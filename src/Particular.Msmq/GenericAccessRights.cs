@@ -7,7 +7,7 @@ namespace Particular.Msmq
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
     [Flags]
-    public enum GenericAccessRights
+    enum GenericAccessRights
     {
         /// <include file='doc\GenericAccessRights.uex' path='docs/doc[@for="GenericAccessRights.All"]/*' />
         /// <devdoc>

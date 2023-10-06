@@ -14,7 +14,7 @@ namespace Particular.Msmq
     ///    serialize and deserialize objects into and from
     ///    MessageQueue messages.
     /// </devdoc>
-    public interface IMessageFormatter : ICloneable
+    interface IMessageFormatter : ICloneable
     {
 
         /// <include file='doc\IMessageFormatter.uex' path='docs/doc[@for="IMessageFormatter.CanRead"]/*' />

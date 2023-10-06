@@ -25,7 +25,7 @@ namespace Particular.Msmq
     ///       access to a Message Queuing backend queue resource.
     ///    </para>
     /// </devdoc>
-    public class MessageQueue : Component, IEnumerable
+    class MessageQueue : Component, IEnumerable
     {
         //Public constants
         /// <include file='doc\MessageQueue.uex' path='docs/doc[@for="MessageQueue.InfiniteTimeout"]/*' />

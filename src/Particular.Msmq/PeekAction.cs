@@ -8,7 +8,7 @@ namespace Particular.Msmq
 {
     using Particular.Msmq.Interop;
 
-    public enum PeekAction
+    enum PeekAction
     {
         Current = NativeMethods.QUEUE_ACTION_PEEK_CURRENT,
 

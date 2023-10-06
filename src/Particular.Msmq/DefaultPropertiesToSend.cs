@@ -15,7 +15,7 @@ namespace Particular.Msmq
     ///       sending objects using the message queue.
     ///    </para>
     /// </devdoc>
-    public class DefaultPropertiesToSend
+    class DefaultPropertiesToSend
     {
         readonly bool designMode;
         MessageQueue cachedAdminQueue;

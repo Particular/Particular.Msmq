@@ -11,7 +11,7 @@ namespace Particular.Msmq
     ///    A message can be a normal MSMQ message, a positive or negative
     ///    (arrival and read) acknowledgment message, or a report message.
     /// </devdoc>
-    public enum MessageType
+    enum MessageType
     {
         /// <include file='doc\MessageType.uex' path='docs/doc[@for="MessageType.Acknowledgment"]/*' />
         /// <devdoc>

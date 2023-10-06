@@ -7,7 +7,7 @@ namespace Particular.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    public class AccessControlEntry
+    class AccessControlEntry
     {
         //const int customRightsMask   = 0x0000ffff;
         const StandardAccessRights standardRightsMask = (StandardAccessRights)0x001f0000;

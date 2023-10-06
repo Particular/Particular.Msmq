@@ -15,7 +15,7 @@ namespace Particular.Msmq
     ///       Specifies what operations can be performed on the queue.
     ///    </para>
     /// </devdoc>
-    public enum QueueAccessMode
+    enum QueueAccessMode
     {
         Send = NativeMethods.QUEUE_ACCESS_SEND,
         Peek = NativeMethods.QUEUE_ACCESS_PEEK,
@@ -27,7 +27,6 @@ namespace Particular.Msmq
         /// SendAndReceive is supported for compatibility only.
         ///
         SendAndReceive = NativeMethods.QUEUE_ACCESS_SEND | NativeMethods.QUEUE_ACCESS_RECEIVE,
-
     }
 
     class QueueAccessModeHolder

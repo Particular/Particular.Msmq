@@ -23,7 +23,7 @@ namespace Particular.Msmq
     ///       Message Queuing message.
     ///    </para>
     /// </devdoc>
-    public class Message : Component
+    class Message : Component
     {
         const int GenericIdSize = 16;
         const int MessageIdSize = 20;

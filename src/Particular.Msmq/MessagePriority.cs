@@ -14,7 +14,7 @@ namespace Particular.Msmq
     ///    Messages with the same priority are placed in the queue according to their arrival
     ///    time.
     /// </devdoc>
-    public enum MessagePriority
+    enum MessagePriority
     {
         /// <include file='doc\MessagePriority.uex' path='docs/doc[@for="MessagePriority.Lowest"]/*' />
         /// <devdoc>

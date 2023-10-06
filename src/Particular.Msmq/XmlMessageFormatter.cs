@@ -17,7 +17,7 @@ namespace Particular.Msmq
     ///    Formatter class that serializes and deserializes objects into
     ///    and from  MessageQueue messages using Xml.
     /// </devdoc>
-    public class XmlMessageFormatter : IMessageFormatter
+    class XmlMessageFormatter : IMessageFormatter
     {
         Type[] targetTypes;
         string[] targetTypeNames;

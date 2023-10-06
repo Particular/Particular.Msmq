@@ -13,7 +13,7 @@ namespace Particular.Msmq
     /// <para>Provides data for the <see cref='MessageQueue.ReceiveCompleted'/>
     /// event.</para>
     /// </devdoc>
-    public class ReceiveCompletedEventArgs : EventArgs
+    class ReceiveCompletedEventArgs : EventArgs
     {
         Message message;
         readonly MessageQueue sender;

@@ -19,7 +19,7 @@ namespace Particular.Msmq
     ///       query in the network, through MessageQueue.GetPublicQueues method.
     ///    </para>
     /// </devdoc>
-    public class MessageQueueCriteria
+    class MessageQueueCriteria
     {
         DateTime createdAfter;
         DateTime createdBefore;

@@ -15,7 +15,7 @@ namespace Particular.Msmq
     ///
     ///    </para>
     /// </devdoc>
-    public enum EncryptionRequired
+    enum EncryptionRequired
     {
         /// <include file='doc\EncryptionRequired.uex' path='docs/doc[@for="EncryptionRequired.None"]/*' />
         /// <devdoc>

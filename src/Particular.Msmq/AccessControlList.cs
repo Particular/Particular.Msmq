@@ -11,7 +11,7 @@ namespace Particular.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    public class AccessControlList : CollectionBase
+    class AccessControlList : CollectionBase
     {
 
         internal static readonly int UnknownEnvironment = 0;

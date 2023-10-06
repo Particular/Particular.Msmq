@@ -21,4 +21,8 @@
     </ItemGroup>
   </Target>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Tests" />
+  </ItemGroup>
+
 </Project>

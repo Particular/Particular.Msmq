@@ -14,7 +14,7 @@ namespace Particular.Msmq
     ///    operation calls an event handler, an instance of this class is passed to the
     ///    handler.</para>
     /// </devdoc>
-    public class PeekCompletedEventArgs : EventArgs
+    class PeekCompletedEventArgs : EventArgs
     {
         Message message;
         readonly MessageQueue sender;

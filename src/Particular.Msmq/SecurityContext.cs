@@ -9,7 +9,7 @@ namespace Particular.Msmq
     using System;
     using Particular.Msmq.Interop;
 
-    public sealed class SecurityContext : IDisposable
+    sealed class SecurityContext : IDisposable
     {
         readonly SecurityContextHandle handle;
         bool disposed;

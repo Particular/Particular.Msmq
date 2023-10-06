@@ -4,7 +4,7 @@ namespace Particular.Msmq
     /// <devdoc>
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
-    public class MessageQueueAccessControlEntry : AccessControlEntry
+    class MessageQueueAccessControlEntry : AccessControlEntry
     {
         /// <include file='doc\MessageQueueAccessControlEntry.uex' path='docs/doc[@for="MessageQueueAccessControlEntry.MessageQueueAccessControlEntry"]/*' />
         /// <devdoc>

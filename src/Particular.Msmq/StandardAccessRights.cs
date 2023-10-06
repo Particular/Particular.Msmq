@@ -7,7 +7,7 @@ namespace Particular.Msmq
     ///    <para>[To be supplied.]</para>
     /// </devdoc>
     [Flags]
-    public enum StandardAccessRights
+    enum StandardAccessRights
     {
         /// <include file='doc\StandardAccessRights.uex' path='docs/doc[@for="StandardAccessRights.Delete"]/*' />
         /// <devdoc>

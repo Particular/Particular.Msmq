@@ -16,7 +16,7 @@ namespace Particular.Msmq
     ///
     ///    </para>
     /// </devdoc>
-    public enum HashAlgorithm
+    enum HashAlgorithm
     {
 
         /// <include file='doc\HashAlgorithm.uex' path='docs/doc[@for="HashAlgorithm.None"]/*' />
