@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0-windows7.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PackageProjectUrl>https://particular.net</PackageProjectUrl>
+    <Description>Particular implementation of the System.Messaging reference source</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <IncludeSourceFilesInPackage>true</IncludeSourceFilesInPackage>
