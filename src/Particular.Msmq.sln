@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messaging.Msmq", "Messaging.Msmq\Messaging.Msmq.csproj", "{4C04BB01-CD9C-4341-BC21-167D60FB88D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Particular.Msmq", "Particular.Msmq\Particular.Msmq.csproj", "{4C04BB01-CD9C-4341-BC21-167D60FB88D9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{91438DA1-14AB-4814-B63C-5ADBB09143DD}"
 EndProject
