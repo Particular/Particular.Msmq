@@ -1286,7 +1286,7 @@ namespace Particular.Msmq
                     {
                         if (outstandingAsyncRequests == null)
                         {
-                            var requests = Hashtable.Synchronized(new Hashtable());
+                            var requests = Hashtable.Synchronized([]);
                             Thread.MemoryBarrier();
                             outstandingAsyncRequests = requests;
 
