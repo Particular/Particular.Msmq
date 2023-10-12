@@ -20,7 +20,7 @@ namespace Particular.Msmq
     {
         Type[] targetTypes;
         string[] targetTypeNames;
-        readonly Hashtable targetSerializerTable = new();
+        readonly Hashtable targetSerializerTable = [];
         bool typeNamesAdded;
         bool typesAdded;
 

@@ -32,7 +32,7 @@ namespace Particular.Msmq
     {
         readonly QueueAccessMode accessMode;
 
-        static readonly Dictionary<QueueAccessMode, QueueAccessModeHolder> holders = new();
+        static readonly Dictionary<QueueAccessMode, QueueAccessModeHolder> holders = [];
 
         QueueAccessModeHolder(QueueAccessMode accessMode)
         {
