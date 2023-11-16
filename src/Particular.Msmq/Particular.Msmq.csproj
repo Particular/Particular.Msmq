@@ -17,7 +17,6 @@
 
   <Target Name="AddFilesToPackage">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="../../THIRD-PARTY-NOTICES.txt" PackagePath="" />
       <TfmSpecificPackageFile Include="Particular.Msmq.props" PackagePath="build/$(TargetFramework)" />
       <TfmSpecificPackageFile Include="_._" PackagePath="lib/$(TargetFramework)" />
     </ItemGroup>
