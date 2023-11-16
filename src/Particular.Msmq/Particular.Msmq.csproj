@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows7.0</TargetFramework>
@@ -12,12 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Particular.Packaging" Version="3.0.0" PrivateAssets="All" />
+    <PackageReference Include="Particular.Packaging" Version="4.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <Target Name="AddFilesToPackage">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="../../THIRD-PARTY-NOTICES.txt" PackagePath="" />
       <TfmSpecificPackageFile Include="Particular.Msmq.props" PackagePath="build/$(TargetFramework)" />
       <TfmSpecificPackageFile Include="_._" PackagePath="lib/$(TargetFramework)" />
     </ItemGroup>
