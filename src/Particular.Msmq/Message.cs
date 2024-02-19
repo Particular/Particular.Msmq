@@ -2473,7 +2473,7 @@ namespace Particular.Msmq
         }
 
         /// <internalonly/>
-        byte[] IdToByteArray(string id)
+        static byte[] IdToByteArray(string id)
         {
             string[] pieces = id.Split(['\\']);
             if (pieces.Length != 2)

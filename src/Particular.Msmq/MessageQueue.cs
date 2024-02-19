@@ -3914,7 +3914,9 @@ namespace Particular.Msmq
             readonly ReaderWriterLock rwLock;
 
             // used for debugging
+#pragma warning disable IDE0052 // Remove unread private members
             readonly string name;
+#pragma warning restore IDE0052 // Remove unread private members
 
             // when the number of entries in the hashtable gets larger than capacity,
             // the "stale" entries are removed and capacity is reset to twice the number
