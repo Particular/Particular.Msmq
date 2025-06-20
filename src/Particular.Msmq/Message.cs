@@ -2299,7 +2299,7 @@ namespace Particular.Msmq
             {
                 cachedBodyStream.Position = 0;
                 byte[] bytes = new byte[(int)cachedBodyStream.Length];
-                cachedBodyStream.Read(bytes, 0, bytes.Length);
+                cachedBodyStream.ReadExactly(bytes);
                 properties.SetUI1Vector(NativeMethods.MESSAGE_PROPID_BODY, bytes);
                 properties.SetUI4(NativeMethods.MESSAGE_PROPID_BODY_SIZE, bytes.Length);
             }
