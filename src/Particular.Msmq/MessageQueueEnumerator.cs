@@ -27,7 +27,6 @@ namespace Particular.Msmq
     {
         readonly MessageQueueCriteria criteria;
         LocatorHandle locatorHandle = Interop.LocatorHandle.InvalidHandle;
-        MessageQueue currentMessageQueue;
         bool disposed;
 
         /// <internalonly/>
@@ -45,14 +44,15 @@ namespace Particular.Msmq
         /// </devdoc>
         public MessageQueue Current
         {
+            private set;
             get
             {
-                if (currentMessageQueue == null)
+                if (field == null)
                 {
                     throw new InvalidOperationException(Res.GetString(Res.NoCurrentMessageQueue));
                 }
 
-                return currentMessageQueue;
+                return field;
             }
         }
 
@@ -67,7 +67,7 @@ namespace Particular.Msmq
             if (!locatorHandle.IsInvalid)
             {
                 locatorHandle.Close();
-                currentMessageQueue = null;
+                Current = null;
             }
         }
 
@@ -173,7 +173,7 @@ namespace Particular.Msmq
 
                 if (propertyCount != 2)
                 {
-                    currentMessageQueue = null;
+                    Current = null;
                     return false;
                 }
 
@@ -187,7 +187,7 @@ namespace Particular.Msmq
             while (machineName != null && (machineName.Length >= currentItem.Length ||
                                            string.Compare(machineName, 0, currentItem, 0, machineName.Length, true, CultureInfo.InvariantCulture) != 0));
 
-            currentMessageQueue = new MessageQueue(currentItem, new Guid(currentGuid));
+            Current = new MessageQueue(currentItem, new Guid(currentGuid));
             return true;
         }
 

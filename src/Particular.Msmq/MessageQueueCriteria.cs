@@ -23,7 +23,6 @@ namespace Particular.Msmq
         DateTime createdAfter;
         DateTime createdBefore;
         string label;
-        string machine;
         DateTime modifiedAfter;
         DateTime modifiedBefore;
         Guid category;
@@ -142,7 +141,7 @@ namespace Particular.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.CriteriaNotDefined));
                 }
 
-                return machine;
+                return field;
             }
 
             set
@@ -152,7 +151,7 @@ namespace Particular.Msmq
                     throw new ArgumentException(Res.GetString(Res.InvalidProperty, "MachineName", value));
                 }
 
-                machine = value;
+                field = value;
                 filter.MachineName = true;
             }
         }

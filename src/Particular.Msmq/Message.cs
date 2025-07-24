@@ -40,15 +40,13 @@ namespace Particular.Msmq
         public static readonly TimeSpan InfiniteTimeout = TimeSpan.FromSeconds(uint.MaxValue);
 
         readonly MessagePropertyFilter filter;
-        string machineName;
         bool receiveCreated;
         object cachedBodyObject;
         Stream cachedBodyStream;
-        IMessageFormatter cachedFormatter;
         MessageQueue cachedResponseQueue;
         MessageQueue cachedTransactionStatusQueue;
         MessageQueue cachedAdminQueue;
-        MessageQueue cachedDestinationQueue;
+
         internal MessagePropertyVariants properties;
 
         /// <devdoc>
@@ -543,14 +541,7 @@ namespace Particular.Msmq
                 else
                 {
                     filter.AttachSenderId = true;
-                    if (value)
-                    {
-                        properties.SetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_TYPE, NativeMethods.MESSAGE_SENDERID_TYPE_SID);
-                    }
-                    else
-                    {
-                        properties.SetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_TYPE, NativeMethods.MESSAGE_SENDERID_TYPE_NONE);
-                    }
+                    properties.SetUI4(NativeMethods.MESSAGE_PROPID_SENDERID_TYPE, NativeMethods.MESSAGE_SENDERID_TYPE_NONE);
                 }
             }
         }
@@ -908,6 +899,7 @@ namespace Particular.Msmq
         /// </devdoc>
         public MessageQueue DestinationQueue
         {
+            private set;
             get
             {
                 if (!filter.DestinationQueue)
@@ -920,17 +912,17 @@ namespace Particular.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "DestinationQueue"));
                 }
 
-                if (cachedDestinationQueue == null)
+                if (field == null)
                 {
                     if (properties.GetUI4(NativeMethods.MESSAGE_PROPID_DEST_QUEUE_LEN) != 0)
                     {
                         string queueFormatName = StringFromBytes(properties.GetString(NativeMethods.MESSAGE_PROPID_DEST_QUEUE),
                                                                  properties.GetUI4(NativeMethods.MESSAGE_PROPID_DEST_QUEUE_LEN));
-                        cachedDestinationQueue = new MessageQueue("FORMATNAME:" + queueFormatName);
+                        field = new MessageQueue("FORMATNAME:" + queueFormatName);
                     }
                 }
 
-                return cachedDestinationQueue;
+                return field;
             }
         }
 
@@ -1122,16 +1114,13 @@ namespace Particular.Msmq
         /// </devdoc>
         public IMessageFormatter Formatter
         {
-            get
-            {
-                return cachedFormatter;
-            }
+            get;
 
             set
             {
                 ArgumentNullException.ThrowIfNull(value);
 
-                cachedFormatter = value;
+                field = value;
             }
         }
 
@@ -1685,7 +1674,7 @@ namespace Particular.Msmq
                     throw new InvalidOperationException(Res.GetString(Res.MissingProperty, "SourceMachine"));
                 }
 
-                if (machineName == null)
+                if (field == null)
                 {
                     byte[] bytes = properties.GetGuid(NativeMethods.MESSAGE_PROPID_SRC_MACHINE_ID);
                     var handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
@@ -1700,7 +1689,7 @@ namespace Particular.Msmq
                     if (memoryHandle != 0)
                     {
                         //Using Unicode API even on Win9x
-                        machineName = Marshal.PtrToStringUni(memoryHandle);
+                        field = Marshal.PtrToStringUni(memoryHandle);
                         SafeNativeMethods.MQFreeMemory(memoryHandle);
                     }
 
@@ -1710,7 +1699,7 @@ namespace Particular.Msmq
                     }
                 }
 
-                return machineName;
+                return field;
             }
         }
 
@@ -1913,7 +1902,7 @@ namespace Particular.Msmq
                     if (!receiveCreated)
                     {
 
-                        // Actually, we dont know what default is:
+                        // Actually, we don't know what default is:
                         // Algorithm to determine whether or not messages
                         // should be authenticated by default is non-trivial
                         // and should not be reproduced in Particular.Msmq.
@@ -1933,7 +1922,7 @@ namespace Particular.Msmq
             set
             {
                 //default is different on different versions of MSMQ,
-                //so dont make any assumptions and explicitly pass what user requested
+                //so don't make any assumptions and explicitly pass what user requested
                 filter.UseAuthentication = true;
                 if (!value)
                 {
@@ -2365,7 +2354,7 @@ namespace Particular.Msmq
                         {
                             properties.Ghost(NativeMethods.MESSAGE_PROPID_DEST_QUEUE);
                             properties.Ghost(NativeMethods.MESSAGE_PROPID_DEST_QUEUE_LEN);
-                            cachedDestinationQueue = null;
+                            DestinationQueue = null;
                         }
                         if (filter.IsFirstInTransaction)
                         {

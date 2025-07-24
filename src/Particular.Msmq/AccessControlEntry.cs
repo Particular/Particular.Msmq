@@ -13,8 +13,6 @@ namespace Particular.Msmq
         const GenericAccessRights genericRightsMask = unchecked((GenericAccessRights)0xf0000000);
 
         internal int accessFlags = 0;
-        Trustee trustee = null;
-        AccessControlEntryType entryType = AccessControlEntryType.Allow;
 
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
@@ -47,7 +45,7 @@ namespace Particular.Msmq
         /// </devdoc>
         public AccessControlEntryType EntryType
         {
-            get { return entryType; }
+            get;
             set
             {
                 if (!ValidationUtility.ValidateAccessControlEntryType(value))
@@ -55,9 +53,9 @@ namespace Particular.Msmq
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(AccessControlEntryType));
                 }
 
-                entryType = value;
+                field = value;
             }
-        }
+        } = AccessControlEntryType.Allow;
 
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
@@ -121,16 +119,13 @@ namespace Particular.Msmq
         /// </devdoc>
         public Trustee Trustee
         {
-            get
-            {
-                return trustee;
-            }
+            get;
             set
             {
                 ArgumentNullException.ThrowIfNull(value);
 
-                trustee = value;
+                field = value;
             }
-        }
+        } = null;
     }
 }

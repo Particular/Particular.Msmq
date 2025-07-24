@@ -8,20 +8,17 @@ namespace Particular.Msmq
     /// </devdoc>
     class Trustee
     {
-        string name;
-        TrusteeType trusteeType;
-
         /// <devdoc>
         ///    <para>[To be supplied.]</para>
         /// </devdoc>
         public string Name
         {
-            get { return name; }
+            get;
             set
             {
                 ArgumentNullException.ThrowIfNull(value);
 
-                name = value;
+                field = value;
             }
         }
 
@@ -35,7 +32,7 @@ namespace Particular.Msmq
         /// </devdoc>
         public TrusteeType TrusteeType
         {
-            get { return trusteeType; }
+            get;
             set
             {
                 if (!ValidationUtility.ValidateTrusteeType(value))
@@ -43,7 +40,7 @@ namespace Particular.Msmq
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(TrusteeType));
                 }
 
-                trusteeType = value;
+                field = value;
             }
         }
 
