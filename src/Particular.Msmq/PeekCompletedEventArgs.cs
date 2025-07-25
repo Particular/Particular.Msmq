@@ -15,7 +15,6 @@ namespace Particular.Msmq
     /// </devdoc>
     class PeekCompletedEventArgs : EventArgs
     {
-        Message message;
         readonly MessageQueue sender;
 
         /// <internalonly/>
@@ -39,11 +38,11 @@ namespace Particular.Msmq
         {
             get
             {
-                if (message == null)
+                if (field == null)
                 {
                     try
                     {
-                        message = sender.EndPeek(AsyncResult);
+                        field = sender.EndPeek(AsyncResult);
                     }
                     catch
                     {
@@ -51,7 +50,7 @@ namespace Particular.Msmq
                     }
                 }
 
-                return message;
+                return field;
             }
         }
     }

@@ -14,7 +14,6 @@ namespace Particular.Msmq
     /// </devdoc>
     class ReceiveCompletedEventArgs : EventArgs
     {
-        Message message;
         readonly MessageQueue sender;
 
         /// <internalonly/>
@@ -38,11 +37,11 @@ namespace Particular.Msmq
         {
             get
             {
-                if (message == null)
+                if (field == null)
                 {
                     try
                     {
-                        message = sender.EndReceive(AsyncResult);
+                        field = sender.EndReceive(AsyncResult);
                     }
                     catch
                     {
@@ -50,7 +49,7 @@ namespace Particular.Msmq
                     }
                 }
 
-                return message;
+                return field;
             }
         }
     }

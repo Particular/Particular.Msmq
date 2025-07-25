@@ -40,11 +40,7 @@ namespace Particular.Msmq
         /// </devdoc>
         public static readonly long InfiniteQueueSize = uint.MaxValue;
 
-
         //Internal members
-
-
-        DefaultPropertiesToSend defaultProperties;
         MessagePropertyFilter receiveFilter;
         int sharedMode;
         string formatName;
@@ -62,19 +58,8 @@ namespace Particular.Msmq
         internal static readonly bool Msmq3OrNewer = OSVersion >= WinXP;
 
         //Cached properties
-        QueuePropertyFilter filter;
-        bool authenticate;
-        short basePriority;
-        DateTime createTime;
         int encryptionLevel;
         Guid id;
-        string label;
-        string multicastAddress;
-        DateTime lastModifyTime;
-        long journalSize;
-        long queueSize;
-        Guid queueType;
-        bool useJournaling;
         MQCacheableInfo mqInfo;
 
         // Double-checked locking pattern requires volatile for read/write synchronization
@@ -84,7 +69,6 @@ namespace Particular.Msmq
         AsyncCallback onRequestCompleted;
         PeekCompletedEventHandler onPeekCompleted;
         ReceiveCompletedEventHandler onReceiveCompleted;
-        ISynchronizeInvoke synchronizingObject;
 
         // Double-checked locking pattern requires volatile for read/write synchronization
         volatile Hashtable outstandingAsyncRequests;
@@ -109,7 +93,7 @@ namespace Particular.Msmq
         // Double-checked locking pattern requires volatile for read/write synchronization
         volatile QueueInfoKeyHolder queueInfoKey = null;
 
-        //Code Acess Security support
+        //Code Access Security support
         bool administerGranted;
         bool browseGranted;
         bool sendGranted;
@@ -247,12 +231,12 @@ namespace Particular.Msmq
                 {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE, 0);
                     GenerateQueueProperties();
-                    authenticate = Properties.GetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE) != NativeMethods.QUEUE_AUTHENTICATE_NONE;
+                    field = Properties.GetUI1(NativeMethods.QUEUE_PROPID_AUTHENTICATE) != NativeMethods.QUEUE_AUTHENTICATE_NONE;
                     PropertyFilter.Authenticate = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_AUTHENTICATE);
                 }
 
-                return authenticate;
+                return field;
             }
 
             set
@@ -267,7 +251,7 @@ namespace Particular.Msmq
                 }
 
                 SaveQueueProperties();
-                authenticate = value;
+                field = value;
                 PropertyFilter.Authenticate = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_AUTHENTICATE);
             }
@@ -285,12 +269,12 @@ namespace Particular.Msmq
                 {
                     Properties.SetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY, 0);
                     GenerateQueueProperties();
-                    basePriority = properties.GetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY);
+                    field = properties.GetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY);
                     PropertyFilter.BasePriority = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_BASEPRIORITY);
                 }
 
-                return basePriority;
+                return field;
 
             }
 
@@ -298,7 +282,7 @@ namespace Particular.Msmq
             {
                 Properties.SetI2(NativeMethods.QUEUE_PROPID_BASEPRIORITY, value);
                 SaveQueueProperties();
-                basePriority = value;
+                field = value;
                 PropertyFilter.BasePriority = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_BASEPRIORITY);
             }
@@ -362,18 +346,18 @@ namespace Particular.Msmq
                         SafeNativeMethods.MQFreeMemory(handle);
                     }
 
-                    queueType = new Guid(bytes);
+                    field = new Guid(bytes);
                     PropertyFilter.Category = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_TYPE);
                 }
-                return queueType;
+                return field;
             }
 
             set
             {
                 Properties.SetGuid(NativeMethods.QUEUE_PROPID_TYPE, value.ToByteArray());
                 SaveQueueProperties();
-                queueType = value;
+                field = value;
                 PropertyFilter.Category = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_TYPE);
             }
@@ -415,12 +399,12 @@ namespace Particular.Msmq
                     DateTime time = new(1970, 1, 1);
                     Properties.SetI4(NativeMethods.QUEUE_PROPID_CREATE_TIME, 0);
                     GenerateQueueProperties();
-                    createTime = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_CREATE_TIME)).ToLocalTime();
+                    field = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_CREATE_TIME)).ToLocalTime();
                     PropertyFilter.CreateTime = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_CREATE_TIME);
                 }
 
-                return createTime;
+                return field;
             }
         }
 
@@ -435,25 +419,22 @@ namespace Particular.Msmq
         {
             get
             {
-                if (defaultProperties == null)
+                if (field == null)
                 {
                     if (DesignMode)
                     {
-                        defaultProperties = new DefaultPropertiesToSend(true);
+                        field = new DefaultPropertiesToSend(true);
                     }
                     else
                     {
-                        defaultProperties = new DefaultPropertiesToSend();
+                        field = new DefaultPropertiesToSend();
                     }
                 }
 
-                return defaultProperties;
+                return field;
             }
 
-            set
-            {
-                defaultProperties = value;
-            }
+            set;
         }
 
         /// <devdoc>
@@ -671,12 +652,12 @@ namespace Particular.Msmq
                         SafeNativeMethods.MQFreeMemory(handle);
                     }
 
-                    label = description;
+                    field = description;
                     PropertyFilter.Label = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_LABEL);
                 }
 
-                return label;
+                return field;
             }
 
             set
@@ -686,7 +667,7 @@ namespace Particular.Msmq
                 //Borrow this function from message
                 Properties.SetString(NativeMethods.QUEUE_PROPID_LABEL, Message.StringToBytes(value));
                 SaveQueueProperties();
-                label = value;
+                field = value;
                 PropertyFilter.Label = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_LABEL);
             }
@@ -707,12 +688,12 @@ namespace Particular.Msmq
                     DateTime time = new(1970, 1, 1);
                     Properties.SetI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME, 0);
                     GenerateQueueProperties();
-                    lastModifyTime = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME)).ToLocalTime();
+                    field = time.AddSeconds(properties.GetI4(NativeMethods.QUEUE_PROPID_MODIFY_TIME)).ToLocalTime();
                     PropertyFilter.LastModifyTime = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_MODIFY_TIME);
                 }
 
-                return lastModifyTime;
+                return field;
             }
         }
 
@@ -774,12 +755,12 @@ namespace Particular.Msmq
                 {
                     Properties.SetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA, 0);
                     GenerateQueueProperties();
-                    journalSize = (uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA);
+                    field = (uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA);
                     PropertyFilter.MaximumJournalSize = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA);
                 }
 
-                return journalSize;
+                return field;
             }
 
             set
@@ -791,7 +772,7 @@ namespace Particular.Msmq
 
                 Properties.SetUI4(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA, (int)(uint)value);
                 SaveQueueProperties();
-                journalSize = value;
+                field = value;
                 PropertyFilter.MaximumJournalSize = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL_QUOTA);
             }
@@ -810,12 +791,12 @@ namespace Particular.Msmq
                 {
                     Properties.SetUI4(NativeMethods.QUEUE_PROPID_QUOTA, 0);
                     GenerateQueueProperties();
-                    queueSize = (uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_QUOTA);
+                    field = (uint)properties.GetUI4(NativeMethods.QUEUE_PROPID_QUOTA);
                     PropertyFilter.MaximumQueueSize = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_QUOTA);
                 }
 
-                return queueSize;
+                return field;
             }
 
             set
@@ -827,7 +808,7 @@ namespace Particular.Msmq
 
                 Properties.SetUI4(NativeMethods.QUEUE_PROPID_QUOTA, (int)(uint)value);
                 SaveQueueProperties();
-                queueSize = value;
+                field = value;
                 PropertyFilter.MaximumQueueSize = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_QUOTA);
             }
@@ -930,12 +911,12 @@ namespace Particular.Msmq
                         SafeNativeMethods.MQFreeMemory(handle);
                     }
 
-                    multicastAddress = address;
+                    field = address;
                     PropertyFilter.MulticastAddress = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_MULTICAST_ADDRESS);
                 }
 
-                return multicastAddress;
+                return field;
             }
             set
             {
@@ -956,7 +937,7 @@ namespace Particular.Msmq
                 }
 
                 SaveQueueProperties();
-                multicastAddress = value;
+                field = value;
                 PropertyFilter.MulticastAddress = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_MULTICAST_ADDRESS);
             }
@@ -1010,9 +991,9 @@ namespace Particular.Msmq
         {
             get
             {
-                filter ??= new QueuePropertyFilter();
+                field ??= new QueuePropertyFilter();
 
-                return filter;
+                return field;
             }
         }
 
@@ -1130,7 +1111,7 @@ namespace Particular.Msmq
         {
             get
             {
-                if (synchronizingObject == null && DesignMode)
+                if (field == null && DesignMode)
                 {
                     var host = (IDesignerHost)GetService(typeof(IDesignerHost));
                     if (host != null)
@@ -1138,18 +1119,15 @@ namespace Particular.Msmq
                         object baseComponent = host.RootComponent;
                         if (baseComponent is not null and ISynchronizeInvoke)
                         {
-                            synchronizingObject = (ISynchronizeInvoke)baseComponent;
+                            field = (ISynchronizeInvoke)baseComponent;
                         }
                     }
                 }
 
-                return synchronizingObject;
+                return field;
             }
 
-            set
-            {
-                synchronizingObject = value;
-            }
+            set;
         }
 
         /// <devdoc>
@@ -1185,11 +1163,11 @@ namespace Particular.Msmq
                 {
                     Properties.SetUI1(NativeMethods.QUEUE_PROPID_JOURNAL, 0);
                     GenerateQueueProperties();
-                    useJournaling = Properties.GetUI1(NativeMethods.QUEUE_PROPID_JOURNAL) != NativeMethods.QUEUE_JOURNAL_NONE;
+                    field = Properties.GetUI1(NativeMethods.QUEUE_PROPID_JOURNAL) != NativeMethods.QUEUE_JOURNAL_NONE;
                     PropertyFilter.UseJournalQueue = true;
                     Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL);
                 }
-                return useJournaling;
+                return field;
             }
 
             set
@@ -1204,7 +1182,7 @@ namespace Particular.Msmq
                 }
 
                 SaveQueueProperties();
-                useJournaling = value;
+                field = value;
                 PropertyFilter.UseJournalQueue = true;
                 Properties.Remove(NativeMethods.QUEUE_PROPID_JOURNAL);
             }
@@ -1494,9 +1472,7 @@ namespace Particular.Msmq
                     mqInfo = null;
                 }
             }
-
         }
-
 
         /// <devdoc>
         ///    <para>
@@ -2093,7 +2069,6 @@ namespace Particular.Msmq
             return ReceiveBy(id, TimeSpan.Zero, false, true, false, null, MessageQueueTransactionType.None);
         }
 
-
         /// <devdoc>
         ///    <para>
         ///       Peeks the message that matches the
@@ -2108,7 +2083,6 @@ namespace Particular.Msmq
             return ReceiveBy(id, timeout, false, true, true, null, MessageQueueTransactionType.None);
         }
 
-
         /// <devdoc>
         ///    <para>
         ///       Peeks the message that matches the
@@ -2121,7 +2095,6 @@ namespace Particular.Msmq
         {
             return ReceiveBy(correlationId, TimeSpan.Zero, false, false, false, null, MessageQueueTransactionType.None);
         }
-
 
         /// <devdoc>
         ///    <para>
@@ -3585,7 +3558,7 @@ namespace Particular.Msmq
 
                 // NOTE: RaiseCompletionEvent is not in a finally block by design, for two reasons:
                 // 1) the contract of BeginRead is to throw exception and not to notify event handler.
-                // 2) we dont know what the value pf localStatus will be in case of exception
+                // 2) we don't know what the value of localStatus will be in case of exception
                 if (IsFatalError(localStatus))
                 {
                     RaiseCompletionEvent(localStatus, overlappedPointer);
@@ -3677,7 +3650,7 @@ namespace Particular.Msmq
                         {
                             // ReadHandle called from StaleSafeReceiveMessage can throw if the handle has been invalidated
                             // (for example, by closing it), and subsequent MQOpenQueue fails for some reason.
-                            // Therefore catch exception (otherwise process will die) and propagate error
+                            // Therefore, catch exception (otherwise process will die) and propagate error
                             // EugeneSh Jan 2006 (Whidbey bug 570055)
                             result = owner.StaleSafeReceiveMessage(timeout, Action, message.Lock(), overlappedPointer, onMessageReceived, cursorHandle, IntPtr.Zero);
                         }
@@ -4059,7 +4032,6 @@ namespace Particular.Msmq
 
             // Double-checked locking pattern requires volatile for read/write synchronization
             volatile MessageQueueHandle writeHandle = MessageQueueHandle.InvalidHandle;
-            bool isTransactional;
 
             // Double-checked locking pattern requires volatile for read/write synchronization
             volatile bool isTransactional_valid = false;
@@ -4080,7 +4052,7 @@ namespace Particular.Msmq
 
                 // For each accessMode, corresponding QueueAccessModeHolder is a singleton.
                 // Call factory method to return existing holder for this access mode,
-                // or make a new one if noone used this access mode before.
+                // or make a new one if none used this access mode before.
                 //
                 this.accessMode = QueueAccessModeHolder.GetQueueAccessModeHolder(accessMode);
             }
@@ -4224,13 +4196,13 @@ namespace Particular.Msmq
                                     throw new MessageQueueException(status);
                                 }
 
-                                isTransactional = props.GetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION) != NativeMethods.QUEUE_TRANSACTIONAL_NONE;
+                                field = props.GetUI1(NativeMethods.QUEUE_PROPID_TRANSACTION) != NativeMethods.QUEUE_TRANSACTIONAL_NONE;
                                 isTransactional_valid = true;
                             }
                         }
                     }
 
-                    return isTransactional;
+                    return field;
                 }
             }
 
