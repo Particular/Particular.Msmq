@@ -1,13 +1,12 @@
 <Project>
 
   <PropertyGroup>
-    <AnalysisLevel>9.0-minimum</AnalysisLevel>
+    <AnalysisLevel>10.0-minimum</AnalysisLevel>
   </PropertyGroup>
 
   <PropertyGroup>
     <MinVerMinimumMajorMinor>2.0</MinVerMinimumMajorMinor>
     <MinVerAutoIncrement>minor</MinVerAutoIncrement>
-    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
 </Project>
