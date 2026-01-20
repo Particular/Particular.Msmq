@@ -41,11 +41,8 @@ namespace Particular.Msmq
 
         public void Close()
         {
-            if (handle != null)
-            {
-                handle.Close();
-                handle = null;
-            }
+            handle?.Close();
+            handle = null;
         }
 
 
